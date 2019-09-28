@@ -1,0 +1,107 @@
+baseURL = "https://127.0.0.1:4321/"
+languageCode = "en-us"
+DefaultContentLanguage = "en"
+title = "EV Advisory Ltd."
+theme = "meghna-hugo"
+summaryLength = 10
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+[taxonomies]
+  author = "author"
+  category = "categories"
+  tag = "tags"
+
+# Menu
+[menu]
+    [[menu.nav]]
+    name = "About Us"
+    URL = "about"
+    weight = 2
+
+    [[menu.nav]]
+    name = "Service"
+    URL = "services"
+    weight = 3
+
+    [[menu.nav]]
+    name = "Portfolio"
+    URL = "portfolio"
+    weight = 4
+
+    [[menu.nav]]
+    name = "Contact"
+    URL = "contact-us"
+    weight = 5
+
+# Site params
+[params]
+home= "Home"
+logo = "images/eva_logo2.png"
+gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+# Meta data
+#description = "Where applied computing and AI meet your business needs"C
+description = "The cross-section of artificial and business intelligence • (AI x BI)"
+author = "Evalencia"
+# Google Analitycs
+googleAnalitycsID = "Your ID"
+custom_css = ["css/custom.css"]
+
+    # Banner Section
+    [params.banner]
+    enable = true
+    bgImage = "images/slider/fractal-1.jpg"
+    icon = "tf-ion-arrow-graph-up-right"
+    heading = "Grow digitally"
+    content= "Helping businesses accelerate their journey to becoming cognitive enterprises"
+    btn = true
+    btnText="Check Us Out!"
+    btnURL="#services"
+
+    # call to action
+    [params.cta]
+    enable = false
+    title = "Great Design & Incredible Features"
+    content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tenetur odio impedit incidunt? Omnis accusantium ea reiciendis, fugit commodi nostrum."
+    btnURL = "#contact-us"
+    btnText = "Start a project with us" 
+
+    # counter
+    [params.counter]
+    enable = false
+    bgImage = "images/backgrounds/bg-1.jpg"
+        [[params.counter.counterItem]]
+        title = "Impressions"
+        icon = "tf-ion-android-people"
+        count = "10,000+"
+
+        [[params.counter.counterItem]]
+        title = "Campaigns created"
+        icon = " tf-ion-android-calendar"
+        count = "2500+"
+
+        [[params.counter.counterItem]]
+        title = "Projects completed"
+        icon = "tf-ion-archive"
+        count = "100+"
+
+        [[params.counter.counterItem]]
+        title = "Repeat clients"
+        icon = "tf-ion-thumbsup"
+        count = "100+"
+
+    # footer
+    [params.footer]
+        copyright = "EV Advisory Ltd"
+        copyrightURL = "http://www.evadvisory.ca"
+
+         # social Icons
+        [[params.footer.socialIcon]]
+        icon = "tf-ion-social-facebook"
+        url = "https://www.facebook.com/evadvisory"
+
+        [[params.footer.socialIcon]]
+        icon = "tf-ion-social-twitter"
+        url = "https://twitter.com/evadvisoryltd"
+
+        [[params.footer.socialIcon]]
+        icon = "tf-ion-social-linkedin"
+        url = "https://linkedin.com/company/evadvisory"
