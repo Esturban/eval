@@ -7,7 +7,7 @@
 *.Rmd
 # Example code in package build process
 *-Ex.R
-
+*DESKTOP-2HCC2OH*
 # Output files from R CMD build
 /*.tar.gz
 

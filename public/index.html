@@ -6,7 +6,7 @@
 
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.55.6" />
 
     <title>EV Advisory Ltd. | The cross-section of artificial and business intelligence • (AI x BI)</title>
 
@@ -560,8 +560,11 @@
 
             <!-- Contact Form -->
             <div class="col-lg-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-                <form id="contact-form" class="form-meghna" method="post" action="sendmail.php" role="form">
 
+<form name="comments" method="POST" netlify-honeypot="hpfield" netlify>
+  <div class="hpot">
+    <label>Leave this field empty: <input name="hpfield"></label>
+  </div>    
                     <input name="e-mail" type="text" id="e-mail" autocomplete="off">
                     <div class="form-group">
                         <input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
