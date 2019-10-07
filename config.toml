@@ -1,4 +1,4 @@
-baseURL = "https://127.0.0.1:4321/"
+baseURL = "https://www.evadvisory.ca/"
 languageCode = "en-us"
 DefaultContentLanguage = "en"
 title = "EV Advisory Ltd."
@@ -35,20 +35,21 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 # Site params
 [params]
 home= "Home"
-logo = "images/eva_logo2.png"
+logo = "images/EV_Square.png"
 gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
 # Meta data
 #description = "Where applied computing and AI meet your business needs"C
 description = "The cross-section of artificial and business intelligence • (AI x BI)"
 author = "Evalencia"
 # Google Analitycs
-googleAnalitycsID = "Your ID"
+googleAnalitycsID = "UA-81176691-2"
+googleAnalyticsID = "UA-81176691-2"
 custom_css = ["css/custom.css"]
 
     # Banner Section
     [params.banner]
     enable = true
-    bgImage = "images/slider/fractal-1.jpg"
+    bgImage =  "images/slider/fractal-1.jpg"
     icon = "tf-ion-arrow-graph-up-right"
     heading = "Grow digitally"
     content= "Helping businesses accelerate their journey to becoming cognitive enterprises"

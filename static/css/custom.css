@@ -6,6 +6,14 @@
 }
 
 
+#navigation > div > a > img{
+width:80px;
+}
+
+.copyright > a > img{
+width:130px;
+}
+
 
 .hpot {
   display: none;

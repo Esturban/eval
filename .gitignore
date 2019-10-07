@@ -9,6 +9,7 @@
 *-Ex.R
 *DESKTOP-*
 *change-email*
+*git-commits*
 # Output files from R CMD build
 /*.tar.gz
 
