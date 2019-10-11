@@ -7,7 +7,6 @@ summaryLength = 10
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [taxonomies]
   author = "author"
-  category = "categories"
   tag = "tags"
 
 # Menu
