@@ -34,8 +34,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 # Site params
 [params]
 home= "Home"
-logo = "images/EV_Square.png"
-gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+logo = "i/rsz_ev_square.png"
+gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SRlZHWMCK8O0-52fZChEa1BgBiRo148&libraries=places"
 # Meta data
 #description = "Where applied computing and AI meet your business needs"C
 description = "The cross-section of artificial and business intelligence • (AI x BI)"

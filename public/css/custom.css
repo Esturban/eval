@@ -11,6 +11,10 @@ div.filtr-item > div > img {
   height:276px;
 }
 
+.table > thead > tr > th {
+  background: rgba(0,255,255,0.5);
+}
+
 
 div.filtr-item > div > img:before {
   object-fit: scale-down;

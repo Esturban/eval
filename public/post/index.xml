@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>A required title</title>
+      <link>/post/editing-1/</link>
+      <pubDate>Tue, 01 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/editing-1/</guid>
+      <description>Content and WritingBreak through the noise with clear, concise, and accurate content.</description>
+    </item>
+    
+    <item>
       <title>Feature: 66 Books of the Bible</title>
       <link>/post/automation-1/</link>
       <pubDate>Tue, 01 Aug 2017 00:00:00 +0000</pubDate>
