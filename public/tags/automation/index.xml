@@ -6,10 +6,19 @@
     <description>Recent content in Automation on EV Advisory Ltd.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How our Services can help you</title>
+      <link>/post/services-overview/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/services-overview/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>A required title</title>
