@@ -1,107 +1,62 @@
-baseURL = "https://www.evadvisory.ca/"
+baseURL = "https://evadvisory.ca/"
+title = "EV Advisory"
+
 languageCode = "en-us"
 DefaultContentLanguage = "en"
-title = "EV Advisory Ltd."
-theme = "meghna-hugo"
-summaryLength = 10
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-[taxonomies]
-  author = "author"
-  tag = "tags"
 
-# Menu
-[menu]
-    [[menu.nav]]
-    name = "About Us"
-    URL = "about"
-    weight = 2
+enableEmoji = true
+enableGitInfo = true
+enableRobotsTXT = true
+canonifyURLs = true
+paginate = 9
+darkmode_js = ["assets/js/darkmode.js"]
 
-    [[menu.nav]]
-    name = "Service"
-    URL = "services"
-    weight = 3
+enableInlineShortcodes = true
 
-    [[menu.nav]]
-    name = "Portfolio"
-    URL = "portfolio"
-    weight = 4
-
-    [[menu.nav]]
-    name = "Contact"
-    URL = "contact-us"
-    weight = 5
-
-# Site params
 [params]
-home= "Home"
-logo = "i/rsz_ev_square.png"
-gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyD8SRlZHWMCK8O0-52fZChEa1BgBiRo148&libraries=places"
-# Meta data
-#description = "Where applied computing and AI meet your business needs"C
-description = "The cross-section of artificial and business intelligence • (AI x BI)"
-author = "Evalencia"
-# Google Analitycs
-googleAnalitycsID = "UA-81176691-2"
-googleAnalyticsID = "UA-81176691-2"
-custom_css = ["css/custom.css"]
+author = "EV Advisory"
+authorimage = "../assets/images/global/author.webp"
+github = "https://github.com/EV-Advisory"
+facebook = "https://facebook.com/evadvisory"
+og_image = "/images/tailbliss-cover.png"
+sitename = "EV Advisory"
+twitter = "@evadvisoryltd"
+description = "Intersecting AI and BI"
 
-    # Banner Section
-    [params.banner]
-    enable = true
-    bgImage =  "images/slider/fractal-1.jpg"
-    icon = "tf-ion-arrow-graph-up-right"
-    heading = "Grow digitally"
-    content= "Helping businesses accelerate their journey to becoming cognitive enterprises"
-    btn = true
-    btnText="Check Us Out!"
-    btnURL="#services"
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
 
-    # call to action
-    [params.cta]
-    enable = false
-    title = "Great Design & Incredible Features"
-    content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tenetur odio impedit incidunt? Omnis accusantium ea reiciendis, fugit commodi nostrum."
-    btnURL = "#contact-us"
-    btnText = "Start a project with us" 
+[taxonomies]
+category = "Services"
+tag = "Tags"
 
-    # counter
-    [params.counter]
-    enable = false
-    bgImage = "images/backgrounds/bg-1.jpg"
-        [[params.counter.counterItem]]
-        title = "Impressions"
-        icon = "tf-ion-android-people"
-        count = "10,000+"
+[privacy]
+[privacy.disqus]
+disable = false
+[privacy.googleAnalytics]
+anonymizeIP = true
+disable = false
+respectDoNotTrack = false
+useSessionStorage = false
+[privacy.instagram]
+disable = false
+simple = false
+[privacy.twitter]
+disable = false
+enableDNT = false
+simple = false
+[privacy.vimeo]
+disable = false
+enableDNT = false
+simple = false
+[privacy.youtube]
+disable = false
+privacyEnhanced = true
 
-        [[params.counter.counterItem]]
-        title = "Campaigns created"
-        icon = " tf-ion-android-calendar"
-        count = "2500+"
-
-        [[params.counter.counterItem]]
-        title = "Projects completed"
-        icon = "tf-ion-archive"
-        count = "100+"
-
-        [[params.counter.counterItem]]
-        title = "Repeat clients"
-        icon = "tf-ion-thumbsup"
-        count = "100+"
-
-    # footer
-    [params.footer]
-        copyright = "EV Advisory Ltd"
-        copyrightURL = "http://www.evadvisory.ca"
-
-         # social Icons
-        [[params.footer.socialIcon]]
-        icon = "tf-ion-social-facebook"
-        url = "https://www.facebook.com/evadvisory"
-
-        [[params.footer.socialIcon]]
-        icon = "tf-ion-social-twitter"
-        url = "https://twitter.com/evadvisoryltd"
-
-        [[params.footer.socialIcon]]
-        icon = "tf-ion-social-linkedin"
-        url = "https://linkedin.com/company/evadvisory"
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.105.0"
+    max = "0.105.0"
