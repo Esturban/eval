@@ -1,5 +1,5 @@
 [build]
-publish = "public"
+publish = "build"
 command = "cd themes/tailbliss && git submodule update -f --init && cd ../.. && npm run build"
 
 [context.production.environment]
