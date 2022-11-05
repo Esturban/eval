@@ -16,7 +16,7 @@
     "start": "concurrently npm:watch:*",
     "watch:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
     "watch:hugo": "hugo server --disableFastRender",
-    "build": "hugo --gc --minify --buildFuture $DEPLOY_PRIME_URL",
+    "build": "hugo --gc --minify",
     "test": "hugo"
   },
   "repository": {
