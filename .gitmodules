@@ -1,0 +1,18 @@
+[submodule "themes/hugo-hero-theme"]
+	path = themes/hugo-hero-theme
+	url = git@github.com:zerostaticthemes/hugo-hero-theme.git
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = git@github.com:theNewDynamic/gohugo-theme-ananke.git
+[submodule "themes/hugo-fresh"]
+	path = themes/hugo-fresh
+	url = git@github.com:StefMa/hugo-fresh.git
+[submodule "themes/up-business"]
+	path = themes/up-business
+	url = https://gitlab.com/writeonlyhugo/up-business-theme.git
+[submodule "themes/tella"]
+	path = themes/tella
+	url = https://github.com/opera7133/tella.git
+[submodule "themes/tailbliss"]
+	path = themes/tailbliss
+	url = git@github.com:nusserstudios/tailbliss.git
