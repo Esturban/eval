@@ -3258,14 +3258,14 @@ video {
   color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 
-.text-indigo-900 {
-  --tw-text-opacity: 1;
-  color: rgb(49 46 129 / var(--tw-text-opacity));
-}
-
 .text-zinc-900 {
   --tw-text-opacity: 1;
   color: rgb(24 24 27 / var(--tw-text-opacity));
+}
+
+.text-indigo-900 {
+  --tw-text-opacity: 1;
+  color: rgb(49 46 129 / var(--tw-text-opacity));
 }
 
 .text-gray-300 {
@@ -3928,16 +3928,16 @@ EmojiSymbols;
     width: auto;
   }
 
-  .md\:w-48 {
-    width: 12rem;
-  }
-
   .md\:w-screen {
     width: 100vw;
   }
 
   .md\:w-6 {
     width: 1.5rem;
+  }
+
+  .md\:w-48 {
+    width: 12rem;
   }
 
   .md\:min-w-fit {

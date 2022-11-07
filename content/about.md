@@ -4,53 +4,20 @@ date: 2021-12-18T11:10:36+08:00
 draft: false
 language: en
 description: About Us
-featured_image: ../assets/images/featured/featured-img-placeholder.png
+featured_image: ../assets/images/about/bullet-457334_1920.jpg
 ---
 
-# h1 Heading :blush:
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
+# Who We Are   
+--- 
+EV Advisory is a global technology partner enabling digital change and transformation across industries to enable long-lasting value for businesses, people, and the wider world.
 
+## Key facts and recognitions  
 
-## Horizontal Rules
-
-***
-
----
-
-___
-
-
-## Typographic replacements
-
-Enable typographer option to see result.
-
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
-
-test.. test... test..... test?..... test!....
-
-!!!!!! ???? ,,  -- ---
-
-"Smartypants, double quotes" and 'single quotes'
-
-
-## Emphasis
-
-**This is bold text**
-
-__This is bold text__
-
-*This is italic text*
-
-_This is italic text_
-
-~~Strikethrough~~
-
-
-## Blockquotes
+| Option | Description |
+| ------ | ----------- |
+| Clients   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
 
 
 > Blockquotes can also be nested...
@@ -116,11 +83,7 @@ console.log(foo(5));
 
 ## Tables
 
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+
 
 Right aligned columns
 
