@@ -25,17 +25,15 @@
             <div class="text-center">
                 <h2
                     class="text-3xl font-black tracking-tight text-indigo-500 capitalize dark:text-indigo-300 sm:text-4xl">
-                    From the blog
+                    Services
                 </h2>
-                <p class="max-w-2xl mx-auto mt-3 text-xl text-gray-200 sm:mt-4">Lorem ipsum dolor
-                    sit amet consectetur,
-                    adipisicing elit. Ipsa libero labore natus atque, ducimus sed.</p>
+                <p class="max-w-2xl mx-auto mt-3 text-xl text-gray-200 sm:mt-4">Elevate your offering with our comprehensive digital service suites today</p>
             </div>
 
             <div class="mx-auto text-gray-900 max-w-7xl dark:text-gray-50 md:px-1.5">
                 <div class="px-4 text-gray-900 dark:text-white not-prose dark:text-zinc-200">
                     <div class="grid gap-4 mx-auto mt-12 mb-4 lg:max-w-none md:grid-cols-3">
-                        {{ range (.Paginator 3).Pages }}
+                        {{ range (.Paginator 3).Pages}}
                         <div class="flex flex-col overflow-hidden rounded-lg shadow-lg bg-gray-50 dark:bg-gray-900">
                             <a href="{{.Permalink}}">
                                 {{ with .Params.featured_image }}
@@ -80,7 +78,7 @@
                                             {{ .Params.author }}
                                         </p>
                                         <div class="flex space-x-1 text-sm text-gray-500 dark:text-white">
-                                            <time datetime="2020-02-12">{{.Date.Format "2006-01-02"}}</time>
+<!--                                            <time datetime="2020-02-12">{{.Date.Format "2006-01-02"}}</time>-->
                                             <span aria-hidden="true">&middot;</span>
                                             <span>{{ math.Round (div (countwords .Content) 220.0) }}
                                                 min read</span>
