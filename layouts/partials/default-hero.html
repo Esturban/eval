@@ -1,23 +1,31 @@
 <!--Standard Hero for Tailbliss-->
+{{ $hero_title := "EV Advisory"}}
+{{ $hero_subtitle := " Optimize. Scale. Automate." }}
+<!--{{ $hero_subtitle := " Optimize.⚙️ \n Scale.📈 \n Automate.🔃" }}-->
+{{ $hero_cta := "Let's connect" }}
+{{ $hero_lead_cta := "Data strategy that's right for you" }}
+{{ $hero_description := "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"}}
+
+
 <div class="bg-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl px-4 py-8 mx-auto">
             <div class="grid items-center gap-8 mb-8 sm:mb-0 lg:gap-12 lg:grid-cols-12">
                 <div class="col-span-6 px-4 text-center sm:mb-6 lg:text-left lg:mb-0">
                     <h1
                         class="mb-2 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
-                        EV Advisory</h1>
+                        {{ $hero_title }}</h1>
                     <h2 class="pb-2 text-3xl font-light text-gray-800 dark:text-gray-300 md:text-4xl">
-                        Enabling data-driven insights for your business
+                      {{ $hero_subtitle | markdownify }}
                     </h2>
                     <a href="/services/data-strategy"
                        class="block py-4 mx-auto space-x-4 sm:inline-flex md:inline-flex sm:text-center sm:block">
                         <span
                               class="rounded bg-gray-50 px-2.5 py-1 text-sm font-bold text-gray-900 block max-w-fit mx-auto md:min-w-fit mb-2">
-                            Let's connect
+                            {{ $hero_cta }}
                         </span>
                         <span
                               class="inline-flex items-center mb-2 space-x-1 text-sm font-medium text-gray-800 dark:text-white md:min-w-fit">
-                            <span>Data strategy that's right for you</span>
+                            <span>{{ $hero_lead_cta }}</span>
                             <!-- Heroicon name: mini/chevron-right -->
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                  fill="currentColor" aria-hidden="true">
@@ -27,10 +35,8 @@
                             </svg>
                         </span>
                     </a>
-                    <p
-                       class="max-w-xl mx-auto mb-6 font-normal text-gray-900 lg:mx-0 xl:mb-2 md:text-lg xl:text-xl dark:text-gray-50">
-                        At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. 
-						Data strategy, web and marketing capabilities that your business deserves</p>
+                    <p class="max-w-xl mx-auto mb-6 font-normal text-gray-900 lg:mx-0 xl:mb-2 md:text-lg xl:text-xl dark:text-gray-50">
+                        {{ $hero_description | markdownify }}</p>
                 </div>
                 <div class="col-span-6">
                     {{ $hero := resources.GetMatch "images/global/startup-desktop.jpg" }}
