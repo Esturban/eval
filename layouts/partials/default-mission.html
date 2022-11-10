@@ -1,3 +1,4 @@
+{{ $testimonial_card_description := "Technological disruption has been the name of the game. Here at EV Advisory, we bring technological equilibrium to your business model to find the solid footing you need to compete effectively in this new *digital world*." }}
     <div class="relative my-4">
         <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
             <div class="relative sm:py-8 lg:py-0">
@@ -20,11 +21,11 @@
                 <div class="relative max-w-md px-4 py-6 mx-auto sm:max-w-3xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
                     <!-- Testimonial card-->
                     <div class="relative pt-64 pb-10 overflow-hidden shadow-xl rounded-2xl">
-                        {{ $missionimage := resources.Get "images/pages/our-mission.png" }}
+                        {{ $missionimage := resources.Get "images/global/rocket-pair.jpg" }}
                         {{ with $missionimage }}
                         {{ with .Resize (printf "%dx%d webp q50" .Width .Height) }}
                         <img imgh src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
-                             class="absolute inset-0 object-cover w-full h-full" alt="TailBliss - Our Mission"
+                             class="absolute inset-0 object-cover w-full h-full" alt="EV Advisory - Our Mission"
                              loading="lazy" />
                         {{ end }}>
                         {{ end }}
@@ -42,16 +43,13 @@
                                         <path
                                               d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                                     </svg>
-                                    <p class="relative">Tincidunt integer commodo, cursus etiam
-                                        aliquam neque, et. Consectetur pretium in volutpat, diam.
-                                        Montes, magna cursus nulla feugiat dignissim id lobortis
-                                        amet.
+                                    <p class="relative">{{  $testimonial_card_description | markdownify }}
                                     </p>
                                 </div>
 
                                 <footer class="mt-4">
                                     <p class="text-base font-semibold text-gray-200">
-                                        John Doe, CEO at TailBliss
+                                        Esteban Valencia, Founder at EV Advisory
                                     </p>
                                 </footer>
                             </blockquote>
