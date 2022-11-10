@@ -1,5 +1,5 @@
 ---
-author: TailBliss
+author: EV Advisory
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 ---
