@@ -9,20 +9,24 @@ featured_image: ../assets/images/about/bullet-457334_1920.jpg
 
 # Who We Are   
 --- 
-EV Advisory is a global technology partner enabling digital change and transformation across industries to enable long-lasting value for businesses, people, and the wider world.
+EV Advisory is a global technology partner enabling digital change and transformation across industries to enable long-lasting value for businesses, people, and the wider world.  
 
-## Key facts and recognitions  
+We, at EV Advisory, take a people first approach in resolving client issues to ensure we unify engineers, creators, and thinkers globally who bring incredible ideas to life with the power of digital technologies.  
 
-| Option | Description |
+Collectively, we have more than 30 years experience helping our partners thrive in the information age. Our engineering craftsmanship is first in class and leverages uncanny methods to generate great results regardless of the scale, nature, and complexity.  
+
+
+
+## Key figures    
+
+|   |   |
 | ------ | ----------- |
-| Clients   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
+| Industry experience   | 30 + |
+| Clients served | 100 + |
+| Market presence    | 15+ countries |  
 
 
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
+>  
 
 
 ## Lists
