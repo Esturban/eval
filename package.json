@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/Esturban/eval",
   "dependencies": {
-    "netlify-cli": "^12.0.11",
+    "netlify-cli": "^12.1.1",
     "test": "^3.2.1"
   }
 }
