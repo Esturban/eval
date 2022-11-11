@@ -22,6 +22,7 @@ og_image = "/images/tailbliss-cover.png"
 sitename = "EV Advisory"
 twitter = "@evadvisoryltd"
 description = "Intersecting AI and BI"
+mainSections = ['services']
 
 [markup]
 [markup.goldmark]

@@ -1,5 +1,7 @@
 {{ $testimonial_card_description := "Technological disruption has been the name of the game. Here at EV Advisory, we bring technological equilibrium to your business model to find the solid footing you need to compete effectively in this new *digital world*." }}
 {{ $missionimage := resources.Get "images/global/rocket-pair.jpg" }}
+{{ $mission_author := "Esteban Valencia, Founder at EV Advisory" }}
+
 <div class="relative my-4">
         <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
             <div class="relative sm:py-8 lg:py-0">
@@ -49,7 +51,7 @@
 
                                 <footer class="mt-4">
                                     <p class="text-base font-semibold text-gray-200">
-                                        Esteban Valencia, Founder at EV Advisory
+                                        {{ $mission_author }}
                                     </p>
                                 </footer>
                             </blockquote>
