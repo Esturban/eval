@@ -10,7 +10,8 @@
     "concurrently": "^7.5.0",
     "postcss": "^8.4.19",
     "postcss-cli": "^10.0.0",
-    "tailwindcss": "^3.2.3"
+    "tailwindcss": "^3.2.3",
+    "test": "^3.2.1"
   },
   "scripts": {
     "start": "concurrently npm:watch:*",
@@ -41,10 +42,6 @@
   "bugs": {
     "url": "https://github.com/Esturban/eval/issues"
   },
-  "homepage": "https://github.com/Esturban/eval",
-  "dependencies": {
-    "netlify-cli": "^12.1.1",
-    "test": "^3.2.1"
-  }
+  "homepage": "https://github.com/Esturban/eval"
 }
 	
