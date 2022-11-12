@@ -1,10 +1,10 @@
 <!--Standard Hero for Tailbliss-->
-{{ $hero_title := "EV Advisory" }}
+{{ $hero_title := .Site.Params.hero_title }}  
 <!--{{ $hero_subtitle := " Optimize.⚙️ \n Scale.📈 \n Automate.🔃" }}-->
-{{ $hero_subtitle := " Optimize. Scale. Automate." }}
-{{ $hero_cta := "Let's connect" }}
-{{ $hero_lead_cta := "Data strategy that's right for you" }}
-{{ $hero_description := "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"}}
+{{ $hero_subtitle := .Site.Params.hero_subtitle }}
+{{ $hero_cta := .Site.Params.hero_CTA }}
+{{ $hero_lead_cta := .Site.Params.hero_lead_CTA }}
+{{ $hero_description := .Site.Params.hero_description }}
 
 
 <div class="bg-gray-200 dark:bg-gray-900">

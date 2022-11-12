@@ -1207,6 +1207,10 @@ video {
   display: inline-flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: grid;
 }
@@ -1253,10 +1257,6 @@ video {
 
 .h-4 {
   height: 1rem;
-}
-
-.max-h-12 {
-  max-height: 3rem;
 }
 
 .w-10 {

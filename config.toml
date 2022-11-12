@@ -23,6 +23,11 @@ sitename = "EV Advisory"
 twitter = "@evadvisoryltd"
 description = "Intersecting AI and BI"
 mainSections = ['services']
+hero_title = "EV Advisory"  
+hero_subtitle = "Optimize. Scale. Automate."  
+hero_CTA = "Let's connect"  
+hero_lead_CTA = "Data strategy that's right for you"
+hero_description = "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"
 
 [markup]
 [markup.goldmark]
