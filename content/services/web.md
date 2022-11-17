@@ -4,52 +4,32 @@ date: 2022-07-17T11:10:36+08:00
 draft: false
 language: en
 featured_image: ../assets/images/featured/web.jpg
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus, odio nec venenatis lacinia, lacus lectus varius nisi, in tristique mi purus ut libero.
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus, odio nec venenatis lacinia, lacus lectus varius nisi, in tristique mi purus ut libero. Vestibulum vel convallis felis. Ut finibus lorem vestibulum lobortis rhoncus.
+summary: If your website is your store front, we help you with find the best methods of promoting and placing your product in the right spots.  
+description: If your website is your store front, we help you with find the best methods of promoting and placing your product in the right spots.
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
 ---
-__Advertisement :smile:__
+## Intro to Web  
+The Internet is a vast place where it's hard to get noticed. 
+In this article, we will go through the importance of a well-maintained website to help you get the most value 
+from your digital presence.
 
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-  resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-  i18n with plurals support and easy syntax.
+A website is the first thing that people see when they are looking for you online and you have just what they're looking for. 
+It's a chance to make an impression and a poor site could leave one you don't want when a user wanted to make a purchase. 
+A bad impression can take the form of:  
+- Long wait times  
+- Poor navigation or menus  
+- Dysfunctional buttons or interface (such as broken links)  
+- Typography that is difficult to read or understand     
 
-You will like those projects!
+Without optimizing your website, your conversion can suffer, drive fewer customer acquisition opportunities, and increase your cost to acquire a new client.  
 
----
-
-# h1 Heading :blush:
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
-
-
-## Horizontal Rules
-
-***
-
----
-
-___
+### Asset Review   
+The first step for optimizing your website is an asset review. This means going over all of your content on the site and checking for outdated or irrelevant information that could be causing visitors to click away from your site or bounce back quickly after arriving on it.
 
 
-## Typographic replacements
-
-Enable typographer option to see result.
-
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
-
-test.. test... test..... test?..... test!....
-
-!!!!!! ???? ,,  -- ---
-
-"Smartypants, double quotes" and 'single quotes'
 
 
 ## Emphasis
