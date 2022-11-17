@@ -10,7 +10,7 @@ enableRobotsTXT = true
 canonifyURLs = true
 paginate = 9
 darkmode_js = ["assets/js/darkmode.js"]
-
+ignoreErrors = ["error-remote-getjson"]
 enableInlineShortcodes = true
 
 [params]
