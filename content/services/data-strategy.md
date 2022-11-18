@@ -11,247 +11,43 @@ authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
 ---
-__Advertisement :smile:__
 
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-  resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-  i18n with plurals support and easy syntax.
-
-You will like those projects!
-
----
-
-# h1 Heading :blush:
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
-
-
-## Horizontal Rules
+## The Importance of Data Driven Strategies in any Industry
 
 ***
 
----
+Data-driven strategies have demonstrated that they can help businesses in any industry develop a more calculated approach to common operational challenges; conversion, sales, marketing.  In the past, companies were unable to scale their operations because they were not able to reliably predict what type of customer would visit them as a result of marketing efforts. However, modern technology has developed the computing power needed to provide insights into how best to target customers, and which activities will cause the most conversions in real-time. Establishing your business to be data-driven will allow organizations to make more rational decisions about their business and focus on the outcomes that are important for their customers and ultimately their company. To name a few of the benefits of a data strategy: 
 
-___
+- reduced costs  
+- increased efficiencies in conversion  
+- improved marketing allocation  
 
+Instead of relying on your next best guess or expert advice, collect relevant information to learn your customer base well.  
 
-## Typographic replacements
+{{< img src = "../assets/images/featured/data-strategy/group.jpg" >}}
 
-Enable typographer option to see result.
+## How EV Advisory Leverages Data Science in Practice  
+EV Advisory is a technical consultancy that specializes in data-driven business intelligence and goal-oriented strategy. Data science is no longer a treasure-trove of advanced analytics, limited to large corporate giants with the budgets and infrastructure to make it manifest. Our data science experience includes business intelligence as well as deductive analyses to keep your business operating like a well-oiled machine. We have helped clients leverage advanced and standard data science techniques achieving success with companies of all sizes, from start-ups to Fortune 500s.  
 
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+The company’s services include:
+- Data Strategy & Insights  
+- Data Strategy Implementation  
+- Data Science Training & Development  
+- Google Data Suite (Analytics, Tags and Data Studio)  
+- Predictive Analytics Solutions  
+- Business Intelligence Consulting Services  
+- Big Data Training Services  
 
-test.. test... test..... test?..... test!....
+Data handling is a process that requires knowledge across various fields like probability and machine learning. A quant with a foundation in mathematics can make all the right decisions with data, but without necessary context, can make poor business decisions solely based on the representation of the figures.  Our team creates simple and complex solutions elegantly tailored to the needs of the client. Whether your business is getting started with data strategy or sophisticated systems in the cloud exist, we provide consulting, planning and implementation services where you need it.  
 
-!!!!!! ???? ,,  -- ---
 
-"Smartypants, double quotes" and 'single quotes'
 
+## Pricing and Plans
 
-## Emphasis
+{{< card >}}  
 
-**This is bold text**
+## at your service  
 
-__This is bold text__
+In our modern economy, it is imperative for companies to be data driven to set themselves apart. With the ability to harness digital assets well, companies can proactively make the decision to remain relevant. Competition is constantly springing forward and going after successful fortune 500s too rigid to make the appropriate pivots to survive. With data at the heart of your operational strategy, you can create the right culture needed to keep your business alive, well, and thriving for years to come.  
 
-*This is italic text*
-
-_This is italic text_
-
-~~Strikethrough~~
-
-
-## Blockquotes
-
-
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
-
-
-## Lists
-
-Unordered
-
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
-
-Ordered
-
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-
-
-## Code
-
-Inline `code`
-
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-
-Block code "fences"
-
-```
-Sample text here...
-```
-
-Syntax highlighting
-
-``` js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-
-## Tables
-
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-Right aligned columns
-
-| Option | Description |
-| ------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-
-## Links
-
-[link text](http://dev.nodeca.com)
-
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
-
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
-
-
-## Images
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-
-## Plugins
-
-The killer feature of `markdown-it` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
-
-
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
-
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
-
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
-- 19^th^
-- H~2~O
-
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Inserted text++
-
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
-==Marked text==
-
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
-
-Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-        { some code, part of Definition 2 }
-
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-  ~ Definition 1
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
-
-This is HTML abbreviation example.
-
-It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
-
-*[HTML]: Hyper Text Markup Language
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*here be dragons*
-:::
+For more information about how we do this, check out our resources here:

@@ -4,254 +4,47 @@ date: 2022-07-16T11:10:36+08:00
 draft: false
 language: en
 featured_image: ../assets/images/featured/branding.jpg
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus, odio nec venenatis lacinia, lacus lectus varius nisi, in tristique mi purus ut libero.
+summary: Data-driven marketing is an art and science of solving your clients' problems  
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus, odio nec venenatis lacinia, lacus lectus varius nisi, in tristique mi purus ut libero. Vestibulum vel convallis felis. Ut finibus lorem vestibulum lobortis rhoncus.
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
 ---
-__Advertisement :smile:__
+Marketing: a delicate art and science
 
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-  resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-  i18n with plurals support and easy syntax.
+One of the most important things you can do in marketing is to know who your audience is and why they need the problem you solve.  
 
-You will like those projects!
+About your audience:
 
----
+What is the size of their network?  
 
-# h1 Heading :blush:
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
+What are their interests?  
 
+What do they struggle with most? 
 
-## Horizontal Rules
+Knowing the size and interests of your targeted audience determines what kind of content appeals to them most, what marketing methods you use, and where you advertise. Interviewing clients can be a long process with few useful conclusions without the appropriate structure.  A client-first approach in marketing allows you to more easily relate to customers’ needs. Modern data collection can now bring relief to these situations by inferring reason from behavior to leverage data-driven marketing insights.  
 
-***
+How Does Data-Driven Marketing Help Scale and Grow Your Business
 
----
+Data-driven marketing is the process of using data to drive decisions used by marketers with the help of analytics. Businesses can scale and grow by increasing conversion rates and improving advertising spend allocation. By collecting, analyzing and interpreting data from various sources like social media, search engines, customer’s behavior etc., your company could reduce the expenses in areas that do not help the business prosper. This is how companies like Skims and Gymshark can compete with Lululemon or Tesla with Toyota.  
 
-___
+The Key to Using Data-Driven Marketing for Successful Results
 
+With data-driven marketing, the more you know about your audience, the more you can tailor your message to their needs. A few important areas of focus in marketing your online business are: 
 
-## Typographic replacements
+A/B testing - a critical component allowing companies to determine which version of their website or messaging resonates most with their target audience.  
 
-Enable typographer option to see result.
+SEO  - Identifying the right voice of your clients and how they look for you. 
 
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+Content Strategy - Finding the tone your visitors speak in so they may relate.
 
-test.. test... test..... test?..... test!....
+Marketing Channels - Looking for your customers and prospects in the right places.
 
-!!!!!! ???? ,,  -- ---
+These key areas of focus for a data-driven marketing strategy can set your business apart from that of the competition. Instead of relying on the next hottest social media platform to drive your advertising spend, we find your network of clients and the right approach for you
 
-"Smartypants, double quotes" and 'single quotes'
+ Why EV Advisory?
 
+The digital marketing industry is changing at a rapid pace, with new trends emerging and old ones becoming obsolete. It can be difficult to keep up with the changes, which is why companies are turning to EV Advisory for help. We focus on the key areas of your business evident from SEO and competitive landscape audits that allow us to develop a strategy that reflects your customers’ needs.  
 
-## Emphasis
-
-**This is bold text**
-
-__This is bold text__
-
-*This is italic text*
-
-_This is italic text_
-
-~~Strikethrough~~
-
-
-## Blockquotes
-
-
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
-
-
-## Lists
-
-Unordered
-
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
-
-Ordered
-
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-
-
-## Code
-
-Inline `code`
-
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-
-Block code "fences"
-
-```
-Sample text here...
-```
-
-Syntax highlighting
-
-``` js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-
-## Tables
-
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-Right aligned columns
-
-| Option | Description |
-| ------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-
-## Links
-
-[link text](http://dev.nodeca.com)
-
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
-
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
-
-
-## Images
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-
-## Plugins
-
-The killer feature of `markdown-it` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
-
-
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
-
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
-
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
-- 19^th^
-- H~2~O
-
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Inserted text++
-
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
-==Marked text==
-
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
-
-Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-        { some code, part of Definition 2 }
-
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-  ~ Definition 1
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
-
-This is HTML abbreviation example.
-
-It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
-
-*[HTML]: Hyper Text Markup Language
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*here be dragons*
-:::
+EV Advisory has helped many clients achieve their goals and grow their business by providing them with a customized consulting package that meet their needs. In addition to the consultation, our packages include implementation with performance-first growth targets, strategic experimenting, and lead generation with your visitors in mind.  
