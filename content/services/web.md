@@ -11,227 +11,71 @@ authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
 ---
-## Intro to Web  
-The Internet is a vast place where it's hard to get noticed. 
-In this article, we will go through the importance of a well-maintained website to help you get the most value 
-from your digital presence.
 
-A website is the first thing that people see when they are looking for you online and you have just what they're looking for. 
-It's a chance to make an impression and a poor site could leave one you don't want when a user wanted to make a purchase. 
-A bad impression can take the form of:  
-- Long wait times  
-- Poor navigation or menus  
-- Dysfunctional buttons or interface (such as broken links)  
-- Typography that is difficult to read or understand     
 
-Without optimizing your website, your conversion can suffer, drive fewer customer acquisition opportunities, and increase your cost to acquire a new client.  
+## Helping your website drive value to your clients so your business may thrive
 
-### Asset Review   
-The first step for optimizing your website is an asset review. This means going over all of your content on the site and checking for outdated or irrelevant information that could be causing visitors to click away from your site or bounce back quickly after arriving on it.
 
+In this digital age, it is no longer a luxury to have an online presence; it's a requirement. 
+Your website has become your storefront, and your customers expect to be able to find what they need with a single click.  
+At EV Advisory, we know the importance of first impressions in terms of user-focused design and user experience. 
+If your website is left unattended, you may be leaving money on the table with visitors who don’t tell you about the 
+problems you might have.  
 
+### Making search engines your website’s friends
 
+Search engine optimization (SEO) is a way to make your website’s information more accessible to 
+search engines and the people who use them. The first step in optimizing your website for search 
+engines is to conduct regular audits of the assets used. As websites are interconnected today with 
+other apps or widgets losing coverage (e.g. stop using an app or it is no longer maintained) can 
+have a fatal hit on your website’s score.  
 
-## Emphasis
+### Performance- and Test-Driven Development
 
-**This is bold text**
+Performance-driven or test-driven development (PD/TD) is a software engineering process that puts 
+testing and performance first for a product. Like any software development, PD is composed of three 
+sections - planning, coding and testing:    
 
-__This is bold text__
+- EV Advisory plans a clear idea of what the software should do and how it should appear anchoring 
+on performance-based practices for your website     
 
-*This is italic text*
+- Coding is then done to fit the requirements of the plan to avoid reworking the product.  
 
-_This is italic text_
+- Testing ensures that the software performs as expected every time it's run, providing early 
+detection of problems before they happen.   
 
-~~Strikethrough~~
+However, with PD, quality assurance (QA) is the primary focus throughout the process of 
+website creation or optimization to ensure you receive a valuable service that helps you and 
+your visitors. The most time consuming of these stages is the comprehensive testing of the 
+product which takes the form of:   
 
+-  **Network Analysis** - *Determine how resources are being downloaded from the website*  
+- **SEO Audit** - *Find out if the right audience is finding you*   
+- **Deployment environments** - *How we roll out changes without taking effect on the production page*  
+- **Performance first** - *Benchmarks, benchmarks, benchmarks*  
+- **Tradeoffs in design** - *Is the pretty “asset” really a contra-asset?*  
 
-## Blockquotes
+These are a few of the persistent considerations in the development of web pages from scratch 
+and similarly for pre-existing pages that want an organic boost in performance.  
+See the resources section below for tools that can help you check this out for yourself.
 
+### QA and EVA - Looking out for your visitors
 
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
 
+Quality assurance is at the heart of our web services and how we help your business today. 
+Website quality assurance is a critical aspect of any business website. Our services ensure 
+that your website is of high quality and exceeds the benchmark standards. Our pricing tiers 
+below showcase what you can expect with our help:
 
-## Lists
+{{< card >}}
 
-Unordered
+[Contact Us]
 
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
+### Online Presence in the Information Era 
 
-Ordered
+Businesses need to have an online presence in today’s digital era because people are looking 
+for information on the internet before making any purchase decisions.  Instead of leaving your 
+website’s fate up to chance with visitors’ search, bring relief to your digital storefront to 
+make buying from you irrefutable.  
 
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-
-
-## Code
-
-Inline `code`
-
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-
-Block code "fences"
-
-```
-Sample text here...
-```
-
-Syntax highlighting
-
-``` js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-
-## Tables
-
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-Right aligned columns
-
-| Option | Description |
-| ------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-
-## Links
-
-[link text](http://dev.nodeca.com)
-
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
-
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
-
-
-## Images
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-
-## Plugins
-
-The killer feature of `markdown-it` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
-
-
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
-
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
-
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
-- 19^th^
-- H~2~O
-
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Inserted text++
-
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
-==Marked text==
-
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
-
-Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-        { some code, part of Definition 2 }
-
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-  ~ Definition 1
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
-
-This is HTML abbreviation example.
-
-It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
-
-*[HTML]: Hyper Text Markup Language
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*here be dragons*
-:::
+Resources:  
