@@ -1069,14 +1069,6 @@ video {
   right: 0px;
 }
 
-.left-20 {
-  left: 5rem;
-}
-
-.right-20 {
-  right: 5rem;
-}
-
 .z-0 {
   z-index: 0;
 }
@@ -1125,6 +1117,11 @@ video {
 .my-16 {
   margin-top: 4rem;
   margin-bottom: 4rem;
+}
+
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .mb-4 {
@@ -1360,12 +1357,20 @@ video {
   max-width: 100%;
 }
 
-.max-w-sm {
-  max-width: 24rem;
-}
-
 .max-w-4xl {
   max-width: 56rem;
+}
+
+.max-w-prose {
+  max-width: 65ch;
+}
+
+.max-w-screen-2xl {
+  max-width: 1536px;
+}
+
+.max-w-sm {
+  max-width: 24rem;
 }
 
 .max-w-screen-md {
@@ -1662,14 +1667,14 @@ video {
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
-.bg-yellow-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 224 71 / var(--tw-bg-opacity));
-}
-
 .bg-zinc-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 244 245 / var(--tw-bg-opacity));
+}
+
+.bg-yellow-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 224 71 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-t {
@@ -1694,6 +1699,11 @@ video {
 .object-fill {
   -o-object-fit: fill;
      object-fit: fill;
+}
+
+.object-none {
+  -o-object-fit: none;
+     object-fit: none;
 }
 
 .p-6 {
@@ -1811,11 +1821,6 @@ video {
   padding-bottom: 2.5rem;
 }
 
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
 .py-96 {
   padding-top: 24rem;
   padding-bottom: 24rem;
@@ -1824,6 +1829,11 @@ video {
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .pt-8 {
@@ -2752,10 +2762,6 @@ EmojiSymbols;
     justify-content: flex-end;
   }
 
-  .md\:justify-center {
-    justify-content: center;
-  }
-
   .md\:justify-between {
     justify-content: space-between;
   }
@@ -2806,19 +2812,9 @@ EmojiSymbols;
     padding-right: 1.5rem;
   }
 
-  .md\:px-14 {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-  }
-
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .md\:px-80 {
-    padding-left: 20rem;
-    padding-right: 20rem;
   }
 
   .md\:pt-12 {

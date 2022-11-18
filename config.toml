@@ -13,6 +13,7 @@ darkmode_js = ["assets/js/darkmode.js"]
 ignoreErrors = ["error-remote-getjson"]
 enableInlineShortcodes = true
 
+
 [params]
 author = "EV Advisory"
 authorimage = "../assets/images/global/author.webp"
@@ -36,7 +37,18 @@ unsafe = true
 
 [taxonomies]
 category = "Services"
-tag = "Tags"
+tag = ["Tags"]
+
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = false
+[[related.indices]]
+  name = 'services'
+  weight = 100
+[[related.indices]]
+  name = 'date'
+  weight = 10
 
 [privacy]
 [privacy.disqus]
@@ -66,3 +78,18 @@ privacyEnhanced = true
     extended = true
     min = "0.105.0"
     max = "0.105.0"
+[[module.mounts]]
+  source = 'content'
+  target = 'content'
+[[module.mounts]]
+  source = 'assets'
+  target = 'static/assets'
+[[module.mounts]]
+  source = 'static'
+  target = 'static'
+[[module.mounts]]
+  source = 'layouts'
+  target = 'layouts'
+[[module.mounts]]
+  source = 'data'
+  target = 'data'
