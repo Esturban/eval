@@ -65,7 +65,44 @@ the cloud exist, we provide consulting, planning and implementation services whe
 
 ## Pricing and Plans
 
-{{< card >}}  
+{{< cards 
+card1_title = "Entry"
+card1_banner_text = "Starting @ $1000"
+card1_img = "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+card1_subheading = "For startups"
+card1_ft1 = "Biweekly Workshops"
+card1_icon1 = "Beginner Friendly"
+card1_ft2 = "Beginner Friendly"
+card1_icon2 = "Beginner Friendly"
+card1_ft3 = "Beginner Friendly"
+card1_icon3 = "Beginner Friendly"
+card1_cta = "Get Quote"
+
+card2_title = "Scale"
+card2_banner_text = "Starting @ $2000"
+card2_img = "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+card2_subheading = "For growth"
+card2_ft1 = "Beginner Friendly"
+card2_icon1 = "Beginner Friendly"
+card2_ft2 = "Beginner Friendly"
+card2_icon2 = "Beginner Friendly"
+card2_ft3 = "Beginner Friendly"
+card2_icon3 = "Beginner Friendly"
+card2_cta = "Get Quote"
+
+card3_title = "Enterprise"
+card3_banner_text = "Contact Sales"
+card3_img = "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+card3_subheading = "For momentum"
+card3_ft1 = "Beginner Friendly"
+card3_icon1 = "Beginner Friendly"
+card3_ft2 = "Beginner Friendly"
+card3_icon2 = "Beginner Friendly"
+card3_ft3 = "Beginner Friendly"
+card3_icon3 = "Beginner Friendly"
+card3_cta = "Consult"
+
+>}}  
 
 ## At your service  
 
