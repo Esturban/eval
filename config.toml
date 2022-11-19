@@ -22,6 +22,7 @@ facebook = "https://facebook.com/evadvisory"
 og_image = "/images/tailbliss-cover.png"
 sitename = "EV Advisory"
 twitter = "@evadvisoryltd"
+gtm_id = "GTM-TWK47J8"
 description = "Intersecting AI and BI"
 mainSections = ['services']
 hero_title = "EV Advisory"  
