@@ -3,7 +3,7 @@ title = "EV Advisory"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
-
+googleAnalytics = 'G-M5ND57KYXW'
 enableEmoji = true
 enableGitInfo = true
 enableRobotsTXT = true
@@ -58,7 +58,7 @@ tag = ["Tags"]
 [privacy.disqus]
 disable = false
 [privacy.googleAnalytics]
-anonymizeIP = true
+anonymizeIP = false
 disable = false
 respectDoNotTrack = false
 useSessionStorage = false
