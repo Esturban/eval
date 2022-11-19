@@ -2393,10 +2393,6 @@ EmojiSymbols;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
 }
 
-.dark .dark\:bg-gray-900\/5 {
-  background-color: rgb(17 24 39 / 0.05);
-}
-
 .dark .dark\:prose-invert {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);
