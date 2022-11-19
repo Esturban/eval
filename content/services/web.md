@@ -78,4 +78,3 @@ for information on the internet before making any purchase decisions.  Instead o
 website’s fate up to chance with visitors’ search, bring relief to your digital storefront to 
 make buying from you irrefutable.  
 
-Resources:  

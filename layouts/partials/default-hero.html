@@ -39,7 +39,7 @@
                         {{ $hero_description | markdownify }}</p>
                 </div>
                 <div class="col-span-6">
-                    {{ $hero := resources.GetMatch "images/global/startup-desktop.jpg" }}
+                    {{ $hero := resources.GetMatch "images/global/intro-hero-cdc.jpg" }}
 
                     {{ $thumb := ($hero.Fill "400x400 webp q90") }}
                     {{ $large := ($hero.Fill "576x576 webp q90") }}

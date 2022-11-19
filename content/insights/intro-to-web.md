@@ -7,8 +7,8 @@ summary: A full-service information suite for companies of all shapes and sizes 
 description: Data strategy designed to help your business see value being left on the table
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
-categories: insights
-tags: insights
+categories: ["insights","resources"]
+tags: ["insights","resources"]
 ---
 
 ## Intro to Web  

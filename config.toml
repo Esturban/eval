@@ -27,6 +27,7 @@ mainSections = ['services']
 hero_title = "EV Advisory"  
 hero_subtitle = "Optimize. Scale. Automate."  
 hero_CTA = "Let's connect"  
+hero_img= "assets/images/global/intro-hero-cdc.jpg"     
 hero_lead_CTA = "Data strategy that's right for you"
 hero_description = "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"
 
@@ -45,6 +46,9 @@ tag = ["Tags"]
   toLower = false
 [[related.indices]]
   name = 'services'
+  weight = 100
+[[related.indices]]
+  name = 'insights'
   weight = 100
 [[related.indices]]
   name = 'date'
