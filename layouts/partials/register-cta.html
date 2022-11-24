@@ -37,7 +37,15 @@
                         </h2>
                         <p class="max-w-2xl mx-auto mt-6 text-lg text-indigo-100">{{ $cta_description | markdownify }}</p>
                     </div>
-                    <form action="#" class="mt-12 sm:mx-auto sm:flex sm:max-w-lg" netlify>
+                    <form action="#" class="mt-12 sm:mx-auto sm:flex sm:max-w-lg" name="subscribe"
+  method="POST"
+  netlify-honeypot="bot-field"
+  data-netlify="true" netlify>
+    <p class="hidden">
+    <label>
+      Don’t fill this out if you’re human: <input name="bot-field" />
+    </label>
+  </p>
                         <div class="flex-1 min-w-0">
                             <label for="cta-email" class="sr-only">{{ $cta_label }}</label>
                             <input id="cta-email" type="email"
