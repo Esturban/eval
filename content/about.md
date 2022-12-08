@@ -3,7 +3,7 @@ title: "About"
 date: 2021-12-18T11:10:36+08:00
 draft: false
 language: en
-description: About Us
+description: A Data Strategy agency dedicated to providing value to growing, scaling and enterprise businesses  
 featured_image: ../assets/images/about/bullet-457334_1920.jpg
 ---
 

@@ -7,7 +7,7 @@ featured_image: ../assets/images/featured/data-strategy.jpg
 summary: A full-service information suite for companies of all shapes and sizes to enable data-driven insights and goal setting. 
 description: Data strategy designed to help your business see value being left on the table
 author: EV Advisory
-authorimage: ../assets/images/global/author.webp
+authorimage: ../assets/images/logo/blue-logo.jpg
 categories: services
 tags: services
 ---

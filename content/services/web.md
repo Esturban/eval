@@ -4,10 +4,10 @@ date: 2022-07-17T11:10:36+08:00
 draft: false
 language: en
 featured_image: ../assets/images/featured/web.jpg
-summary: If your website is your store front, we help you with find the best methods of promoting and placing your product in the right spots.  
-description: If your website is your store front, we help you with find the best methods of promoting and placing your product in the right spots.
+summary: If your website is your store front, we help you find the best methods of promoting and placing your product in the right spots.  
+description: Web services to help you find the best methods of promoting and placing your product in the right spots.
 author: EV Advisory
-authorimage: ../assets/images/global/author.webp
+authorimage: ../assets/images/logo/blue-logo.jpg
 categories: services
 tags: services
 ---
