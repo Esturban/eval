@@ -1,10 +1,10 @@
 ---
-title: "Introduction to Web Optimization"
-date: 2022-09-12T14:51:12+06:00
-summary: A full-service information suite for companies of all shapes and sizes to enable data-driven insights and goal setting. 
-description: Data strategy designed to help your business see value being left on the table
+title: "Help Establish your Web Presence in 5 Easy Steps"
+date: 2018-09-12T14:51:12+06:00
+image: images/blog/blog-post-3.jpg
+summary: Web presence is an important trait of a successful business today that remains unclear for most. 
+description: Your web presence can help make or break your business. These steps can help organize your web efforts
 author: EV Advisory
-draft: false
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]
 tags: ["insights","resources"]
