@@ -1,0 +1,13 @@
+    <div class="summary border p-3">
+<a href="{{ .Permalink }}">
+        <h2 class="text-3xl">
+            {{ .Title }}
+        </h2>
+</a>
+		{{if .Params.icon }} 
+		{{.Params.icon  | safeHTML }}
+        {{ end }}
+        <p>{{ .Description }}</p>
+		<div class="justify-center text-gray-300 my-5">
+    </div>
+    </div>
