@@ -10,6 +10,7 @@
 {{ $card1_ft3 := .Get "card1_ft3" | default "Beginner Friendly" }}
 {{ $card1_icon3 := .Get "card1_icon3" | default "Beginner Friendly" }}
 {{ $card1_cta := .Get "card1_cta" | default "Get Quote" }}
+{{ $card1_cta_link := .Get "card1_cta_link" | default "/contact" }}
 
 {{ $card2_title := .Get "card2_title" | default "Scale" }}
 {{ $card2_banner_text := .Get "card2_banner_text" | default "Starting @ $2000" }}
@@ -22,6 +23,7 @@
 {{ $card2_ft3 := .Get "card2_ft3" | default "Beginner Friendly" }}
 {{ $card2_icon3 := .Get "card2_icon3" | default "Beginner Friendly" }}
 {{ $card2_cta := .Get "card2_cta" | default "Get Quote" }}
+{{ $card2_cta_link := .Get "card2_cta" | default "/contact" }}
 
 {{ $card3_title := .Get "card3_title" | default "Enterprise" }}
 {{ $card3_banner_text := .Get "card3_banner_text" | default "Contact Sales" }}
@@ -34,6 +36,7 @@
 {{ $card3_ft3 := .Get "card3_ft3" | default "Beginner Friendly" }}
 {{ $card3_icon3 := .Get "card3_icon3" | default "Beginner Friendly" }}
 {{ $card3_cta := .Get "card3_cta" | default "Consult" }}
+{{ $card3_cta_link := .Get "card3_cta" | default "/contact" }}
 
 <div class="md:flex md:justify-left md:space-x-8 px-4 text-gray-900 dark:text-white">
   <div class="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 space-y-4 md:space-y-0 ">
@@ -65,7 +68,7 @@
           </span>
           <p>{{ $card1_ft3 }}</p>
         </div>
-        <button class="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">{{ $card1_cta }}</button>
+        <button class="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg" onclick="location.href='{{ $card1_cta_link }}'" type="button">{{ $card1_cta }}</button>
       </div>
     </div>
     <div class="max-w-sm bg-white dark:bg-gray-900 px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
@@ -101,7 +104,7 @@
           </span>
           <p>{{ $card2_ft3 }}</p>
         </div>
-        <button class="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">{{ $card2_cta }}</button>
+        <button class="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg" onclick="location.href='{{ $card2_cta_link }}'" type="button">{{ $card2_cta }}</button>
       </div>
     </div>
     <div class="max-w-sm bg-white dark:bg-gray-900 px-6 pt-6 pb-2 rounded-xl shadow-lg transform justify-center hover:scale-105 transition duration-500">
@@ -138,7 +141,7 @@
           </span>
           <p>{{ $card3_ft3 }}</p>
         </div>
-        <button class="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">{{ $card3_cta }}</button>
+        <button class="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg" onclick="location.href='{{ $card1_cta_link }}'" type="button">{{ $card3_cta }}</button>
       </div>
     </div>
   </div>

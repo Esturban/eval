@@ -1,5 +1,4 @@
 {{ define "main" }}
-
 <main>
     <article>
         <header class="mb-4 bg-indigo-600">
@@ -14,8 +13,7 @@
             {{- . -}}
         </div>
         {{ end }}
-
-        {{ partial "services-template.html" . }}
+        {{ partial "resources-template.html" . }}
     </article>
     <div class="max-w-xl mx-auto my-16">
         {{ partial "pagination" . }}

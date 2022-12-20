@@ -38,7 +38,7 @@ hero_description = "At EV Advisory, our primary objective is to enable your anal
 unsafe = true
 
 [taxonomies]
-category = "Services"
+category = ["services","insights","resources"]
 tag = ["Tags"]
 
 [related]

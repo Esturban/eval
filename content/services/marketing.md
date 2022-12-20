@@ -7,7 +7,7 @@ featured_image: ../assets/images/featured/branding.jpg
 summary: Data-driven marketing is an art and science of solving your clients' problems  
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus, odio nec venenatis lacinia, lacus lectus varius nisi, in tristique mi purus ut libero. Vestibulum vel convallis felis. Ut finibus lorem vestibulum lobortis rhoncus.
 author: EV Advisory
-authorimage: ../assets/images/global/author.webp
+authorimage: ../assets/images/logo/blue-logo.jpg
 categories: services
 tags: services
 ---

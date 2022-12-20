@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="bg-zinc-100 dark:bg-gray-800">
+{{ partial "gtm-body.html" . }}
+    {{ partial "nav.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer" . }}
+</body>
+
+</html>

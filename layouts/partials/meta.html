@@ -3,20 +3,39 @@
 </title>
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="{{ .Site.Params.Twitter }}" />
+{{ $images := $.Resources.ByType "image" }}
+{{ $featured := $images.GetMatch "*feature*" }}
+{{ if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end }}
+{{ with $featured }}
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="{{ $featured.Permalink }}"/>
+{{ else }}
+{{ with $.Site.Params.images }}
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="{{ index . 0 | absURL }}"/>
+{{ else }}
+<meta name="twitter:card" content="summary"/>
+{{ end }}
+{{ end }}
+<meta name="twitter:title" content="{{ .Title }}"/>
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}"/>
+{{ with .Site.Social.twitter }}
+<meta name="twitter:site" content="@{{ . }}"/>
+{{ end }}
 <meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{ .Site.Title }}" />
 <meta property="og:description"
-      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+      content="{{ if .Page.Description }}{{ .Page.Description }}{{ else if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:locale" content="en">
-{{ if .Params.og_image }}
+{{ if $featured }}
+<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ $featured | relURL }}" />
+<meta property="og:image:secure_url" content="{{ $featured | absURL }}" />
+{{ else if .Params.og_image }}
 <meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ .Params.og_image | relURL }}" />
 <meta property="og:image:secure_url" content="{{ .Params.og_image | absURL }}" />
 {{ else }}
