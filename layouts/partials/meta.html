@@ -32,8 +32,11 @@
 <meta property="og:site_name" content="{{ .Site.Title }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:locale" content="en">
-{{ if $featured }}
-<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ $featured | relURL }}" />
+{{ if .Page.Params.featured_image }}
+<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ replace .Params.featured_image "/.." "" 1 | relURL }}" />
+<meta property="og:image:secure_url" content="{{ .Params.Site.BaseURL }}{{ replace .Params.featured_image "/.." "" 1 | relURL }}" />
+{{ else if $featured }}
+<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ if isset .Params "featured_image" }}{{ .Params.featured_image | relURL }}{{else}}{{ $featured | relURL }}{{end}}" />
 <meta property="og:image:secure_url" content="{{ $featured | absURL }}" />
 {{ else if .Params.og_image }}
 <meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ .Params.og_image | relURL }}" />
