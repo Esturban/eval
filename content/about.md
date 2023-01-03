@@ -9,201 +9,58 @@ featured_image: ../assets/images/about/bullet-457334_1920.jpg
 
 # Who We Are   
 --- 
-EV Advisory is a global technology partner enabling digital change and transformation across industries to enable long-lasting value for businesses, people, and the wider world.  
+EV Advisory is a global technology partner enabling digital change and transformation across industries 
+to enable long-lasting value for businesses, people, and the wider world.  
 
-We, at EV Advisory, take a people first approach in resolving client issues to ensure we unify engineers, creators, and thinkers globally who bring incredible ideas to life with the power of digital technologies.  
+We, at EV Advisory, take a people first approach in resolving client issues to ensure we unify engineers, 
+creators, and thinkers globally who bring incredible ideas to life with the power of digital technologies.  
 
-Collectively, we have more than 30 years experience helping our partners thrive in the information age. Our engineering craftsmanship is first in class and leverages uncanny methods to generate great results regardless of the scale, nature, and complexity.  
-
-
+Collectively, we have more than 30 years experience helping our partners thrive in the information age. 
+Our engineering craftsmanship is first in class and leverages uncanny methods to generate great results 
+regardless of the scale, nature, and complexity.  
 
 ## Key figures    
 
 |   |   |
 | ------ | ----------- |
-| Industry experience   | 30 + |
-| Clients served | 100 + |
-| Market presence    | 15+ countries |  
+| Industry experience   | 10 + industries |
+| Clients served | 40 + clients |
+| Market presence    | 5 + countries |  
 
 
->  
+{{< img src = "../assets/images/about/binary-love.jpg" >}}  
 
+# What We Do  
 
-## Lists
+EV Advisory firmly believes in the power of technology, and understands its limitless possibilities. 
+At EV Advisory, it is our goal to make use of opportunities in new technology to solve challenges that can 
+otherwise be difficult. Our years of experience in the digital world enables us to provide solutions for any 
+situation in any industry. When you work with us, you'll get the expertise of our data strategy and analytics. 
+We enable unprecedented growth by providing them with exceptional processes and transparency, so that your 
+experience will be seamless and value is added all along the way.  
 
-Unordered
+We provide a select list of our clients with our services to ensure quality. By emphasizing honesty and excellence 
+in all work is what we strive for so that we can build the digital solutions you need for the future. We make sure 
+to use the expertise of our well-equipped workforce to provide robust solutions needed by companies today looking 
+to accomplish their goals.   
 
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
+# Our Values: What Drives Us   
 
-Ordered
+## Create Valiantly :muscle:  
 
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
+We firmly believe in creating valiantly, and while many don’t realize it, this is the surrounding environment 
+of today. Amidst uncertainty & information overload it can be easy to lose the hope and quit on their dreams. 
+EV Advisory focuses on standing out among the crowd through our fearlessness and dedication.   
 
+## Build you Up :love_letter:  
 
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
+It is collaboration that enables great ideas to develop well. We count on our team members to help each other 
+and provide encouragement and build up their fellows, showcasing what it is to be human. Being a people-oriented 
+company allows us to exemplify a culture focused on the client and their clients through compassion.   
 
-Start numbering with offset:
+## Extreme Ownership :crown:  
 
-57. foo
-1. bar
-
-
-## Code
-
-Inline `code`
-
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-
-Block code "fences"
-
-```
-Sample text here...
-```
-
-Syntax highlighting
-
-``` js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-
-## Tables
-
-
-
-Right aligned columns
-
-| Option | Description |
-| ------:| -----------:|
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-
-## Links
-
-[link text](http://dev.nodeca.com)
-
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
-
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
-
-
-## Images
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-
-## Plugins
-
-The killer feature of `markdown-it` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
-
-
-### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
-
-see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
-
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
-- 19^th^
-- H~2~O
-
-
-### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
-
-++Inserted text++
-
-
-### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-
-==Marked text==
-
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
-
-Term 1
-
-:   Definition 1
-with lazy continuation.
-
-Term 2 with *inline markup*
-
-:   Definition 2
-
-        { some code, part of Definition 2 }
-
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-  ~ Definition 1
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-
-### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
-
-This is HTML abbreviation example.
-
-It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
-
-*[HTML]: Hyper Text Markup Language
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-::: warning
-*here be dragons*
-:::
+We're adamant believers in ownership as an institution. Ownership is a trait of responsibility which is a key 
+axiom of our culture and encourages everyone to take part in decision making for company and client success. 
+Accountability, no matter how small or large the task, has helped us maintain a positive atmosphere and increase 
+productivity, breeding a culture of excellence.   
