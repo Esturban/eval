@@ -5,7 +5,7 @@ summary: Optimizing your website is like maintaining your vehicle; essential to 
 description: Performance is important to a website and optimizing where possible will help your audience find your content  
 featured_image: ../assets/images/insights/engine.jpg
 author: EV Advisory
-draft: false
+draft: true
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]
 tags: ["insights","resources"]

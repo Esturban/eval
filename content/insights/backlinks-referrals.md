@@ -10,7 +10,7 @@ categories: ["insights","resources"]
 tags: ["insights","resources"]
 ---
 
-## Why backlinks and referrals are important in your business
+## Why backlinks and referrals are important in your business :microphone:  
 
 When you share your website's content on other sites, you're asking those people to vote for your site with their backlinks. 
 Links from these websites can tell search engines that your articles are credible, useful and worth reading. As you 
@@ -20,9 +20,10 @@ Introducing backlinks in a search engine's algorithm is a really old concept, bu
 grading the credibility of any source. Once you understand the different types of available backlinks, you can begin to 
 work on ways to have others link to your site to help your site’s ranking.  
 
+{{< img src = "../assets/images/insights/referral-network.jpg" >}}
 ## Types of Backlinks  
 
-### 1. Editorial Backlinks  
+### 1. Editorial Backlinks :notebook_with_decorative_cover:  
 
 Having an editorial description containing a link to your site is the perfect backlink. Make sure the content 
 is relevant and high-quality to create a lasting impression with readers. Typically editorial backlinks are formed 
@@ -36,7 +37,7 @@ planting your site and brand as a go-to destination for interviews and industry 
 the potential to go viral or alternatively a subject that captivates an audience quickly. This can be anything 
 from listicles, Reddit AMAs, or memes that connect to another source of information on your pages.   
 
-### 2. Guest Blogging Backlinks  
+### 2. Guest Blogging Backlinks :busts_in_silhouette:  
 
 When sending guest articles to established websites, attaching an editorial hyperlink to your site is often viable. 
 Guest blogging outreach should be a big part of almost any SEO plan.  
@@ -46,7 +47,7 @@ Guest blogging outreach should be a big part of almost any SEO plan.
 You should try to find high-quality sites for these opportunities and connect with the site owners 
 directly to partner on sharing your articles to help grow your audience as well as improving your SEO rank.  
 
-### 3. Backlinks in Business Profiles  
+### 3. Backlinks in Business Profiles :briefcase:  
 
 Social networks geared towards business like Linkedin are a useful way to create backlinks to your 
 website and establish credibility. Other sites such as business aggregators, business listings, and industry 
@@ -57,7 +58,7 @@ site has been around for a long time.
 
 Register your backlinks on sites such as Linkedin or linktr.ee to have your website to appear on credible sources.  
 
-### 4. Backlinks from Webinars/Podcasts  
+### 4. Backlinks from Webinars/Podcasts :headphone:    
 
 Webinars or podcasts (and their recordings) provide useful information for sites to link to including the 
 backstory for content. Websites, such as Youtube or Vimeo, often host webinars on their pages due to their wide 
@@ -70,7 +71,7 @@ Although there is a substantial amount of work, webinars and podcasts can be use
 be pieced to build content specific to singular topics and bite-sized learning points for readers. Similar to 
 guest blogs, you can be a guest on a podcast where the host could share your website and related links to your content.  
 
-### 5. Free-Tool Backlinks  
+### 5. Free-Tool Backlinks :wrench:   
 
 Giving up a great tool for free is an effective way to gain attention and backlinks, which can contribute 
 significantly to long-term influence on SEO. Simple tools such as a cost calculator, lists of useful resources 
