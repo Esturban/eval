@@ -1,8 +1,6 @@
 <title itemprop="name">{{if .IsHome}} {{ .Site.Title }} | {{ $.Site.Params.description }} 
     {{else}} {{ .Title }} | {{ .Site.Title }} {{end}}
 </title>
-<meta charset="utf-8">
-{{ partialCached "csp.html" . }}
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
 {{ $images := $.Resources.ByType "image" }}
