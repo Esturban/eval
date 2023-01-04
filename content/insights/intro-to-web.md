@@ -1,10 +1,11 @@
 ---
 title: "Introduction to Web Optimization"
 date: 2022-09-12T14:51:12+06:00
-summary: A full-service information suite for companies of all shapes and sizes to enable data-driven insights and goal setting. 
-description: Data strategy designed to help your business see value being left on the table
+summary: Optimizing your website is like maintaining your vehicle; essential to performance   
+description: Performance is important to a website and optimizing where possible will help your audience find your content  
+featured_image: ../assets/images/insights/engine.jpg
 author: EV Advisory
-draft: false
+draft: true
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]
 tags: ["insights","resources"]
