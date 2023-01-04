@@ -17,11 +17,13 @@ enableInlineShortcodes = true
 [params]
 author = "EV Advisory"
 authorimage = "../assets/images/global/author.webp"
-github = "https://github.com/EV-Advisory"
+github = "EV-Advisory"
 facebook = "https://facebook.com/evadvisory"
 og_image = "/images/tailbliss-cover.png"
 sitename = "EV Advisory"
-twitter = "@evadvisoryltd"
+twitter = "evadvisoryltd"
+instagram = "evadvisory"
+dribbble = "evadvisory"
 gtm_id = "GTM-TWK47J8"
 description = "Intersecting AI and BI to evolve your business"
 mainSections = ['services']
