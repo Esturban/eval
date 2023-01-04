@@ -64,3 +64,10 @@ We're adamant believers in ownership as an institution. Ownership is a trait of 
 axiom of our culture and encourages everyone to take part in decision making for company and client success. 
 Accountability, no matter how small or large the task, has helped us maintain a positive atmosphere and increase 
 productivity, breeding a culture of excellence.   
+
+## Dignity :handshake:   
+
+EV Advisory is a technology company that looks forward to creating a humanized community where dignity and 
+respect are the core of every relationship. Respect is at the heart of our relationships with staff, clients, 
+and other stakeholders and we work hard to do what's right by all. Appreciation helps maintain a great working 
+culture alongside high standards in everything we do.  
