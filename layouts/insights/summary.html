@@ -1,7 +1,7 @@
     <div class="summary border p-3">
 <a href="{{ .Permalink }}">
         <h2 class="text-3xl">
-            {{ .Title }}
+            {{ .Title | emojify }}
         </h2>
 </a>
 		{{if .Params.icon }} 
