@@ -17,11 +17,13 @@ enableInlineShortcodes = true
 [params]
 author = "EV Advisory"
 authorimage = "../assets/images/global/author.webp"
-github = "https://github.com/EV-Advisory"
+github = "EV-Advisory"
 facebook = "https://facebook.com/evadvisory"
 og_image = "/images/tailbliss-cover.png"
 sitename = "EV Advisory"
-twitter = "@evadvisoryltd"
+twitter = "evadvisoryltd"
+instagram = "evadvisory"
+dribbble = "evadvisory"
 gtm_id = "GTM-TWK47J8"
 description = "Intersecting AI and BI to evolve your business"
 mainSections = ['services']
@@ -54,7 +56,98 @@ tag = ["Tags"]
 [[related.indices]]
   name = 'date'
   weight = 10
-
+[params.csp]
+  childsrc = ["'self'"]
+  fontsrc = ["'self'",
+    "https://use.fontawesome.com",
+    "https://fonts.gstatic.com",
+    "https://public.slidesharecdn.com",
+    "disqus.com",
+    "disquscdn.com",
+    "*.disqus.com",
+    "*.disquscdn.com"]
+  formaction = ["'self'",
+    "https://syndication.twitter.com/",
+    "https://platform.twitter.com",
+    "disqus.com",
+    "disquscdn.com",
+    "*.disqus.com",
+    "*.disquscdn.com"]
+  framesrc = ["'self'",
+    "https://cse.google.com",
+    "https://player.vimeo.com",
+    "www.youtube.com",
+    "www.youtube-nocookie.com",
+    "https://platform.twitter.com",
+    "https://syndication.twitter.com",
+    "https://jsfiddle.net",
+    "fiddle.jshell.net",
+    "*.jsfiddle.net",
+    "www.instagram.com",
+    "https://kuula.co",
+    "https://www.slideshare.net",
+    "https://www.google.com",
+    "https://googleads.g.doubleclick.net",
+    "disqus.com",
+    "disquscdn.com",
+    "*.disqus.com",
+    "*.disquscdn.com"]
+  imgsrc = ["'self'",
+    "https://jeremylikness.visualstudio.com",
+    "https://www.google-analytics.com",
+    "https://stats.g.doubleclick.net",
+    "https://pagead2.googlesyndication.com",
+    "*.google.com",
+    "*.gstatic.com",
+    "*.amazon-adsystem.com",
+    "https://www.googleapis.com",
+    "https://images-na.ssl-images-amazon.com",
+    "https://platform.twitter.com",
+    "*.twimg.com",
+    "https://syndication.twitter.com",
+    "*.cdninstagram.com",
+    "data:",
+    "https://files.kuula.io",
+    "disqus.com",
+    "disquscdn.com",
+    "*.disqus.com",
+    "*.disquscdn.com"]
+  objectsrc = ["'none'"]
+  stylesrc = ["'self'",
+    "'unsafe-inline'",
+    "https://use.fontawesome.com",
+    "https://fonts.googleapis.com",
+    "https://www.google.com",
+    "https://platform.twitter.com",
+    "*.twimg.com",
+    "disqus.com",
+    "disquscdn.com",
+    "*.disqus.com",
+    "*.disquscdn.com"]
+  scriptsrc = ["'self'",
+    "'unsafe-inline'",
+    "https://platform.twitter.com",
+    "https://cdn.syndication.twimg.com",
+    "*.amazon-adsystem.com",
+    "https://www.google-analytics.com",
+    "cse.google.com",
+    "https://www.google.com",
+    "https://pagead2.googlesyndication.com",
+    "https://adservice.google.com",
+    "*.googleadservices.com",
+    "https://www.googletagservices.com",
+    "*.googletagmanager.com",
+    "jsfiddle.net",
+    "www.instagram.com",
+    "disqus.com",
+    "disquscdn.com",
+    "*.disqus.com",
+    "*.disquscdn.com"]
+  prefetchsrc = ["'self'",
+    "disqus.com",
+    "disquscdn.com",
+    "*.disqus.com",
+    "*.disquscdn.com"]
 [privacy]
 [privacy.disqus]
 disable = false
