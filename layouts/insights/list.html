@@ -4,7 +4,7 @@
         <header class="mb-4 bg-indigo-600">
             <span class="py-96">
                 <h1 class="py-16 text-5xl font-black text-center text-white capitalize">
-                    {{ .Title }}
+                    {{ .Title | markdownify | emojify }}
                 </h1>
             </span>
         </header>
