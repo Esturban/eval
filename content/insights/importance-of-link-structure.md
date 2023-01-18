@@ -43,9 +43,7 @@ the future.
 importance of pages on a website.** A search engine might use links as a way to crawl and 
 categorize the content on a website. When a search engine crawls a website, it 
 follows the links on a page to discover new content and determine how it's related 
-to the rest of the site. For more information, please see our post about [how search 
-engines categorize content when indexing](/insights/search-engine-categorization)  
- 
+to the rest of the site. 
 
 Having a clear and intuitive link structure, where links are organized in a logical way, 
 can help search engines understand the relationship between different pages on a website.   
