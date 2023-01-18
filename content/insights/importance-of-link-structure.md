@@ -1,6 +1,6 @@
 ---
 title: "Importance of Link Structure: How your audience can find you better"
-date: 2022-12-20T14:51:12+06:00
+date: 2023-01-12T14:51:12+06:00
 featured_image: ../assets/images/insights/structure-url.jpg
 summary: Structure a URL well for improved search indexing and how it helps your site be found online  
 description: URL hierarchies and category landing pages can help your site stand out from others as users seek answers you have; products, services or information    
