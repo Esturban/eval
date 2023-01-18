@@ -12,7 +12,11 @@ paginate = 9
 darkmode_js = ["assets/js/darkmode.js"]
 ignoreErrors = ["error-remote-getjson"]
 enableInlineShortcodes = true
+copyright = "2023 EV Advisory - All rights reserved"
 
+[Author]
+    name = "EV Advisory"
+    email = "info@evadvisory.ca"
 
 [params]
 author = "EV Advisory"
@@ -191,3 +195,6 @@ privacyEnhanced = true
 [[module.mounts]]
   source = 'data'
   target = 'data'
+
+outputs = ["RSS"]
+permalink = "index.xml"
