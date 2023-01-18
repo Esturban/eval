@@ -73,4 +73,4 @@ Although it’s a section of your website that your users can’t see, it’s an
 like your organs and bones that are under flesh but, are necessary to walk or breathe. Take care of your website’s 
 anatomy with meta tags that are important to your audience so that they can find you in common search engines.  
 
-If you’re building a web application, [reach out to EV Advisory us about what more your meta tags can help you with](/contact).
+If you’re building a web application, [reach out to EV Advisory us about what more your meta tags can help you with](/contact).   
