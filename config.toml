@@ -1,4 +1,4 @@
-baseURL = ""
+baseURL = "https://evadvisory.ca"
 title = "EV Advisory"
 
 languageCode = "en-us"
