@@ -19,6 +19,7 @@ copyright = "2023 EV Advisory - All rights reserved"
     email = "info@evadvisory.ca"
 
 [params]
+homeURL = "https://evadvisory.ca"
 author = "EV Advisory"
 authorimage = "../assets/images/global/author.webp"
 github = "EV-Advisory"
