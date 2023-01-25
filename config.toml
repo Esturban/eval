@@ -32,10 +32,10 @@ dribbble = "evadvisory"
 gtm_id = "GTM-TWK47J8"
 description = "Intersecting AI and BI to evolve your business"
 mainSections = ['services']
-hero_title = "EV Advisory"  
-hero_subtitle = "Optimize. Scale. Automate."  
-hero_CTA = "Let's connect"  
-hero_img= "assets/images/global/intro-hero-cdc.jpg"     
+hero_title = "EV Advisory"
+hero_subtitle = "Optimize. Scale. Automate."
+hero_CTA = "Let's connect"
+hero_img= "assets/images/global/intro-hero-cdc.jpg"
 hero_lead_CTA = "Data strategy that's right for you"
 hero_description = "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"
 
@@ -180,7 +180,7 @@ privacyEnhanced = true
   [module.hugoVersion]
     extended = true
     min = "0.105.0"
-    max = "0.105.0"
+    max = "0.110.0"
 [[module.mounts]]
   source = 'content'
   target = 'content'
@@ -199,3 +199,11 @@ privacyEnhanced = true
 
 outputs = ["RSS"]
 permalink = "index.xml"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+  [languages.es]
+    languageName = "Español"
+    weight = 2
