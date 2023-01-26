@@ -10,6 +10,7 @@ categories: ["insights","resources"]
 tags: ["insights","resources"]
 ---
 
+
 ## Why backlinks and referrals are important in your business :microphone:  
 
 When you share your website's content on other sites, you're asking those people to vote for your site with their backlinks.
@@ -90,5 +91,5 @@ improve it according to the community’s needs.
 Backlinks are an effective way to help build your web presence as they begin to extend to other areas of the
 web for similar audiences. If your content is geared towards sports, food, technology or other subjects, your
 content will spread as you make an effort to put it in front of the right readers. To learn more about how to
-develop your web presence, see how EV Advisory recommends you build your web presence and how we help businesses
-like yours grow online with data-first strategy.  
+develop your web presence, [see how EV Advisory recommends you build your web presence and how we help businesses
+like yours grow online with data-first strategy.]({{<relref "insights/web-presence" >}})  
