@@ -8,7 +8,7 @@ enableEmoji = true
 enableGitInfo = true
 enableRobotsTXT = true
 canonifyURLs = true
-paginate = 9
+paginate = 6
 darkmode_js = ["assets/js/darkmode.js"]
 ignoreErrors = ["error-remote-getjson"]
 enableInlineShortcodes = true
@@ -20,6 +20,7 @@ copyright = "2023 EV Advisory - All rights reserved"
 
 [params]
 homeURL = "https://evadvisory.ca"
+taxonomies = "tags"
 author = "EV Advisory"
 authorimage = "../assets/images/global/author.webp"
 github = "EV-Advisory"
@@ -45,7 +46,7 @@ hero_description = "At EV Advisory, our primary objective is to enable your anal
 unsafe = true
 
 [taxonomies]
-category = ["services","insights","resources"]
+category = ["Categories"]
 tag = ["Tags"]
 
 [related]
