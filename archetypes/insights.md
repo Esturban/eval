@@ -2,7 +2,7 @@
 title: ""
 date: {{ .Date }}
 image: "img/default.jpg"
-draft: true
+draft: false  
 weight: 100
 author: ""
 ---
