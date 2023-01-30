@@ -201,4 +201,4 @@ In conclusion, Tracking conversion is a powerful practice for any online website
 as it allows you to understand customer behaviour and accurately measure the
 effectiveness of your campaigns. Even if your website is a hobby page, you can determine
 how well you are performing with your audience. Connect with us today to [learn more about
-how we can help you with setting up conversion tracking on your page](/contact)
+how we can help you with setting up conversion tracking on your page]({{< relref "contact" >}})

@@ -75,4 +75,4 @@ report for security risks such as Cross Site Scripting and other security risks.
 can get 5 free reports a month without being charged.  
 
 This is the first in a series of tools that EV Advisory will be sharing with readers to help them in their journey
-establishing their ecommerce or blogging website online.  [Reach out to us to learn more](/contact)  
+establishing their ecommerce or blogging website online.  [Reach out to us to learn more]({{< relref "contact" >}})  

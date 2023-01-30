@@ -2,7 +2,7 @@
 title: "Meta Tags and Free Advertising You're Missing on Your Pages"
 date: 2022-12-20T14:51:12+06:00
 featured_image: ../assets/images/insights/billboard.jpg
-summary: Boost website visibility and drive traffic with good meta tags and SEO practices. Optimize titles, descriptions, and keywords for search engines to target your audience. 
+summary: Boost website visibility and drive traffic with good meta tags and SEO practices. Optimize titles, descriptions, and keywords for search engines to target your audience.
 description: Your meta tags are a way to communicate with search indexes to help you find your audience as they look for you
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
@@ -73,4 +73,4 @@ Although it’s a section of your website that your users can’t see, it’s an
 like your organs and bones that are under flesh but, are necessary to walk or breathe. Take care of your website’s
 anatomy with meta tags that are important to your audience so that they can find you in common search engines.  
 
-If you’re building a web application, [reach out to EV Advisory us about what more your meta tags can help you with](/contact).   
+If you’re building a web application, [reach out to EV Advisory us about what more your meta tags can help you with]({{< relref "contact" >}}).   

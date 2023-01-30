@@ -131,6 +131,6 @@ This is a qualitative feature, but one worth having a designer involved that you
 - If sufficient contrast exists within the colours used  
 - If the design is appropriate and attention-grabbing for the audience  
 
-Our team of web experts at [EV Advisory are happy to help](/contact) and address any of your questions about how to optimize
+Our team of web experts at [EV Advisory are happy to help]({{< relref "contact" >}}) and address any of your questions about how to optimize
 your website. [Google’s Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) is a great tool
 for auditing the performance issues discussed here.  

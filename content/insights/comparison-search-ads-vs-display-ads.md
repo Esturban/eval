@@ -36,4 +36,4 @@ Search advertising focuses on conversion based on users' search to drive sales. 
 
 Although there are benefits to search and display advertising, there are circumstances where it is better to do display advertising vs. search advertising. Search advertising is designed for a quicker move towards converting on your goals; purchases, email subscriptions, downloads. Whereas display advertising is more focused on a second round of showcasing a brand and developing the web presence.  [For more information about conversion tracking and how it should be defined with the accompanying information on search advertising, click here!]({{<relref "insights/conversion-tracking">}} "Conversion Tracking") Advertisers can choose to use one or both forms of advertising, depending on their specific goals and target audience.  
 
-[Reach out to us here at EV Advisory for online advertising options that can help you with your company goals.](/contact)     
+[Reach out to us here at EV Advisory for online advertising options that can help you with your company goals.]({{< relref "contact" >}})     
