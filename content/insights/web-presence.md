@@ -121,4 +121,4 @@ for your customers or use social media platforms to grow your business.
 EV Advisory works with your team to develop a web strategy designed to help you build trust with your audience.
 We help your team get started by identifying the goals of each part of your website such as driving traffic,
 reaching a targeted audience, or generating leads. We can help you find the best way for your website to succeed.  
-Connect with us today about how we can help your business.  
+[Connect with us today about how we can help your business.]({{< relref "contact" >}})  

@@ -82,4 +82,4 @@ The link structure of a website plays a crucial role in the way search engines
  crawl, categorize and understand the content of a website, which ultimately
  improves the accuracy of search engine results and user satisfaction. If you're
  running into trouble structuring your website, [connect with one of our advisors
- on how we can help your site index better with search engines.](/contact)   
+ on how we can help your site index better with search engines.]({{< relref "contact" >}})   

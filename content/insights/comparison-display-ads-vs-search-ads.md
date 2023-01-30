@@ -46,4 +46,4 @@ In conclusion, Display advertising offers a number of benefits over search adver
 
 However, it's important to note that both search and display advertising have their own set of benefits and can be used to achieve different marketing goals. Advertisers should consider their specific goals and target audience before choosing the most effective strategy.  
 
-For more clarity on when it's best to use display ads vs. search advertising, check out our articl on [the benefits of search advertising over display advertising]({{< relref "insights/comparison-search-ads-vs-display-ads">}}). Or [reach out to one of our advisors about the benefits that either form of advertising could have on your business](/contact)
+For more clarity on when it's best to use display ads vs. search advertising, check out our articl on [the benefits of search advertising over display advertising]({{< relref "insights/comparison-search-ads-vs-display-ads">}}). Or [reach out to one of our advisors about the benefits that either form of advertising could have on your business]({{< relref "contact" >}})

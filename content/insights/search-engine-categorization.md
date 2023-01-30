@@ -2,7 +2,7 @@
 title: "How Search Engines Categorize Content (And What You Can Do to Help It)"
 date: 2023-01-02T14:51:12+06:00
 featured_image: ../assets/images/insights/organize.jpg
-summary: mprove your website's search engine visibility by structuring content pages and optimizing categorization. Use keywords and categories to increase discoverability and drive traffic to your site. 
+summary: mprove your website's search engine visibility by structuring content pages and optimizing categorization. Use keywords and categories to increase discoverability and drive traffic to your site.
 description: How you structure your website and the content can help search engine's categorize you well for your target audience
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
@@ -154,4 +154,4 @@ Here's a diagram you can take with you as a reminder on the items that go into s
 
 {{< img src = "../assets/images/insights/search_engine_categorization.png" >}}  
 
-Reach out to us here at [EV Advisory](/contact) to see how we can help you cater your content to your target audience.  
+Reach out to us here at [EV Advisory]({{< relref "contact" >}}) to see how we can help you cater your content to your target audience.  
