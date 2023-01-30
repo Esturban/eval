@@ -2,7 +2,7 @@
 title: "Search Engine Advertising: How Pay-Per-Click (PPC) Drives Sales"
 date: 2023-01-18T14:51:12+06:00
 featured_image: ../assets/images/insights/search.jpg
-summary: PPC is a fine art of finding your audience's tone and advertising to answer their queries
+summary: Grow your business with PPC advertising. Target specific audiences, track conversions and get instant results. Reach the top of search engines and drive traffic to your website.
 description: Use the practices described here to help your business extend it's online reach to your potential customers  
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp

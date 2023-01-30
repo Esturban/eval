@@ -2,7 +2,7 @@
 title: "Comparison: Search Advertising vs. Display Advertising"
 date: 2023-01-23T14:51:12+06:00
 featured_image: ../assets/images/insights/search-ads.jpeg
-summary: 6 benefits in favour of search engine advertising and when to use it over display advertising
+summary: Drive targeted traffic and increase conversions with search advertising. Reach interested customers at the moment they are searching for products or services like yours
 description: How to best leverage your search engine footprint when people look for exactly what you're offering
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
