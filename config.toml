@@ -13,6 +13,7 @@ darkmode_js = ["assets/js/darkmode.js"]
 ignoreErrors = ["error-remote-getjson"]
 enableInlineShortcodes = true
 copyright = "2023 EV Advisory - All rights reserved"
+timeout = 30000
 
 [Author]
     name = "EV Advisory"
