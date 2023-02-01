@@ -11,7 +11,7 @@ description: Ready to elevate your data game? Our team of experts is here to mak
 <section class="lg:pb-24">
   <div class="max-w-screen-md px-4 mx-auto">
       <p class="mb-8 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">Ready to turn data into a driving force for success? Looking for an effortless solution to your technical hurdles? It's time to experience business value like never before - contact us now to get started!</p>
-      <form name="contact" netlify class="space-y-8"name="contact"
+      <form name="contact" netlify class="space-y-8"
   method="POST"
   netlify-honeypot="bot-field"
   data-netlify="true" netlify>
@@ -21,25 +21,25 @@ description: Ready to elevate your data game? Our team of experts is here to mak
     </label>
   </p>
           <div class="my-4">
-              <label for="email" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Your Email:</strong></label>
-              <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" placeholder="name@example.com" required>
+              <label for="email" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Your Email:</strong>
+              <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" placeholder="name@example.com" required></label>
           </div>
 		  <div class="my-4">
                     <label for="service" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300">Service</label>
       <select name="services" id="service" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" >
-        <option value="entry">Data Strategy</option>
-        <option value="scale">Web</option>
-        <option value="enterprise">Marketing</option>
-        <option value="inquiry">General Inquiry</option>
+        <option value="data-strategy">Data Strategy</option>
+        <option value="web">Web</option>
+        <option value="marketing">Marketing</option>
+        <option value="general">General Inquiry</option>
       </select>
           </div>
 		  <div class="my-4">
                     <label for="size" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300">Category</label>
       <select name="size" id="size" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" >
         <option value="other">Other</option>
-		<option value="s">Entry</option>
-        <option value="m">Scale</option>
-        <option value="l">Enterprise</option>
+		<option value="entry">Entry</option>
+        <option value="scale">Scale</option>
+        <option value="enterprise">Enterprise</option>
 		</select>
           </div>
           <div class="my-4">
