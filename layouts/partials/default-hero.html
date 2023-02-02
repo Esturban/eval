@@ -3,6 +3,7 @@
 <!--{{ $hero_subtitle := " Optimize.⚙️ \n Scale.📈 \n Automate.🔃" }}-->
 {{ $hero_subtitle := .Site.Params.hero_subtitle }}
 {{ $hero_cta := .Site.Params.hero_CTA }}
+{{ $hero_cta_link := .Site.Params.hero_CTA_link }}
 {{ $hero_lead_cta := .Site.Params.hero_lead_CTA }}
 {{ $hero_description := .Site.Params.hero_description }}
 
@@ -17,7 +18,7 @@
                     <h2 class="pb-2 text-3xl font-light text-gray-800 dark:text-gray-300 md:text-4xl">
                       {{ $hero_subtitle | markdownify }}
                     </h2>
-                    <a href="/services/data-strategy"
+                    <a href="{{$hero_cta_link}}"
                        class="block py-4 mx-auto space-x-4 sm:inline-flex md:inline-flex sm:text-center sm:block">
                         <span
                               class="rounded bg-gray-50 px-2.5 py-1 text-sm font-bold text-gray-900 block max-w-fit mx-auto md:min-w-fit mb-2">
