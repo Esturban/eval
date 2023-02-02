@@ -3,6 +3,7 @@
 <script src="{{ $alpine.RelPermalink }}" defer></script>
 {{ $js := resources.Get "js/darkmode.js" | js.Build }}
 <script src="{{ $js.RelPermalink }}" defer></script>
+
 <footer class="bg-gray-900">
     <div class="max-w-md px-4 py-12 mx-auto overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <nav class="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
@@ -72,8 +73,32 @@
                           clip-rule="evenodd" />
                 </svg>
             </a>
-{{ end }} 
+{{ end }}
         </div>
+        <div class="top-0 z-50 w-full text-gray-200 bg-gray-900 border-2 border-gray-900 md:sticky border-b-stone-200/10">
+          <p>
+            <span class="text-xs tracking-wide text-gray-500 uppercase">
+              Call us
+            </span>
+
+            <a
+              href="tel:+1{{ .Site.Params.CADPhone }}"
+              class="block text-2xl font-medium text-gray-700 hover:opacity-75 sm:text-3xl"
+            >
+              🇨🇦: {{.Site.Params.CADPhone}}
+            </a>
+            <a
+              href="tel:+1{{ .Site.Params.USAPhone }}"
+              class="block text-2xl font-medium text-gray-700 hover:opacity-75 sm:text-3xl"
+            >
+              🇺🇸: {{.Site.Params.USAPhone}}
+            </a>
+          </p>
+
+          <ul class="mt-8 space-y-1 text-sm text-gray-700">
+            <li>Monday to Friday: 8am - 7pm</li>
+            <li>Weekend: 8am - 2pm</li>
+          </ul>
         <p class="mt-8 text-base text-center text-gray-400">&copy; {{ now.Format "2006" }}
             {{ .Site.Title }}. All rights reserved.</p>
         <p class="mt-2 text-base text-center text-gray-400">Made with &#x2764;&#xfe0f; by <a
