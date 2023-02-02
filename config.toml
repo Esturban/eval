@@ -39,9 +39,10 @@ description = "Intersecting AI and BI to evolve your business"
 mainSections = ['services']
 hero_title = "EV Advisory"
 hero_subtitle = "Optimize. Scale. Automate."
-hero_CTA = "Let's connect"
+hero_CTA = "Let's talk about your website"
+hero_CTA_link = "/services/data-strategy"
 hero_img= "assets/images/global/intro-hero-cdc.jpg"
-hero_lead_CTA = "Data strategy that's right for you"
+hero_lead_CTA = "Customer-first data strategy"
 hero_description = "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"
 
 [markup]
