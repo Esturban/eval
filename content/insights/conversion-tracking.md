@@ -7,7 +7,7 @@ description: From blogs to e-commerce pages, knowing how your visitors interact 
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]  
-tags: ["insights","resources"]  
+tags: ["web"]  
 ---
 
 Are you looking to increase conversions for your online business? Conversion tracking

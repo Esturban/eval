@@ -8,7 +8,7 @@ author: EV Advisory
 draft: false
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]
-tags: ["insights","resources"]
+tags: ["web"]
 ---
 
 ## Introduction: What Does Optimizing Your Web Page Mean? :dart:   

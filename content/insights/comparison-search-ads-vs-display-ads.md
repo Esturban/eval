@@ -1,6 +1,6 @@
 ---
 title: "Comparison: Search Advertising vs. Display Advertising"
-date: 2023-01-23T14:51:12+06:00
+date: 2023-01-21T14:51:12+06:00
 featured_image: ../assets/images/insights/search-ads.jpeg
 summary: Drive targeted traffic and increase conversions with search advertising. Reach interested customers at the moment they are searching for products or services like yours
 description: How to best leverage your search engine footprint when people look for exactly what you're offering

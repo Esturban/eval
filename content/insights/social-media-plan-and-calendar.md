@@ -7,7 +7,7 @@ description: Maximize your social media results with a comprehensive plan & cale
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]  
-tags: ["insights","resources"]  
+tags: ["marketing","social"]  
 ---
 
 Social media is one of the go to marketing channels available today. It's essential for any business or organization looking to expand its reach and engage with its target audience to have a web presence on these common social network channels. But it's not simply a blind effort of content creators posting the things that they like onto their channel and seeing what sticks. The most effective social media marketers have established content strategies that allow them to release their content at optimal times for their subscribers and engages them well time and time again. By developing a clear strategy and implementing a consistent calendar, you can ensure that your social media efforts are effective and efficient.
