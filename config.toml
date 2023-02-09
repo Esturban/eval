@@ -21,7 +21,6 @@ timeout = 120000
 
 [params]
 homeURL = "https://evadvisory.ca"
-taxonomies = "tags"
 author = "EV Advisory"
 authorimage = "../assets/images/global/author.webp"
 github = "EV-Advisory"
@@ -53,8 +52,8 @@ mission_quote = "Stay ahead in the digital age with our expert insights and top-
 unsafe = true
 
 [taxonomies]
-category = ["Categories"]
-tag = ["Tags"]
+category = "Categories"
+tag = "Tags"
 
 [related]
   includeNewer = true
