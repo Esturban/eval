@@ -26,7 +26,7 @@
 <meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="{{ .Site.Title }}" />
+<meta property="og:title" content="{{if .IsPage}}{{ .Title }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }} | {{ .Site.Title }}" />
 <meta property="og:description"
       content="{{ if .Page.Description }}{{ .Page.Description }}{{ else if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
