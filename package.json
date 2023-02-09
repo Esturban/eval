@@ -1,6 +1,6 @@
 {
   "name": "EV Advisory",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Intersecting AI and BI",
   "main": "index.js",
   "devDependencies": {
@@ -25,13 +25,13 @@
     "url": "git+https://github.com/Esturban/eval.git"
   },
   "keywords": [
-    "hugo",
-    "tailwind",
+    "data strategy",
+    "web services",
     "tailwindcss",
-    "alpinejs",
+    "web",
     "minimal",
     "responsive",
-    "light mode",
+    "marketing services",
     "dark mode",
     "hugo blog",
     "categories",
