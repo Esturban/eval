@@ -7,7 +7,7 @@ description: How to best leverage your search engine footprint when people look 
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights"]
-tags: ["insights"]
+tags: ["marketing"]
 ---
 
 Search advertising and display advertising are two of the most popular forms of online advertising. Both have their own set of benefits and can be used to achieve different marketing goals. Here, in this article, we will look at the benefits in favour of search advertising over display advertising which is helpful to understand where the distinctions exist in marketing approaches.  
