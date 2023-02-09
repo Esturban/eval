@@ -42,8 +42,10 @@ hero_subtitle = "Optimize. Scale. Automate."
 hero_CTA = "Let's talk about your website"
 hero_CTA_link = "/services/data-strategy"
 hero_img= "assets/images/global/intro-hero-cdc.jpg"
-hero_lead_CTA = "Customer-first data strategy"
-hero_description = "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"
+hero_lead_CTA = "Customer-first data strategy"  
+hero_description = "Join the data revolution with EV Advisory! Our mission is to empower your business to unleash its full potential and dominate the game with analytics that pack a powerful punch. Get ready to be the envy of the industry and experience the data-driven success your business deserves."    
+mission_quote = "Stay ahead in the digital age with our expert insights and top-tier talent. Learn how to navigate the ever-changing technological landscape and stay competitive in today's rapidly evolving business world."    
+
 
 [markup]
 [markup.goldmark]
