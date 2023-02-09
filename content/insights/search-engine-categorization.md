@@ -7,7 +7,7 @@ description: How you structure your website and the content can help search engi
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]  
-tags: ["insights","resources"]  
+tags: ["web"]  
 ---
 
 

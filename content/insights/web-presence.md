@@ -1,17 +1,16 @@
 ---
 title: "Help Establish your Web Presence (5 Step Guide)"
-date: 2022-12-20T14:51:12+06:00
+date: 2023-01-03T14:51:12+06:00
 featured_image: ../assets/images/insights/team-work.jpg
 summary: Establish an online presence by creating a professional website, building a social media presence, and utilizing SEO best practices. Learn how to effectively establish your online brand and drive traffic to your website.
 description: Learn how to establish a strong online brand & drive traffic to your website by creating a professional website & building a social media presence. Utilize SEO best practices to increase visibility & reach your target audience.
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
-categories: ["insights","resources"]
-tags: ["insights","resources"]
+categories: ["insights","web"]
+tags: ["marketing","web"]
 ---
 
 ## Help establish your web presence (in 5 steps marketing agencies don't want you to know) :shushing_face:   
-
 
 Web presence is an important trait of a successful business today that remains unclear for most.
 You have a range of possible online presences, from almost non-existent to very strong.

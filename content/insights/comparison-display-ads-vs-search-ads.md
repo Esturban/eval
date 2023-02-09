@@ -7,7 +7,7 @@ description: Your web presence can help make or break your business. These steps
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights"]
-tags: ["insights"]
+tags: ["marketing"]
 ---
 
 In our previous series, [we looked at the benefits of Search Advertising over Display Advertising and when to use search marketing]({{<relref "insights/comparison-search-ads-vs-display-ads">}}). In this article we will explore 7 benefits that exist in display advertising in favour over search advertising.  

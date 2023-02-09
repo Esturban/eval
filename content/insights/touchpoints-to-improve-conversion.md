@@ -7,7 +7,7 @@ description: Increase conversions by focusing on key touchpoints. Optimize websi
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights"]
-tags: ["insights"]
+tags: ["marketing","web"]
 ---
 
 When it comes to focusing on touchpoints that are important to conversions for an online business, there are several strategies that can be implemented in assessing what is most important to your clients. But most importantly, we should discuss the first burning question...  

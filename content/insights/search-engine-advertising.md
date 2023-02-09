@@ -7,7 +7,7 @@ description: Use the practices described here to help your business extend it's 
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]  
-tags: ["insights","resources"]  
+tags: ["marketing"]  
 ---
 
 Search engine ads, also known as pay-per-click (PPC) advertising, can be a

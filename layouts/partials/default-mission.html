@@ -1,4 +1,4 @@
-{{ $testimonial_card_description := "Technological disruption has been the name of the game. Here at EV Advisory, we bring technological equilibrium to your business model to find the solid footing you need to compete effectively in this new *digital world*." }}
+{{ $testimonial_card_description := .Site.Params.mission_quote | default "Technological disruption has been the name of the game. Here at EV Advisory, we bring technological equilibrium to your business model to find the solid footing you need to compete effectively in this new *digital world*." }}
 {{ $missionimage := resources.Get "images/global/rocket-pair.jpg" }}
 {{ $mission_author := "Esteban Valencia, Founder at EV Advisory" }}
 
@@ -67,13 +67,23 @@
                         class="text-3xl font-bold tracking-tight text-gray-900 capitalize dark:text-gray-50 sm:text-4xl">
                         Our mission</h2>
                     <div class="mt-6 space-y-6 text-gray-900 dark:text-white">
-                        <p class="text-lg leading-7">To succeed in a data-driven environment, you must have the ability to derive insights from data which requires domain knowledge and quantitative data analysis capabilities. 
-						Our team analyzes data to find out patterns or insights, develop strategies to enable self-learning systems, and build ecosystems that drive business value for your organization. 
-						</p>
-                        <p class="text-lg leading-7">With the appropriate data strategy, EV Advisory will set up your business to encompass the appropriate data collection systems to understand where your business succeeds most and how to propel it forward in areas that need the most attention.
+                        <p class="text-lg leading-7">Welcome to the data revolution! At EV Advisory, 
+                            we believe that data is the key to unlocking your business's full potential. 
+                            Our team of data strategists, web and marketing consultants offer the 
+                            knowledge and skills to turn data insights into real, tangible results. 
+                            We use a data-first approach to identify patterns and develop 
+                            strategies that help your business thrive. With the right 
+                            data collection and practices , we understand what's driving your success, 
+                            and where to focus your efforts for maximum impact.</p>
+                        <p class="text-lg leading-7">
+                            Our unique approach of putting data first ensures that your next digital 
+                            investment <strong>will generate results in data strategy, web-related efforts, 
+                                and digital marketing.</strong> We know the information age is 
+                                constantly evolving, but with our help, you'll stay ahead of the curve 
+                                and one step ahead of the competition. 
                         </p>
-                        <p class="text-lg leading-7">Our field tested approach of putting data first enables our clients to be calculated as to where their next digital investment is made to ensure value is generated in data strategy, web-related efforts and digital marketing.  
-                        </p>
+                        <p class="text-lg leading-7">So why wait? Let us help you 
+                            unleash the power of data and take your business to new heights!</p>
                     </div>
                 </div>
             </div>

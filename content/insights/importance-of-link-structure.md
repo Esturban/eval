@@ -7,7 +7,7 @@ description: URL hierarchies and category landing pages can help your site stand
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights"]
-tags: ["insights"]
+tags: ["web"]
 ---
 
 When it comes to optimizing a website for search engines and improving the user

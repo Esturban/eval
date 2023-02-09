@@ -7,7 +7,7 @@ description: EV Advisory shares a number of resources for website design and per
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]
-tags: ["insights","resources"]
+tags: ["web"]
 ---
 
 Websites need to be managed and updated regularly as technology evolves and people’s needs change.   

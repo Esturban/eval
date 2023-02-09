@@ -7,7 +7,7 @@ description: Your meta tags are a way to communicate with search indexes to help
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights","resources"]
-tags: ["insights","resources"]
+tags: ["web"]
 ---
 
 ## What are Meta Tags and Why Are They Important for SEO? :shushing_face:   

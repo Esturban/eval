@@ -1,13 +1,13 @@
 ---
 title: "Comparison: Search Advertising vs. Display Advertising"
-date: 2023-01-23T14:51:12+06:00
+date: 2023-01-21T14:51:12+06:00
 featured_image: ../assets/images/insights/search-ads.jpeg
 summary: Drive targeted traffic and increase conversions with search advertising. Reach interested customers at the moment they are searching for products or services like yours
 description: How to best leverage your search engine footprint when people look for exactly what you're offering
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["insights"]
-tags: ["insights"]
+tags: ["marketing"]
 ---
 
 Search advertising and display advertising are two of the most popular forms of online advertising. Both have their own set of benefits and can be used to achieve different marketing goals. Here, in this article, we will look at the benefits in favour of search advertising over display advertising which is helpful to understand where the distinctions exist in marketing approaches.  
