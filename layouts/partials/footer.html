@@ -75,35 +75,41 @@
             </a>
 {{ end }}
         </div>
-        <div class="top-0 z-50 w-full text-gray-200 bg-gray-900 border-2 border-gray-900 md:sticky border-b-stone-200/10">
-          <p>
-            <span class="text-xs tracking-wide text-gray-500 uppercase">
-              Call us
-            </span>
-
-            <a
-              href="tel:+1{{ .Site.Params.CADPhone }}"
-              class="block text-2xl font-medium text-gray-700 hover:opacity-75 sm:text-3xl"
-            >
-              🇨🇦: {{.Site.Params.CADPhone}}
-            </a>
-            <a
-              href="tel:+1{{ .Site.Params.USAPhone }}"
-              class="block text-2xl font-medium text-gray-700 hover:opacity-75 sm:text-3xl"
-            >
-              🇺🇸: {{.Site.Params.USAPhone}}
-            </a>
+        <div class="top-0 z-50 w-full text-gray-200 bg-gray-900 border-2 border-gray-900 md:sticky border-b-stone-200/10 flex flex-wrap items-center justify-center flex-col">
+          <div class="text-xl tracking-wide text-gray-500 uppercase justify-center item-center flex py-4">
+            Call us
+          </div>
+          <div class="flex flex-row justify-center items-center flex">
+            <div class="w-1/2 px-4 flex-1 whitespace-nowrap border-r">
+              <p>
+                <a href="tel:+1{{ .Site.Params.CADPhone }}" class="block text-xl font-medium text-gray-700 hover:opacity-75">
+                  <span class="emoji text-2xl">🇨🇦</span>: {{.Site.Params.CADPhone}}
+                </a>
+                <a href="tel:+1{{ .Site.Params.USAPhone }}" class="block text-xl font-medium text-gray-700 hover:opacity-75">
+                  <span class="emoji text-2xl">🇺🇸</span>: {{.Site.Params.USAPhone}}
+                </a>
+              </p>
+            </div>
+          
+            <div class="w-1/2 flex-1 whitespace-nowrap pl-4">
+              <ul class="text-xl text-gray-700">
+                <li>Mon - Fri: 8am - 7pm</li>
+                <li>Weekend: 8am - 2pm</li>
+              </ul>
+            </div>
+          </div>
+          
+          
+          
+          <p class="mt-8 text-base text-center text-gray-400">&copy; {{ now.Format "2006" }}
+              {{ .Site.Title }}. All rights reserved.</p>
+          <p class="mt-2 text-base text-center text-gray-400">Made with &#x2764;&#xfe0f; by <a
+                   href="https://evadvisory.ca" class="hover:underline hover:text-indigo-600"><span
+                          class="font-black uppercase">EV</span> <span class="font-light uppercase">Advisory</span></a>
           </p>
-
-          <ul class="mt-8 space-y-1 text-sm text-gray-700">
-            <li>Monday to Friday: 8am - 7pm</li>
-            <li>Weekend: 8am - 2pm</li>
-          </ul>
-        <p class="mt-8 text-base text-center text-gray-400">&copy; {{ now.Format "2006" }}
-            {{ .Site.Title }}. All rights reserved.</p>
-        <p class="mt-2 text-base text-center text-gray-400">Made with &#x2764;&#xfe0f; by <a
-               href="https://evadvisory.ca" class="hover:underline hover:text-indigo-600"><span
-                      class="font-black uppercase">EV</span> <span class="font-light uppercase">Advisory</span></a>
-        </p>
-    </div>
+        </div>
+        
+        
+        
+        
 </footer>

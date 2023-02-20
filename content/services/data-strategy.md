@@ -3,7 +3,7 @@ title: "Data Strategy"
 date: 2022-07-18T11:10:36+08:00
 draft: false
 language: en
-featured_image: ../assets/images/featured/data-strategy.jpg
+featured_image: ../assets/images/featured/data-strategy-female-ceo.png
 summary: Maximize your IT performance with our data strategy services. Consultancy, management and optimization to improve efficiency, security and revenue growth for your business.   
 description: Data strategy designed to help your business see value being left on the table
 author: EV Advisory
