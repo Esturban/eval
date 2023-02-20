@@ -3,7 +3,7 @@ title: "Web"
 date: 2022-07-17T11:10:36+08:00
 draft: false
 language: en
-featured_image: ../assets/images/featured/web.jpg
+featured_image: ../assets/images/featured/web-services.png
 summary: Improve your online presence and performance with our web-related consulting services. From strategy to implementation, we help drive traffic and revenue to your website.  
 description: Improve your online presence and performance with our web-related consulting services. From strategy to implementation, we help drive traffic and revenue to your website.  
 author: EV Advisory
