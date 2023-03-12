@@ -6,7 +6,7 @@ summary: Unlock the power of remarketing data to find your next customers and gr
 description: Unlock the power of remarketing data to find your next customers and grow your sales. Find out how advertisers help you find new customers with areas your ads already show up!  
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
-categories: ["insights","resources"]  
+categories: ["marketing","web"]  
 tags: ["insights","resources"]  
 ---
 
