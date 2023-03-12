@@ -7,7 +7,7 @@ description: Unlock the power of remarketing data to find your next customers an
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["marketing","web"]  
-tags: ["insights","resources"]  
+tags: ["marketing","web"]  
 ---
 
 Remarketing data is a powerful practice for businesses looking to expand their customer base and increase their ROI. It allows companies to target specific groups of people who have previously interacted with their brand, whether through visiting their website, engaging with their social media accounts, or clicking on an ad. By understanding who these people are and what they are interested in, businesses can create highly effective marketing campaigns that will reach their target audience and drive conversions.

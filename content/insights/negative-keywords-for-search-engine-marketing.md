@@ -7,7 +7,7 @@ description: Maximize your SEM efforts by excluding irrelevant search terms with
 author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: ["data-strategy","web"]  
-tags: ["insights","resources"]  
+tags: ["data-strategy","web"]  
 ---
 
 Negative keywords are terms that are irrelevant for the product or service that you are promoting.  For improving the effectiveness of your search engine marketing (SEM) campaigns, there are sometimes terms that are best to avoid when helping find your core market.  
