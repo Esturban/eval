@@ -1,5 +1,6 @@
 <!--Standard Hero for EV Advisory-->
 {{ $hero_title := .Site.Params.hero_title }}
+{{ $hero_img := .Site.Params.hero_img }}
 <!--{{ $hero_subtitle := " Optimize.⚙️ \n Scale.📈 \n Automate.🔃" }}-->
 {{ $hero_subtitle := .Site.Params.hero_subtitle }}
 {{ $hero_cta := .Site.Params.hero_CTA }}
@@ -40,7 +41,7 @@
                         {{ $hero_description | markdownify }}</p>
                 </div>
                 <div class="col-span-6">
-                    {{ $hero := resources.GetMatch "images/global/intro-hero-cdc.jpg" }}
+                    {{ $hero := resources.GetMatch $hero_img }}
 
                     {{ $thumb := ($hero.Fill "400x400 webp q90") }}
                     {{ $large := ($hero.Fill "576x576 webp q90") }}
