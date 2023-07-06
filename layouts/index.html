@@ -7,7 +7,7 @@
     <!-- More main page content here... -->
 
     <!-- Testimonial/stats section -->
-    {{- partial "default-mission.html" -}}
+    {{ partial "default-mission.html" . }}
 
     <!-- Followup section -->
   <!--  {{- partial "default-followup.html" -}}-->
@@ -94,7 +94,8 @@
         </div>
     </div>
 
-   
+     <!-- Testimonial Carousel -->
+  {{ partial "testimonials.html" . }}
 
     <!-- CTA section -->
     {{- partial "register-cta.html" -}} 
