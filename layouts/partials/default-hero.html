@@ -38,7 +38,7 @@
                         </span>
                     </a>
                     <p class="max-w-xl mx-auto mb-6 font-normal text-gray-900 lg:mx-0 xl:mb-2 md:text-lg xl:text-xl dark:text-gray-50">
-                        {{ $hero_description | markdownify }}</p>
+                        {{ $hero_description | markdownify | emojify }}</p>
                 </div>
                 <div class="col-span-6">
                     {{ $hero := resources.GetMatch $hero_img }}
