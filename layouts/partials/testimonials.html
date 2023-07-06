@@ -1,0 +1,31 @@
+<!-- Begin Testimonial Carousel -->
+<div x-data="carousel($el.dataset.testimonials)" 
+     class="overflow-hidden relative" 
+     data-testimonials="{{ .Site.Data.testimonials | jsonify }}"
+     @mouseleave="pauseCarousel()" 
+     @mouseenter="resumeCarousel()">
+  <template x-for="(testimonial, index) in testimonials" :key="index">
+    <div x-show="activeSlide === index" 
+         x-transition:enter="transition ease-out duration-200" 
+         x-transition:enter-start="opacity-0 transform translate-x-1/2" 
+         x-transition:enter-end="opacity-100 transform translate-x-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 transform translate-x-0"
+         x-transition:leave-end="opacity-0 transform -translate-x-1/2"
+         class="absolute inset-0 flex items-center justify-center text-center text-white px-6 py-8">
+      <div>
+        <h2 class="text-lg font-semibold" x-text="testimonial.author"></h2>
+        <p class="text-gray-300 mt-2" x-text="testimonial.content"></p>
+      </div>
+    </div>
+  </template>
+
+  <div class="absolute bottom-0 left-0 right-0 flex justify-center space-x-2 mb-4">
+    <template x-for="(testimonial, index) in testimonials" :key="index">
+      <div @click="changeSlide(index)" 
+           :class="{ 'bg-white': activeSlide === index }" 
+           class="w-2 h-2 rounded-full bg-gray-400 cursor-pointer"></div>
+    </template>
+  </div>
+</div>
+<!-- End Testimonial Carousel -->
