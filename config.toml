@@ -42,9 +42,21 @@ hero_CTA = "Let's grow your business"
 hero_CTA_link = "/services/data-strategy"
 hero_img= "images/featured/data-natural-beauty.png"
 hero_lead_CTA = "Customer-first data strategy"  
-hero_description = "Join the data revolution with EV Advisory! Our mission is to empower your business to unleash its full potential and dominate the game with analytics that pack a powerful punch. Get ready to be the envy of the industry and experience the data-driven success your business deserves."    
-mission_quote = "Stay ahead in the digital age with our expert insights and top-tier talent. Learn how to navigate the ever-changing technological landscape and stay competitive in today's rapidly evolving business world."    
-
+hero_description = "Data plays a pivotal role in your business and our mission is to empower your operations with cost savings and drive revenue growth strategically. As growth experts, we take your business' success seriously and **guarantee you will reduce expenses and increase conversion.** "    
+mission_quote = "Technological disruption persists in every industry. Here at EV Advisory, we bring technological equilibrium to your business model to compete effectively in a *digital world*."    
+mission_author = "Esteban Valencia, Founder at EV Advisory"
+mission_description = """
+We, at EV Advisory, believe that data is your business's asset that has the ability to fulfill organic growth and improving operational efficiencies. Our 
+team is dedicated to helping you:   
+  
+- :busts_in_silhouette: **connect better with your customers**   
+- :moneybag: **save money in operations**  
+- :shopping_cart: **increase conversions**      
+  
+We use a data-first approach to identify patterns and develop strategies that help your business thrive. 
+  
+The information age is constantly evolving, but with our help and unique approach of putting data first ensures that your next digital investment **will ensure data is a useful asset** instead of a barrier with a learning curve.  
+"""
 
 [markup]
 [markup.goldmark]
