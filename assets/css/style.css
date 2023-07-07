@@ -2936,6 +2936,18 @@ EmojiSymbols;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  .md\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  .md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+
   .md\:flex-row {
     flex-direction: row !important;
   }

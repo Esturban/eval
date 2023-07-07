@@ -1,5 +1,6 @@
 {{$section_title := .Site.Params.case_studies_title}}
 {{$section_subtitle := .Site.Params.case_studies_subtitle}}
+{{$section_cta := .Site.Params.case_studies_cta}}
 
 <div class="relative px-1 pt-8 pb-4 bg-transparent lg:px-8 lg:pt-12 lg:mb-4 md:mt-12">
         <div class="absolute inset-0">
@@ -17,7 +18,7 @@
             <div class="mx-auto text-gray-900 max-w-7xl dark:text-gray-50 md:px-1.5">
                 <div class="px-4 text-gray-900 dark:text-white not-prose dark:text-zinc-200">
                     <div class="grid gap-4 mx-auto mt-12 mb-4 lg:max-w-none md:grid-cols-3">
-                        {{ range first 3 (where .Site.Pages "Params.tags" "case study")}}
+                        {{ range first 4     (where .Site.Pages "Params.tags" "case study")}}
                         <div class="flex flex-col overflow-hidden rounded-lg shadow-lg bg-gray-50 dark:bg-gray-900">
                             <a href="{{.Permalink}}">
                                 {{ with .Params.featured_image }}
@@ -53,5 +54,14 @@
                     </div>
                 </div>
             </div>
+            <div class="my-6">
+                <a
+                  href="/services/data-strategy"
+                  class="text-base font-medium text-indigo-500 dark:text-indigo-100"
+                  style = "text-align: center;"
+                >
+                  {{ $section_cta | safeHTML }}
+                </a>
+              </div>
         </div>
     </div>
