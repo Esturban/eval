@@ -35,7 +35,7 @@ fb_id = "588541705981208"
 CADPhone = "647-542-9921"
 USAPhone = "786-529-6998"
 description = "Intersecting AI and BI to evolve your business"
-mainSections = ['services']
+mainSections = ['services','case study']
 hero_title = "EV Advisory"
 hero_subtitle = "Grow. Scale. Automate."
 hero_CTA = "Let's grow your business"
@@ -45,6 +45,8 @@ hero_lead_CTA = "Customer-first data strategy"
 hero_description = "Data plays a pivotal role in your business and our mission is to empower your operations with cost savings and drive revenue growth strategically. As growth experts, we take your business' success seriously and **guarantee you will reduce expenses and increase conversion.** "    
 mission_quote = "Technological disruption persists in every industry. Here at EV Advisory, we bring technological equilibrium to your business model to compete effectively in a *digital world*."    
 mission_author = "Esteban Valencia, Founder at EV Advisory"
+case_studies_title = "Testimonials"
+case_studies_subtitle  = "See what we have done for our clients in the past"
 mission_description = """
 We, at EV Advisory, believe that data is your business's asset that has the ability to fulfill organic growth and improving operational efficiencies. Our 
 team is dedicated to helping you:   
