@@ -27,8 +27,13 @@
     </div>
   </div>
   <!-- " {{.Content}}" pulls from the markdown content of the corresponding _index.md -->
-  <div class="max-w-2xl w-screen object-none px-6 pt-6 pb-16 mx-auto mx prose dark:prose-invert dark:text-white">
-    {{.Content}}
+  <div class="max-w-full w-full px-6 pt-6 pb-16 mx-full dark:text-white">
+    <!-- Apply prose classes to the specific elements that should be styled as prose -->
+    <p class="prose dark:prose-invert">{{.Content}}</p>
+    <!-- The iframe is only added if shiny_src exists in the front matter of the markdown file -->
+    {{ with .Params.shiny_src }}
+    <iframe class="shiny-iframe sm:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl w-full h-full" src="{{.}}"></iframe>
+    {{ end }}
   </div>
 </article>
 <!-- {{ partial "rel-posts.html" . }} -->
