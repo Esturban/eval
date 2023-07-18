@@ -22,12 +22,10 @@ regardless of the scale, nature, and complexity.
 
 ## Key figures    
 
-|   |   |
-| ------ | ----------- |
-| Industry experience   | 10 + industries |
-| Clients served | 40 + clients |
-| Market presence    | 5 + countries |  
-
+|   |   |   |  
+| :------: | :-----------: | :-----------: |  
+| **Industry Experience**   | **Clients Served** | **Market Presence**   |   
+| 10 + industries | 40 + clients | 5 + countries |  
 
 {{< img src = "../assets/images/about/binary-love.jpg" >}}  
 
