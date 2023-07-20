@@ -4,15 +4,15 @@ date: 2022-07-18T11:10:36+08:00
 draft: false
 language: en
 featured_image: ../assets/images/featured/ds-female-1.png
-summary: Maximize your data assets. Consultancy, management and optimization to improve efficiency, security and revenue growth for your business.   
-description: Data strategy designed to help your business see value being left on the table
+summary: "Maximize your data assets from AI :robot: to BI. Consultancy, management and optimization to improve efficiency, security and revenue growth for your business."   
+description:  "Maximize your data assets from AI :robot: to BI. Consultancy, management and optimization to improve efficiency, security and revenue growth for your business."  
 author: EV Advisory
 authorimage: ../assets/images/logo/blue-logo.jpg
 categories: services
 tags: services
 ---
 
-## Unlock the Power of Data-Driven Strategy  
+## Data-Driven Strategy for your Growth  
 
 ***
 
@@ -37,6 +37,11 @@ Our services include:
 - Predictive Analytics Solutions  
 - Business Intelligence Consulting Services  
 - Big Data Training Services  
+- Chatbots  
+- AI/ML implementation  
+- Data Architecture  
+- Custom Reporting Solutions  
+- Business Intelligence  
 
 Data handling requires a strong foundation in probability, machine learning, and mathematics. Our team crafts elegant solutions tailored to the client's needs, providing consulting, planning, and implementation services regardless of your current data strategy level.  
 
