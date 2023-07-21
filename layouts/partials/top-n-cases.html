@@ -1,6 +1,7 @@
 {{$section_title := .Site.Params.case_studies_title}}
 {{$section_subtitle := .Site.Params.case_studies_subtitle}}
 {{$section_cta := .Site.Params.case_studies_cta}}
+{{$section_cta_link := .Site.Params.case_studies_cta_link}}
 
 <div class="relative px-1 pt-8 pb-4 bg-transparent lg:px-8 lg:pt-12 lg:mb-4 md:mt-12">
         <div class="absolute inset-0">
@@ -56,7 +57,7 @@
             </div>
             <div class="my-6">
                 <a
-                  href="/services/data-strategy"
+                  href={{ $section_cta_link | safeHTML }}
                   class="text-base font-medium text-indigo-500 dark:text-indigo-100"
                   style = "text-align: center;"
                 >
