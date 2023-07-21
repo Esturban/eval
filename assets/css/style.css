@@ -1069,10 +1069,6 @@ video {
   bottom: 0px !important;
 }
 
-.bottom-4 {
-  bottom: 1rem !important;
-}
-
 .z-50 {
   z-index: 50 !important;
 }
@@ -1762,21 +1758,6 @@ video {
   background-color: rgb(253 224 71 / var(--tw-bg-opacity)) !important;
 }
 
-.bg-gray-500 {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity)) !important;
-}
-
-.bg-amber-300 {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(252 211 77 / var(--tw-bg-opacity)) !important;
-}
-
-.bg-amber-500 {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(245 158 11 / var(--tw-bg-opacity)) !important;
-}
-
 .bg-gradient-to-t {
   background-image: linear-gradient(to top, var(--tw-gradient-stops)) !important;
 }
@@ -2059,11 +2040,6 @@ video {
   line-height: 1.5rem !important;
 }
 
-.text-6xl {
-  font-size: 3.75rem !important;
-  line-height: 1 !important;
-}
-
 .font-black {
   font-weight: 900 !important;
 }
@@ -2196,16 +2172,6 @@ video {
 .text-indigo-100 {
   --tw-text-opacity: 1 !important;
   color: rgb(224 231 255 / var(--tw-text-opacity)) !important;
-}
-
-.text-gray-600 {
-  --tw-text-opacity: 1 !important;
-  color: rgb(75 85 99 / var(--tw-text-opacity)) !important;
-}
-
-.text-amber-400 {
-  --tw-text-opacity: 1 !important;
-  color: rgb(251 191 36 / var(--tw-text-opacity)) !important;
 }
 
 .text-opacity-40 {
@@ -2610,10 +2576,6 @@ EmojiSymbols;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important;
 }
 
-.dark .dark\:bg-gray-400\/50 {
-  background-color: rgb(156 163 175 / 0.5) !important;
-}
-
 .dark .dark\:bg-gray-900\/50 {
   background-color: rgb(17 24 39 / 0.5) !important;
 }
@@ -2626,26 +2588,6 @@ EmojiSymbols;
 .dark .dark\:bg-indigo-600 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity)) !important;
-}
-
-.dark .dark\:bg-gray-300\/50 {
-  background-color: rgb(209 213 219 / 0.5) !important;
-}
-
-.dark .dark\:bg-gray-500\/50 {
-  background-color: rgb(107 114 128 / 0.5) !important;
-}
-
-.dark .dark\:bg-amber-300\/50 {
-  background-color: rgb(252 211 77 / 0.5) !important;
-}
-
-.dark .dark\:bg-amber-500\/50 {
-  background-color: rgb(245 158 11 / 0.5) !important;
-}
-
-.dark .dark\:bg-gray-800\/50 {
-  background-color: rgb(31 41 55 / 0.5) !important;
 }
 
 .dark .dark\:prose-invert {
