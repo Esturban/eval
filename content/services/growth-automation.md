@@ -31,4 +31,4 @@ Growing your business is essential, but so is managing your operations efficient
 ## Embark on Your Growth Journey Today! 🌟  
 Your ecommerce business is a seed of potential. With our growth automation services, we provide the right environment, care, and nutrients for it to flourish into a lush, fruitful garden. Start your journey to sustainable growth today, and watch your business blossom.
 
-Contact us today and let's cultivate your path to success together. Your growth journey is just a click away! 🚀
+Contact us today and let's cultivate your path to success together. [Your growth journey is just a click away! 🚀]({{< relref "contact" >}}) 
