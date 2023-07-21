@@ -35,7 +35,8 @@ fb_id = "588541705981208"
 CADPhone = "647-542-9921"
 USAPhone = "786-529-6998"
 description = "Intersecting AI and BI to evolve your business"
-mainSections = ['services']
+mainSections = ['services','case study']
+# Hero section elements
 hero_title = "EV Advisory"
 hero_subtitle = "Grow. Scale. Automate."
 hero_CTA = "Let's grow your business"
@@ -43,6 +44,9 @@ hero_CTA_link = "/services/data-strategy"
 hero_img= "images/featured/data-natural-beauty.png"
 hero_lead_CTA = "Customer-first data strategy"  
 hero_description = "Data plays a pivotal role in your business and our mission is to empower your operations with cost savings and drive revenue growth strategically. As growth experts, we take your business' success seriously and **guarantee you will reduce expenses and increase conversion.** "    
+
+
+# Mission section elements
 mission_quote = "Technological disruption persists in every industry. Here at EV Advisory, we bring technological equilibrium to your business model to compete effectively in a *digital world*."    
 mission_author = "Esteban Valencia, Founder at EV Advisory"
 mission_description = """
@@ -58,6 +62,13 @@ We use a data-first approach to identify patterns and develop strategies that he
 The information age is constantly evolving, but with our help and unique approach of putting data first ensures that your next digital investment **will ensure data is a useful asset** instead of a barrier with a learning curve.  
 """
 
+
+
+#Case studies section elements
+case_studies_title = "Testimonials"
+case_studies_subtitle  = "See what we have done for our clients in the past"
+case_studies_cta = "See all case studies and our free reference material &nbsp&rarr;"
+case_studies_cta_link = "tags/case-study"
 [markup]
 [markup.goldmark]
 [markup.goldmark.renderer]
