@@ -214,7 +214,7 @@ privacyEnhanced = true
   [module.hugoVersion]
     extended = true
     min = "0.105.0"
-    max = "0.110.0"
+    max = "0.158.0"
 [[module.mounts]]
   source = 'content'
   target = 'content'
