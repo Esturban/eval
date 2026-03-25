@@ -24,7 +24,7 @@ Instead of blindly collection information, setting up the right initiative and u
 
 Another important practice is to **collect only the data that is truly necessary**. Many businesses fall into the trap of collecting as much data as possible, without considering whether it will actually be used. This can lead to a cluttered and overwhelming dataset that is often difficult to navigate. Depending on the analyst's expertise, this can often drive someone to investigate data that may be irrelevant such as fields that are sparse and missing. By being selective about the data that is collected, businesses can reduce the noise and focus on the information that is most relevant to their goals.  
 
-{{< img src = "../assets/images/insights/quality-quantity.jpeg" >}}    
+{{< img src = "../assets/images/insights/quality-over-quantity.webp" >}}    
 
 ## Quality Matters  
 

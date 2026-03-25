@@ -18,7 +18,7 @@
     "watch:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
     "watch:hugo": "hugo server --disableFastRender",
     "build": "hugo --gc --minify",
-    "test": "hugo"
+    "test": "node --test test/scorecard.test.cjs && hugo"
   },
   "repository": {
     "type": "git",
@@ -44,4 +44,3 @@
   },
   "homepage": "https://github.com/Esturban/eval"
 }
-	
