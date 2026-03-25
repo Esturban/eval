@@ -22,6 +22,7 @@ timeout = 120000
 [params]
 homeURL = "https://evadvisory.ca"
 author = "EV Advisory"
+email = "info@evadvisory.ca"
 authorimage = "../assets/images/global/author.webp"
 github = "EV-Advisory"
 facebook = "https://facebook.com/evadvisory"
@@ -34,33 +35,36 @@ gtm_id = "GTM-TWK47J8"
 fb_id = "588541705981208"
 CADPhone = "647-542-9921"
 USAPhone = "786-529-6998"
-description = "Intersecting AI and BI to evolve your business"
+description = "Trusted ecommerce, Shopify, and web data systems that help operators make decisions with confidence"
 mainSections = ['services','case study']
 # Hero section elements
-hero_title = "EV Advisory"
-hero_subtitle = "Grow. Scale. Automate."
-hero_CTA = "Let's grow your business"
-hero_CTA_link = "/services/data-strategy"
+hero_title = "Fix the revenue signal before you spend more on growth"
+hero_subtitle = "Trusted ecommerce, Shopify, and web data systems for teams who need cleaner decisions"
+hero_CTA = "Take the free Revenue Signal Scorecard"
+hero_CTA_link = "/scorecard/"
 hero_img= "images/featured/data-natural-beauty.png"
-hero_lead_CTA = "Customer-first data strategy"  
-hero_description = "Data plays a pivotal role in your business and our mission is to empower your operations with cost savings and drive revenue growth strategically. As growth experts, we take your business' success seriously and **guarantee you will reduce expenses and increase conversion.** "    
+hero_lead_CTA = "Book a Conversion Systems Audit"
+hero_description = "When Shopify, ads, GA4, and finance tell different stories, teams slow down and conversions leak. EV Advisory diagnoses where trust breaks across your reporting, site experience, and operating rhythm so you can move with cleaner signal."
 
 
 # Mission section elements
-mission_quote = "Technological disruption persists in every industry. Here at EV Advisory, we bring technological equilibrium to your business model to compete effectively in a *digital world*."    
+mission_quote = "The teams we help usually are not short on dashboards. They are short on confidence that the numbers are trustworthy enough to drive profitable ecommerce decisions."
 mission_author = "Esteban Valencia, Founder at EV Advisory"
 mission_description = """
-We, at EV Advisory, believe that data is your business's asset that has the ability to fulfill organic growth and improving operational efficiencies. Our 
-team is dedicated to helping you:   
-  
-- :busts_in_silhouette: **connect better with your customers**   
-- :moneybag: **save money in operations**  
-- :shopping_cart: **increase conversions**      
-  
-We use a data-first approach to identify patterns and develop strategies that help your business thrive. 
-  
-The information age is constantly evolving, but with our help and unique approach of putting data first ensures that your next digital investment **will ensure data is a useful asset** instead of a barrier with a learning curve.  
+We help ecommerce and web teams rebuild trust in the information behind growth decisions.
+
+Our work usually starts in four places:
+
+- :bar_chart: **revenue signal trust across Shopify, GA4, ad platforms, and reporting**
+- :shopping_cart: **site friction that quietly drags conversion performance**
+- :mag: **measurement and attribution gaps that make channel spend hard to defend**
+- :gear: **manual reporting and operational drag that slows decisions down**
+
+The goal is not more dashboards. The goal is faster, cleaner decisions backed by data your team can actually trust.
 """
+
+top_n_services_title = "What we fix first"
+top_n_services_subtitle = "Start with signal quality, conversion friction, and the reporting gaps that keep good teams from moving decisively."
 
 
 

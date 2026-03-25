@@ -1,7 +1,5 @@
-{{ $cta_header := "Get a Competitive Edge"}}
-{{ $cta_description := "Reach new heights: **client-first insights**"}}
-{{ $cta_button := "Get value"}}
-{{ $cta_label := "E-mail Address"}}
+{{ $cta_header := "Pressure-test your revenue signal"}}
+{{ $cta_description := "Use the free scorecard to see where trust breaks across Shopify, analytics, attribution, and site performance. If the signal is weak, book the audit and we will map the gaps."}}
 
 
 <div class="relative pb-16 mt-6">
@@ -37,27 +35,23 @@
                         </h2>
                         <p class="max-w-2xl mx-auto mt-6 text-lg text-indigo-100">{{ $cta_description | markdownify }}</p>
                     </div>
-                    <form action="#" class="mt-12 sm:mx-auto sm:flex sm:max-w-lg" name="subscribe"
-  method="POST"
-  netlify-honeypot="bot-field"
-  data-netlify="true" netlify>
-    <p class="hidden">
-    <label>
-      Don’t fill this out if you’re human: <input name="bot-field" />
-    </label>
-  </p>
-  <div class="flex-1 min-w-0">
-      <label for="cta-email" class="sr-only">{{ $cta_label }}</label>
-      <input id="cta-email" type="email" name="email" required
-             class="block w-full px-5 py-3 text-base text-gray-900 placeholder-gray-500 border border-transparent rounded-md shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500"
-             placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-  </div>
-  <div class="mt-4 sm:mt-0 sm:ml-3">
-      <button type="submit"
-              class="block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent rounded-md shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500 sm:px-10">{{ $cta_button }}</button>
-  </div>
-</form>
-
+                    <div class="mt-12 sm:mx-auto sm:max-w-2xl">
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <a href="/scorecard/"
+                               class="block px-5 py-3 text-base font-medium text-center text-white bg-gray-900 border border-transparent rounded-md shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500">
+                                Take the free scorecard
+                            </a>
+                            <a href="/contact/"
+                               class="block px-5 py-3 text-base font-medium text-center text-gray-900 bg-white border border-transparent rounded-md shadow hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500">
+                                Book the audit
+                            </a>
+                        </div>
+                        <div class="grid gap-3 mt-6 text-sm text-indigo-100 sm:grid-cols-3">
+                            <p class="rounded-lg bg-white/10 px-4 py-3">Check whether your reporting is decision-ready.</p>
+                            <p class="rounded-lg bg-white/10 px-4 py-3">See where attribution and conversion visibility are weak.</p>
+                            <p class="rounded-lg bg-white/10 px-4 py-3">Turn high-risk results into a qualified audit conversation.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
