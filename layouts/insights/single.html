@@ -1,11 +1,21 @@
 {{define "main"}}
+{{ $pageStatus := partial "page-status.html" . }}
 <article>
-  <header class="mb-4 bg-indigo-600">
-    <span class="py-96">
-      <h1 class="py-16 text-5xl font-black text-center text-white capitalize" style="overflow-wrap:break-word">
-        {{ .Title | markdownify | emojify }}
-      </h1>
-    </span>
+  <header class="bg-slate-950">
+    <div class="mx-auto max-w-5xl px-4 py-16">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Insight</p>
+      <h1 class="mt-4 text-4xl font-black tracking-tight text-white md:text-5xl" style="overflow-wrap:break-word">{{ .Title | markdownify | emojify }}</h1>
+      {{ with .Description }}
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{{ . }}</p>
+      {{ end }}
+      <div class="mt-6 flex flex-wrap gap-4 text-sm text-slate-300">
+        <span>Updated {{ .Lastmod.Format "January 2, 2006" }}</span>
+        {{ with .Params.author }}<span>By {{ . }}</span>{{ end }}
+      </div>
+      {{ if eq $pageStatus "limit_until_refreshed" }}
+      <p class="mt-6 max-w-3xl rounded-2xl border border-amber-400/40 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">This page is archived while EV Advisory refreshes it around the current Shopify and ecommerce revenue-signal focus.</p>
+      {{ end }}
+    </div>
   </header>
   <div class="max-w-4xl w-screen-2xl mx-auto mt-8 mb-2">
     <div class="px-6">
@@ -26,10 +36,9 @@
       {{ end }}
     </div>
   </div>
-  <!-- " {{.Content}}" pulls from the markdown content of the corresponding _index.md -->
-  <div class="max-w-2xl w-screen object-none px-6 pt-6 pb-16 mx-auto mx prose dark:prose-invert dark:text-white">
+  <div class="max-w-3xl w-screen object-none px-6 pt-6 pb-8 mx-auto prose dark:prose-invert dark:text-white">
     {{.Content}}
   </div>
+  {{ partial "page-faq.html" . }}
 </article>
-<!-- {{ partial "rel-posts.html" . }} -->
 {{end}}

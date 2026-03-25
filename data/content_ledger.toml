@@ -1,0 +1,158 @@
+[pages."_index.md"]
+status = "keep"
+
+[pages."about.md"]
+status = "keep"
+
+[pages."contact.md"]
+status = "keep"
+
+[pages."methodology.md"]
+status = "keep"
+
+[pages."privacy-policy.md"]
+status = "keep"
+
+[pages."proof.md"]
+status = "keep"
+
+[pages."scorecard.md"]
+status = "keep"
+
+[pages."insights/_index.md"]
+status = "keep"
+
+[pages."insights/analytics-limitations-what-you-can-do.md"]
+status = "refresh"
+
+[pages."insights/backlinks-referrals.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/comparison-display-ads-vs-search-ads.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/comparison-search-ads-vs-display-ads.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/conversion-tracking.md"]
+status = "refresh"
+
+[pages."insights/data-collection-why-less-is-more.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/data-in-business-analytics-for-business-growth.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/data-in-business-benefits-and-strategies.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/data-in-business-best-practices.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/data-in-business-create-a-successful-business-strategy.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/data-in-business-types-and-uses.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/free-tools-design-web.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/importance-of-link-structure.md"]
+status = "refresh"
+
+[pages."insights/integrated-ecommerce-finding-what-is-right-for-you.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/intro-to-web.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/mastering-conversion-attribution-and-crediting-sales.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/mastering-conversion-non-last-click-attribution.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/maximizing-online-sales-through-product-images.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/meta-tags-and-seo.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/mobile-advertising-local-targeting.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/mobile-advertising-target-keywords.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/negative-keywords-for-search-engine-marketing.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/performance-based-planning.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/ppc-performance-improvements-campaigns-ad-groups-organization.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/quality-score-in-search-advertising.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/remarketing-data-finding-new-audiences.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/resources/_index.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/resources/all-case-studies.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/resources/canada-revenue-agency-forms.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/resources/case-study-bsg-lighting-fast-reporting.md"]
+status = "keep"
+
+[pages."insights/resources/case-study-harry-rosen-nurturing-clients.md"]
+status = "keep"
+
+[pages."insights/resources/case-study-sprngpod-property-tech-automation copy.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/search-engine-advertising.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/search-engine-categorization.md"]
+status = "refresh"
+
+[pages."insights/search-engine-optimization-web-images.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/simplifying-data-keys-to-engaging-effective-presentations.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/social-media-plan-and-calendar.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/touchpoints-to-improve-conversion.md"]
+status = "limit_until_refreshed"
+
+[pages."insights/web-presence.md"]
+status = "limit_until_refreshed"
+
+[pages."services/_index.md"]
+status = "keep"
+
+[pages."services/data-strategy.md"]
+status = "keep"
+
+[pages."services/growth-automation.md"]
+status = "keep"
+
+[pages."services/marketing.md"]
+status = "limit_until_refreshed"
+
+[pages."services/operations-redesign.md"]
+status = "keep"
+
+[pages."services/web.md"]
+status = "limit_until_refreshed"

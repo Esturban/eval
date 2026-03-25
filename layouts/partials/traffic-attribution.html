@@ -1,0 +1,72 @@
+<script>
+  (function () {
+    var win = window;
+    var doc = document;
+    if (!win || !doc) return;
+
+    var params = new URLSearchParams(win.location.search);
+    var referrer = doc.referrer || "";
+    var referrerHost = "";
+
+    try {
+      referrerHost = referrer ? new URL(referrer).hostname : "";
+    } catch (error) {
+      referrerHost = "";
+    }
+
+    var hints = [
+      { token: "chatgpt.com", channel: "ai_assisted", detail: "chatgpt" },
+      { token: "openai.com", channel: "ai_assisted", detail: "openai" },
+      { token: "claude.ai", channel: "ai_assisted", detail: "claude" },
+      { token: "anthropic.com", channel: "ai_assisted", detail: "anthropic" },
+      { token: "perplexity.ai", channel: "ai_assisted", detail: "perplexity" },
+      { token: "copilot.microsoft.com", channel: "ai_assisted", detail: "copilot" },
+      { token: "gemini.google.com", channel: "ai_assisted", detail: "gemini" }
+    ];
+
+    var source = (params.get("utm_source") || "").toLowerCase();
+    var medium = (params.get("utm_medium") || "").toLowerCase();
+    var campaign = params.get("utm_campaign") || "";
+    var channel = "direct_or_unknown";
+    var detail = source || medium || "direct_or_unknown";
+
+    if (source || medium) {
+      channel = source === "chatgpt.com" || medium === "ai" ? "ai_assisted" : "campaign";
+    }
+
+    if (referrerHost) {
+      for (var index = 0; index < hints.length; index += 1) {
+        if (referrerHost.indexOf(hints[index].token) !== -1) {
+          channel = hints[index].channel;
+          detail = hints[index].detail;
+          break;
+        }
+      }
+    }
+
+    var attribution = {
+      channel: channel,
+      detail: detail,
+      referrer: referrer,
+      referrerHost: referrerHost,
+      utmSource: source,
+      utmMedium: medium,
+      utmCampaign: campaign
+    };
+
+    try {
+      win.sessionStorage.setItem("evaTrafficAttribution", JSON.stringify(attribution));
+    } catch (error) {
+      // Ignore browsers that block sessionStorage.
+    }
+
+    win.evaTrafficAttribution = attribution;
+    win.dataLayer = win.dataLayer || [];
+    win.dataLayer.push({
+      event: "eva_traffic_attribution",
+      eva_channel: attribution.channel,
+      eva_source_detail: attribution.detail,
+      eva_referrer_host: attribution.referrerHost || "none"
+    });
+  })();
+</script>
