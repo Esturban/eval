@@ -20,6 +20,9 @@
     "build": "hugo --gc --minify",
     "test": "node --test test/scorecard.test.cjs && hugo"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Esturban/eval.git"
