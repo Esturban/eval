@@ -1,6 +1,6 @@
 {
   "name": "EV Advisory",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Intersecting AI and BI",
   "main": "index.js",
   "devDependencies": {
