@@ -1,13 +1,13 @@
-<div class="top-0 z-50 w-full text-gray-200 bg-gray-900 border-2 border-gray-900 md:sticky border-b-stone-200/10">
+<div class="top-0 z-50 w-full border-b border-slate-800 bg-slate-950 text-slate-200 md:sticky">
     <div x-data="{ open: false }"
-         class="flex flex-col max-w-full px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-        <div class="flex flex-row items-center justify-between p-4">
-            <a href="/" class="flex text-gray-100 transition duration-1000 ease-in-out group">
+         class="mx-auto flex max-w-7xl flex-col px-4 md:flex-row md:items-center md:justify-between md:px-6 lg:px-8">
+        <div class="flex flex-row items-center justify-between py-4">
+            <a href="/" class="group flex text-slate-100 transition duration-300 ease-in-out">
                 <img src="/images/site-icon.svg"
-                     class="transition-opacity h-9 w-9 group-hover:opacity-50 group-focus:opacity-70"
+                     class="h-8 w-8 transition-opacity group-hover:opacity-70 group-focus:opacity-70"
                      alt="{{ .Site.Title }} Logo" />
                 <div
-                     class="mt-1 ml-3 text-xl font-black tracking-tight text-gray-100 uppercase transition-colors group-hover:text-gray-400/60">
+                     class="ml-3 mt-1 text-lg font-semibold tracking-[0.08em] text-slate-100 uppercase transition-colors group-hover:text-cyan-200">
                     {{ .Site.Title }}</div>
             </a>
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open" role="navigation" aria-expanded="false" aria-label="Main" aria-controls="menuItems">
@@ -22,12 +22,14 @@
             </button>
         </div>
         <nav :class="{'flex': open, 'hidden': !open}"
-             class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
-            <a class="px-4 py-2 mt-2 text-sm font-semibold rounded-lg md:mt-0 md:ml-4 hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline"
+             class="hidden flex-col pb-4 md:flex md:flex-row md:items-center md:justify-end md:pb-0">
+            <a class="mt-2 rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2"
                href="/about/">About</a>
+            <a class="mt-2 rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2"
+               href="/proof/">Proof</a>
 			   <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
-                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-600 focus:outline-none focus:shadow-outline">
+                        class="mt-2 flex w-full flex-row items-center rounded-full bg-transparent px-4 py-2 text-left text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2 md:inline md:w-auto">
                     <span>Services</span>
                     <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
                          class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
@@ -42,12 +44,12 @@
                      x-transition:leave="transition ease-in duration-75"
                      x-transition:leave-start="transform opacity-100 scale-100"
                      x-transition:leave-end="transform opacity-0 scale-95"
-                     class="absolute right-0 z-30 w-full mt-2 origin-top-right md:max-w-sm md:w-screen">
-                    <div class="px-2 pt-2 pb-4 bg-white rounded-md shadow-lg text-zinc-900">
+                        class="absolute right-0 z-30 mt-2 w-full origin-top-right md:max-w-sm md:w-screen">
+                    <div class="rounded-2xl border border-slate-200 bg-white px-2 pb-4 pt-2 text-zinc-900 shadow-lg">
                         <div class="grid grid-cols-1 gap-4">
-                            <a class="flex items-start p-2 bg-transparent rounded-lg group row hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline"
+                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
                                href="/services/data-strategy">
-                                <div class="p-3 text-white bg-indigo-600 rounded-lg group-hover:bg-gray-900">
+                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                          class="w-4 h-4 md:h-6 md:w-6">
@@ -58,26 +60,26 @@
                                 </div>
                                 <div class="ml-3">
                                     <p class="font-semibold">Data Strategy</p>
-                                    <p class="text-sm">Customer-first strategy inspired by your data</p>
+                                    <p class="text-sm">Clean up reporting trust across Shopify, analytics, and finance</p>
                                 </div>
                             </a>
 
-                            <a class="flex items-start p-2 bg-transparent rounded-lg group row hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline"
+                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
                                href="/services/growth-automation">
-                                <div class="p-3 text-white bg-indigo-600 rounded-lg group-hover:bg-gray-900">
+                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
 									<svg fill="currentColor" width = "24" height = "24" stroke-width="2" stroke = "none" class="w-6 h-6 md:h-6 md:w-6" viewBox="0 0 16 16">
   <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
 </svg>
                                 </div>
                                 <div class="ml-3">
                                     <p class="font-semibold">Growth Automation</p>
-                                    <p class="text-sm">Grow your business organically</p>
+                                    <p class="text-sm">Fix conversion friction and lifecycle leakage</p>
                                 </div>
                             </a>
 
-                            <a class="flex items-start p-2 bg-transparent rounded-lg group row hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline"
+                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
                                href="/services/operations-redesign">
-                                <div class="p-3 text-white bg-indigo-600 rounded-lg group-hover:bg-gray-900">
+                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                          class="w-4 h-4 md:h-6 md:w-6">
@@ -89,7 +91,7 @@
                                 </div>
                                 <div class="ml-3">
                                     <p class="font-semibold">Operations Redesign</p>
-                                    <p class="text-sm">Save time and money</p>
+                                    <p class="text-sm">Reduce reporting drag and operating friction</p>
                                 </div>
                             </a>
                         </div>
@@ -98,7 +100,7 @@
             </div>
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
-                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-600 focus:outline-none focus:shadow-outline">
+                        class="mt-2 flex w-full flex-row items-center rounded-full bg-transparent px-4 py-2 text-left text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2 md:inline md:w-auto">
                     <span>Insights</span>
                     <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
                          class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
@@ -113,12 +115,12 @@
                      x-transition:leave="transition ease-in duration-75"
                      x-transition:leave-start="transform opacity-100 scale-100"
                      x-transition:leave-end="transform opacity-0 scale-95"
-                     class="absolute right-0 z-30 w-full mt-2 origin-top-right md:max-w-sm md:w-screen">
-                    <div class="px-2 pt-2 pb-4 bg-white rounded-md shadow-lg text-zinc-900">
+                        class="absolute right-0 z-30 mt-2 w-full origin-top-right md:max-w-sm md:w-screen">
+                    <div class="rounded-2xl border border-slate-200 bg-white px-2 pb-4 pt-2 text-zinc-900 shadow-lg">
                         <div class="grid grid-cols-1 gap-4">
-                            <a class="flex items-start p-2 bg-transparent rounded-lg group row hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline"
+                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
                                href="/insights">
-                                <div class="p-3 text-white bg-indigo-600 rounded-lg group-hover:bg-gray-900">
+                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                          class="w-4 h-4 md:h-6 md:w-6">
@@ -129,13 +131,13 @@
                                 </div>
                                 <div class="ml-3">
                                     <p class="font-semibold">Insights</p>
-                                    <p class="text-sm">The latest in data</p>
+                                    <p class="text-sm">Current thinking on measurement, trust, and ecommerce signal</p>
                                 </div>
                             </a>
 
-                            <a class="flex items-start p-2 bg-transparent rounded-lg group row hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline"
-                               href="/insights/resources">
-                                <div class="p-3 text-white bg-indigo-600 rounded-lg group-hover:bg-gray-900">
+                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
+                               href="/methodology/">
+                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                          class="w-4 h-4 md:h-6 md:w-6">
@@ -145,17 +147,17 @@
                                     </svg>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="font-semibold">Resources</p>
-                                    <p class="text-sm">Valuable tools for your business</p>
+                                    <p class="font-semibold">Methodology</p>
+                                    <p class="text-sm">How EV Advisory diagnoses signal, attribution, and reporting gaps</p>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-white focus:text-white hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline"
-               href="/contact">
-                Free Discovery Call
+            <a class="mt-2 rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus:outline-none focus:shadow-outline md:mt-0 md:ml-3"
+               href="/scorecard/">
+                Free Scorecard
             </a>
             <button id="theme-toggle" type="button"
                     class="p-2 text-sm text-gray-500 rounded-lg md: dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 md:ml-2 max-w-5 xs:hidden">

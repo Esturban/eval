@@ -1,56 +1,113 @@
 <!--Standard Hero for EV Advisory-->
 {{ $hero_title := .Site.Params.hero_title }}
-{{ $hero_img := .Site.Params.hero_img }}
-<!--{{ $hero_subtitle := " Optimize.⚙️ \n Scale.📈 \n Automate.🔃" }}-->
 {{ $hero_subtitle := .Site.Params.hero_subtitle }}
 {{ $hero_cta := .Site.Params.hero_CTA }}
 {{ $hero_cta_link := .Site.Params.hero_CTA_link }}
 {{ $hero_lead_cta := .Site.Params.hero_lead_CTA }}
 {{ $hero_description := .Site.Params.hero_description }}
 
-
-<div class="bg-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl px-4 py-8 mx-auto">
-            <div class="grid items-center gap-8 mb-8 sm:mb-0 lg:gap-12 lg:grid-cols-12">
-                <div class="col-span-6 px-4 text-center sm:mb-6 lg:text-left lg:mb-0">
-                    <h1
-                        class="mb-2 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
-                        {{ $hero_title }}</h1>
-                    <h2 class="pb-2 text-3xl font-light text-gray-800 dark:text-gray-300 md:text-4xl">
+<section class="border-b border-slate-200 bg-stone-50">
+        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
+            <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(380px,460px)]">
+                <div class="max-w-3xl">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-600">
+                        Ecommerce signal trust
+                    </p>
+                    <h1 class="mt-6 max-w-3xl text-5xl font-semibold leading-[0.95] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+                        {{ $hero_title }}
+                    </h1>
+                    <h2 class="mt-6 max-w-2xl text-xl font-medium leading-8 text-slate-700 sm:text-2xl">
                       {{ $hero_subtitle | markdownify }}
                     </h2>
-                    <a href="{{$hero_cta_link}}"
-                       class="block py-4 mx-auto space-x-4 sm:inline-flex md:inline-flex sm:text-center sm:block">
-                        <span
-                              class="rounded bg-gray-50 px-2.5 py-1 text-sm font-bold text-gray-900 block max-w-fit mx-auto md:min-w-fit mb-2">
+                    <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+                        {{ $hero_description | markdownify | emojify }}
+                    </p>
+                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <a href="{{ $hero_cta_link }}"
+                           class="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-cyan-500 hover:text-slate-950">
                             {{ $hero_cta }}
-                        </span>
-                        <span
-                              class="inline-flex items-center mb-2 space-x-1 text-sm font-medium text-gray-800 dark:text-white md:min-w-fit">
-                            <span>{{ $hero_lead_cta }}</span>
-                            <!-- Heroicon name: mini/chevron-right -->
-                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                 fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                      d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                                      clip-rule="evenodd" />
+                        </a>
+                        <a href="/contact/"
+                           class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-cyan-500 hover:text-cyan-700">
+                            {{ $hero_lead_cta }}
+                            <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                             </svg>
-                        </span>
-                    </a>
-                    <p class="max-w-xl mx-auto mb-6 font-normal text-gray-900 lg:mx-0 xl:mb-2 md:text-lg xl:text-xl dark:text-gray-50">
-                        {{ $hero_description | markdownify | emojify }}</p>
+                        </a>
+                    </div>
+                    <div class="mt-8 grid gap-3 sm:grid-cols-3">
+                        <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
+                            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-600">Reporting</p>
+                            <p class="mt-2 text-2xl font-semibold text-slate-950">95%</p>
+                            <p class="mt-1 text-sm leading-6 text-slate-600">Faster reporting cycles after redesigning the operating loop.</p>
+                        </div>
+                        <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
+                            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-600">Lifecycle</p>
+                            <p class="mt-2 text-2xl font-semibold text-slate-950">$500k+</p>
+                            <p class="mt-1 text-sm leading-6 text-slate-600">Nurture revenue unlocked with cleaner attribution and journeys.</p>
+                        </div>
+                        <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
+                            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-600">Acquisition</p>
+                            <p class="mt-2 text-2xl font-semibold text-slate-950">500%</p>
+                            <p class="mt-1 text-sm leading-6 text-slate-600">Monthly user growth in three months after tightening the signal.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-span-6">
-                    {{ $hero := resources.GetMatch $hero_img }}
-
-                    {{ $thumb := ($hero.Fill "400x400 webp q90") }}
-                    {{ $large := ($hero.Fill "576x576 webp q90") }}
-
-                    <img srcset="
-                        {{- with $thumb.RelPermalink -}}{{.}} 400w{{- end -}}
-                        {{- with $large.RelPermalink -}}, {{.}} 576w{{- end -}}" src="{{ $hero.RelPermalink }}"
-                         width="100%" height="" alt="EV Advisory" class="w-full max-w-xl mx-auto rounded-lg" />
+                <div class="home-audit-shell rounded-[2rem] border border-slate-200 bg-slate-950 p-4 text-slate-100 shadow-2xl shadow-slate-300/40 sm:p-6">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <div>
+                            <p class="font-mono text-xs uppercase tracking-[0.24em] text-cyan-300">Revenue signal audit</p>
+                            <p class="mt-2 text-lg font-semibold text-white">Decision readiness snapshot</p>
+                        </div>
+                        <div class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-200">
+                            Shopify operator
+                        </div>
+                    </div>
+                    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                        <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+                            <p class="font-mono text-[11px] uppercase tracking-[0.24em] text-slate-400">Attribution confidence</p>
+                            <p class="mt-3 text-3xl font-semibold text-white">62%</p>
+                            <div class="mt-3 h-2 rounded-full bg-slate-800">
+                                <div class="h-2 w-[62%] rounded-full bg-cyan-400"></div>
+                            </div>
+                            <p class="mt-3 text-sm leading-6 text-slate-300">Meta, GA4, and store revenue are directionally aligned, but not audit-ready.</p>
+                        </div>
+                        <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+                            <p class="font-mono text-[11px] uppercase tracking-[0.24em] text-slate-400">Reporting drag</p>
+                            <p class="mt-3 text-3xl font-semibold text-white">9 hrs</p>
+                            <div class="mt-3 h-2 rounded-full bg-slate-800">
+                                <div class="h-2 w-[78%] rounded-full bg-cyan-400"></div>
+                            </div>
+                            <p class="mt-3 text-sm leading-6 text-slate-300">Weekly operator time spent reconciling exports and explaining channel performance.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+                        <p class="font-mono text-[11px] uppercase tracking-[0.24em] text-slate-400">What we flag first</p>
+                        <div class="mt-4 space-y-3">
+                            <div class="flex items-start justify-between gap-4 border-b border-slate-800 pb-3">
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Paid social over-crediting new customer revenue</p>
+                                    <p class="mt-1 text-sm leading-6 text-slate-400">Spend is hard to defend because attribution logic changes by report.</p>
+                                </div>
+                                <span class="rounded-full bg-amber-400/10 px-2 py-1 text-xs font-semibold text-amber-200">High</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-4 border-b border-slate-800 pb-3">
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Checkout friction hidden by aggregate conversion rate</p>
+                                    <p class="mt-1 text-sm leading-6 text-slate-400">Session-level visibility is too weak to isolate where shoppers hesitate.</p>
+                                </div>
+                                <span class="rounded-full bg-cyan-400/10 px-2 py-1 text-xs font-semibold text-cyan-200">Audit</span>
+                            </div>
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Manual board reporting still depends on spreadsheet reconciliation</p>
+                                    <p class="mt-1 text-sm leading-6 text-slate-400">Signal confidence drops every time the team rebuilds the same narrative.</p>
+                                </div>
+                                <span class="rounded-full bg-slate-800 px-2 py-1 text-xs font-semibold text-slate-300">Ops</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>

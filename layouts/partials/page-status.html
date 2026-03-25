@@ -1,0 +1,7 @@
+{{- $status := "keep" -}}
+{{- if .File -}}
+  {{- with index site.Data.content_ledger.pages .File.Path -}}
+    {{- $status = .status -}}
+  {{- end -}}
+{{- end -}}
+{{- return $status -}}
