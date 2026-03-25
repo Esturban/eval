@@ -1,62 +1,65 @@
 ---
-title: "Analytics Limitations: What you Can Do To Mitigate Issues"  
+title: "Analytics Limitations: What Ecommerce Teams Should Do Next"
 date: 2023-03-07T14:51:12+06:00
-featured_image: ../assets/images/insights/analytics-limits.jpeg
-summary: Uncover the hidden truths about your website's performance. Explore the limitations of web analytics and discover what valuable insights you're missing. Get the complete picture now!    
-description: Uncover the hidden truths about your website's performance. Explore the limitations of web analytics and discover what valuable insights you're missing. Get the complete picture now!      
-author: EV Advisory
+featured_image: /images/insights/analytics-limits.jpeg
+summary: Web analytics can show what happened, but not always why it happened or whether the signal is strong enough to support a real ecommerce decision.
+description: Learn where analytics tools fall short for ecommerce operators and what to add when dashboards alone are not enough to guide channel, conversion, and reporting decisions.
+author: Esteban Valencia
 draft: false
 authorimage: ../assets/images/global/author.webp
 categories: ["insights"]
 tags: ["data-strategy"]
+faq:
+  - question: "What do analytics tools usually miss?"
+    answer: "They usually miss the commercial context around the data: why behavior changed, how much confidence the team should place in attribution, and which operational gaps are distorting the picture."
+  - question: "Does that mean analytics tools are not useful?"
+    answer: "No. They are essential, but they are only one layer of the signal. Teams still need QA, experiments, customer context, and reporting definitions that line up with real business decisions."
 ---
 
-Web analytics tools have become an essential part of any business or website, providing valuable insights into how users interact with a website and how it can be improved. However, it's important to remember that these tools do have limitations and may not tell you *everything you need to know about your website’s performance.*
+Analytics tools are useful. They are just not the whole truth.
 
-## What Analytics Tools: What they offer :check_mark:  
+For ecommerce teams, the danger is not that the dashboard is empty. The danger is that the dashboard looks complete enough to create false confidence.
 
-Web analytics tools offer a wide range of features to help businesses and website owners understand user behavior. Here are some of the most common features that they will include:  
-- **Traffic metrics**: tools like Google Analytics provide data on website traffic, including the number of visitors, pages viewed, and bounce rate.  
-- **Audience demographics**: Your web analytics suite also provide data on the age, gender, location, and interests of website visitors. This information tends to be a part of how they log in and whether or not your analytics suite has access to the user details.  
-- **Behavior metrics**: Analytics can provide data on how users interact with a website, including the number of clicks on a specific button or link, time spent on a page, and scroll depth. This can give insight into where people interact most with a page.    
-- **Conversion tracking**: Analytics can allow businesses to track specific actions that users take on a website, such as filling out a form or making a purchase. This is useful informaiton for when you have an objective set for your pages.  
+## What analytics tools are good at
 
+They are good at showing:
 
-> These features provide valuable insights into how users interact with a website, but it is important to remember that they are not the only metrics that matter.  
+- traffic and behavior patterns
+- event and conversion counts
+- broad funnel movement
+- channel-level directional trends
 
+That is valuable. But it does not automatically mean the team can trust the signal enough to act on it.
 
-{{< img src = "../assets/images/insights/not-telling.jpeg" >}}    
-## What are They **Not** Telling You? :cross_mark:    
+## Where analytics tools usually fall short
 
-Let's cut to the chase. A few of the things the tools are not telling you are:   
+The gaps usually appear in four places:
 
-- **User Motivations**: Web analytics tools provide data on how users interact with a website, but they do not tell you why users are behaving in a certain way. For example, if a website has a high bounce rate, it could be due to poor design or a lack of relevant content, but it could also be due to users finding what they were looking for quickly and leaving the site.  
+### 1. Motivation
 
-- **User Experience**: Analytics tools can showcase how users might behave on certain sites or pages, but they do not provide information on the user experience. For example, a website may have a high conversion rate, but that does not necessarily mean that the user experience was good.  
+Analytics can show that a page underperformed. It usually cannot explain why a customer hesitated, what expectation was broken, or what commercial objection stayed unresolved.
 
-- **Offline Conversions**: Web analytics tools provide data on online conversions, but they do not provide information on offline conversions. So, if a user sees an ad on a website and then makes a purchase in-store, that conversion will not be tracked by web analytics tools.  
+### 2. Attribution confidence
 
-- **User Satisfaction**: Your analytics suite might provide data on how users acted on certain pages or with interactions like buttons or forms, but they do not provide information on user satisfaction. As an example, a website may have a high conversion rate, but that does not necessarily mean that users are satisfied with their experience on the website.  
+A platform may still report conversions even when the underlying attribution logic is noisy. Teams can end up treating a directional estimate like a precise source of truth.
 
-Although it might not matter in some circumstances, knowing why certain things are happening can be helpful when launching future marketing campaigns or when you plan to redesign an aspect of your website.  
+### 3. Offline or delayed effects
 
-## Designing Experiments to Fill in the Gaps  
+Many commercial outcomes happen after the initial tracked session or outside the reporting surface the team reviews every week.
 
-To gain a more complete understanding of website performance, it's helpful to design experiments that fill in the gaps left by web analytics tools. This is where data science begins and is complemented by business intuition about what is helping or hurting your website.  
+### 4. Reporting trust
 
-Here are a few ways to do experiements you can launch **today**:  
+If Shopify, analytics, ad platforms, and finance are telling different stories, the problem is no longer just analytics. It is a trust problem in the operating system around the data.
 
-- **Conduct User Surveys**: User surveys can provide valuable insights into user motivations, user experience, and user satisfaction. Surveys can be conducted through a website or through email and can indicate the things that visitors enjoy or dislike. For guidelines and best practices, please see: [Survey Monkey's Best Practices and Design Guidelines](https://www.surveymonkey.com/mp/survey-guidelines/)    
+## What to add when dashboards are not enough
 
-- **Conduct A/B Tests**: A/B tests can provide valuable insights into how users interact with a website. A/B tests involve showing two different versions of a website to users and then comparing the results. This is also a great way to validate a theory you might have as to whether certain colours work better, sizing differences that may matter or changes to copy write that could make the difference in converting.  
+When the signal is weak, teams usually need a combination of:
 
-- **Track Offline Conversions**: To track offline conversions, businesses can use tools like Google Analytics to track phone calls or in-store purchases by setting different conversion goals for advertising Display Ads or Search Engine Marketing. You could also leverage customer information instore and collecting that information into a database to establish a data stream that counts the offline conversions as well as you create reporting about your company's performance.  
+- better QA around tracking and conversion definitions
+- focused experiments that test the leading causes of friction
+- customer or operator interviews that explain the behavior
+- cleaner reporting ownership and reconciliation habits
 
-- **Conduct User Interviews**: User interviews can provide valuable insights into user motivations, user experience, and user satisfaction. Interviews can be conducted through a website or through email. But consider a user's time and provide them with an incredible offer for their help in improving your products or services; gift cards, freebies, or shoutouts.  
+That is the difference between seeing movement and understanding what decision the movement should support.
 
-{{< img src = "../assets/images/insights/small-experiment.jpeg" >}}    
-
-
-As web analytics tools can provide insight about what you're doing well or not so well, the reason "why" can still remain a mystery. Instead of relying exclusively on the results you get in a dashboard, conducting small experiments can help answer the questions you might still have.   
-
-Our experts at EV Advisory can help you structure and design the experiments that are appropriate for your business. [Connect with us to get further insights about your analytics suite and how you can improve your results]({{<relref "contact">}})
+If your team is stuck in that gap, start with the [Revenue Signal Scorecard]({{< relref "scorecard" >}}) or review the [Revenue Signal Diagnostics service]({{< relref "services/data-strategy" >}}).
