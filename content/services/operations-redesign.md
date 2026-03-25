@@ -1,39 +1,49 @@
 ---
-title: "Operations Redesign"
+title: "Reporting And Operations Redesign"
 date: 2022-07-15T11:10:36+08:00
 draft: false
 language: en
-featured_image: ../assets/images/featured/ops-redesign.png
-summary: Operations redesign is a practice we use to help teams find clarity and peace of mind in their day to day business. We audit your existing practices and help reduce inefficiencies to give you your time back.
-description: Operations redesign is a practice we use to help teams find clarity and peace of mind in their day to day business. We audit your existing practices and help reduce inefficiencies to give you your time back.  
-author: EV Advisory
+featured_image: /images/featured/ops-redesign.png
+summary: Reduce reporting drag, manual handoffs, and recurring operating friction so ecommerce teams can spend more time acting on signal and less time rebuilding it.
+description: Reporting and Operations Redesign helps teams restructure the recurring workflows, definitions, and handoffs that make performance reporting slower, noisier, and harder to trust.
+author: Esteban Valencia
 authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
+faq:
+  - question: "What kinds of operational problems fit this service?"
+    answer: "This is a fit when recurring reporting is too manual, definitions keep changing between teams, or operators spend too much time rebuilding a weekly performance view."
+  - question: "Is this only about dashboards?"
+    answer: "No. The focus is on the operating rhythm around the reporting: definitions, QA, ownership, handoffs, review cadence, and where time is being lost."
+  - question: "What changes after the redesign?"
+    answer: "The ideal outcome is a reporting process that is faster, less fragile, and more useful in the exact decisions the team makes every week."
 ---
 
-### *Giving teams their time back and guaranteeing savings of more than $5000/month*   
+Reporting drag is expensive because it steals time before the real decision even begins.
 
-Let's imagine your business as a diamond in the rough. It's **unique, valuable, and holds immense potential**. But without the right cut and polish, it can't truly sparkle. Our operations redesign services are just the expert craftsmanship your diamond-business needs to shine its brightest.  
+Teams usually feel it when:
 
+- weekly reviews require too much manual assembly
+- the same reconciliation debates happen again and again
+- different teams use different definitions for the same outcome
+- dashboards exist, but nobody trusts the operating rhythm around them
 
-## Recrafting Your Operations 💎  
+## What this service covers
 
- EV Advisory offers distinctive operations redesign services that recalibrate your revenue operations, turning them from a stretched operations team into a well-oiled machine. It's not your average revamp. We bring a fusion of strategy and implementation to the table, with a focus on composable ecommerce or tech stack solutions that streamline fulfillment times like a finely cut diamond reflecting light.   
+Reporting and Operations Redesign looks at the process around the performance story, not just the chart layer.
 
-> Companies lose 20 - 30% of revenue due to inefficient processes in their operations  
-  
-[IDC CEO Survey](https://blogs.idc.com/2022/11/11/digital-first-the-evolving-relationship-of-business-and-technology/)  
-   
+That includes:
 
- Our approach includes making your marketing process a masterpiece of efficiency and reducing reporting time so you can concentrate on what truly matters - growing your business. We introduce data-driven practices, reshaping your operations to be sharper, clearer, and more sparkling than ever.  
+- how reporting is assembled and handed off
+- where manual work is still doing the job of a system
+- which definitions create confusion between teams
+- how frequently QA and exception handling are actually happening
 
-## Time-Saving Solutions 🕓  
-In a digital business, time is the gold that fuels your operations. With our specialized services, we strive to save both time and gold by refining your operations. This is not just about quick fixes but uncovering and capitalizing on efficiency opportunities. We're here to help you reclaim your time and invest it wisely, while our solutions ensure your operations stay as efficient as a Swiss watch.  
+## What teams usually want from this work
 
+- faster preparation for weekly and monthly reviews
+- fewer fragile spreadsheets and export chains
+- clearer ownership over metrics and exceptions
+- a reporting rhythm that helps decisions happen earlier
 
-## Let's Start Today! ✨  
-
-Your business deserves to shine. Allow us to provide the expertise that can help you regain your time and your money by removing redundancies. Begin your operations redesign journey today and witness the remarkable transformation efficient operations can bring.
-
-Together, we can transform your business from a rough diamond into a turnkey shining gem of excellence. Your sparkle is just a click away! 🌟 Connect with us for a free discovery call with one of our associates. [Contact Us]({{< relref "contact" >}}) 
+This service becomes especially valuable after the business already knows where signal trust is weak and wants to turn that diagnosis into a more stable operating system.

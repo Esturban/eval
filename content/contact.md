@@ -4,13 +4,21 @@ date: 2021-12-18T03:10:36.000Z
 draft: false
 language: en
 description: Request a Conversion Systems Audit for your ecommerce or Shopify team and share where trust is breaking across reporting, site performance, and operations.
+summary: Start the Conversion Systems Audit if your team needs help untangling reporting trust, attribution noise, or conversion friction.
+author: Esteban Valencia
+authorimage: ../assets/images/global/author.webp
+faq:
+  - question: "What should I share in the intake?"
+    answer: "The most useful submissions explain where trust is breaking today, which systems disagree, and which decision the team is struggling to make."
+  - question: "Who is this audit for?"
+    answer: "The audit is best for Shopify and ecommerce operators who already have real traffic, revenue, and recurring reporting, but do not trust the signal enough to move quickly."
+  - question: "What happens after I submit?"
+    answer: "EV Advisory reviews the context, qualifies fit, and follows up with the best next step, which may be a scoped audit, a diagnostic, or a referral if the problem sits elsewhere."
 ---
-
-<!-- @format -->
 
 <section class="lg:pb-24">
   <div class="max-w-screen-md px-4 mx-auto">
-      <p class="mb-8 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">Request the Conversion Systems Audit if your ecommerce team is moving with noisy reporting, weak attribution, or a site that is harder to convert than it should be. The more specific you are, the faster we can tell if there is a fit.</p>
+      <p class="mb-8 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">Request the Conversion Systems Audit if your ecommerce team is moving with noisy reporting, weak attribution, or a site that is harder to convert than it should be. The more specific you are, the faster EV Advisory can tell whether there is a fit and where the work should start.</p>
       <form name="contact" netlify class="space-y-8"
   method="POST"
   netlify-honeypot="bot-field"
@@ -23,6 +31,12 @@ description: Request a Conversion Systems Audit for your ecommerce or Shopify te
           <input type="hidden" name="source" id="contact-source" value="direct">
           <input type="hidden" name="score" id="contact-score" value="">
           <input type="hidden" name="score_band" id="contact-score-band" value="">
+          <input type="hidden" name="traffic_channel" id="contact-traffic-channel" value="">
+          <input type="hidden" name="traffic_source_detail" id="contact-traffic-source-detail" value="">
+          <input type="hidden" name="traffic_referrer_host" id="contact-traffic-referrer-host" value="">
+          <input type="hidden" name="traffic_utm_source" id="contact-traffic-utm-source" value="">
+          <input type="hidden" name="traffic_utm_medium" id="contact-traffic-utm-medium" value="">
+          <input type="hidden" name="traffic_utm_campaign" id="contact-traffic-utm-campaign" value="">
           <div class="my-4">
               <label for="email" class="block mb-2 font-medium text-gray-900 text-md dark:text-gray-300"><strong>Your Email:</strong>
               <input type="email" name = "email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 dark:shadow-sm-light" placeholder="name@example.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></label>
@@ -93,6 +107,25 @@ description: Request a Conversion Systems Audit for your ecommerce or Shopify te
     if (band && bandField) bandField.value = band;
     if (subjectField && source === 'scorecard' && !subjectField.value) {
       subjectField.value = 'Scorecard follow-up';
+    }
+
+    try {
+      var attribution = JSON.parse(window.sessionStorage.getItem('evaTrafficAttribution') || '{}');
+      var channelField = document.getElementById('contact-traffic-channel');
+      var detailField = document.getElementById('contact-traffic-source-detail');
+      var referrerHostField = document.getElementById('contact-traffic-referrer-host');
+      var utmSourceField = document.getElementById('contact-traffic-utm-source');
+      var utmMediumField = document.getElementById('contact-traffic-utm-medium');
+      var utmCampaignField = document.getElementById('contact-traffic-utm-campaign');
+
+      if (channelField) channelField.value = attribution.channel || '';
+      if (detailField) detailField.value = attribution.detail || '';
+      if (referrerHostField) referrerHostField.value = attribution.referrerHost || '';
+      if (utmSourceField) utmSourceField.value = attribution.utmSource || '';
+      if (utmMediumField) utmMediumField.value = attribution.utmMedium || '';
+      if (utmCampaignField) utmCampaignField.value = attribution.utmCampaign || '';
+    } catch (error) {
+      // Ignore browsers that block session storage.
     }
   })();
 </script>
