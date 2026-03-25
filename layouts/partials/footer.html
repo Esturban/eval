@@ -3,6 +3,7 @@
 <script src="{{ $alpine.RelPermalink }}" defer></script>
 {{ $js := resources.Get "js/darkmode.js" | js.Build }}
 <script src="{{ $js.RelPermalink }}" defer></script>
+<!--<script src="//email.evadvisory.ca/focus/1.js" type="text/javascript" charset="utf-8" async="async"></script>-->
 <footer class="bg-gray-900">
     <div class="max-w-md px-4 py-12 mx-auto overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <nav class="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
@@ -16,6 +17,10 @@
 
             <div class="px-5 py-2">
                 <a href="/insights/" class="text-base text-gray-400 hover:text-gray-300">Insights</a>
+            </div>
+
+            <div class="px-5 py-2">
+                <a href="/scorecard/" class="text-base text-gray-400 hover:text-gray-300">Scorecard</a>
             </div>
 
             <div class="px-5 py-2">
@@ -72,13 +77,14 @@
                           clip-rule="evenodd" />
                 </svg>
             </a>
-{{ end }} 
+{{ end }}
         </div>
-        <p class="mt-8 text-base text-center text-gray-400">&copy; {{ now.Format "2006" }}
-            {{ .Site.Title }}. All rights reserved.</p>
-        <p class="mt-2 text-base text-center text-gray-400">Made with &#x2764;&#xfe0f; by <a
-               href="https://evadvisory.ca" class="hover:underline hover:text-indigo-600"><span
-                      class="font-black uppercase">EV</span> <span class="font-light uppercase">Advisory</span></a>
-        </p>
-    </div>
+        <div class="top-0 z-50 w-full text-gray-200 bg-gray-900 border-2 border-gray-900 md:sticky border-b-stone-200/10 flex flex-wrap items-center justify-center flex-col">
+          <p class="mt-8 text-base text-center text-gray-400">&copy; {{ now.Format "2006" }}
+              {{ .Site.Title }}. All rights reserved.</p>
+          <p class="mt-2 text-base text-center text-gray-400">Made with &#x2764;&#xfe0f; by <a
+                   href="https://evadvisory.ca" class="hover:underline hover:text-indigo-600"><span
+                          class="font-black uppercase">EV</span> <span class="font-light uppercase">Advisory</span></a>
+          </p>
+        </div>
 </footer>

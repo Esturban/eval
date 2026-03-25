@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /f/
+Disallow: /post/
+Disallow: /author/
+
+Sitemap: https://evadvisory.ca/sitemap.xml

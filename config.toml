@@ -8,11 +8,12 @@ enableEmoji = true
 enableGitInfo = true
 enableRobotsTXT = true
 canonifyURLs = true
-paginate = 9
+paginate = 6
 darkmode_js = ["assets/js/darkmode.js"]
 ignoreErrors = ["error-remote-getjson"]
 enableInlineShortcodes = true
 copyright = "2023 EV Advisory - All rights reserved"
+timeout = 120000
 
 [Author]
     name = "EV Advisory"
@@ -21,32 +22,65 @@ copyright = "2023 EV Advisory - All rights reserved"
 [params]
 homeURL = "https://evadvisory.ca"
 author = "EV Advisory"
+email = "info@evadvisory.ca"
 authorimage = "../assets/images/global/author.webp"
 github = "EV-Advisory"
 facebook = "https://facebook.com/evadvisory"
-og_image = "/images/tailbliss-cover.png"
+og_image = "/images/evadvisory-logo.png"
 sitename = "EV Advisory"
 twitter = "evadvisoryltd"
 instagram = "evadvisory"
 dribbble = "evadvisory"
 gtm_id = "GTM-TWK47J8"
-description = "Intersecting AI and BI to evolve your business"
-mainSections = ['services']
-hero_title = "EV Advisory"  
-hero_subtitle = "Optimize. Scale. Automate."  
-hero_CTA = "Let's connect"  
-hero_img= "assets/images/global/intro-hero-cdc.jpg"     
-hero_lead_CTA = "Data strategy that's right for you"
-hero_description = "At EV Advisory, our primary objective is to enable your analytics capabilities to punch well above your weight. Data strategy, web and marketing capabilities that your business deserves"
+fb_id = "588541705981208"
+CADPhone = "647-542-9921"
+USAPhone = "786-529-6998"
+description = "Trusted ecommerce, Shopify, and web data systems that help operators make decisions with confidence"
+mainSections = ['services','case study']
+# Hero section elements
+hero_title = "Fix the revenue signal before you spend more on growth"
+hero_subtitle = "Trusted ecommerce, Shopify, and web data systems for teams who need cleaner decisions"
+hero_CTA = "Take the free Revenue Signal Scorecard"
+hero_CTA_link = "/scorecard/"
+hero_img= "images/featured/data-natural-beauty.png"
+hero_lead_CTA = "Book a Conversion Systems Audit"
+hero_description = "When Shopify, ads, GA4, and finance tell different stories, teams slow down and conversions leak. EV Advisory diagnoses where trust breaks across your reporting, site experience, and operating rhythm so you can move with cleaner signal."
 
+
+# Mission section elements
+mission_quote = "The teams we help usually are not short on dashboards. They are short on confidence that the numbers are trustworthy enough to drive profitable ecommerce decisions."
+mission_author = "Esteban Valencia, Founder at EV Advisory"
+mission_description = """
+We help ecommerce and web teams rebuild trust in the information behind growth decisions.
+
+Our work usually starts in four places:
+
+- :bar_chart: **revenue signal trust across Shopify, GA4, ad platforms, and reporting**
+- :shopping_cart: **site friction that quietly drags conversion performance**
+- :mag: **measurement and attribution gaps that make channel spend hard to defend**
+- :gear: **manual reporting and operational drag that slows decisions down**
+
+The goal is not more dashboards. The goal is faster, cleaner decisions backed by data your team can actually trust.
+"""
+
+top_n_services_title = "What we fix first"
+top_n_services_subtitle = "Start with signal quality, conversion friction, and the reporting gaps that keep good teams from moving decisively."
+
+
+
+#Case studies section elements
+case_studies_title = "Testimonials"
+case_studies_subtitle  = "See what we have done for our clients in the past"
+case_studies_cta = "See all case studies and our free reference material &nbsp&rarr;"
+case_studies_cta_link = "tags/case-study"
 [markup]
 [markup.goldmark]
 [markup.goldmark.renderer]
 unsafe = true
 
 [taxonomies]
-category = ["services","insights","resources"]
-tag = ["Tags"]
+category = "Categories"
+tag = "Tags"
 
 [related]
   includeNewer = true
@@ -180,7 +214,7 @@ privacyEnhanced = true
   [module.hugoVersion]
     extended = true
     min = "0.105.0"
-    max = "0.105.0"
+    max = "0.110.0"
 [[module.mounts]]
   source = 'content'
   target = 'content'
@@ -199,3 +233,11 @@ privacyEnhanced = true
 
 outputs = ["RSS"]
 permalink = "index.xml"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+  [languages.es]
+    languageName = "Español"
+    weight = 2

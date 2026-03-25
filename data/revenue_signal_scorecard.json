@@ -1,0 +1,114 @@
+{
+  "title": "Revenue Signal Scorecard",
+  "subtitle": "Find out how trustworthy your ecommerce reporting really is before you spend more money on growth.",
+  "maxScore": 24,
+  "questions": [
+    {
+      "id": "source_of_truth",
+      "label": "When leadership asks for yesterday's revenue story, how aligned are the answers across Shopify, GA4, ads, and finance?",
+      "options": [
+        { "label": "They line up closely enough to make decisions with confidence.", "score": 0, "finding": "Your revenue sources are mostly aligned, which usually means trust is not the first bottleneck." },
+        { "label": "There are minor gaps, but the team can usually reconcile them quickly.", "score": 1, "finding": "Small reconciliation work is still costing attention that should be spent on growth." },
+        { "label": "We regularly need someone to explain why each tool says something different.", "score": 3, "finding": "Decision-making is dependent on interpretation instead of a stable source of truth." },
+        { "label": "The numbers conflict enough that people question whether any dashboard is safe to trust.", "score": 4, "finding": "Revenue trust is broken at the executive level, which slows every downstream decision." }
+      ]
+    },
+    {
+      "id": "attribution",
+      "label": "How defensible is your current attribution model when you decide where to increase or cut spend?",
+      "options": [
+        { "label": "Very defensible. We know where attribution limits start and stop.", "score": 0, "finding": "Attribution appears defined enough to support budget decisions." },
+        { "label": "Mostly defensible, but some channels still need manual context.", "score": 1, "finding": "A few channels still rely on interpretation rather than shared reporting rules." },
+        { "label": "We can explain performance, but not with much confidence.", "score": 3, "finding": "Channel allocation is exposed because attribution confidence is not strong enough." },
+        { "label": "Spend decisions feel political because the model is too noisy.", "score": 4, "finding": "Attribution ambiguity is likely causing avoidable waste or under-investment." }
+      ]
+    },
+    {
+      "id": "funnel_visibility",
+      "label": "How quickly can you isolate where customers are dropping out of the funnel?",
+      "options": [
+        { "label": "We can usually locate the issue the same day.", "score": 0, "finding": "Your funnel visibility is strong enough to support rapid action." },
+        { "label": "We can find the issue, but it takes some digging.", "score": 1, "finding": "Funnel visibility exists, but diagnosis still burns too much time." },
+        { "label": "We spot problems late because the reporting is fragmented.", "score": 3, "finding": "Conversion drag may be compounding before the team can see where it starts." },
+        { "label": "We mostly know sales are soft, not where the leak actually is.", "score": 4, "finding": "The site can leak revenue for long stretches because the failure point is not visible enough." }
+      ]
+    },
+    {
+      "id": "reporting_rhythm",
+      "label": "How fresh and decision-ready is the reporting your team uses week to week?",
+      "options": [
+        { "label": "Fresh enough that meetings start with answers, not cleanup.", "score": 0, "finding": "The reporting rhythm supports action instead of rework." },
+        { "label": "Usually fresh, though a few reports need manual correction.", "score": 1, "finding": "Manual patches still suggest some reporting debt underneath the surface." },
+        { "label": "Reports are often late or need manual stitching before they are useful.", "score": 3, "finding": "Decision velocity is constrained by reporting prep work." },
+        { "label": "We lose time every week rebuilding the same report logic.", "score": 4, "finding": "Reporting drag is acting like an operational tax on the business." }
+      ]
+    },
+    {
+      "id": "site_changes",
+      "label": "How confident are you that site changes, merchandising updates, or app installs are not damaging measurement or conversion?",
+      "options": [
+        { "label": "Very confident. Changes are checked and monitored.", "score": 0, "finding": "The team has some control over measurement and conversion QA." },
+        { "label": "Moderately confident. We catch most issues quickly.", "score": 1, "finding": "Some QA exists, but it may still leave room for silent breakage." },
+        { "label": "We often discover breakage after the fact.", "score": 3, "finding": "Site and stack changes are introducing hidden measurement or conversion risk." },
+        { "label": "We cannot reliably tell what a new change broke until results dip.", "score": 4, "finding": "The operating model is vulnerable to silent regressions in both data and UX." }
+      ]
+    },
+    {
+      "id": "operating_load",
+      "label": "How much of your team's ecommerce reporting still depends on spreadsheets, exports, and one-off explanations?",
+      "options": [
+        { "label": "Very little. The essentials are already standardized.", "score": 0, "finding": "Ops load is not the main blocker if this answer is accurate." },
+        { "label": "Some. A few critical workflows still depend on manual effort.", "score": 1, "finding": "There is still enough manual work here to slow compounding improvements." },
+        { "label": "A lot. Too much knowledge lives in someone's head or spreadsheet.", "score": 3, "finding": "Institutional knowledge is trapped in manual workflows instead of shared systems." },
+        { "label": "Most of it. Reporting trust depends on heroic effort from the team.", "score": 4, "finding": "The business is operating on fragile process instead of dependable signal." }
+      ]
+    }
+  ],
+  "bands": [
+    {
+      "slug": "trusted",
+      "label": "Trusted but not immune",
+      "min": 0,
+      "max": 7,
+      "summary": "Your revenue signal is in relatively healthy shape. The next gains are likely in sharper QA, faster diagnostics, and more explicit guardrails around future changes.",
+      "primaryCta": {
+        "label": "Browse ecommerce and data resources",
+        "href": "/insights/"
+      },
+      "secondaryCta": {
+        "label": "Talk through the next bottleneck",
+        "href": "/contact/"
+      }
+    },
+    {
+      "slug": "watchlist",
+      "label": "Watchlist",
+      "min": 8,
+      "max": 15,
+      "summary": "You still have enough reporting and attribution friction to slow decisions. This is usually the stage where teams know something is off, but cannot yet isolate the few changes that would restore confidence fastest.",
+      "primaryCta": {
+        "label": "Request a deeper diagnosis",
+        "href": "/contact/"
+      },
+      "secondaryCta": {
+        "label": "Review the insights library",
+        "href": "/insights/"
+      }
+    },
+    {
+      "slug": "broken",
+      "label": "High risk",
+      "min": 16,
+      "max": 24,
+      "summary": "Your team is likely making growth decisions on top of noisy signal. The fastest path is usually a focused audit that maps what is broken across tracking, attribution, site friction, and reporting operations.",
+      "primaryCta": {
+        "label": "Book the Conversion Systems Audit",
+        "href": "/contact/"
+      },
+      "secondaryCta": {
+        "label": "See the scorecard again",
+        "href": "/scorecard/"
+      }
+    }
+  ]
+}

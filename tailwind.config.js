@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 // tailwind.config.js
 module.exports = {
-  content: ['./layouts/**/*.html', './content/**/*.md'],
+  content: ['./layouts/**/*.html', './content/**/*.md', './assets/js/**/*.js'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -70,4 +70,5 @@ module.exports = {
     typography: ["dark"],
   },
   plugins: [require("@tailwindcss/typography")],
+  important: true,
 };

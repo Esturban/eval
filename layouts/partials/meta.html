@@ -1,48 +1,85 @@
-<title itemprop="name">{{if .IsHome}} {{ .Site.Title }} | {{ $.Site.Params.description }} 
-    {{else}} {{ .Title }} | {{ .Site.Title }} {{end}}
-</title>
-<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
-{{ $images := $.Resources.ByType "image" }}
+{{ $pageTitle := printf "%s | %s" .Title .Site.Title }}
+{{ if .IsHome }}{{ $pageTitle = printf "%s | %s" .Site.Title .Site.Params.description }}{{ end }}
+{{ $description := .Site.Params.description | plainify }}
+{{ with .Summary }}{{ $description = . | plainify }}{{ end }}
+{{ with .Description }}{{ $description = . | plainify }}{{ end }}
+{{ $images := .Resources.ByType "image" }}
 {{ $featured := $images.GetMatch "*feature*" }}
 {{ if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end }}
-{{ with $featured }}
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="{{ $featured.Permalink }}"/>
-{{ else }}
-{{ with $.Site.Params.images }}
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="{{ index . 0 | absURL }}"/>
-{{ else }}
-<meta name="twitter:card" content="summary"/>
-{{ end }}
-{{ end }}
-<meta name="twitter:title" content="{{ .Title }}"/>
-<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}"/>
-{{ with .Site.Social.twitter }}
-<meta name="twitter:site" content="@{{ . }}"/>
-{{ end }}
-<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="{{ .Site.Title }}" />
-<meta property="og:description"
-      content="{{ if .Page.Description }}{{ .Page.Description }}{{ else if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+{{ $image := .Site.Params.og_image | absURL }}
+{{ with $featured }}{{ $image = .Permalink }}{{ end }}
+{{ with .Params.featured_image }}{{ $image = . | absURL }}{{ end }}
+{{ with .Params.og_image }}{{ $image = . | absURL }}{{ end }}
+{{ $canonical := .Permalink }}
+
+<title itemprop="name">{{ $pageTitle }}</title>
+<meta name="description" content="{{ $description }}" />
+<link rel="canonical" href="{{ $canonical }}" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="author" content="{{ .Site.Params.author }}" />
+<meta itemprop="name" content="{{ $pageTitle }}" />
+<meta name="application-name" content="{{ $pageTitle }}" />
+
 <meta property="og:site_name" content="{{ .Site.Title }}" />
-<meta property="og:url" content="{{ .Permalink }}" />
-<meta property="og:locale" content="en">
-{{ if .Page.Params.featured_image }}
-<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ replace .Params.featured_image "/.." "" 1 | relURL }}" />
-<meta property="og:image:secure_url" content="{{ .Params.Site.BaseURL }}{{ replace .Params.featured_image "/.." "" 1 | relURL }}" />
-{{ else if $featured }}
-<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ if isset .Params "featured_image" }}{{ .Params.featured_image | relURL }}{{else}}{{ $featured | relURL }}{{end}}" />
-<meta property="og:image:secure_url" content="{{ $featured | absURL }}" />
-{{ else if .Params.og_image }}
-<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ .Params.og_image | relURL }}" />
-<meta property="og:image:secure_url" content="{{ .Params.og_image | absURL }}" />
-{{ else }}
-<meta property="og:image" content="{{ .Params.Site.BaseURL }}{{ .Site.Params.og_image | relURL }}" />
-<meta property="og:image:secure_url" content="{{ .Site.Params.og_image | absURL }}" />
+<meta property="og:locale" content="en" />
+<meta property="og:title" content="{{ $pageTitle }}" />
+<meta property="og:description" content="{{ $description }}" />
+<meta property="og:url" content="{{ $canonical }}" />
+<meta property="og:image" content="{{ $image }}" />
+<meta property="og:image:secure_url" content="{{ $image }}" />
+<meta property="og:type" content="{{ if and .IsPage (eq .Section "insights") }}article{{ else }}website{{ end }}" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ $pageTitle }}" />
+<meta name="twitter:description" content="{{ $description }}" />
+<meta name="twitter:image" content="{{ $image }}" />
+<meta name="twitter:site" content="@{{ .Site.Params.twitter }}" />
+
+{{ if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" />
 {{ end }}
-<meta property="og:type" content="website" />
+
+{{ $schema := dict }}
+{{ if .IsHome }}
+  {{ $org := dict
+    "@type" "Organization"
+    "name" .Site.Title
+    "url" .Site.Params.homeURL
+    "description" $description
+    "logo" $image
+    "sameAs" (slice .Site.Params.facebook (printf "https://instagram.com/%s" .Site.Params.instagram) (printf "https://twitter.com/%s" .Site.Params.twitter) (printf "https://github.com/%s" .Site.Params.github))
+  }}
+  {{ $service := dict
+    "@type" "ProfessionalService"
+    "name" .Site.Title
+    "url" $canonical
+    "description" $description
+    "areaServed" "North America"
+    "serviceType" (slice "Shopify analytics consulting" "Ecommerce conversion consulting" "Data strategy")
+  }}
+  {{ $schema = dict "@context" "https://schema.org" "@graph" (slice $org $service) }}
+{{ else if and .IsPage (eq .Section "insights") }}
+  {{ $schema = dict
+    "@context" "https://schema.org"
+    "@type" "Article"
+    "headline" .Title
+    "description" $description
+    "url" $canonical
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    "author" (dict "@type" "Organization" "name" .Site.Title)
+    "publisher" (dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $image))
+    "image" $image
+  }}
+{{ else }}
+  {{ $schema = dict
+    "@context" "https://schema.org"
+    "@type" "WebPage"
+    "name" .Title
+    "description" $description
+    "url" $canonical
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  }}
+{{ end }}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

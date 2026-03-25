@@ -1,6 +1,7 @@
-{{ $testimonial_card_description := "Technological disruption has been the name of the game. Here at EV Advisory, we bring technological equilibrium to your business model to find the solid footing you need to compete effectively in this new *digital world*." }}
+{{ $testimonial_card_description := .Site.Params.mission_quote }}
 {{ $missionimage := resources.Get "images/global/rocket-pair.jpg" }}
-{{ $mission_author := "Esteban Valencia, Founder at EV Advisory" }}
+{{ $mission_author :=  .Site.Params.mission_author }}
+{{ $mission_description :=  .Site.Params.mission_description }}
 
 <div class="relative my-4">
         <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
@@ -65,15 +66,9 @@
                 <div class="md:pt-12 sm:pt-6 lg:pt-20">
                     <h2
                         class="text-3xl font-bold tracking-tight text-gray-900 capitalize dark:text-gray-50 sm:text-4xl">
-                        Our mission</h2>
+                        Why teams stop trusting the numbers</h2>
                     <div class="mt-6 space-y-6 text-gray-900 dark:text-white">
-                        <p class="text-lg leading-7">To succeed in a data-driven environment, you must have the ability to derive insights from data which requires domain knowledge and quantitative data analysis capabilities. 
-						Our team analyzes data to find out patterns or insights, develop strategies to enable self-learning systems, and build ecosystems that drive business value for your organization. 
-						</p>
-                        <p class="text-lg leading-7">With the appropriate data strategy, EV Advisory will set up your business to encompass the appropriate data collection systems to understand where your business succeeds most and how to propel it forward in areas that need the most attention.
-                        </p>
-                        <p class="text-lg leading-7">Our field tested approach of putting data first enables our clients to be calculated as to where their next digital investment is made to ensure value is generated in data strategy, web-related efforts and digital marketing.  
-                        </p>
+                        <p class="text-lg leading-7">{{$mission_description | markdownify | emojify}}</p>
                     </div>
                 </div>
             </div>
