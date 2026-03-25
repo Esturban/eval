@@ -1,76 +1,49 @@
 {{ $testimonial_card_description := .Site.Params.mission_quote }}
-{{ $missionimage := resources.Get "images/global/rocket-pair.jpg" }}
 {{ $mission_author :=  .Site.Params.mission_author }}
 {{ $mission_description :=  .Site.Params.mission_description }}
 
-<div class="relative my-4">
-        <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
-            <div class="relative sm:py-8 lg:py-0">
-                <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
-                    <div
-                         class="absolute inset-y-0 w-full bg-gray-50 dark:bg-gray-900/10 right-1/2 rounded-r-3xl lg:right-72">
-                    </div>
-                    <svg class="absolute -ml-3 top-8 left-1/2 lg:-right-8 lg:left-auto lg:top-12" width="404"
-                         height="392" fill="none" viewBox="0 0 404 392" loading="lazy">
-                        <defs>
-                            <pattern id="02f20b47-fd69-4224-a62a-4c9de5c763f7" x="0" y="0" width="20" height="20"
-                                     patternUnits="userSpaceOnUse">
-                                <rect x="0" y="0" width="4" height="4" class="text-gray-200 dark:text-gray-900/60"
-                                      fill="currentColor" />
-                            </pattern>
-                        </defs>
-                        <rect width="404" height="392" fill="url(#02f20b47-fd69-4224-a62a-4c9de5c763f7)" />
-                    </svg>
-                </div>
-                <div class="relative max-w-md px-4 py-6 mx-auto sm:max-w-3xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
-                    <!-- Testimonial card-->
-                    <div class="relative pt-64 pb-10 overflow-hidden shadow-xl rounded-2xl">
-                        {{ with $missionimage }}
-                        {{ with .Resize (printf "%dx%d webp q50" .Width .Height) }}
-                        <img imgh src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
-                             class="absolute inset-0 object-cover w-full h-full" alt="EV Advisory - Our Mission"
-                             loading="lazy" />
-                        {{ end }}>
-                        {{ end }}
-                        <div class="absolute inset-0 bg-indigo-300 mix-blend-multiply"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-indigo-600 opacity-80">
-                        </div>
-                        <div class="relative px-8">
-                            <div>
-                                <img class="h-12" src="images/eva-white.svg" alt="Workcation">
-                            </div>
-                            <blockquote class="mt-8">
-                                <div class="relative text-lg font-medium text-white md:flex-grow">
-                                    <svg class="absolute top-0 left-0 w-8 h-8 transform -translate-x-3 -translate-y-2 text-indigo-400/30"
-                                         fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-                                        <path
-                                              d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                                    </svg>
-                                    <p class="relative">{{  $testimonial_card_description | markdownify }}
-                                    </p>
-                                </div>
-
-                                <footer class="mt-4">
-                                    <p class="text-base font-semibold text-gray-200">
-                                        {{ $mission_author }}
-                                    </p>
-                                </footer>
-                            </blockquote>
-                        </div>
-                    </div>
+<section class="bg-white py-16 sm:py-20">
+        <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:px-8">
+            <div>
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Why trust breaks</p>
+                <h2 class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+                    Why teams stop trusting the numbers
+                </h2>
+                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+                    {{$mission_description | markdownify | emojify}}
+                </p>
+                <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                    <article class="rounded-3xl border border-slate-200 bg-stone-50 p-5">
+                        <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-600">01</p>
+                        <h3 class="mt-3 text-lg font-semibold text-slate-950">Revenue signal trust</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Shopify, GA4, ad platforms, and finance reports all tell slightly different stories.</p>
+                    </article>
+                    <article class="rounded-3xl border border-slate-200 bg-stone-50 p-5">
+                        <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-600">02</p>
+                        <h3 class="mt-3 text-lg font-semibold text-slate-950">Conversion friction</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Teams can see the headline rate, but not where shoppers hesitate or drop out.</p>
+                    </article>
+                    <article class="rounded-3xl border border-slate-200 bg-stone-50 p-5">
+                        <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-600">03</p>
+                        <h3 class="mt-3 text-lg font-semibold text-slate-950">Attribution gaps</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Channel spend becomes difficult to defend when source of truth changes by report or meeting.</p>
+                    </article>
+                    <article class="rounded-3xl border border-slate-200 bg-stone-50 p-5">
+                        <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-600">04</p>
+                        <h3 class="mt-3 text-lg font-semibold text-slate-950">Reporting drag</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Operators lose time every week rebuilding exports and retelling the same performance narrative.</p>
+                    </article>
                 </div>
             </div>
-
-            <div class="relative max-w-md px-4 mx-auto sm:max-w-3xl sm:px-6 lg:px-0">
-                <!-- Content area -->
-                <div class="md:pt-12 sm:pt-6 lg:pt-20">
-                    <h2
-                        class="text-3xl font-bold tracking-tight text-gray-900 capitalize dark:text-gray-50 sm:text-4xl">
-                        Why teams stop trusting the numbers</h2>
-                    <div class="mt-6 space-y-6 text-gray-900 dark:text-white">
-                        <p class="text-lg leading-7">{{$mission_description | markdownify | emojify}}</p>
-                    </div>
-                </div>
-            </div>
+            <aside class="rounded-[2rem] border border-slate-200 bg-slate-950 p-6 text-slate-100">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Founder note</p>
+                <blockquote class="mt-4 text-lg leading-8 text-slate-100">
+                    {{  $testimonial_card_description | markdownify }}
+                </blockquote>
+                <footer class="mt-6 border-t border-slate-800 pt-4">
+                    <p class="text-sm font-semibold text-white">{{ $mission_author }}</p>
+                    <p class="mt-1 text-sm leading-6 text-slate-400">Operator-focused diagnostics across ecommerce, data, and reporting systems.</p>
+                </footer>
+            </aside>
         </div>
-    </div>
+    </section>

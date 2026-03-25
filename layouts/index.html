@@ -1,32 +1,9 @@
 {{ define "main" }}
 <main>
-
-<!--	{{- partial "slide.html" -}}  -->
-    <!-- Hero section -->
-		{{ partial "default-hero.html" . }}
-    <!-- More main page content here... -->
-
-    <!-- Testimonial/stats section -->
-        {{ partial "default-mission.html" . }}
-
-    <!-- Followup section -->
-  <!--  {{- partial "default-followup.html" -}}-->
-        <!-- Top N Blog section -->
-
-{{ partial "testimonials-slide.html" . }}
-<!--{{ partial "top-n-cases.html" . }}-->
-
-    <!-- Logo cloud section -->
-    {{- partial "logo-cloud.html" -}} 
-
-    <!-- Top N Blog section -->
-{{ partial "top-n-services.html" . }}
-
-     <!-- Testimonial Carousel -->
-  {{ partial "testimonials.html" . }}
-
-    <!-- CTA section -->
-    {{- partial "register-cta.html" -}} 
-
+    {{ partial "default-hero.html" . }}
+    {{ partial "default-mission.html" . }}
+    {{ partial "homepage-proof.html" . }}
+    {{ partial "top-n-services.html" . }}
+    {{ partial "register-cta.html" . }}
 </main>
 {{ end }}
