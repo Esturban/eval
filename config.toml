@@ -1,4 +1,4 @@
-baseURL = ""
+baseURL = "https://evadvisory.ca/"
 title = "EV Advisory"
 
 languageCode = "en-us"
@@ -22,6 +22,8 @@ timeout = 120000
 [params]
 homeURL = "https://evadvisory.ca"
 author = "EV Advisory"
+founder = "Esteban Valencia"
+founderTitle = "Founder, EV Advisory"
 email = "info@evadvisory.ca"
 authorimage = "../assets/images/global/author.webp"
 github = "EV-Advisory"
@@ -31,6 +33,7 @@ sitename = "EV Advisory"
 twitter = "evadvisoryltd"
 instagram = "evadvisory"
 dribbble = "evadvisory"
+linkedin = "https://www.linkedin.com/company/ev-advisory/"
 gtm_id = "GTM-TWK47J8"
 fb_id = "588541705981208"
 CADPhone = "647-542-9921"

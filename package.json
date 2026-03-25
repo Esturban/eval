@@ -1,7 +1,7 @@
 {
   "name": "EV Advisory",
   "version": "0.3.3",
-  "description": "Intersecting AI and BI",
+  "description": "Trusted Shopify and ecommerce diagnostics for operators who need cleaner revenue decisions",
   "main": "index.js",
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
