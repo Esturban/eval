@@ -4,6 +4,7 @@ command = "git submodule sync --recursive && git submodule update --init --recur
 
 [build.environment]
 NODE_VERSION = "24"
+WHATSAPP_NUMBER = "13057769385"
 
 [context.production.environment]
 HUGO_VERSION = "0.158.0"

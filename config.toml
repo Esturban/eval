@@ -235,3 +235,7 @@ permalink = "index.xml"
   [languages.es]
     languageName = "Español"
     weight = 2
+
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$', '^WHATSAPP_NUMBER$']

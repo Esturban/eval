@@ -1,0 +1,243 @@
+{{ define "main" }}
+{{ $whatsappNumber := getenv "WHATSAPP_NUMBER" }}
+<article>
+    <header class="bg-slate-950">
+        <div class="mx-auto max-w-6xl px-4 py-16">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Audit intake</p>
+            <h1 class="mt-4 max-w-4xl text-4xl font-black tracking-tight text-white md:text-5xl">{{ .Title }}</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{{ .Description }}</p>
+        </div>
+    </header>
+
+    <section class="mx-auto max-w-6xl px-4 py-10">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
+            <div class="space-y-6">
+                <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300">Conversion Systems Audit</p>
+                    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">Make the intake faster and cleaner</h2>
+                    <p class="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">{{ .Summary }}</p>
+                    <div class="mt-6 grid gap-3">
+                        <p class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">Best for Shopify and ecommerce teams that do not trust the numbers enough to move confidently.</p>
+                        <p class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">If you came from the scorecard, the form keeps your score and bottleneck attached to the intake.</p>
+                        <p class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">Use WhatsApp only if you need a faster first touch. The form remains the primary intake.</p>
+                    </div>
+                </div>
+
+                <div id="contact-scorecard-context"
+                     class="hidden rounded-[2rem] border border-cyan-300/30 bg-cyan-400/10 p-6 text-slate-950 dark:text-white">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-200">Scorecard context</p>
+                    <h2 id="contact-scorecard-title" class="mt-4 text-2xl font-semibold tracking-tight"></h2>
+                    <p id="contact-scorecard-copy" class="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-200"></p>
+                </div>
+
+                <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300">What happens next</p>
+                    <div class="mt-5 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                        <p>EV Advisory reviews the intake against reporting trust, attribution confidence, conversion friction, and operating drag.</p>
+                        <p>If there is a fit, the follow-up points to the fastest useful next step: a scoped audit, a deeper diagnosis, or the right resource path.</p>
+                        <p>If the problem sits elsewhere, EV Advisory can say that early instead of dragging you through a vague discovery cycle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                <form name="contact"
+                      class="space-y-6"
+                      method="POST"
+                      netlify-honeypot="bot-field"
+                      data-netlify="true"
+                      netlify>
+                    <p class="hidden">
+                        <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+                    </p>
+                    <input type="hidden" name="form-name" value="contact">
+                    <input type="hidden" name="source" id="contact-source" value="direct">
+                    <input type="hidden" name="score" id="contact-score" value="">
+                    <input type="hidden" name="score_band" id="contact-score-band" value="">
+                    <input type="hidden" name="dominant_issue" id="contact-dominant-issue" value="">
+                    <input type="hidden" name="traffic_channel" id="contact-traffic-channel" value="">
+                    <input type="hidden" name="traffic_source_detail" id="contact-traffic-source-detail" value="">
+                    <input type="hidden" name="traffic_referrer_host" id="contact-traffic-referrer-host" value="">
+                    <input type="hidden" name="traffic_utm_source" id="contact-traffic-utm-source" value="">
+                    <input type="hidden" name="traffic_utm_medium" id="contact-traffic-utm-medium" value="">
+                    <input type="hidden" name="traffic_utm_campaign" id="contact-traffic-utm-campaign" value="">
+
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
+                            <span>Work email</span>
+                            <input type="email"
+                                   name="email"
+                                   id="email"
+                                   class="block w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white"
+                                   placeholder="name@company.com"
+                                   required
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        </label>
+                        <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
+                            <span>Company or store</span>
+                            <input type="text"
+                                   name="company"
+                                   id="company"
+                                   class="block w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white"
+                                   placeholder="Brand or store name"
+                                   required>
+                        </label>
+                    </div>
+
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
+                            <span>Platform / stack</span>
+                            <select name="platform"
+                                    id="platform"
+                                    class="block w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white">
+                                <option value="shopify">Shopify</option>
+                                <option value="shopify-plus">Shopify Plus</option>
+                                <option value="woocommerce">WooCommerce</option>
+                                <option value="headless">Headless / custom web stack</option>
+                                <option value="marketplace">Marketplace-led ecommerce</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </label>
+                        <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
+                            <span>Primary bottleneck</span>
+                            <select name="bottleneck"
+                                    id="bottleneck"
+                                    class="block w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white">
+                                <option value="reporting-trust">We do not trust the numbers enough to move quickly</option>
+                                <option value="attribution">Attribution is muddy and channel spend is hard to defend</option>
+                                <option value="conversion-friction">The site is leaking conversion and we cannot isolate why</option>
+                                <option value="ops-drag">Reporting and ops are too manual</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
+                        <span>What is blocking decisions right now?</span>
+                        <textarea id="message"
+                                  name="message"
+                                  rows="7"
+                                  class="block w-full rounded-2xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white"
+                                  placeholder="Tell EV Advisory what the team cannot trust, where conversion is soft, and what decision feels blocked."></textarea>
+                    </label>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-6 text-slate-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300">
+                        The cleaner the intake, the faster EV Advisory can tell whether the audit is the right next step.
+                    </div>
+
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <button type="submit"
+                                class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
+                            Request the audit
+                        </button>
+                        {{ if $whatsappNumber }}
+                        <a id="contact-whatsapp"
+                           href="https://wa.me/{{ $whatsappNumber }}"
+                           class="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-cyan-300 hover:text-cyan-700 dark:border-slate-600 dark:text-white dark:hover:text-cyan-200">
+                            Need a faster path? Use WhatsApp
+                        </a>
+                        {{ end }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {{ partial "page-faq.html" . }}
+</article>
+
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var source = params.get('source');
+    var score = params.get('score');
+    var band = params.get('band');
+    var issue = params.get('issue');
+    var finding = params.get('finding');
+
+    var sourceField = document.getElementById('contact-source');
+    var scoreField = document.getElementById('contact-score');
+    var bandField = document.getElementById('contact-score-band');
+    var issueField = document.getElementById('contact-dominant-issue');
+    var bottleneckField = document.getElementById('bottleneck');
+    var messageField = document.getElementById('message');
+    var contextBox = document.getElementById('contact-scorecard-context');
+    var contextTitle = document.getElementById('contact-scorecard-title');
+    var contextCopy = document.getElementById('contact-scorecard-copy');
+    var whatsappLink = document.getElementById('contact-whatsapp');
+
+    var issueLabels = {
+      revenue_signal_trust: 'Revenue Signal Trust',
+      attribution_confidence: 'Attribution Confidence',
+      conversion_friction: 'Conversion Friction',
+      reporting_drag: 'Reporting Drag'
+    };
+
+    var issueSelectValues = {
+      revenue_signal_trust: 'reporting-trust',
+      attribution_confidence: 'attribution',
+      conversion_friction: 'conversion-friction',
+      reporting_drag: 'ops-drag'
+    };
+
+    if (source && sourceField) sourceField.value = source;
+    if (score && scoreField) scoreField.value = score;
+    if (band && bandField) bandField.value = band;
+    if (issue && issueField) issueField.value = issue;
+    if (issue && bottleneckField && issueSelectValues[issue]) bottleneckField.value = issueSelectValues[issue];
+
+    if (source === 'scorecard' && contextBox && contextTitle && contextCopy) {
+      contextBox.classList.remove('hidden');
+      contextTitle.textContent = 'Scorecard context attached';
+
+      var copyBits = [];
+      if (score && band) copyBits.push('Score: ' + score + ' (' + band + ').');
+      if (issue && issueLabels[issue]) copyBits.push('Likely bottleneck: ' + issueLabels[issue] + '.');
+      if (finding) copyBits.push('Top finding: ' + finding + '.');
+      contextCopy.textContent = copyBits.join(' ') || 'This intake will carry your scorecard context into the audit request.';
+
+      if (messageField && !messageField.value) {
+        messageField.value = 'We completed the Revenue Signal Scorecard. ';
+        if (score && band) messageField.value += 'The score was ' + score + ' (' + band + '). ';
+        if (issue && issueLabels[issue]) messageField.value += 'The dominant bottleneck looks like ' + issueLabels[issue] + '. ';
+        if (finding) messageField.value += 'Top finding: ' + finding + '. ';
+        messageField.value += 'The main decision currently blocked is: ';
+      }
+    }
+
+    if (whatsappLink) {
+      var whatsappNumber = whatsappLink.getAttribute('href').replace('https://wa.me/', '');
+      var lines = ['Hi EV Advisory, I want to ask about the Conversion Systems Audit.'];
+
+      if (source === 'scorecard') {
+        lines = ['Hi EV Advisory, I completed the Revenue Signal Scorecard.'];
+        if (score && band) lines.push('I got ' + score + ' (' + band + ').');
+        if (issue && issueLabels[issue]) lines.push('The biggest bottleneck looks like ' + issueLabels[issue] + '.');
+        if (finding) lines.push('Top finding: ' + finding + '.');
+        lines.push('I want to discuss the best next step.');
+      }
+
+      whatsappLink.setAttribute('href', 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(lines.join(' ')));
+    }
+
+    try {
+      var attribution = JSON.parse(window.sessionStorage.getItem('evaTrafficAttribution') || '{}');
+      var channelField = document.getElementById('contact-traffic-channel');
+      var detailField = document.getElementById('contact-traffic-source-detail');
+      var referrerHostField = document.getElementById('contact-traffic-referrer-host');
+      var utmSourceField = document.getElementById('contact-traffic-utm-source');
+      var utmMediumField = document.getElementById('contact-traffic-utm-medium');
+      var utmCampaignField = document.getElementById('contact-traffic-utm-campaign');
+
+      if (channelField) channelField.value = attribution.channel || '';
+      if (detailField) detailField.value = attribution.detail || '';
+      if (referrerHostField) referrerHostField.value = attribution.referrerHost || '';
+      if (utmSourceField) utmSourceField.value = attribution.utmSource || '';
+      if (utmMediumField) utmMediumField.value = attribution.utmMedium || '';
+      if (utmCampaignField) utmCampaignField.value = attribution.utmCampaign || '';
+    } catch (error) {
+      // Ignore browsers that block session storage.
+    }
+  })();
+</script>
+{{ end }}
