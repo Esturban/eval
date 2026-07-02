@@ -17,7 +17,7 @@ faq:
 ---
 
 <section class="lg:pb-24">
-  <div class="max-w-screen-md px-4 mx-auto">
+  <div class="max-w-[theme(screens.md)] px-4 mx-auto">
       <p class="mb-8 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">Request the Conversion Systems Audit if your ecommerce team is moving with noisy reporting, weak attribution, or a site that is harder to convert than it should be. The more specific you are, the faster EV Advisory can tell whether there is a fit and where the work should start.</p>
       <form name="contact" netlify class="space-y-8"
   method="POST"
