@@ -1,11 +1,25 @@
 {{ $scorecard := site.Data.revenue_signal_scorecard }}
-<section class="mx-auto mt-10 max-w-6xl px-4 pb-16">
+{{ $whatsappNumber := getenv "WHATSAPP_NUMBER" }}
+{{ $twitterURL := "" }}
+{{ with site.Params.twitter }}
+    {{ $twitterURL = printf "https://twitter.com/%s" . }}
+{{ end }}
+<section id="revenue-signal-scorecard-shell"
+         class="mx-auto mt-10 max-w-6xl px-4 pb-16"
+         data-whatsapp-number="{{ $whatsappNumber }}"
+         data-twitter-url="{{ $twitterURL }}"
+         data-linkedin-url="{{ site.Params.linkedin }}">
     <div class="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(320px,1fr)]">
         <div class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-zinc-200 dark:bg-gray-900 dark:ring-gray-700">
             <div class="mb-8">
                 <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-300">Free diagnostic</p>
                 <h2 class="mt-3 text-3xl font-black text-gray-900 dark:text-white">{{ $scorecard.title }}</h2>
                 <p class="mt-3 text-lg text-gray-600 dark:text-gray-300">{{ $scorecard.subtitle }}</p>
+                <div class="mt-5 grid gap-3 sm:grid-cols-3">
+                    <p class="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200">Get a score in about two minutes.</p>
+                    <p class="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200">See the dominant bottleneck behind the drift.</p>
+                    <p class="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200">Route high-risk results into the audit or a faster follow-up path.</p>
+                </div>
             </div>
             <form id="revenue-signal-scorecard" class="space-y-8">
                 {{ range $question := $scorecard.questions }}
@@ -32,8 +46,8 @@
         <aside class="rounded-2xl bg-gray-900 p-6 text-white shadow-lg ring-1 ring-gray-800">
             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-300">Result</p>
             <div id="scorecard-results" class="mt-4 space-y-4">
-                <h3 class="text-2xl font-black">Gauge your revenue signal trust</h3>
-                <p class="text-base text-gray-300">Complete the scorecard to see whether your reporting stack is dependable, drifting, or actively slowing growth decisions.</p>
+                <h3 class="text-2xl font-black">Get the operator brief</h3>
+                <p class="text-base text-gray-300">Complete the scorecard to get the score, diagnosis, next step, and follow-up path that best matches the level of risk.</p>
                 <div class="rounded-xl border border-white/10 bg-white/5 p-4">
                     <p class="text-sm text-gray-300">What this checks</p>
                     <ul class="mt-3 space-y-2 text-sm text-gray-200">
@@ -47,4 +61,17 @@
             <script id="revenue-signal-scorecard-data" type="application/json">{{ $scorecard | jsonify | safeJS }}</script>
         </aside>
     </div>
+    <form name="scorecard-lead" method="POST" data-netlify="true" netlify hidden aria-hidden="true">
+        <input type="hidden" name="form-name" value="scorecard-lead">
+        <input type="email" name="email">
+        <input type="text" name="company">
+        <input type="text" name="source">
+        <input type="text" name="score">
+        <input type="text" name="score_band">
+        <input type="text" name="dominant_issue">
+        <input type="text" name="top_findings">
+        <input type="text" name="primary_recommendation">
+        <input type="text" name="page">
+        <input type="text" name="bot-field">
+    </form>
 </section>

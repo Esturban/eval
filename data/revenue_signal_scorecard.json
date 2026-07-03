@@ -2,9 +2,215 @@
   "title": "Revenue Signal Scorecard",
   "subtitle": "Find out how trustworthy your ecommerce reporting really is before you spend more money on growth.",
   "maxScore": 24,
+  "defaultIssue": "revenue_signal_trust",
+  "issuePriority": [
+    "revenue_signal_trust",
+    "attribution_confidence",
+    "conversion_friction",
+    "reporting_drag"
+  ],
+  "issues": {
+    "revenue_signal_trust": {
+      "label": "Revenue Signal Trust",
+      "contactValue": "reporting-trust",
+      "description": "The bigger drag is inconsistent revenue truth across Shopify, analytics, ads, and finance.",
+      "recommendations": {
+        "trusted": [
+          {
+            "eyebrow": "Next read",
+            "title": "Analytics Limitations: What You Can Do To Mitigate Issues",
+            "description": "Use this to pressure-test where dashboards stop being trustworthy enough for revenue decisions.",
+            "href": "/insights/analytics-limitations-what-you-can-do/"
+          },
+          {
+            "eyebrow": "Guardrail",
+            "title": "Data Collection: Why Less is More",
+            "description": "Tighten what gets measured so the team is not reconciling noise that never should have been promoted.",
+            "href": "/insights/data-collection-why-less-is-more/"
+          }
+        ],
+        "watchlist": [
+          {
+            "eyebrow": "Diagnosis",
+            "title": "Analytics Limitations: What You Can Do To Mitigate Issues",
+            "description": "A fast way to identify where your current reporting stack stops being decision-grade.",
+            "href": "/insights/analytics-limitations-what-you-can-do/"
+          },
+          {
+            "eyebrow": "Proof",
+            "title": "Lightning Fast Reporting",
+            "description": "See how EV Advisory reduced reporting drag from 30 hours a month to minutes.",
+            "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+          }
+        ],
+        "broken": [
+          {
+            "eyebrow": "Proof asset",
+            "title": "Lightning Fast Reporting",
+            "description": "The clearest example of what it looks like when reporting trust and operating rhythm are rebuilt properly.",
+            "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+          },
+          {
+            "eyebrow": "Immediate read",
+            "title": "Analytics Limitations: What You Can Do To Mitigate Issues",
+            "description": "Use this to frame where the current source-of-truth model is failing the business.",
+            "href": "/insights/analytics-limitations-what-you-can-do/"
+          }
+        ]
+      }
+    },
+    "attribution_confidence": {
+      "label": "Attribution Confidence",
+      "contactValue": "attribution",
+      "description": "Channel allocation decisions are carrying more interpretation than defensible attribution.",
+      "recommendations": {
+        "trusted": [
+          {
+            "eyebrow": "Next read",
+            "title": "Conversion Tracking: How Your Site Could Benefit From a Data-Driven Approach",
+            "description": "A practical way to tighten the data collection around channel performance before attribution gets argued tool by tool.",
+            "href": "/insights/conversion-tracking/"
+          },
+          {
+            "eyebrow": "Guardrail",
+            "title": "Analytics Limitations: What You Can Do To Mitigate Issues",
+            "description": "Use this to pressure-test which attribution conversations are really data-collection or reporting-structure problems.",
+            "href": "/insights/analytics-limitations-what-you-can-do/"
+          }
+        ],
+        "watchlist": [
+          {
+            "eyebrow": "Diagnosis",
+            "title": "Analytics Limitations: What You Can Do To Mitigate Issues",
+            "description": "Use this to isolate whether the model, the instrumentation, or the reporting structure is distorting spend decisions.",
+            "href": "/insights/analytics-limitations-what-you-can-do/"
+          },
+          {
+            "eyebrow": "Proof",
+            "title": "Lightning Fast Reporting",
+            "description": "Proof that better reporting structure makes attribution conversations faster and easier to defend.",
+            "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+          }
+        ],
+        "broken": [
+          {
+            "eyebrow": "Proof asset",
+            "title": "Lightning Fast Reporting",
+            "description": "A concrete example of operational cleanup that turns noisy attribution debates into usable reporting.",
+            "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+          },
+          {
+            "eyebrow": "Immediate read",
+            "title": "Conversion Tracking: How Your Site Could Benefit From a Data-Driven Approach",
+            "description": "Use this to frame the attribution problem in terms of instrumentation and measurement before you book the audit.",
+            "href": "/insights/conversion-tracking/"
+          }
+        ]
+      }
+    },
+    "conversion_friction": {
+      "label": "Conversion Friction",
+      "contactValue": "conversion-friction",
+      "description": "The team can see revenue softness, but not quickly enough isolate where the site is leaking.",
+      "recommendations": {
+        "trusted": [
+          {
+            "eyebrow": "Next read",
+            "title": "Conversion Tracking: How Your Site Could Benefit From a Data-Driven Approach",
+            "description": "Strengthen the measurement around the moments that actually shape conversion confidence.",
+            "href": "/insights/conversion-tracking/"
+          },
+          {
+            "eyebrow": "Guardrail",
+            "title": "Touchpoints: How to Optimize Conversion to Help Your Sales",
+            "description": "Use this to tighten the places where buyers stall before weak conversion becomes a budget problem.",
+            "href": "/insights/touchpoints-to-improve-conversion/"
+          }
+        ],
+        "watchlist": [
+          {
+            "eyebrow": "Diagnosis",
+            "title": "Touchpoints: How to Optimize Conversion to Help Your Sales",
+            "description": "Use this to frame where the customer journey is soft before the team starts redesigning blindly.",
+            "href": "/insights/touchpoints-to-improve-conversion/"
+          },
+          {
+            "eyebrow": "Immediate read",
+            "title": "Conversion Tracking: How Your Site Could Benefit From a Data-Driven Approach",
+            "description": "A practical way to sharpen what you can and cannot currently observe in the funnel.",
+            "href": "/insights/conversion-tracking/"
+          }
+        ],
+        "broken": [
+          {
+            "eyebrow": "Proof asset",
+            "title": "Lightning Fast Reporting",
+            "description": "Proof that cleaning up the signal around site behavior and reporting creates faster action when conversion dips.",
+            "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+          },
+          {
+            "eyebrow": "Immediate read",
+            "title": "Touchpoints: How to Optimize Conversion to Help Your Sales",
+            "description": "Use this to frame the likely leak points before the audit maps where the funnel is actually failing.",
+            "href": "/insights/touchpoints-to-improve-conversion/"
+          }
+        ]
+      }
+    },
+    "reporting_drag": {
+      "label": "Reporting Drag",
+      "contactValue": "ops-drag",
+      "description": "The signal problem is less about one dashboard and more about the manual work needed to rebuild confidence every week.",
+      "recommendations": {
+        "trusted": [
+          {
+            "eyebrow": "Next read",
+            "title": "Data in Business: Creating a Successful Business Strategy",
+            "description": "Reset how the team defines the metrics and operating rhythm that keep reporting useful instead of cosmetic.",
+            "href": "/insights/data-in-business-create-a-successful-business-strategy/"
+          },
+          {
+            "eyebrow": "Guardrail",
+            "title": "Data Collection: Why Less is More",
+            "description": "Reduce the reporting surface so the business spends less time rebuilding the same story.",
+            "href": "/insights/data-collection-why-less-is-more/"
+          }
+        ],
+        "watchlist": [
+          {
+            "eyebrow": "Proof",
+            "title": "Lightning Fast Reporting",
+            "description": "The clearest proof asset for teams losing time every week to reporting prep and reconciliation.",
+            "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+          },
+          {
+            "eyebrow": "Diagnosis",
+            "title": "Analytics Limitations: What You Can Do To Mitigate Issues",
+            "description": "Use this to identify which parts of the reporting stack are slowing decision velocity most.",
+            "href": "/insights/analytics-limitations-what-you-can-do/"
+          }
+        ],
+        "broken": [
+          {
+            "eyebrow": "Proof asset",
+            "title": "Lightning Fast Reporting",
+            "description": "A practical example of what it looks like when reporting drag is treated as a revenue problem, not admin overhead.",
+            "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+          },
+          {
+            "eyebrow": "Immediate read",
+            "title": "Data in Business: Creating a Successful Business Strategy",
+            "description": "Reset how your reporting stack should support weekly decisions once the audit isolates what is broken.",
+            "href": "/insights/data-in-business-create-a-successful-business-strategy/"
+          }
+        ]
+      }
+    }
+  },
   "questions": [
     {
       "id": "source_of_truth",
+      "issue": "revenue_signal_trust",
       "label": "When leadership asks for yesterday's revenue story, how aligned are the answers across Shopify, GA4, ads, and finance?",
       "options": [
         { "label": "They line up closely enough to make decisions with confidence.", "score": 0, "finding": "Your revenue sources are mostly aligned, which usually means trust is not the first bottleneck." },
@@ -15,6 +221,7 @@
     },
     {
       "id": "attribution",
+      "issue": "attribution_confidence",
       "label": "How defensible is your current attribution model when you decide where to increase or cut spend?",
       "options": [
         { "label": "Very defensible. We know where attribution limits start and stop.", "score": 0, "finding": "Attribution appears defined enough to support budget decisions." },
@@ -25,6 +232,7 @@
     },
     {
       "id": "funnel_visibility",
+      "issue": "conversion_friction",
       "label": "How quickly can you isolate where customers are dropping out of the funnel?",
       "options": [
         { "label": "We can usually locate the issue the same day.", "score": 0, "finding": "Your funnel visibility is strong enough to support rapid action." },
@@ -35,6 +243,7 @@
     },
     {
       "id": "reporting_rhythm",
+      "issue": "reporting_drag",
       "label": "How fresh and decision-ready is the reporting your team uses week to week?",
       "options": [
         { "label": "Fresh enough that meetings start with answers, not cleanup.", "score": 0, "finding": "The reporting rhythm supports action instead of rework." },
@@ -45,6 +254,7 @@
     },
     {
       "id": "site_changes",
+      "issue": "conversion_friction",
       "label": "How confident are you that site changes, merchandising updates, or app installs are not damaging measurement or conversion?",
       "options": [
         { "label": "Very confident. Changes are checked and monitored.", "score": 0, "finding": "The team has some control over measurement and conversion QA." },
@@ -55,6 +265,7 @@
     },
     {
       "id": "operating_load",
+      "issue": "reporting_drag",
       "label": "How much of your team's ecommerce reporting still depends on spreadsheets, exports, and one-off explanations?",
       "options": [
         { "label": "Very little. The essentials are already standardized.", "score": 0, "finding": "Ops load is not the main blocker if this answer is accurate." },
@@ -72,13 +283,26 @@
       "max": 7,
       "summary": "Your revenue signal is in relatively healthy shape. The next gains are likely in sharper QA, faster diagnostics, and more explicit guardrails around future changes.",
       "primaryCta": {
-        "label": "Browse ecommerce and data resources",
+        "label": "Review the recommended resource",
+        "kind": "recommendation",
+        "recommendationIndex": 0,
         "href": "/insights/"
       },
       "secondaryCta": {
         "label": "Talk through the next bottleneck",
+        "kind": "contact",
         "href": "/contact/"
-      }
+      },
+      "leadCapture": {
+        "eyebrow": "Optional follow-up",
+        "title": "Want the sharper next step?",
+        "description": "Leave a work email and EV Advisory will send the recommendation set that best matches this score."
+      },
+      "successState": {
+        "title": "Recommendation request received",
+        "description": "The score context is captured. EV Advisory can follow up with the most relevant next step without turning this into a full audit thread."
+      },
+      "showWhatsapp": false
     },
     {
       "slug": "watchlist",
@@ -88,12 +312,25 @@
       "summary": "You still have enough reporting and attribution friction to slow decisions. This is usually the stage where teams know something is off, but cannot yet isolate the few changes that would restore confidence fastest.",
       "primaryCta": {
         "label": "Request a deeper diagnosis",
+        "kind": "contact",
         "href": "/contact/"
       },
       "secondaryCta": {
-        "label": "Review the insights library",
+        "label": "Review the recommended resource",
+        "kind": "recommendation",
+        "recommendationIndex": 0,
         "href": "/insights/"
-      }
+      },
+      "leadCapture": {
+        "eyebrow": "Recommended",
+        "title": "Send the tailored next step",
+        "description": "Share your work email and store name so EV Advisory can follow up with the right diagnosis path instead of a generic resource dump."
+      },
+      "successState": {
+        "title": "Diagnosis request received",
+        "description": "The score context is attached so EV Advisory can follow up with the right next step and not ask you to restate the problem from scratch."
+      },
+      "showWhatsapp": true
     },
     {
       "slug": "broken",
@@ -103,12 +340,25 @@
       "summary": "Your team is likely making growth decisions on top of noisy signal. The fastest path is usually a focused audit that maps what is broken across tracking, attribution, site friction, and reporting operations.",
       "primaryCta": {
         "label": "Book the Conversion Systems Audit",
+        "kind": "contact",
         "href": "/contact/"
       },
       "secondaryCta": {
-        "label": "See the scorecard again",
-        "href": "/scorecard/"
-      }
+        "label": "See a relevant proof asset",
+        "kind": "recommendation",
+        "recommendationIndex": 0,
+        "href": "/insights/resources/case-study-bsg-lighting-fast-reporting/"
+      },
+      "leadCapture": {
+        "eyebrow": "High priority",
+        "title": "Send the audit brief to EV Advisory",
+        "description": "Share a work email and company name so the audit follow-up carries your score, band, and likely bottleneck into the intake."
+      },
+      "successState": {
+        "title": "Audit follow-up request received",
+        "description": "The result context is captured so EV Advisory can pick up the audit conversation with the right operating picture already in hand."
+      },
+      "showWhatsapp": true
     }
   ]
 }
