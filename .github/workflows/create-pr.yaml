@@ -4,8 +4,11 @@ on:
   push:
     branches:
     - dev  # Support wildcard matching
-  schedule:
-    - cron: '0 6 * * *'
+    paths-ignore: ["docs/**", "**/*.md"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   pull-request:
