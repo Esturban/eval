@@ -1,0 +1,236 @@
+{{ define "main" }}
+{{ $products := .Site.Data.store.product }}
+{{ $questions := .Site.Data.store.question }}
+{{ $fitCall := "https://cal.com/este-val/audit-fit-call" }}
+
+<article>
+
+    <header class="bg-slate-950">
+        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Store</p>
+            <h1 class="mt-4 max-w-4xl text-4xl font-black tracking-tight text-white md:text-5xl">Fixed-scope AI diagnostics you can buy today, without a sales call.</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Start free. Then a kit you run yourself tonight, a fixed-price audit you can buy in one sitting, or a fit call first for anything bigger. Nothing above USD 897 is sold here without a 20-minute conversation.</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="#free" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">See what's free</a>
+                <a href="{{ $fitCall }}" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">Grab a time here</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="which-one" class="bg-stone-50 py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Start here</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Which one is for me?</h2>
+                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Find your question. The first column is what to buy tonight; the last is where it leads.</p>
+            </div>
+            <div class="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse text-left">
+                        <thead>
+                            <tr class="bg-stone-50">
+                                <th class="border-b border-slate-200 px-5 py-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Your question</th>
+                                <th class="border-b border-slate-200 px-5 py-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Start here</th>
+                                <th class="border-b border-slate-200 px-5 py-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Then</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range $questions }}
+                            <tr>
+                                <td class="border-b border-slate-100 px-5 py-4 align-top text-base leading-6 text-slate-800 last:border-b-0">{{ .question }}</td>
+                                <td class="border-b border-slate-100 px-5 py-4 align-top text-base leading-6 text-slate-800 last:border-b-0">{{ .start_here }}</td>
+                                <td class="border-b border-slate-100 px-5 py-4 align-top text-base leading-6 text-slate-800 last:border-b-0">{{ .then }}</td>
+                            </tr>
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="free" class="bg-white py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Free</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">What can I get for free?</h2>
+                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Nobody should buy from a stranger. Take one of these first.</p>
+            </div>
+            <div class="mt-10 grid gap-4 lg:grid-cols-2">
+                {{ range $products }}
+                {{ if eq .section "free" }}
+                <article class="flex flex-col gap-3 rounded-3xl border border-slate-200 bg-stone-50 p-6">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600">{{ .eyebrow }}</p>
+                    <h3 class="text-2xl font-semibold text-slate-950">{{ .name }}</h3>
+                    <p class="text-base leading-7 text-slate-600">{{ .outcome }}</p>
+                    <p class="text-base leading-7 text-slate-600">{{ .delivery }}</p>
+                    <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}</div>
+                    <div class="flex flex-wrap gap-2">
+                        {{ if eq .url "#" }}
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-400" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        {{ else }}
+                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        {{ end }}
+                    </div>
+                </article>
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <section id="guides" class="bg-stone-50 py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Guides</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">About USD 30: do it yourself tonight.</h2>
+                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">A guide and the working sheets. Read it in an hour, run it this week. Credited if you later buy the audit.</p>
+            </div>
+            <div class="mt-10 grid gap-4 lg:grid-cols-2">
+                {{ range $products }}
+                {{ if eq .section "guides" }}
+                <article class="flex flex-col gap-3 rounded-3xl border border-slate-200 bg-white p-6">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600">{{ .eyebrow }}</p>
+                    <h3 class="text-2xl font-semibold text-slate-950">{{ .name }}</h3>
+                    <p class="text-base leading-7 text-slate-600">{{ .outcome }}</p>
+                    <p class="text-base leading-7 text-slate-600">{{ .delivery }}</p>
+                    <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}{{ with .price_note }}<small class="mt-1 block text-sm font-normal text-slate-500">{{ . }}</small>{{ end }}</div>
+                    <div class="flex flex-wrap gap-2">
+                        {{ if eq .url "#" }}
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-400" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        {{ else }}
+                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        {{ end }}
+                    </div>
+                </article>
+                {{ end }}
+                {{ end }}
+            </div>
+            <p class="mt-8 text-base text-slate-500">More guides are on the way.</p>
+        </div>
+    </section>
+
+    <section id="done-for-you" class="bg-slate-950 py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">Done for you</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Fixed prices. A delivery date and refund terms on every card.</h2>
+                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">Up to USD 897 you can buy now. Above that, grab a time first.</p>
+            </div>
+            <div class="mt-10 grid gap-4 lg:grid-cols-3">
+                {{ range $products }}
+                {{ if eq .section "done" }}
+                <article class="flex flex-col gap-3 rounded-3xl border border-slate-800 bg-slate-900/80 p-6">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">{{ .eyebrow }}</p>
+                    <h3 class="text-2xl font-semibold text-white">{{ .name }}</h3>
+                    <p class="text-base leading-7 text-slate-300">{{ .outcome }}</p>
+                    <p class="text-base leading-7 text-slate-300">{{ .delivery }}</p>
+                    {{ with .refund }}<p class="text-sm leading-6 text-slate-400">{{ . }}</p>{{ end }}
+                    <div class="mt-auto pt-2 text-2xl font-bold text-white">{{ .price }}{{ with .price_note }}<small class="mt-1 block text-sm font-normal text-slate-400">{{ . }}</small>{{ end }}</div>
+                    <div class="flex flex-wrap gap-2">
+                        {{ if eq .url "#" }}
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-500" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        {{ else }}
+                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        {{ end }}
+                        {{ if .button2 }}
+                        {{ if eq .url2 "#" }}
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-500" data-ticket="{{ .ticket }}">{{ .button2 }}</span>
+                        {{ else }}
+                        <a href="{{ .url2 }}" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">{{ .button2 }}</a>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                    {{ with .price_note2 }}<p class="text-sm text-slate-400">Deep Scan: {{ . }}</p>{{ end }}
+                </article>
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <section id="how" class="bg-white py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">How buying works</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Three steps, no waiting for a reply.</h2>
+            </div>
+            <div class="mt-10 grid gap-4 lg:grid-cols-3">
+                <div class="rounded-3xl border border-slate-200 bg-stone-50 p-6">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600">Step 1</p>
+                    <p class="mt-3 text-base leading-7 text-slate-600">Pay by card on a secure checkout page. You get a receipt by email.</p>
+                </div>
+                <div class="rounded-3xl border border-slate-200 bg-stone-50 p-6">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600">Step 2</p>
+                    <p class="mt-3 text-base leading-7 text-slate-600">The receipt page gives you the download, the intake form, or the booking page for your readout.</p>
+                </div>
+                <div class="rounded-3xl border border-slate-200 bg-stone-50 p-6">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600">Step 3</p>
+                    <p class="mt-3 text-base leading-7 text-slate-600">Delivered in the days stated on the card. Every item has its refund terms written on it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fit-call" class="bg-stone-50 py-14 sm:py-16">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="rounded-[2rem] border border-slate-200 bg-slate-950 px-6 py-9 shadow-2xl shadow-slate-300/30 sm:px-10 sm:py-10">
+                <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] lg:items-center">
+                    <div>
+                        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Fit call</p>
+                        <h2 class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">Not sure which one? Grab a time here.</h2>
+                        <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">20 minutes, no pitch. You leave knowing whether any of this fits, and which one.</p>
+                        <div class="mt-8">
+                            <a href="{{ $fitCall }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Grab a time here</a>
+                        </div>
+                    </div>
+                    <div class="grid gap-3 text-sm text-slate-200">
+                        <p class="rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-4">Bring the one question that is costing you sleep.</p>
+                        <p class="rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-4">Leave with a yes, a no, or the one product that fits.</p>
+                        <p class="rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-4">If nothing fits, you hear that on the call, not in a proposal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="books" class="bg-white py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Books by Esteban V.</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Written for people, not companies.</h2>
+            </div>
+            <div class="mt-10 grid gap-4 lg:grid-cols-2">
+                {{ range $products }}
+                {{ if eq .section "books" }}
+                <article class="flex flex-col gap-3 rounded-3xl border border-slate-200 bg-stone-50 p-6">
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600">{{ .eyebrow }}</p>
+                    <h3 class="text-2xl font-semibold text-slate-950">{{ .name }}</h3>
+                    <p class="text-base leading-7 text-slate-600">{{ .outcome }}</p>
+                    <p class="text-base leading-7 text-slate-600">{{ .delivery }}</p>
+                    <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}</div>
+                    <div class="flex flex-wrap gap-2">
+                        {{ if eq .url "#" }}
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-400" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        {{ else }}
+                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        {{ end }}
+                    </div>
+                </article>
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-stone-50 py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">About</p>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Esteban Valencia builds and audits AI systems for companies in Saudi Arabia, the Gulf and Canada.</p>
+            <p class="mt-3 max-w-2xl text-lg leading-8 text-slate-600">Based in Riyadh, working with clients across the Gulf and Canada.</p>
+            <p class="mt-3 max-w-2xl text-lg leading-8 text-slate-600">EV Advisory is a one-person practice: what you buy here is delivered by the person whose name is on it.</p>
+        </div>
+    </section>
+
+</article>
+{{ end }}
