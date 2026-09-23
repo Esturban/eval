@@ -13,7 +13,7 @@ build:
 
 Six checks, in order, tell you whether a repeated process is narrow enough for an agent to handle today. Enter your email and the PDF opens right away.
 
-<form name="narrow-agent-fit-checklist" method="POST" data-netlify="true" action="/get/narrow-agent-fit-checklist/thanks/">
+<form name="narrow-agent-fit-checklist" method="POST" data-netlify="true" action="/get/narrow-agent-fit-checklist-thanks/">
   <input type="hidden" name="form-name" value="narrow-agent-fit-checklist" />
   <p>
     <label for="email">Email</label><br />
