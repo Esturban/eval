@@ -38,16 +38,15 @@ gtm_id = "GTM-TWK47J8"
 fb_id = "588541705981208"
 CADPhone = "647-542-9921"
 USAPhone = "786-529-6998"
-description = "Trusted Shopify and ecommerce diagnostics for operators who need cleaner revenue decisions"
+description = "Free Live Audit for founder-led agencies: Esteban Valencia reviews your real tool stack live and names the first AI automation worth shipping"
 mainSections = ['services','case study']
 # Hero section elements
-hero_title = "Fix the revenue signal before you spend more on growth"
-hero_subtitle = "Trusted Shopify and ecommerce diagnostics for teams that need cleaner decisions"
-hero_CTA = "Take the free Revenue Signal Scorecard"
-hero_CTA_link = "/scorecard/"
+hero_title = "Get AI agents shipped into your agency without hiring anyone"
+hero_subtitle = "For founder-led agencies and small teams already running on real tools"
+hero_CTA = "Get a free Live Audit"
+hero_CTA_link = "/live-audit/"
 hero_img= "images/featured/data-natural-beauty.png"
-hero_lead_CTA = "Book a Conversion Systems Audit"
-hero_description = "When Shopify, ads, GA4, and finance tell different stories, teams slow down and conversions leak. EV Advisory diagnoses where trust breaks across your reporting, site experience, and operating rhythm so you can move with cleaner signal."
+hero_description = "Start with a free Live Audit. Esteban reviews your actual tool stack with you, live, and names the first automation worth shipping."
 
 
 # Mission section elements
