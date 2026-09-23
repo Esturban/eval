@@ -1,0 +1,16 @@
+# Store product rows. One entry per product ticket; the /store section
+# layout reads this file and is built separately (see
+# thinking/wiki/domains/business/offers/store/blueprint.md).
+
+[[products]]
+id = "narrow-agent-fit-checklist"
+name = "Narrow Agent Fit Checklist"
+byline = "Free checklist by Esteban V."
+price = "Free"
+outcome = "Know in ten minutes whether your process fits a narrow agent"
+delivery = "Email capture form, PDF opens right after signup"
+download_url = "https://evadvisory.ca/get/narrow-agent-fit-checklist/"
+product_id = ""
+price_id = ""
+payment_link = ""
+status = "form and PDF live; row rendering pending the store section build"
