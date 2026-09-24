@@ -127,6 +127,10 @@
     transition: opacity 0.6s ease;
   }
 
+  .hw__poster--tall {
+    display: none;
+  }
+
   .hw.is-live .hw__poster {
     opacity: 0;
   }
@@ -152,107 +156,111 @@
     display: block;
   }
 
+  /* Bot labels: type on a stem, no panels. The scene sets --stem (length)
+     and --stem-x (where the stem meets the vehicle) every frame. */
   .hw-bot {
     position: absolute;
     top: 0;
     left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding-bottom: 18px;
+    padding-bottom: 2px;
     opacity: 0;
-    transform-origin: 50% 100%;
+    transform-origin: 0 0;
+    white-space: nowrap;
     will-change: transform, opacity;
+    text-shadow: 0 1px 2px rgba(2, 6, 23, 0.9), 0 0 14px rgba(2, 6, 23, 0.95);
   }
 
   .hw-bot::after {
     content: '';
     position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 2px;
-    height: 16px;
-    transform: translateX(-50%);
-    background: linear-gradient(var(--bot), transparent);
+    top: 100%;
+    left: var(--stem-x, 3px);
+    width: 1px;
+    height: var(--stem, 18px);
+    background: linear-gradient(var(--bot), color-mix(in srgb, var(--bot) 10%, transparent));
+  }
+
+  .hw-bot::before {
+    content: '';
+    position: absolute;
+    top: calc(100% + var(--stem, 18px) - 2px);
+    left: calc(var(--stem-x, 3px) - 2px);
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--bot);
+    box-shadow: 0 0 8px var(--bot);
   }
 
   .hw-bot__head {
     display: flex;
     align-items: baseline;
     gap: 8px;
-    padding: 8px 14px;
-    border-radius: 14px;
-    border: 1px solid color-mix(in srgb, var(--bot) 55%, transparent);
-    background: rgba(2, 6, 23, 0.86);
-    white-space: nowrap;
-    box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--bot) 60%, transparent);
   }
 
   .hw-bot__dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--bot);
-    box-shadow: 0 0 10px var(--bot);
-    align-self: center;
+    display: none;
   }
 
   .hw-bot__name {
-    font-family: "General Sans", "Instrument Sans", sans-serif;
-    font-size: 16px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px;
     font-weight: 600;
-    color: var(--ev-surface);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f1f5f9;
   }
 
   .hw-bot__job {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #94a3b8;
+    color: #7c8aa0;
+  }
+
+  .hw-bot__job::before {
+    content: '/ ';
   }
 
   .hw-bot__tag {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 7px;
-    padding: 5px 12px 5px 8px;
-    border-radius: 999px;
-    background: var(--bot);
-    color: var(--ev-ink);
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
+    margin-top: 4px;
+    color: var(--bot);
+    font-family: "Instrument Sans", ui-sans-serif, sans-serif;
+    font-size: 16px;
     font-weight: 600;
-    white-space: nowrap;
+    letter-spacing: -0.005em;
   }
 
   .hw-bot__icon {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
     flex: none;
+    filter: drop-shadow(0 0 6px rgba(2, 6, 23, 0.9));
   }
 
   .hw-bot.is-done .hw-bot__tag {
-    background: var(--ev-surface);
-  }
-
-  .hw-bot.is-done .hw-bot__icon {
-    color: #059669;
+    color: #6ee7b7;
   }
 
   .hw-bot__tag.is-swap {
-    animation: hw-pop 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: hw-pop 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   @keyframes hw-pop {
     from {
       opacity: 0;
-      transform: translateY(6px) scale(0.9);
+      transform: translateY(5px);
+      filter: blur(3px);
     }
     to {
       opacity: 1;
       transform: none;
+      filter: none;
     }
   }
 
@@ -278,30 +286,46 @@
     z-index: 3;
   }
 
+  /* Step rail: plain type on one hairline; the active step lights its
+     segment of the line. No pills. */
   .hw-steps {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 44rem;
+    border-top: 1px solid rgba(219, 227, 238, 0.14);
   }
 
   .hw-steps__item {
-    display: inline-flex;
+    position: relative;
+    display: flex;
     gap: 8px;
-    padding: 8px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(219, 227, 238, 0.18);
-    background: rgba(2, 6, 23, 0.7);
-    color: #94a3b8;
+    padding-top: 12px;
+    color: #64748b;
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: color 0.4s ease;
+  }
+
+  .hw-steps__item::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 12px;
+    height: 1px;
+    background: var(--ev-accent);
+    box-shadow: 0 0 10px var(--ev-accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .hw-steps__item span {
-    color: var(--ev-accent);
+    color: #475569;
+    transition: color 0.4s ease;
   }
 
   .hw-steps__label {
@@ -309,13 +333,15 @@
   }
 
   .hw-steps__item.is-active {
-    background: var(--ev-surface);
-    color: var(--ev-ink);
-    border-color: transparent;
+    color: var(--ev-surface);
+  }
+
+  .hw-steps__item.is-active::before {
+    transform: scaleX(1);
   }
 
   .hw-steps__item.is-active span {
-    color: var(--ev-accent-deep);
+    color: var(--ev-accent);
   }
 
   .hw__note {
@@ -337,6 +363,14 @@
       padding-bottom: 0;
     }
 
+    .hw__poster--wide {
+      display: none;
+    }
+
+    .hw__poster--tall {
+      display: block;
+    }
+
     .hw__shade {
       background:
         linear-gradient(180deg, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.8) 42%, rgba(2, 6, 23, 0) 60%),
@@ -347,26 +381,27 @@
       display: none;
     }
 
-    .hw-bot__head {
-      padding: 6px 10px;
-    }
-
     .hw-bot__name {
-      font-size: 14px;
+      font-size: 10.5px;
     }
 
     .hw-bot__tag {
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .hw-steps {
-      flex-wrap: nowrap;
-      gap: 6px;
+      display: flex;
+      gap: 22px;
     }
 
     .hw-steps__item {
-      padding: 7px 11px;
-      font-size: 11px;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .hw-steps__item::before {
+      right: 0;
     }
 
     .hw-steps__item:not(.is-active) .hw-steps__label {
