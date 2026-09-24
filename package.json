@@ -47,5 +47,8 @@
   "bugs": {
     "url": "https://github.com/Esturban/eval/issues"
   },
-  "homepage": "https://github.com/Esturban/eval"
+  "homepage": "https://github.com/Esturban/eval",
+  "dependencies": {
+    "three": "^0.186.1"
+  }
 }

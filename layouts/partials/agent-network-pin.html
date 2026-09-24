@@ -1,0 +1,42 @@
+{{/*
+  Sticky pinned layer for the agent-network background (TASK-5844): canvas,
+  static poster (first paint / no-JS / prefers-reduced-motion), and four
+  honestly-labeled tool-node tags whose position the scene script updates
+  each frame. Paired with agent-network-scene-src.html, which supplies the
+  outer wrapper's data-scene-src attribute, and layouts/index.html, which
+  wraps this together with the real Tools/Proof/Reviews section content.
+
+  ROOT-RELATIVE ASSET URLS (TASK-5844 finish-gate fix): this site's
+  config.toml sets baseURL to the production domain with canonifyURLs = true.
+  Hugo's canonify pass runs as a final text rewrite over the whole rendered
+  page and turns EVERY href/src starting with "/" into an absolute
+  https://evadvisory.ca/... URL - it doesn't matter whether that "/" string
+  came from a plain .RelPermalink call or was hand-built in the template
+  (confirmed empirically: a template-side strip-the-baseURL-prefix attempt
+  here still got re-absolutized by this same pass). That's harmless for
+  assets already live in production, but the loader script and poster below
+  are new in this branch and don't exist on production yet, so a real
+  `npm run build` + bare static serve of public/ (no baseURL override -
+  exactly how EV would preview this locally) sends the browser to fetch them
+  cross-origin from evadvisory.ca, gets a 404, and Chrome's ORB blocks the
+  response outright (net::ERR_BLOCKED_BY_ORB) with no visible fallback.
+  The one escape hatch already in this codebase is `resources.PostProcess`
+  (see layouts/partials/head.html's $styles): PostProcess resources are
+  substituted in as the literal final publish step, AFTER the canonify pass
+  has already run over a placeholder token, so their URL survives as
+  root-relative. Both assets below now go through the same PostProcess step.
+*/}}
+<div class="agent-scene__pin">
+  <canvas class="agent-scene__canvas" aria-hidden="true"></canvas>
+  {{ $poster := resources.Get "images/agent-network-poster.svg" | fingerprint | resources.PostProcess }}
+  <img class="agent-scene__poster"
+       src="{{ $poster.RelPermalink }}"
+       alt=""
+       aria-hidden="true"
+       loading="lazy" />
+  {{ range slice "Inbox" "CRM" "Project tool" "Documents" }}
+  <span class="agent-scene__label" aria-hidden="true">{{ . }}</span>
+  {{ end }}
+</div>
+{{ $loader := resources.Get "js/agent-network-loader.js" | js.Build (dict "format" "iife" "target" "es2019" "minify" true) | resources.PostProcess }}
+<script src="{{ $loader.RelPermalink }}" defer></script>

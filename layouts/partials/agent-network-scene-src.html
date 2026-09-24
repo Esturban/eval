@@ -1,0 +1,7 @@
+{{/* Returns the fingerprinted URL of the heavy, three.js-containing bundle so
+     the caller can put it on the outer wrapper's data-scene-src attribute
+     before that wrapper's children are rendered. Kept as its own partial
+     purely so it can `return` a plain string (see agent-network-pin.html for
+     the matching canvas/poster/label markup and the small loader script). */}}
+{{ $scene := resources.Get "js/agent-network-scene.js" | js.Build (dict "format" "esm" "target" "es2020" "minify" true) }}
+{{ return $scene.RelPermalink }}
