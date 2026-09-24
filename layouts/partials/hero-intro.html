@@ -11,7 +11,7 @@
 */}}
 {{ $hero_title := .Site.Params.hero_title }}
 {{ $hero_title_follow := .Site.Params.hero_title_follow }}
-{{ $hero_subtitle := .Site.Params.hero_subtitle }}
+{{ $stack_line := .Site.Params.stack_line }}
 {{ $hero_cta := .Site.Params.hero_CTA }}
 {{ $hero_cta_link := .Site.Params.hero_CTA_link }}
 {{ $scene := resources.Get "js/highway-scene.js" | js.Build (dict "format" "esm" "target" "es2020" "minify" true) | resources.PostProcess }}
@@ -53,7 +53,7 @@
             {{ with $hero_title_follow }}<span class="mt-4 block text-[0.56em] [text-wrap:balance] font-medium leading-[1.12] tracking-[-0.02em] text-slate-300">{{ . }}</span>{{ end }}
           </h1>
           <p class="mt-6 max-w-xl text-base font-medium leading-7 text-slate-300 sm:text-xl sm:leading-8">
-            {{ $hero_subtitle | markdownify }}
+            {{ $stack_line | markdownify }}
           </p>
           <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a href="{{ $hero_cta_link }}"

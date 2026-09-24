@@ -41,7 +41,8 @@ mainSections = ['services','case study']
 # Hero section elements
 hero_title = "We ship a working AI agent into your systems in weeks, not months."
 hero_title_follow = "Built into the tools you already run."
-hero_subtitle = "Microsoft, Google, SAP, Salesforce, or spreadsheets. We build on what you already run."
+# Stack line: the hero sub-line and the tool-handling table both read it.
+stack_line = "Microsoft, Google, SAP, Salesforce, or spreadsheets. We build on what you already run."
 hero_CTA = "Book your first ship"
 # Line beside the hero call to action. Unset it and nothing renders.
 hero_guarantee = "First agent live in your systems within 10 business days of access, or next month is free."
