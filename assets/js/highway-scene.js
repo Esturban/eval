@@ -7,6 +7,10 @@
 // panels. The camera is fixed: no zoom, no push, no orbit. Traffic cruises
 // on its own; scroll adds forward travel.
 //
+// Each live event lists the tools it can come from; every time the event
+// comes round again its tag names the next one as a small "works with" chip
+// (a monochrome Simple Icons glyph where one exists, otherwise the name only).
+//
 // Budget: MeshStandardMaterial and additive planes only, no post-processing,
 // shared geometry, instancing for repeated road furniture, pixel ratio capped,
 // render loop stops whenever the hero is off screen.
@@ -323,6 +327,14 @@ function buildVehicle(color, shared) {
   return { group, wheels };
 }
 
+function readBrands(root) {
+  try {
+    return JSON.parse(root.dataset.brands || '{}');
+  } catch (err) {
+    return {};
+  }
+}
+
 function readBots(root) {
   return Array.from(root.querySelectorAll('.hw-bot')).map((el) => {
     let events = [];
@@ -346,16 +358,33 @@ function readBots(root) {
       icon: el.querySelector('.hw-bot__icon use'),
       text: el.querySelector('.hw-bot__text'),
       tag: el.querySelector('.hw-bot__tag'),
+      tool: el.querySelector('.hw-bot__tool'),
+      toolGlyph: el.querySelector('.hw-bot__brand use'),
+      toolName: el.querySelector('.hw-bot__toolname'),
       shown: null,
       lastX: null,
     };
   });
 }
 
-function setTag(bot, item, isDone) {
+// The chip names one tool: where a live event came from, or where the
+// finished work landed.
+function setTool(bot, brand, sprite) {
+  if (!bot.tool) return;
+  const show = Boolean(brand && brand.name);
+  bot.tool.hidden = !show;
+  if (!show) return;
+  bot.toolName.textContent = brand.name;
+  const hasGlyph = Boolean(brand.glyph && sprite);
+  bot.tool.classList.toggle('has-glyph', hasGlyph);
+  if (hasGlyph) bot.toolGlyph.setAttribute('href', `${sprite}#b-${brand.glyph}`);
+}
+
+function setTag(bot, item, isDone, brand, sprite) {
   if (!item || !bot.icon || !bot.text) return;
   bot.icon.setAttribute('href', `#i-${item.icon}`);
   bot.text.textContent = item.text;
+  setTool(bot, brand, sprite);
   bot.el.classList.toggle('is-done', isDone);
   bot.tag.classList.remove('is-swap');
   void bot.tag.offsetWidth; // restart the pop animation
@@ -407,6 +436,8 @@ export async function createHighwayScene({ canvas, root }) {
 
   const shared = sharedVehicleParts(textures);
   const bots = readBots(root);
+  const brands = readBrands(root);
+  const sprite = root.dataset.brandSprite || '';
   bots.forEach((bot) => {
     const v = buildVehicle(bot.color, shared);
     bot.group = v.group;
@@ -451,13 +482,22 @@ export async function createHighwayScene({ canvas, root }) {
   }
 
   // Live events cycle on the way in; past the overpass the tag is the
-  // finished work, and it stays that way on the way back out.
-  function updateTag(bot, i, elapsed, isDone) {
+  // finished work, and it stays that way on the way back out. The flip
+  // timing is unchanged; each pass through the event list moves every
+  // event's chip on to its next tool, and each loop moves the finished
+  // work's chip on to its next tool.
+  function updateTag(bot, i, elapsed, isDone, lap) {
     const count = Math.max(1, bot.events.length);
-    const slot = isDone ? 'done' : Math.floor(elapsed / TAG_SECONDS + i * 0.37) % count;
-    if (slot === bot.shown) return;
-    bot.shown = slot;
-    setTag(bot, isDone ? bot.done : bot.events[slot], isDone);
+    const tick = Math.floor(elapsed / TAG_SECONDS + i * 0.37);
+    const slot = tick % count;
+    const item = isDone ? bot.done : bot.events[slot];
+    const tools = (item && item.tools) || [];
+    const turn = isDone ? lap : Math.floor(tick / count);
+    const pick = tools.length ? (turn + i) % tools.length : -1;
+    const key = `${isDone ? 'done' : slot}:${pick}`;
+    if (key === bot.shown) return;
+    bot.shown = key;
+    setTag(bot, item, isDone, pick >= 0 ? brands[tools[pick]] : null, sprite);
   }
 
   function toScreen(v) {
@@ -514,7 +554,8 @@ export async function createHighwayScene({ canvas, root }) {
   function render() {
     const elapsed = clock.getElapsedTime();
     const placed = bots.map((bot, i) => {
-      const loop = fract(bot.offset + (elapsed * bot.speed) / LOOP_SECONDS + progress * SCROLL_PUSH);
+      const run = bot.offset + (elapsed * bot.speed) / LOOP_SECONDS + progress * SCROLL_PUSH;
+      const loop = fract(run);
       const { x, inbound } = travel(loop);
       const z = inbound ? bot.laneIn : bot.laneOut;
       const isDone = !inbound || x > OVERPASS_X;
@@ -526,7 +567,7 @@ export async function createHighwayScene({ canvas, root }) {
       bot.group.position.set(x, Math.sin(elapsed * 7 + i * 2) * 0.008, z);
       bot.group.rotation.y = inbound ? 0 : Math.PI;
       bot.wheels.forEach((wheel) => { wheel.rotation.z = -elapsed * 9 * bot.speed; });
-      updateTag(bot, i, elapsed, isDone);
+      updateTag(bot, i, elapsed, isDone, Math.floor(run));
       return placeLabel(bot, x, z);
     });
     resolveLabels(placed);
