@@ -10,7 +10,29 @@
 // shared geometry, instancing for repeated road furniture, pixel ratio capped,
 // render loop stops whenever the hero is off screen.
 
-import * as THREE from 'three';
+import {
+  AdditiveBlending,
+  BoxGeometry,
+  CanvasTexture,
+  Clock,
+  Color,
+  CylinderGeometry,
+  DirectionalLight,
+  Fog,
+  Group,
+  HemisphereLight,
+  InstancedMesh,
+  Matrix4,
+  Mesh,
+  MeshBasicMaterial,
+  MeshStandardMaterial,
+  PerspectiveCamera,
+  PlaneGeometry,
+  SRGBColorSpace,
+  Scene,
+  Vector3,
+  WebGLRenderer,
+} from 'three';
 
 const LANE_WIDTH = 1.5;
 const LANE_Z = [-2.25, -0.75, 0.75, 2.25];
@@ -27,7 +49,7 @@ const LABEL_LIFT = 1.35;
 
 const LAYOUTS = {
   wide: { fov: 30, camY: 2.4, camZ: 2.2, vx: 0.72, vy: 0.44, dpr: 1.75, fade: [26, 36] },
-  tall: { fov: 44, camY: 3.0, camZ: 0.3, vx: 0.5, vy: 0.64, dpr: 1.5, fade: [18, 26] },
+  tall: { fov: 44, camY: 3.0, camZ: 0.3, vx: 0.5, vy: 0.64, dpr: 1.25, fade: [18, 26] },
 };
 
 function clamp(v, a, b) {
@@ -43,8 +65,8 @@ function canvasTexture(draw, w = 128, h = 128) {
   c.width = w;
   c.height = h;
   draw(c.getContext('2d'), w, h);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
+  const tex = new CanvasTexture(c);
+  tex.colorSpace = SRGBColorSpace;
   return tex;
 }
 
@@ -107,7 +129,7 @@ function signTexture(lines, arrow) {
 }
 
 function placeInstances(mesh, points) {
-  const m = new THREE.Matrix4();
+  const m = new Matrix4();
   points.forEach(([x, y, z], i) => {
     m.makeTranslation(x, y, z);
     mesh.setMatrixAt(i, m);
@@ -116,9 +138,9 @@ function placeInstances(mesh, points) {
 }
 
 function buildRoad(scene, textures) {
-  const ground = new THREE.Mesh(
-    new THREE.PlaneGeometry(400, 200),
-    new THREE.MeshStandardMaterial({ color: 0x030b18, roughness: 1 })
+  const ground = new Mesh(
+    new PlaneGeometry(400, 200),
+    new MeshStandardMaterial({ color: 0x030b18, roughness: 1 })
   );
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.02;
@@ -126,17 +148,17 @@ function buildRoad(scene, textures) {
 
   const length = ROAD_NEAR - ROAD_FAR;
   const midX = (ROAD_NEAR + ROAD_FAR) / 2;
-  const road = new THREE.Mesh(
-    new THREE.PlaneGeometry(length, ROAD_HALF * 2 + 0.8),
-    new THREE.MeshStandardMaterial({ color: 0x0e1829, roughness: 0.82, metalness: 0.05 })
+  const road = new Mesh(
+    new PlaneGeometry(length, ROAD_HALF * 2 + 0.8),
+    new MeshStandardMaterial({ color: 0x0e1829, roughness: 0.82, metalness: 0.05 })
   );
   road.rotation.x = -Math.PI / 2;
   road.position.set(midX, 0, 0);
   scene.add(road);
 
-  const paint = new THREE.MeshBasicMaterial({ color: 0xe8edf4 });
+  const paint = new MeshBasicMaterial({ color: 0xe8edf4 });
   [-ROAD_HALF, ROAD_HALF].forEach((z) => {
-    const edge = new THREE.Mesh(new THREE.PlaneGeometry(length, 0.1), paint);
+    const edge = new Mesh(new PlaneGeometry(length, 0.1), paint);
     edge.rotation.x = -Math.PI / 2;
     edge.position.set(midX, 0.005, z);
     scene.add(edge);
@@ -147,8 +169,8 @@ function buildRoad(scene, textures) {
   [-LANE_WIDTH, 0, LANE_WIDTH].forEach((z) => {
     for (let x = ROAD_FAR; x < ROAD_NEAR; x += 6.4) dashPts.push([x, 0.006, z]);
   });
-  const dashGeo = new THREE.PlaneGeometry(2.4, 0.09).rotateX(-Math.PI / 2);
-  scene.add(placeInstances(new THREE.InstancedMesh(dashGeo, paint, dashPts.length), dashPts));
+  const dashGeo = new PlaneGeometry(2.4, 0.09).rotateX(-Math.PI / 2);
+  scene.add(placeInstances(new InstancedMesh(dashGeo, paint, dashPts.length), dashPts));
 
   // Reflective road studs along both edges: the small cyan dots of a night road.
   const studPts = [];
@@ -159,23 +181,23 @@ function buildRoad(scene, textures) {
   for (let x = ROAD_FAR; x < ROAD_NEAR; x += 2.5) {
     postPts.push([x, 0.27, -ROAD_HALF - 0.55], [x, 0.27, ROAD_HALF + 0.55]);
   }
-  const studGeo = new THREE.PlaneGeometry(0.12, 0.12).rotateX(-Math.PI / 2);
-  scene.add(placeInstances(new THREE.InstancedMesh(studGeo, new THREE.MeshBasicMaterial({ color: 0x22d3ee }), studPts.length), studPts));
+  const studGeo = new PlaneGeometry(0.12, 0.12).rotateX(-Math.PI / 2);
+  scene.add(placeInstances(new InstancedMesh(studGeo, new MeshBasicMaterial({ color: 0x22d3ee }), studPts.length), studPts));
 
-  const railMat = new THREE.MeshStandardMaterial({ color: 0x64748b, roughness: 0.5, metalness: 0.6 });
+  const railMat = new MeshStandardMaterial({ color: 0x64748b, roughness: 0.5, metalness: 0.6 });
   [-ROAD_HALF - 0.55, ROAD_HALF + 0.55].forEach((z) => {
-    const rail = new THREE.Mesh(new THREE.BoxGeometry(length, 0.14, 0.05), railMat);
+    const rail = new Mesh(new BoxGeometry(length, 0.14, 0.05), railMat);
     rail.position.set(midX, 0.52, z);
     scene.add(rail);
   });
-  scene.add(placeInstances(new THREE.InstancedMesh(new THREE.BoxGeometry(0.07, 0.55, 0.07), railMat, postPts.length), postPts));
+  scene.add(placeInstances(new InstancedMesh(new BoxGeometry(0.07, 0.55, 0.07), railMat, postPts.length), postPts));
 
   buildLamps(scene, textures);
   buildGantry(scene);
 
-  const sky = new THREE.Mesh(
-    new THREE.PlaneGeometry(260, 34),
-    new THREE.MeshBasicMaterial({ map: textures.sky, transparent: true, depthWrite: false, fog: false })
+  const sky = new Mesh(
+    new PlaneGeometry(260, 34),
+    new MeshBasicMaterial({ map: textures.sky, transparent: true, depthWrite: false, fog: false })
   );
   sky.rotation.y = Math.PI / 2;
   sky.position.set(ROAD_FAR - 20, 4, 0);
@@ -198,34 +220,34 @@ function buildLamps(scene, textures) {
       pools.push([px, 0.01, pz - side * 2.2]);
     });
   }
-  const metal = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.6, metalness: 0.5 });
-  const poolMat = new THREE.MeshBasicMaterial({
-    map: textures.radial, color: 0xffe7b8, transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false,
+  const metal = new MeshStandardMaterial({ color: 0x334155, roughness: 0.6, metalness: 0.5 });
+  const poolMat = new MeshBasicMaterial({
+    map: textures.radial, color: 0xffe7b8, transparent: true, opacity: 0.16, blending: AdditiveBlending, depthWrite: false,
   });
   scene.add(
-    placeInstances(new THREE.InstancedMesh(new THREE.CylinderGeometry(0.05, 0.06, 4.6, 6), metal, poles.length), poles),
-    placeInstances(new THREE.InstancedMesh(new THREE.BoxGeometry(0.06, 0.06, 1.6), metal, arms.length), arms),
-    placeInstances(new THREE.InstancedMesh(new THREE.BoxGeometry(0.5, 0.08, 0.22), new THREE.MeshBasicMaterial({ color: 0xfff4d6 }), heads.length), heads),
-    placeInstances(new THREE.InstancedMesh(new THREE.PlaneGeometry(5.5, 5.5).rotateX(-Math.PI / 2), poolMat, pools.length), pools)
+    placeInstances(new InstancedMesh(new CylinderGeometry(0.05, 0.06, 4.6, 6), metal, poles.length), poles),
+    placeInstances(new InstancedMesh(new BoxGeometry(0.06, 0.06, 1.6), metal, arms.length), arms),
+    placeInstances(new InstancedMesh(new BoxGeometry(0.5, 0.08, 0.22), new MeshBasicMaterial({ color: 0xfff4d6 }), heads.length), heads),
+    placeInstances(new InstancedMesh(new PlaneGeometry(5.5, 5.5).rotateX(-Math.PI / 2), poolMat, pools.length), pools)
   );
 }
 
 function buildGantry(scene) {
   const x = -14;
-  const metal = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.5, metalness: 0.6 });
+  const metal = new MeshStandardMaterial({ color: 0x475569, roughness: 0.5, metalness: 0.6 });
   [-1, 1].forEach((side) => {
-    const post = new THREE.Mesh(new THREE.BoxGeometry(0.22, 5.2, 0.22), metal);
+    const post = new Mesh(new BoxGeometry(0.22, 5.2, 0.22), metal);
     post.position.set(x, 2.6, side * (ROAD_HALF + 0.9));
     scene.add(post);
   });
-  const beam = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, ROAD_HALF * 2 + 2), metal);
+  const beam = new Mesh(new BoxGeometry(0.3, 0.3, ROAD_HALF * 2 + 2), metal);
   beam.position.set(x, 5.05, 0);
   scene.add(beam);
   [
     { z: 1.55, tex: signTexture(['Your tools', 'Email, CRM, tasks'], '↓') },
     { z: -1.55, tex: signTexture(['Finished work', 'Next exit'], '↗') },
   ].forEach(({ z, tex }) => {
-    const plate = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 1.05), new THREE.MeshBasicMaterial({ map: tex }));
+    const plate = new Mesh(new PlaneGeometry(2.8, 1.05), new MeshBasicMaterial({ map: tex }));
     plate.rotation.y = Math.PI / 2;
     plate.position.set(x + 0.2, 4.35, z);
     scene.add(plate);
@@ -235,28 +257,28 @@ function buildGantry(scene) {
 function sharedVehicleParts(textures) {
   return {
     radial: textures.radial,
-    bodyGeo: new THREE.BoxGeometry(1.9, 0.38, 0.92),
-    cabinGeo: new THREE.BoxGeometry(1.05, 0.3, 0.8),
-    stripeGeo: new THREE.BoxGeometry(1.92, 0.05, 0.94),
-    beaconGeo: new THREE.CylinderGeometry(0.1, 0.12, 0.1, 12),
-    lightGeo: new THREE.BoxGeometry(0.04, 0.07, 0.8),
-    wheelGeo: new THREE.CylinderGeometry(0.2, 0.2, 0.16, 12).rotateX(Math.PI / 2),
-    beamGeo: new THREE.PlaneGeometry(3.4, 1.5).rotateX(-Math.PI / 2),
-    underGeo: new THREE.PlaneGeometry(2.8, 1.8).rotateX(-Math.PI / 2),
-    bodyMat: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.35, metalness: 0.35 }),
-    glassMat: new THREE.MeshStandardMaterial({ color: 0x0f1d33, roughness: 0.15, metalness: 0.8 }),
-    tireMat: new THREE.MeshStandardMaterial({ color: 0x0b0f17, roughness: 0.9 }),
-    headMat: new THREE.MeshBasicMaterial({ color: 0xffffff }),
-    beamMat: new THREE.MeshBasicMaterial({
-      map: textures.beam, color: 0xdff6ff, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false,
+    bodyGeo: new BoxGeometry(1.9, 0.38, 0.92),
+    cabinGeo: new BoxGeometry(1.05, 0.3, 0.8),
+    stripeGeo: new BoxGeometry(1.92, 0.05, 0.94),
+    beaconGeo: new CylinderGeometry(0.1, 0.12, 0.1, 12),
+    lightGeo: new BoxGeometry(0.04, 0.07, 0.8),
+    wheelGeo: new CylinderGeometry(0.2, 0.2, 0.16, 12).rotateX(Math.PI / 2),
+    beamGeo: new PlaneGeometry(3.4, 1.5).rotateX(-Math.PI / 2),
+    underGeo: new PlaneGeometry(2.8, 1.8).rotateX(-Math.PI / 2),
+    bodyMat: new MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.35, metalness: 0.35 }),
+    glassMat: new MeshStandardMaterial({ color: 0x0f1d33, roughness: 0.15, metalness: 0.8 }),
+    tireMat: new MeshStandardMaterial({ color: 0x0b0f17, roughness: 0.9 }),
+    headMat: new MeshBasicMaterial({ color: 0xffffff }),
+    beamMat: new MeshBasicMaterial({
+      map: textures.beam, color: 0xdff6ff, transparent: true, opacity: 0.32, blending: AdditiveBlending, depthWrite: false,
     }),
   };
 }
 
 function buildVehicle(color, shared) {
-  const group = new THREE.Group();
-  const accent = new THREE.Color(color);
-  const accentMat = new THREE.MeshStandardMaterial({ color: accent, emissive: accent, emissiveIntensity: 0.9 });
+  const group = new Group();
+  const accent = new Color(color);
+  const accentMat = new MeshStandardMaterial({ color: accent, emissive: accent, emissiveIntensity: 0.9 });
   const parts = [
     [shared.bodyGeo, shared.bodyMat, 0, 0.36],
     [shared.cabinGeo, shared.glassMat, -0.12, 0.68],
@@ -266,18 +288,18 @@ function buildVehicle(color, shared) {
     [shared.beamGeo, shared.beamMat, 2.6, 0.012],
   ];
   parts.forEach(([geo, mat, x, y]) => {
-    const mesh = new THREE.Mesh(geo, mat);
+    const mesh = new Mesh(geo, mat);
     mesh.position.set(x, y, 0);
     group.add(mesh);
   });
-  const under = new THREE.Mesh(
+  const under = new Mesh(
     shared.underGeo,
-    new THREE.MeshBasicMaterial({ map: shared.radial, color: accent, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending, depthWrite: false })
+    new MeshBasicMaterial({ map: shared.radial, color: accent, transparent: true, opacity: 0.7, blending: AdditiveBlending, depthWrite: false })
   );
   under.position.y = 0.011;
   group.add(under);
   const wheels = [[0.6, 0.44], [0.6, -0.44], [-0.6, 0.44], [-0.6, -0.44]].map(([wx, wz]) => {
-    const wheel = new THREE.Mesh(shared.wheelGeo, shared.tireMat);
+    const wheel = new Mesh(shared.wheelGeo, shared.tireMat);
     wheel.position.set(wx, 0.2, wz);
     group.add(wheel);
     return wheel;
@@ -322,28 +344,36 @@ function setTag(bot, item, isDone) {
   bot.width = 0; // tag text changed, re-measure
 }
 
-export function createHighwayScene({ canvas, root }) {
+// Give the main thread back between build stages so no single task runs long.
+function yieldToMain() {
+  if (window.scheduler && typeof window.scheduler.yield === 'function') return window.scheduler.yield();
+  return new Promise((resolve) => setTimeout(resolve, 0));
+}
+
+export async function createHighwayScene({ canvas, root }) {
   if (!canvas || !window.WebGLRenderingContext) return null;
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' });
+    renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' });
   } catch (err) {
     return null;
   }
   renderer.setClearColor(0x020617, 1);
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.outputColorSpace = SRGBColorSpace;
 
-  const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x061426, 18, 66);
-  scene.add(new THREE.HemisphereLight(0x3b6a8f, 0x020617, 1.3));
-  const moon = new THREE.DirectionalLight(0xbcd3ee, 1.4);
+  const scene = new Scene();
+  scene.fog = new Fog(0x061426, 18, 66);
+  scene.add(new HemisphereLight(0x3b6a8f, 0x020617, 1.3));
+  const moon = new DirectionalLight(0xbcd3ee, 1.4);
   moon.position.set(12, 10, 6);
-  const fill = new THREE.DirectionalLight(0x9fdcf0, 0.9);
+  const fill = new DirectionalLight(0x9fdcf0, 0.9);
   fill.position.set(30, 3, -4);
   scene.add(moon, fill);
 
   const textures = { radial: radialTexture(), beam: beamTexture(), sky: skyTexture() };
+  await yieldToMain();
   buildRoad(scene, textures);
+  await yieldToMain();
 
   const shared = sharedVehicleParts(textures);
   const bots = readBots(root);
@@ -354,11 +384,12 @@ export function createHighwayScene({ canvas, root }) {
     bot.group.position.z = LANE_Z[bot.lane];
     scene.add(bot.group);
   });
+  await yieldToMain();
 
-  const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 160);
+  const camera = new PerspectiveCamera(36, 1, 0.1, 160);
   const copyEl = root.querySelector('[data-hw-copy]');
-  const projected = new THREE.Vector3();
-  const clock = new THREE.Clock();
+  const projected = new Vector3();
+  const clock = new Clock();
   let layout = LAYOUTS.wide;
   let copyRect = null;
   let progress = 0;
@@ -462,6 +493,14 @@ export function createHighwayScene({ canvas, root }) {
 
   document.addEventListener('visibilitychange', kick);
   resize();
+  if (typeof renderer.compileAsync === 'function') {
+    try {
+      await renderer.compileAsync(scene, camera);
+    } catch (err) {
+      // fall through: the first render compiles instead
+    }
+  }
+  await yieldToMain();
   render();
 
   return {

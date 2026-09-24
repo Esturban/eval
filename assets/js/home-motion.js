@@ -42,20 +42,34 @@ function setupHighway(hero, onProgress) {
   const sceneSrc = hero.dataset.sceneSrc;
   let controller = null;
   let loading = false;
+  let heroVisible = true;
 
   const canAnimate = !prefersReducedMotion() && canvas && sceneSrc && typeof window.IntersectionObserver === 'function';
   if (!canAnimate) return { progress: onProgress };
 
+  // The scene is decoration: fetch it after the page has loaded and the
+  // browser is idle, so it never competes with the first paint.
+  function whenIdle(fn) {
+    const run = () => (window.requestIdleCallback ? window.requestIdleCallback(fn, { timeout: 1200 }) : setTimeout(fn, 200));
+    if (document.readyState === 'complete') run();
+    else window.addEventListener('load', run, { once: true });
+  }
+
   function start() {
     if (loading || controller) return;
     loading = true;
+    whenIdle(load);
+  }
+
+  function load() {
     import(sceneSrc)
-      .then((mod) => {
-        controller = mod.createHighwayScene({ canvas, root: hero });
+      .then((mod) => mod.createHighwayScene({ canvas, root: hero }))
+      .then((created) => {
+        controller = created;
         if (!controller) return;
         hero.classList.add('is-live');
         controller.setProgress(heroProgress(hero));
-        controller.setVisible(true);
+        controller.setVisible(heroVisible);
         window.addEventListener('resize', () => controller.resize(), { passive: true });
       })
       .catch(() => {
@@ -68,7 +82,10 @@ function setupHighway(hero, onProgress) {
   }, { rootMargin: ROOT_MARGIN }).observe(hero);
 
   new IntersectionObserver((entries) => {
-    entries.forEach((e) => controller && controller.setVisible(e.isIntersecting));
+    entries.forEach((e) => {
+      heroVisible = e.isIntersecting;
+      if (controller) controller.setVisible(heroVisible);
+    });
   }, { threshold: 0 }).observe(hero);
 
   canvas.addEventListener('webglcontextlost', () => hero.classList.remove('is-live'));
