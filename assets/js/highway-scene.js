@@ -1,10 +1,11 @@
-// Homepage hero: a literal highway at night. Four lanes with dashed lane
-// markings, solid edge lines, guardrails, street lamps and one overhead sign
-// gantry. Agent vehicles drive toward the viewer; each carries an HTML
-// header (name and job) and a live event tag with its tool icon, projected
-// from the vehicle every frame. The camera is fixed: no zoom, no push, no
-// orbit. Traffic cruises continuously; scroll adds forward travel and moves
-// the tags from live events to finished work.
+// Homepage hero: a divided highway at night with one overpass. Each agent
+// vehicle runs a loop: it drives toward the viewer on the near carriageway
+// carrying a live event tag, passes under the overpass (the tag turns into
+// finished work there), leaves the frame under the camera, then drives away
+// on the far carriageway still carrying its finished-work tag. Labels are
+// plain type on a thin stem, projected from the vehicle every frame; no
+// panels. The camera is fixed: no zoom, no push, no orbit. Traffic cruises
+// on its own; scroll adds forward travel.
 //
 // Budget: MeshStandardMaterial and additive planes only, no post-processing,
 // shared geometry, instancing for repeated road furniture, pixel ratio capped,
@@ -35,21 +36,26 @@ import {
 } from 'three';
 
 const LANE_WIDTH = 1.5;
-const LANE_Z = [-2.25, -0.75, 0.75, 2.25];
+// Near carriageway (toward the viewer) on +z, far carriageway (away) on -z.
+const LANES_IN = [0.75, 2.25];
+const LANES_OUT = [-0.75, -2.25];
 const ROAD_HALF = 3.1;
 const ROAD_FAR = -70;
-const ROAD_NEAR = 16;
+const ROAD_NEAR = 18;
 const TRAVEL_START = -62; // vehicles appear out of the fog here
-const TRAVEL_SPAN = 76; // and leave under the camera at TRAVEL_START + SPAN
-const LOOP_SECONDS = 26; // time for a speed-1 vehicle to cover the span
-const SCROLL_PUSH = 0.55; // extra loops added across the full hero scroll
-const TAG_SECONDS = 2.6;
-const DONE_AT = 0.75;
-const LABEL_LIFT = 1.35;
+const TRAVEL_SPAN = 78; // and pass under the camera at TRAVEL_START + SPAN
+const LOOP_SECONDS = 36; // time for a speed-1 vehicle to drive in and back out
+const SCROLL_PUSH = 0.4; // extra loops added across the full hero scroll
+const TAG_SECONDS = 2.2;
+const OVERPASS_X = -9; // the tag turns into finished work under here
+const DECK_Y = 3.45; // deck centre height; clearance reads right against the cars
+const ROOF_Y = 0.95;
+const LABEL_Y = 1.9;
+const FLASH_SECONDS = 0.7;
 
 const LAYOUTS = {
-  wide: { fov: 30, camY: 2.4, camZ: 2.2, vx: 0.72, vy: 0.44, dpr: 1.75, fade: [26, 36] },
-  tall: { fov: 44, camY: 3.0, camZ: 0.3, vx: 0.5, vy: 0.64, dpr: 1.25, fade: [18, 26] },
+  wide: { fov: 30, camY: 2.3, camZ: 1.5, vx: 0.7, vy: 0.46, dpr: 1.75, fade: [40, 52] },
+  tall: { fov: 44, camY: 2.9, camZ: 0.2, vx: 0.5, vy: 0.7, dpr: 1.25, fade: [30, 42] },
 };
 
 function clamp(v, a, b) {
@@ -98,34 +104,19 @@ function beamTexture() {
 }
 
 function skyTexture() {
+  // Night overhead, a cyan city glow, and a thin first light of dawn on the
+  // horizon: the direction finished work drives off toward.
   return canvasTexture((g, w, h) => {
     const lin = g.createLinearGradient(0, 0, 0, h);
     lin.addColorStop(0, 'rgba(2,6,23,0)');
-    lin.addColorStop(0.55, 'rgba(14,116,144,0.55)');
-    lin.addColorStop(0.62, 'rgba(34,211,238,0.35)');
+    lin.addColorStop(0.5, 'rgba(14,116,144,0.5)');
+    lin.addColorStop(0.585, 'rgba(34,211,238,0.34)');
+    lin.addColorStop(0.61, 'rgba(253,186,116,0.3)');
+    lin.addColorStop(0.64, 'rgba(34,211,238,0.12)');
     lin.addColorStop(1, 'rgba(2,6,23,0)');
     g.fillStyle = lin;
     g.fillRect(0, 0, w, h);
   }, 8, 256);
-}
-
-function signTexture(lines, arrow) {
-  return canvasTexture((g, w, h) => {
-    g.fillStyle = '#0b4f63';
-    g.fillRect(0, 0, w, h);
-    g.strokeStyle = '#f7f4ee';
-    g.lineWidth = 6;
-    g.strokeRect(10, 10, w - 20, h - 20);
-    g.fillStyle = '#f7f4ee';
-    g.textBaseline = 'middle';
-    g.font = '600 58px "General Sans", "Instrument Sans", sans-serif';
-    g.fillText(lines[0], 40, h * 0.36);
-    g.font = '500 38px "Instrument Sans", sans-serif';
-    g.fillText(lines[1], 40, h * 0.7);
-    g.font = '700 84px sans-serif';
-    g.textAlign = 'right';
-    g.fillText(arrow, w - 36, h * 0.52);
-  }, 512, 192);
 }
 
 function placeInstances(mesh, points) {
@@ -166,11 +157,19 @@ function buildRoad(scene, textures) {
 
   // Dashed lane dividers, long paint and longer gaps like a real highway.
   const dashPts = [];
-  [-LANE_WIDTH, 0, LANE_WIDTH].forEach((z) => {
+  [-LANE_WIDTH, LANE_WIDTH].forEach((z) => {
     for (let x = ROAD_FAR; x < ROAD_NEAR; x += 6.4) dashPts.push([x, 0.006, z]);
   });
   const dashGeo = new PlaneGeometry(2.4, 0.09).rotateX(-Math.PI / 2);
   scene.add(placeInstances(new InstancedMesh(dashGeo, paint, dashPts.length), dashPts));
+
+  // Median: a low concrete barrier splits the two directions of travel.
+  const median = new Mesh(
+    new BoxGeometry(length, 0.34, 0.22),
+    new MeshStandardMaterial({ color: 0x3b4658, roughness: 0.85 })
+  );
+  median.position.set(midX, 0.17, 0);
+  scene.add(median);
 
   // Reflective road studs along both edges: the small cyan dots of a night road.
   const studPts = [];
@@ -193,7 +192,6 @@ function buildRoad(scene, textures) {
   scene.add(placeInstances(new InstancedMesh(new BoxGeometry(0.07, 0.55, 0.07), railMat, postPts.length), postPts));
 
   buildLamps(scene, textures);
-  buildGantry(scene);
 
   const sky = new Mesh(
     new PlaneGeometry(260, 34),
@@ -232,26 +230,37 @@ function buildLamps(scene, textures) {
   );
 }
 
-function buildGantry(scene) {
-  const x = -14;
-  const metal = new MeshStandardMaterial({ color: 0x475569, roughness: 0.5, metalness: 0.6 });
-  [-1, 1].forEach((side) => {
-    const post = new Mesh(new BoxGeometry(0.22, 5.2, 0.22), metal);
-    post.position.set(x, 2.6, side * (ROAD_HALF + 0.9));
-    scene.add(post);
+// One overpass across both carriageways. No signs on it: a concrete deck,
+// piers, a parapet, and a thin light line on the fascia that flashes in a
+// vehicle's colour as it passes under and its work is finished.
+function buildOverpass(scene, textures) {
+  const x = OVERPASS_X;
+  const span = ROAD_HALF * 2 + 9;
+  const concrete = new MeshStandardMaterial({ color: 0x1a2436, roughness: 0.9, metalness: 0.05 });
+  const deck = new Mesh(new BoxGeometry(1.8, 0.4, span), concrete);
+  deck.position.set(x, DECK_Y, 0);
+  const parapet = new Mesh(new BoxGeometry(0.12, 0.4, span), concrete);
+  parapet.position.set(x + 0.82, DECK_Y + 0.4, 0);
+  scene.add(deck, parapet);
+  [-(ROAD_HALF + 1.6), 0, ROAD_HALF + 1.6].forEach((z) => {
+    const pier = new Mesh(new BoxGeometry(0.9, DECK_Y - 0.2, z === 0 ? 0.3 : 0.5), concrete);
+    pier.position.set(x, (DECK_Y - 0.2) / 2, z);
+    scene.add(pier);
   });
-  const beam = new Mesh(new BoxGeometry(0.3, 0.3, ROAD_HALF * 2 + 2), metal);
-  beam.position.set(x, 5.05, 0);
-  scene.add(beam);
-  [
-    { z: 1.55, tex: signTexture(['Your tools', 'Email, CRM, tasks'], '↓') },
-    { z: -1.55, tex: signTexture(['Finished work', 'Next exit'], '↗') },
-  ].forEach(({ z, tex }) => {
-    const plate = new Mesh(new PlaneGeometry(2.8, 1.05), new MeshBasicMaterial({ map: tex }));
-    plate.rotation.y = Math.PI / 2;
-    plate.position.set(x + 0.2, 4.35, z);
-    scene.add(plate);
-  });
+  const stripMat = new MeshBasicMaterial({ color: 0x22d3ee, fog: false });
+  const strip = new Mesh(new BoxGeometry(0.02, 0.06, ROAD_HALF * 2 + 1.2), stripMat);
+  strip.position.set(x + 0.91, DECK_Y - 0.12, 0);
+  scene.add(strip);
+  // Light spilling onto the road under the deck.
+  const pool = new Mesh(
+    new PlaneGeometry(4, ROAD_HALF * 2).rotateX(-Math.PI / 2),
+    new MeshBasicMaterial({
+      map: textures.radial, color: 0x7dd3fc, transparent: true, opacity: 0.22, blending: AdditiveBlending, depthWrite: false,
+    })
+  );
+  pool.position.set(x + 0.6, 0.012, 0);
+  scene.add(pool);
+  return { stripMat, pool: pool.material };
 }
 
 function sharedVehicleParts(textures) {
@@ -269,6 +278,8 @@ function sharedVehicleParts(textures) {
     glassMat: new MeshStandardMaterial({ color: 0x0f1d33, roughness: 0.15, metalness: 0.8 }),
     tireMat: new MeshStandardMaterial({ color: 0x0b0f17, roughness: 0.9 }),
     headMat: new MeshBasicMaterial({ color: 0xffffff }),
+    tailMat: new MeshBasicMaterial({ color: 0xff3b4e }),
+    tailGeo: new BoxGeometry(0.04, 0.07, 0.22),
     beamMat: new MeshBasicMaterial({
       map: textures.beam, color: 0xdff6ff, transparent: true, opacity: 0.32, blending: AdditiveBlending, depthWrite: false,
     }),
@@ -291,6 +302,11 @@ function buildVehicle(color, shared) {
     const mesh = new Mesh(geo, mat);
     mesh.position.set(x, y, 0);
     group.add(mesh);
+  });
+  [0.3, -0.3].forEach((z) => {
+    const tail = new Mesh(shared.tailGeo, shared.tailMat);
+    tail.position.set(-0.96, 0.42, z);
+    group.add(tail);
   });
   const under = new Mesh(
     shared.underGeo,
@@ -317,9 +333,11 @@ function readBots(root) {
     } catch (err) {
       events = [];
     }
+    const lane = Math.max(0, Math.round(Number(el.dataset.lane) || 0));
     return {
       el,
-      lane: clamp(Number(el.dataset.lane) || 0, 0, LANE_Z.length - 1),
+      laneIn: LANES_IN[lane % 2],
+      laneOut: LANES_OUT[(lane + 1) % 2],
       offset: Number(el.dataset.offset) || 0,
       speed: Number(el.dataset.speed) || 1,
       color: el.dataset.color || '#22d3ee',
@@ -329,6 +347,7 @@ function readBots(root) {
       text: el.querySelector('.hw-bot__text'),
       tag: el.querySelector('.hw-bot__tag'),
       shown: null,
+      lastX: null,
     };
   });
 }
@@ -342,6 +361,13 @@ function setTag(bot, item, isDone) {
   void bot.tag.offsetWidth; // restart the pop animation
   bot.tag.classList.add('is-swap');
   bot.width = 0; // tag text changed, re-measure
+}
+
+// Where a bot is on its loop: inbound toward the camera for the first half,
+// outbound away from it for the second. Returns world x, lane z and heading.
+function travel(loop) {
+  if (loop < 0.5) return { x: TRAVEL_START + loop * 2 * TRAVEL_SPAN, inbound: true };
+  return { x: TRAVEL_START + (1 - loop) * 2 * TRAVEL_SPAN, inbound: false };
 }
 
 // Give the main thread back between build stages so no single task runs long.
@@ -373,6 +399,10 @@ export async function createHighwayScene({ canvas, root }) {
   const textures = { radial: radialTexture(), beam: beamTexture(), sky: skyTexture() };
   await yieldToMain();
   buildRoad(scene, textures);
+  const overpass = buildOverpass(scene, textures);
+  const stripBase = new Color(0x22d3ee);
+  const flashColor = new Color();
+  let flash = { at: -10, color: stripBase };
   await yieldToMain();
 
   const shared = sharedVehicleParts(textures);
@@ -381,7 +411,7 @@ export async function createHighwayScene({ canvas, root }) {
     const v = buildVehicle(bot.color, shared);
     bot.group = v.group;
     bot.wheels = v.wheels;
-    bot.group.position.z = LANE_Z[bot.lane];
+    bot.accent = new Color(bot.color);
     scene.add(bot.group);
   });
   await yieldToMain();
@@ -389,6 +419,7 @@ export async function createHighwayScene({ canvas, root }) {
   const camera = new PerspectiveCamera(36, 1, 0.1, 160);
   const copyEl = root.querySelector('[data-hw-copy]');
   const projected = new Vector3();
+  const roofPoint = new Vector3();
   const clock = new Clock();
   let layout = LAYOUTS.wide;
   let copyRect = null;
@@ -419,8 +450,9 @@ export async function createHighwayScene({ canvas, root }) {
     copyRect = r ? { l: r.left - stage.left - 16, t: r.top - stage.top - 16, r: r.right - stage.left + 16, b: r.bottom - stage.top + 16 } : null;
   }
 
-  function updateTag(bot, i, elapsed) {
-    const isDone = progress >= DONE_AT;
+  // Live events cycle on the way in; past the overpass the tag is the
+  // finished work, and it stays that way on the way back out.
+  function updateTag(bot, i, elapsed, isDone) {
     const count = Math.max(1, bot.events.length);
     const slot = isDone ? 'done' : Math.floor(elapsed / TAG_SECONDS + i * 0.37) % count;
     if (slot === bot.shown) return;
@@ -428,26 +460,43 @@ export async function createHighwayScene({ canvas, root }) {
     setTag(bot, isDone ? bot.done : bot.events[slot], isDone);
   }
 
-  function placeLabel(bot, x) {
-    projected.set(x, LABEL_LIFT, bot.group.position.z).project(camera);
-    const sx = (projected.x * 0.5 + 0.5) * size.w;
-    const sy = (1 - (projected.y * 0.5 + 0.5)) * size.h;
+  function toScreen(v) {
+    return [(v.x * 0.5 + 0.5) * size.w, (1 - (v.y * 0.5 + 0.5)) * size.h];
+  }
+
+  // A label is type on a stem: the stem drops from the label's baseline to
+  // the vehicle roof. The label slides sideways to stay on screen while the
+  // stem stays on the vehicle.
+  function placeLabel(bot, x, z) {
+    projected.set(x, LABEL_Y, z).project(camera);
+    roofPoint.set(x, ROOF_Y, z).project(camera);
+    const [sx, sy] = toScreen(projected);
+    const roofY = toScreen(roofPoint)[1];
     const dist = camera.position.x - x;
     const [fadeFrom, fadeTo] = layout.fade;
     const far = 1 - clamp((dist - fadeFrom) / (fadeTo - fadeFrom), 0, 1);
-    const near = clamp((size.h * 0.97 - sy) / (size.h * 0.12), 0, 1);
-    const edge = clamp(Math.min(sx, size.w - sx) / 80, 0, 1); // fade as the car leaves the frame
-    let opacity = projected.z < 1 ? far * near * edge : 0;
+    const near = clamp((size.h * 0.97 - roofY) / (size.h * 0.14), 0, 1);
+    const edge = clamp(Math.min(sx, size.w - sx) / 60, 0, 1);
+    let opacity = projected.z < 1 && dist > 0.5 ? far * near * edge : 0;
     // Never let a label sit on the headline or the call to action.
-    if (copyRect && sx > copyRect.l && sx < copyRect.r && sy > copyRect.t && sy < copyRect.b) opacity *= 0.1;
-    const scale = clamp(13 / Math.max(dist, 1), 0.62, 1.08);
-    // Keep the whole label on screen at narrow widths.
-    const half = ((bot.width || (bot.width = bot.el.offsetWidth)) * scale) / 2 + 8;
-    const cx = half * 2 < size.w ? clamp(sx, half, size.w - half) : sx;
-    bot.el.style.transform = `translate3d(${cx.toFixed(1)}px, ${sy.toFixed(1)}px, 0) translate(-50%, -100%) scale(${scale.toFixed(3)})`;
+    if (copyRect && sx > copyRect.l && sx < copyRect.r && sy > copyRect.t && sy < copyRect.b) opacity *= 0.08;
+    const scale = clamp(20 / Math.max(dist, 1), 0.86, 1.12);
+    const w = (bot.width || (bot.width = bot.el.offsetWidth)) * scale;
+    const h = (bot.height || (bot.height = bot.el.offsetHeight)) * scale;
+    const left = w + 24 < size.w ? clamp(sx - 4 * scale, 12, size.w - w - 12) : sx;
+    const stem = Math.max(6, roofY - sy);
+    bot.el.style.transform = `translate3d(${left.toFixed(1)}px, ${(sy - h).toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+    bot.el.style.setProperty('--stem-x', `${((sx - left) / scale).toFixed(1)}px`);
+    bot.el.style.setProperty('--stem', `${(stem / scale).toFixed(1)}px`);
     bot.el.style.zIndex = String(1000 - Math.round(dist * 10));
-    const tall = (bot.height || (bot.height = bot.el.offsetHeight)) * scale;
-    return { bot, dist, opacity, l: cx - half + 8, r: cx + half - 8, t: sy - tall, b: sy };
+    return { bot, dist, opacity, l: left, r: left + w, t: sy - h, b: sy };
+  }
+
+  function flashStrip(elapsed) {
+    const t = clamp((elapsed - flash.at) / FLASH_SECONDS, 0, 1);
+    flashColor.copy(flash.color).lerp(stripBase, t);
+    overpass.stripMat.color.copy(flashColor);
+    overpass.pool.opacity = 0.22 + (1 - t) * 0.2;
   }
 
   // Nearest label wins; a farther label that collides with it steps back.
@@ -466,14 +515,22 @@ export async function createHighwayScene({ canvas, root }) {
     const elapsed = clock.getElapsedTime();
     const placed = bots.map((bot, i) => {
       const loop = fract(bot.offset + (elapsed * bot.speed) / LOOP_SECONDS + progress * SCROLL_PUSH);
-      const x = TRAVEL_START + loop * TRAVEL_SPAN;
-      bot.group.position.x = x;
-      bot.group.position.y = Math.sin(elapsed * 7 + i * 2) * 0.008;
+      const { x, inbound } = travel(loop);
+      const z = inbound ? bot.laneIn : bot.laneOut;
+      const isDone = !inbound || x > OVERPASS_X;
+      // Crossing under the overpass on the way in: the work gets finished.
+      if (inbound && bot.lastX !== null && bot.lastX <= OVERPASS_X && x > OVERPASS_X) {
+        flash = { at: elapsed, color: bot.accent };
+      }
+      bot.lastX = inbound ? x : null;
+      bot.group.position.set(x, Math.sin(elapsed * 7 + i * 2) * 0.008, z);
+      bot.group.rotation.y = inbound ? 0 : Math.PI;
       bot.wheels.forEach((wheel) => { wheel.rotation.z = -elapsed * 9 * bot.speed; });
-      updateTag(bot, i, elapsed);
-      return placeLabel(bot, x);
+      updateTag(bot, i, elapsed, isDone);
+      return placeLabel(bot, x, z);
     });
     resolveLabels(placed);
+    flashStrip(elapsed);
     renderer.render(scene, camera);
   }
 
