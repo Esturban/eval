@@ -1,0 +1,25 @@
+{{- /* Service node. Context: dict "page" "description" "image".
+   Reads front matter schema.service (name, service_type, audience, area_served)
+   and schema.offer (see offer.html). All keys optional. */ -}}
+{{- $p := .page -}}
+{{- $e := hugo.Data.entity -}}
+{{- $ids := partial "schema/ids.html" . -}}
+{{- $schema := $p.Params.schema | default dict -}}
+{{- $cfg := index $schema "service" | default dict -}}
+{{- $svc := dict
+  "@type" "Service"
+  "@id" (printf "%s#service" $p.Permalink)
+  "name" ($cfg.name | default $p.Title)
+  "description" .description
+  "url" $p.Permalink
+  "serviceType" ($cfg.service_type | default $p.Title)
+  "provider" (dict "@id" $ids.organization)
+  "areaServed" (partial "schema/places.html" ($cfg.area_served | default $e.areaServed))
+-}}
+{{- with $cfg.audience -}}
+  {{- $svc = merge $svc (dict "audience" (dict "@type" "Audience" "audienceType" .)) -}}
+{{- end -}}
+{{- with index $schema "offer" -}}
+  {{- $svc = merge $svc (dict "offers" (partial "schema/offer.html" (dict "page" $p "offer" .))) -}}
+{{- end -}}
+{{- return $svc -}}

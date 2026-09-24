@@ -1,0 +1,15 @@
+{{- /* Founder Person node, built from data/entity.toml. Emitted on every page. */ -}}
+{{- $f := hugo.Data.entity.founder -}}
+{{- $ids := partial "schema/ids.html" . -}}
+{{- $person := dict
+  "@type" "Person"
+  "@id" $ids.founder
+  "name" $f.name
+  "jobTitle" $f.jobTitle
+  "description" $f.description
+  "image" ($f.image | absURL)
+  "url" $f.url
+  "worksFor" (dict "@id" $ids.organization)
+-}}
+{{- with $f.sameAs -}}{{- $person = merge $person (dict "sameAs" .) -}}{{- end -}}
+{{- return $person -}}

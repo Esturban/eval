@@ -1,0 +1,32 @@
+{{- /* Article node. Context: dict "page" "description" "image".
+   Author resolves to the founder or the organization @id when the front matter
+   author matches data/entity.toml, otherwise a plain named Person.
+   Front matter areaServed (list of countries) becomes spatialCoverage. */ -}}
+{{- $p := .page -}}
+{{- $e := hugo.Data.entity -}}
+{{- $ids := partial "schema/ids.html" . -}}
+{{- $authorName := $p.Params.author | default $e.founder.name -}}
+{{- $author := dict "@type" "Person" "name" $authorName -}}
+{{- if eq $authorName $e.founder.name -}}
+  {{- $author = dict "@id" $ids.founder -}}
+{{- else if eq $authorName $e.name -}}
+  {{- $author = dict "@id" $ids.organization -}}
+{{- end -}}
+{{- $article := dict
+  "@type" "Article"
+  "@id" (printf "%s#article" $p.Permalink)
+  "headline" $p.Title
+  "description" .description
+  "url" $p.Permalink
+  "mainEntityOfPage" $p.Permalink
+  "inLanguage" $p.Language.Lang
+  "datePublished" ($p.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" ($p.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "image" .image
+  "author" $author
+  "publisher" (dict "@id" $ids.organization)
+-}}
+{{- with index $p.Params "areaserved" -}}
+  {{- $article = merge $article (dict "spatialCoverage" (partial "schema/places.html" .)) -}}
+{{- end -}}
+{{- return $article -}}

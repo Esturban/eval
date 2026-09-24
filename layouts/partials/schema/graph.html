@@ -1,0 +1,85 @@
+{{- /*
+  Emits the page's JSON-LD @graph. Called once from partials/meta.html.
+  Context: dict "page" <page> "description" <string> "image" <absolute URL>.
+
+  Always emitted: Organization and Person (founder), from data/entity.toml.
+  Page node, chosen by front matter schema.type or by section:
+    home                          -> ProfessionalService
+    services pages                -> Service (+ Offer when schema.offer is set)
+    insights and answers pages    -> Article
+    everything else               -> WebPage
+  Also: BreadcrumbList (non-home) and FAQPage (when `faq` has answered entries).
+
+  Front matter contract (all optional):
+    schema:
+      type: service | article | webpage
+      service: { name, service_type, audience, area_served: [Canada] }
+      offer:   { name, description, url, price, price_currency }
+    areaServed: [Canada]          # article pages, emitted as spatialCoverage
+    faq:
+      - question: "..."
+        answer: "..."
+*/ -}}
+{{- $p := .page -}}
+{{- $e := hugo.Data.entity -}}
+{{- $ids := partial "schema/ids.html" . -}}
+{{- $items := slice (partial "schema/organization.html" .) (partial "schema/person.html" .) -}}
+
+{{- $kind := "webpage" -}}
+{{- if $p.IsHome -}}
+  {{- $kind = "home" -}}
+{{- else if and $p.IsPage (eq $p.Section "services") -}}
+  {{- $kind = "service" -}}
+{{- else if and $p.IsPage (in (slice "insights" "answers") $p.Section) -}}
+  {{- $kind = "article" -}}
+{{- end -}}
+{{- with index ($p.Params.schema | default dict) "type" -}}{{- $kind = lower . -}}{{- end -}}
+
+{{- if eq $kind "home" -}}
+  {{- $items = $items | append (dict
+    "@type" "ProfessionalService"
+    "@id" (printf "%s#professional-service" $e.url)
+    "name" $e.name
+    "url" $e.url
+    "description" .description
+    "image" ($e.logo | absURL)
+    "email" $e.email
+    "telephone" $e.telephone
+    "areaServed" (partial "schema/places.html" $e.areaServed)
+    "serviceType" $e.services
+    "founder" (dict "@id" $ids.founder)
+    "parentOrganization" (dict "@id" $ids.organization)
+  ) -}}
+{{- else if eq $kind "service" -}}
+  {{- $items = $items | append (partial "schema/service.html" .) -}}
+{{- else if eq $kind "article" -}}
+  {{- $items = $items | append (partial "schema/article.html" .) -}}
+{{- else -}}
+  {{- $items = $items | append (dict
+    "@type" "WebPage"
+    "name" $p.Title
+    "description" .description
+    "url" $p.Permalink
+    "dateModified" ($p.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    "publisher" (dict "@id" $ids.organization)
+  ) -}}
+{{- end -}}
+
+{{- if not $p.IsHome -}}
+  {{- $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.Params.homeURL) -}}
+  {{- $position := 2 -}}
+  {{- range $p.Ancestors.Reverse -}}
+    {{- if not .IsHome -}}
+      {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) -}}
+      {{- $position = add $position 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" $position "name" $p.Title "item" $p.Permalink) -}}
+  {{- $items = $items | append (dict "@type" "BreadcrumbList" "itemListElement" $crumbs) -}}
+{{- end -}}
+
+{{- with partial "schema/faqpage.html" $p -}}
+  {{- $items = $items | append . -}}
+{{- end -}}
+
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $items | jsonify | safeJS }}</script>

@@ -1,0 +1,8 @@
+{{- /* Turn a list of country names into schema.org Country nodes. Context: a slice or a single string. */ -}}
+{{- $names := . -}}
+{{- if reflect.IsSlice $names | not -}}{{- $names = slice $names -}}{{- end -}}
+{{- $places := slice -}}
+{{- range $names -}}
+  {{- $places = $places | append (dict "@type" "Country" "name" .) -}}
+{{- end -}}
+{{- return $places -}}

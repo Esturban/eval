@@ -16,10 +16,6 @@
 
 {{- $canonical := .Permalink -}}
 {{- $authorName := .Params.author | default .Site.Params.founder | default .Site.Params.author -}}
-{{- $authorType := "Person" -}}
-{{- if eq $authorName .Site.Params.author -}}
-  {{- $authorType = "Organization" -}}
-{{- end -}}
 {{- $image := .Site.Params.og_image | absURL -}}
 {{- with .Params.featured_image -}}
   {{- $normalizedImage := replace . "../assets/" "/" -}}
@@ -56,7 +52,7 @@
 <meta property="og:image" content="{{ $image }}" />
 <meta property="og:image:secure_url" content="{{ $image }}" />
 <meta property="og:image:alt" content="{{ $pageTitle }}" />
-<meta property="og:type" content="{{ if and .IsPage (eq .Section "insights") }}article{{ else }}website{{ end }}" />
+<meta property="og:type" content="{{ if and .IsPage (in (slice "insights" "answers") .Section) }}article{{ else }}website{{ end }}" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="{{ $pageTitle }}" />
@@ -64,91 +60,9 @@
 <meta name="twitter:image" content="{{ $image }}" />
 <meta name="twitter:site" content="@{{ .Site.Params.twitter }}" />
 
-{{- if and .IsPage (eq .Section "insights") -}}
+{{- if and .IsPage (in (slice "insights" "answers") .Section) -}}
 <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />
 <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" />
 {{- end -}}
 
-{{- $org := dict
-  "@type" "Organization"
-  "name" .Site.Title
-  "url" .Site.Params.homeURL
-  "description" .Site.Params.description
-  "logo" (dict "@type" "ImageObject" "url" (.Site.Params.og_image | absURL))
-  "sameAs" (slice .Site.Params.facebook .Site.Params.linkedin (printf "https://instagram.com/%s" .Site.Params.instagram) (printf "https://twitter.com/%s" .Site.Params.twitter) (printf "https://github.com/%s" .Site.Params.github))
--}}
-
-{{- $graphScratch := newScratch -}}
-{{- $graphScratch.Set "items" (slice) -}}
-{{- if .IsHome -}}
-  {{- $service := dict
-    "@type" "ProfessionalService"
-    "name" .Site.Title
-    "url" $canonical
-    "description" $description
-    "areaServed" "North America"
-    "serviceType" (slice "Revenue signal diagnostics" "Conversion systems audits" "Reporting and operations redesign")
-    "provider" $org
-  -}}
-  {{- $graphScratch.Add "items" (slice $org $service) -}}
-{{- else if and .IsPage (eq .Section "services") -}}
-  {{- $service := dict
-    "@type" "Service"
-    "name" .Title
-    "description" $description
-    "url" $canonical
-    "provider" $org
-    "areaServed" "North America"
-    "audience" (dict "@type" "Audience" "audienceType" "Shopify and ecommerce operators")
-    "serviceType" .Title
-  -}}
-  {{- $graphScratch.Add "items" (slice $service) -}}
-{{- else if and .IsPage (eq .Section "insights") -}}
-  {{- $article := dict
-    "@type" "Article"
-    "headline" .Title
-    "description" $description
-    "url" $canonical
-    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
-    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
-    "image" $image
-    "author" (dict "@type" $authorType "name" $authorName)
-    "publisher" $org
-  -}}
-  {{- $graphScratch.Add "items" (slice $article) -}}
-{{- else -}}
-  {{- $page := dict
-    "@type" "WebPage"
-    "name" .Title
-    "description" $description
-    "url" $canonical
-    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
-  -}}
-  {{- $graphScratch.Add "items" (slice $page) -}}
-{{- end -}}
-
-{{- if not .IsHome -}}
-  {{- $breadcrumbScratch := newScratch -}}
-  {{- $breadcrumbScratch.Set "items" (slice (dict "@type" "ListItem" "position" 1 "name" .Site.Title "item" .Site.Params.homeURL)) -}}
-  {{- $position := 2 -}}
-  {{- range .Ancestors.Reverse -}}
-    {{- if not .IsHome -}}
-      {{- $breadcrumbScratch.Add "items" (slice (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink)) -}}
-      {{- $position = add $position 1 -}}
-    {{- end -}}
-  {{- end -}}
-  {{- $breadcrumbScratch.Add "items" (slice (dict "@type" "ListItem" "position" $position "name" .Title "item" $canonical)) -}}
-  {{- $graphScratch.Add "items" (slice (dict "@type" "BreadcrumbList" "itemListElement" ($breadcrumbScratch.Get "items"))) -}}
-{{- end -}}
-
-{{- with .Params.faq -}}
-  {{- $faqScratch := newScratch -}}
-  {{- $faqScratch.Set "items" (slice) -}}
-  {{- range . -}}
-    {{- $faqScratch.Add "items" (slice (dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" .answer))) -}}
-  {{- end -}}
-  {{- $graphScratch.Add "items" (slice (dict "@type" "FAQPage" "mainEntity" ($faqScratch.Get "items"))) -}}
-{{- end -}}
-
-{{- $schema := dict "@context" "https://schema.org" "@graph" ($graphScratch.Get "items") -}}
-<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- partial "schema/graph.html" (dict "page" . "description" $description "image" $image) -}}
