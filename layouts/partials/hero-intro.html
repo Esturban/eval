@@ -1,40 +1,88 @@
 {{/*
-  TASK-5844 finish-gate rework, point 1: this replaces default-hero.html's
-  separate dark hero-shell card (headline + CTA + a static SVG "poster" scene
-  of its own). There is now exactly one hero: the pinned agent-network canvas
-  behind this text. No second boxed shell, no second illustrated scene
-  competing with it - this block is plain text sitting directly over the live
-  scene, the first thing inside .agent-scene__content, so it fills the first
-  viewport before any section content scrolls in (see main.css:
-  .agent-scene__content has margin-top: -100svh, pulling this section up over
-  the pinned canvas which is exactly 100svh tall).
+  Homepage hero: a literal highway. Agent vehicles drive real lanes, each
+  carrying a name-and-job header and a live event tag with its tool icon.
+  The stage is sticky inside a tall section, so scrolling moves the story
+  through four steps (inputs arrive, agents pick up, tools get used, work
+  lands) while traffic keeps cruising on its own.
+
+  Script URLs go through resources.PostProcess so they stay root-relative
+  after the canonifyURLs pass (baseURL points at production).
 */}}
 {{ $hero_title := .Site.Params.hero_title }}
 {{ $hero_subtitle := .Site.Params.hero_subtitle }}
 {{ $hero_cta := .Site.Params.hero_CTA }}
 {{ $hero_cta_link := .Site.Params.hero_CTA_link }}
+{{ $scene := resources.Get "js/highway-scene.js" | js.Build (dict "format" "esm" "target" "es2020" "minify" true) | resources.PostProcess }}
+{{ $bots := site.Data.highway.bots }}
 
-<section class="relative flex min-h-[100svh] items-center py-24">
-    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="max-w-xl">
-            <p class="font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">
-                AI agents for founder-led teams
-            </p>
-            <h1 class="mt-6 max-w-[14ch] text-5xl font-semibold leading-[0.95] tracking-tight text-[#f7f4ee] sm:text-6xl lg:text-7xl">
-                {{ $hero_title }}
-            </h1>
-            <h2 class="mt-6 max-w-md text-lg font-medium leading-8 text-slate-300 sm:text-xl">
-                {{ $hero_subtitle | markdownify }}
-            </h2>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="{{ $hero_cta_link }}"
-                   class="inline-flex items-center justify-center rounded-full bg-[#f7f4ee] px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
-                    {{ $hero_cta }}
-                    <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </div>
+<section id="top" class="hw arc-section" data-tone="#020617" style="background-color:#020617" data-highway data-scene-src="{{ $scene.RelPermalink }}">
+  <div class="hw__stage">
+    {{ partial "highway-poster.html" . }}
+    <canvas class="hw__canvas" aria-hidden="true"></canvas>
+    <div class="hw__shade" aria-hidden="true"></div>
+
+    <div class="hw__labels" aria-hidden="true">
+      {{ range $bots }}
+      {{ $first := index .events 0 }}
+      <div class="hw-bot" style="--bot: {{ .color | safeCSS }}"
+           data-lane="{{ .lane }}" data-offset="{{ .offset }}" data-speed="{{ .speed }}" data-color="{{ .color }}"
+           data-events="{{ .events | jsonify }}" data-done="{{ .done | jsonify }}">
+        <div class="hw-bot__head">
+          <span class="hw-bot__dot"></span>
+          <span class="hw-bot__name">{{ .name }}</span>
+          <span class="hw-bot__job">{{ .job }}</span>
         </div>
+        <div class="hw-bot__tag">
+          <svg class="hw-bot__icon" aria-hidden="true"><use href="#i-{{ $first.icon }}"></use></svg>
+          <span class="hw-bot__text">{{ $first.text }}</span>
+        </div>
+      </div>
+      {{ end }}
     </div>
+
+    <div class="hw__copy">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl" data-hw-copy>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300 sm:text-sm">
+            AI agents for founder-led teams
+          </p>
+          <h1 class="mt-5 max-w-[13ch] text-[3.25rem] font-semibold leading-[0.92] tracking-tight text-[#f7f4ee] sm:text-7xl lg:text-8xl">
+            {{ $hero_title }}
+          </h1>
+          <p class="mt-5 max-w-lg text-lg font-medium leading-7 text-slate-300 sm:text-2xl sm:leading-9">
+            {{ $hero_subtitle | markdownify }}
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <a href="{{ $hero_cta_link }}"
+               class="inline-flex items-center justify-center rounded-full bg-[#f7f4ee] px-7 py-3.5 text-base font-semibold text-slate-950 transition hover:bg-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
+              {{ $hero_cta }}
+              <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a href="#flow" class="hidden text-base sm:inline font-semibold text-slate-200 underline decoration-slate-600 underline-offset-8 transition hover:text-cyan-200 hover:decoration-cyan-300">See how it works</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hw__foot">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ol class="hw-steps" aria-label="How the work moves">
+          <li class="hw-steps__item is-active" data-step="0"><span>01</span><b class="hw-steps__label">Inputs arrive</b></li>
+          <li class="hw-steps__item" data-step="1"><span>02</span><b class="hw-steps__label">Agents pick up</b></li>
+          <li class="hw-steps__item" data-step="2"><span>03</span><b class="hw-steps__label">Tools get used</b></li>
+          <li class="hw-steps__item" data-step="3"><span>04</span><b class="hw-steps__label">Work lands</b></li>
+        </ol>
+        <p class="hw__note">Example agents. Yours is scoped on a free Live Audit.</p>
+      </div>
+    </div>
+
+    <p class="sr-only">
+      Illustration: agent vehicles driving a highway.
+      {{ range $bots }}{{ .name }}, {{ lower .job }}: {{ range $i, $e := .events }}{{ if $i }}, {{ end }}{{ lower $e.text }}{{ end }}, then {{ lower .done.text }}. {{ end }}
+    </p>
+  </div>
 </section>
+{{ $motion := resources.Get "js/home-motion.js" | js.Build (dict "format" "iife" "target" "es2019" "minify" true) | resources.PostProcess }}
+<script src="{{ $motion.RelPermalink }}" defer></script>
