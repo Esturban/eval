@@ -67,7 +67,7 @@
                     <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}</div>
                     <div class="flex flex-wrap gap-2">
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-400" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
                         <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
@@ -97,7 +97,7 @@
                     <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}{{ with .price_note }}<small class="mt-1 block text-sm font-normal text-slate-500">{{ . }}</small>{{ end }}</div>
                     <div class="flex flex-wrap gap-2">
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-400" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
                         <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
@@ -114,8 +114,8 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
                 <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">Done for you</p>
-                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Fixed prices. A delivery date and refund terms on every card.</h2>
-                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">Up to USD 897 you can buy now. Above that, grab a time first.</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">You know something's off. Find out exactly what, without a sales call.</h2>
+                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">Everything up to USD 897, you can buy right now. Anything bigger starts with a short scoping call, not a pitch.</p>
             </div>
             <div class="mt-10 grid gap-4 lg:grid-cols-3">
                 {{ range $products }}
@@ -129,13 +129,13 @@
                     <div class="mt-auto pt-2 text-2xl font-bold text-white">{{ .price }}{{ with .price_note }}<small class="mt-1 block text-sm font-normal text-slate-400">{{ . }}</small>{{ end }}</div>
                     <div class="flex flex-wrap gap-2">
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-500" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
                         <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
                         {{ if .button2 }}
                         {{ if eq .url2 "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-500" data-ticket="{{ .ticket }}">{{ .button2 }}</span>
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button2 }}</span>
                         {{ else }}
                         <a href="{{ .url2 }}" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">{{ .button2 }}</a>
                         {{ end }}
@@ -211,7 +211,7 @@
                     <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}</div>
                     <div class="flex flex-wrap gap-2">
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-400" data-ticket="{{ .ticket }}">{{ .button }}</span>
+                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
                         <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
