@@ -65,15 +65,11 @@
       linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 1) 100%);
   }
 
-  /* Hero plate: the single dark plate on the homepage. Geometry is a one-point
-     perspective with the vanishing point at (490, 240) in a 700 x 600 viewBox. */
-  .hero-plate {
-    --hp-vp: 490px 240px;
-    view-timeline: --hero-plate block;
-  }
-
+  /* Hero plate: the single dark plate on the homepage, now a static poster
+     only (2026-09-24: the settle-in motion module and its scroll-driven
+     detail layer were retired; the scroll-driven story now lives in the
+     agent-network background below the hero, see agent-network-*.js). */
   .hero-plate__poster,
-  .hero-plate__detail,
   .hero-plate__grain {
     position: absolute;
     inset: 0;
@@ -93,18 +89,6 @@
     mix-blend-mode: overlay;
   }
 
-  .hero-plate .hp-pane,
-  .hero-plate .hp-pane-inner,
-  .hero-plate .hp-line,
-  .hero-plate .hp-floor {
-    transform-box: view-box;
-    transform-origin: var(--hp-vp);
-  }
-
-  .hero-plate__detail.is-intro .hp-pane-inner {
-    will-change: transform;
-  }
-
   /* Mobile: four panes, no callout labels. */
   @media (max-width: 1023px) {
     .hero-plate .hp-far,
@@ -121,56 +105,108 @@
     }
   }
 
-  /* Scroll parallax, CSS only, where supported. A camera rising by K moves a
-     point at depth z up by K / z: panes translate by var(--hp-k) (1 / z), and
-     the line (plane y = 1.0) and floor (plane y = 2.5) scale about the
-     vanishing point, so the line stays threaded through every port.
-     K = 28.8 viewBox units: near pane about 24px, far pane about 4px. */
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      .hero-plate__detail .hp-pane,
-      .hero-plate__detail .hp-line,
-      .hero-plate__detail .hp-floor {
-        animation-duration: 1ms;
-        animation-timing-function: linear;
-        animation-fill-mode: both;
-        animation-timeline: --hero-plate;
-        animation-range: exit 0% exit 100%;
-      }
-
-      .hero-plate__detail .hp-pane {
-        animation-name: hp-drift-pane;
-      }
-
-      .hero-plate__detail .hp-line {
-        animation-name: hp-drift-line;
-      }
-
-      .hero-plate__detail .hp-floor {
-        animation-name: hp-drift-floor;
-      }
-    }
-  }
-
-  @keyframes hp-drift-pane {
-    to {
-      transform: translateY(calc(var(--hp-k, 0) * -28.8px));
-    }
-  }
-
-  @keyframes hp-drift-line {
-    to {
-      transform: scaleY(0.88);
-    }
-  }
-
-  @keyframes hp-drift-floor {
-    to {
-      transform: scaleY(0.952);
-    }
-  }
-
   .home-logo-row img {
     filter: saturate(0) contrast(1.05);
+  }
+
+  /* Agent network background: a sticky Three.js layer pinned behind the
+     Tools / Proof / Reviews narrative (2026-09-24, see DESIGN.md Motion).
+     .agent-scene is the scroll-height container; .agent-scene__pin is the
+     part that stays on screen for that whole height; .agent-scene__content
+     is pulled up over it so real HTML content scrolls normally on top. */
+  .agent-scene {
+    position: relative;
+    background: linear-gradient(180deg, var(--ev-ink) 0%, var(--ev-graphite) 100%);
+  }
+
+  .agent-scene__pin {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  /* Keeps the canvas readable as a background rather than competing with the
+     real HTML text that scrolls over it (default-hero.html's copy stays
+     outside this band entirely; this only affects the Tools/Proof/Reviews
+     text, per DESIGN.md's readable-first requirement). */
+  .agent-scene__pin::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.4);
+    pointer-events: none;
+  }
+
+  .agent-scene__canvas,
+  .agent-scene__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .agent-scene__canvas {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .agent-scene.is-live .agent-scene__canvas {
+    opacity: 1;
+  }
+
+  .agent-scene.is-live .agent-scene__poster {
+    opacity: 0;
+  }
+
+  .agent-scene__poster {
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+
+  .agent-scene__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, calc(-100% - 14px));
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(219, 227, 238, 0.22);
+    background: rgba(2, 6, 23, 0.72);
+    color: var(--ev-surface);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  .agent-scene__label.is-active {
+    opacity: 1;
+  }
+
+  .agent-scene__content {
+    position: relative;
+    z-index: 1;
+    margin-top: calc(-100svh);
+  }
+
+  .agent-scene__content > section {
+    scroll-margin-top: 84px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .agent-scene__canvas {
+      display: none;
+    }
   }
 }

@@ -120,6 +120,7 @@
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --blur-sm: 8px;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -833,6 +834,9 @@
   .mt-12 {
     margin-top: calc(var(--spacing) * 12) !important;
   }
+  .mt-16 {
+    margin-top: calc(var(--spacing) * 16) !important;
+  }
   .mt-auto {
     margin-top: auto !important;
   }
@@ -1255,10 +1259,6 @@
     border-style: var(--tw-border-style) !important;
     border-width: 1px !important;
   }
-  .border-y {
-    border-block-style: var(--tw-border-style) !important;
-    border-block-width: 1px !important;
-  }
   .border-t {
     border-top-style: var(--tw-border-style) !important;
     border-top-width: 1px !important;
@@ -1550,6 +1550,9 @@
   .py-4 {
     padding-block: calc(var(--spacing) * 4) !important;
   }
+  .py-6 {
+    padding-block: calc(var(--spacing) * 6) !important;
+  }
   .py-8 {
     padding-block: calc(var(--spacing) * 8) !important;
   }
@@ -1564,6 +1567,9 @@
   }
   .py-16 {
     padding-block: calc(var(--spacing) * 16) !important;
+  }
+  .py-20 {
+    padding-block: calc(var(--spacing) * 20) !important;
   }
   .py-96 {
     padding-block: calc(var(--spacing) * 96) !important;
@@ -1914,6 +1920,12 @@
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor) !important;
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow) !important;
   }
+  .shadow-black\/40 {
+    --tw-shadow-color: color-mix(in srgb, #000 40%, transparent) !important;
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-black) 40%, transparent) var(--tw-shadow-alpha), transparent) !important;
+    }
+  }
   .shadow-neutral-100\/20 {
     --tw-shadow-color: color-mix(in srgb, oklch(97% 0 0) 20%, transparent) !important;
     @supports (color: color-mix(in lab, red, red)) {
@@ -1924,12 +1936,6 @@
     --tw-shadow-color: color-mix(in srgb, oklch(86.9% 0.022 252.894) 30%, transparent) !important;
     @supports (color: color-mix(in lab, red, red)) {
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-slate-300) 30%, transparent) var(--tw-shadow-alpha), transparent) !important;
-    }
-  }
-  .shadow-slate-300\/40 {
-    --tw-shadow-color: color-mix(in srgb, oklch(86.9% 0.022 252.894) 40%, transparent) !important;
-    @supports (color: color-mix(in lab, red, red)) {
-      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-slate-300) 40%, transparent) var(--tw-shadow-alpha), transparent) !important;
     }
   }
   .ring-gray-800 {
@@ -1958,6 +1964,11 @@
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,) !important;
+  }
+  .backdrop-blur-sm {
+    --tw-backdrop-blur: blur(var(--blur-sm)) !important;
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,) !important;
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,) !important;
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events !important;
@@ -2154,6 +2165,16 @@
       }
     }
   }
+  .hover\:border-cyan-400\/40 {
+    &:hover {
+      @media (hover: hover) {
+        border-color: color-mix(in srgb, oklch(78.9% 0.154 211.53) 40%, transparent) !important;
+        @supports (color: color-mix(in lab, red, red)) {
+          border-color: color-mix(in oklab, var(--color-cyan-400) 40%, transparent) !important;
+        }
+      }
+    }
+  }
   .hover\:border-indigo-400 {
     &:hover {
       @media (hover: hover) {
@@ -2172,13 +2193,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-cyan-400) !important;
-      }
-    }
-  }
-  .hover\:bg-cyan-500 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-cyan-500) !important;
       }
     }
   }
@@ -2290,13 +2304,6 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-indigo-600) !important;
-      }
-    }
-  }
-  .hover\:text-slate-950 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-slate-950) !important;
       }
     }
   }
@@ -2565,6 +2572,11 @@
       padding-inline: calc(var(--spacing) * 10) !important;
     }
   }
+  .sm\:py-7 {
+    @media (width >= 40rem) {
+      padding-block: calc(var(--spacing) * 7) !important;
+    }
+  }
   .sm\:py-10 {
     @media (width >= 40rem) {
       padding-block: calc(var(--spacing) * 10) !important;
@@ -2575,14 +2587,14 @@
       padding-block: calc(var(--spacing) * 16) !important;
     }
   }
-  .sm\:py-18 {
-    @media (width >= 40rem) {
-      padding-block: calc(var(--spacing) * 18) !important;
-    }
-  }
   .sm\:py-20 {
     @media (width >= 40rem) {
       padding-block: calc(var(--spacing) * 20) !important;
+    }
+  }
+  .sm\:py-28 {
+    @media (width >= 40rem) {
+      padding-block: calc(var(--spacing) * 28) !important;
     }
   }
   .sm\:pt-6 {
@@ -2604,6 +2616,12 @@
     @media (width >= 40rem) {
       font-size: var(--text-2xl) !important;
       line-height: var(--tw-leading, var(--text-2xl--line-height)) !important;
+    }
+  }
+  .sm\:text-3xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-3xl) !important;
+      line-height: var(--tw-leading, var(--text-3xl--line-height)) !important;
     }
   }
   .sm\:text-4xl {
@@ -2640,11 +2658,6 @@
     @media (width >= 40rem) {
       --tw-leading: calc(var(--spacing) * 10) !important;
       line-height: calc(var(--spacing) * 10) !important;
-    }
-  }
-  .md\:sticky {
-    @media (width >= 48rem) {
-      position: sticky !important;
     }
   }
   .md\:-mt-1 {
@@ -3107,11 +3120,6 @@
       padding-block: calc(var(--spacing) * 16) !important;
     }
   }
-  .lg\:py-20 {
-    @media (width >= 64rem) {
-      padding-block: calc(var(--spacing) * 20) !important;
-    }
-  }
   .lg\:py-24 {
     @media (width >= 64rem) {
       padding-block: calc(var(--spacing) * 24) !important;
@@ -3483,11 +3491,7 @@
   .home-audit-shell {
     background-image: radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 30%), linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 1) 100%);
   }
-  .hero-plate {
-    --hp-vp: 490px 240px;
-    view-timeline: --hero-plate block;
-  }
-  .hero-plate__poster, .hero-plate__detail, .hero-plate__grain {
+  .hero-plate__poster, .hero-plate__grain {
     position: absolute;
     inset: 0;
   }
@@ -3503,13 +3507,6 @@
     opacity: 0.045;
     mix-blend-mode: overlay;
   }
-  .hero-plate .hp-pane, .hero-plate .hp-pane-inner, .hero-plate .hp-line, .hero-plate .hp-floor {
-    transform-box: view-box;
-    transform-origin: var(--hp-vp);
-  }
-  .hero-plate__detail.is-intro .hp-pane-inner {
-    will-change: transform;
-  }
   @media (max-width: 1023px) {
     .hero-plate .hp-far, .hero-plate .hp-label {
       display: none;
@@ -3521,43 +3518,86 @@
       mask-image: linear-gradient(to right, transparent 0, #000 12%);
     }
   }
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      .hero-plate__detail .hp-pane, .hero-plate__detail .hp-line, .hero-plate__detail .hp-floor {
-        animation-duration: 1ms;
-        animation-timing-function: linear;
-        animation-fill-mode: both;
-        animation-timeline: --hero-plate;
-        animation-range: exit 0% exit 100%;
-      }
-      .hero-plate__detail .hp-pane {
-        animation-name: hp-drift-pane;
-      }
-      .hero-plate__detail .hp-line {
-        animation-name: hp-drift-line;
-      }
-      .hero-plate__detail .hp-floor {
-        animation-name: hp-drift-floor;
-      }
-    }
-  }
-  @keyframes hp-drift-pane {
-    to {
-      transform: translateY(calc(var(--hp-k, 0) * -28.8px));
-    }
-  }
-  @keyframes hp-drift-line {
-    to {
-      transform: scaleY(0.88);
-    }
-  }
-  @keyframes hp-drift-floor {
-    to {
-      transform: scaleY(0.952);
-    }
-  }
   .home-logo-row img {
     filter: saturate(0) contrast(1.05);
+  }
+  .agent-scene {
+    position: relative;
+    background: linear-gradient(180deg, var(--ev-ink) 0%, var(--ev-graphite) 100%);
+  }
+  .agent-scene__pin {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .agent-scene__pin::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.4);
+    pointer-events: none;
+  }
+  .agent-scene__canvas, .agent-scene__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .agent-scene__canvas {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .agent-scene.is-live .agent-scene__canvas {
+    opacity: 1;
+  }
+  .agent-scene.is-live .agent-scene__poster {
+    opacity: 0;
+  }
+  .agent-scene__poster {
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+  .agent-scene__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, calc(-100% - 14px));
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(219, 227, 238, 0.22);
+    background: rgba(2, 6, 23, 0.72);
+    color: var(--ev-surface);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  .agent-scene__label.is-active {
+    opacity: 1;
+  }
+  .agent-scene__content {
+    position: relative;
+    z-index: 1;
+    margin-top: calc(-100svh);
+  }
+  .agent-scene__content > section {
+    scroll-margin-top: 84px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .agent-scene__canvas {
+      display: none;
+    }
   }
 }
 @property --tw-translate-x {
@@ -3760,6 +3800,42 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-backdrop-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-sepia {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-duration {
   syntax: "*";
   inherits: false;
@@ -3821,6 +3897,15 @@
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-backdrop-blur: initial;
+      --tw-backdrop-brightness: initial;
+      --tw-backdrop-contrast: initial;
+      --tw-backdrop-grayscale: initial;
+      --tw-backdrop-hue-rotate: initial;
+      --tw-backdrop-invert: initial;
+      --tw-backdrop-opacity: initial;
+      --tw-backdrop-saturate: initial;
+      --tw-backdrop-sepia: initial;
       --tw-duration: initial;
       --tw-ease: initial;
       --tw-content: "";
