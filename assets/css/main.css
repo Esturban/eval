@@ -87,6 +87,10 @@
     transition: background-color 0.12s linear;
   }
 
+  .home-arc section[id] {
+    scroll-margin-top: 72px;
+  }
+
   /* Highway hero. */
   .hw {
     position: relative;
