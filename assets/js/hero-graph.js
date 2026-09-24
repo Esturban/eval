@@ -1,4 +1,4 @@
-// REUSE_CHECKED: /Users/EVA/Desktop/eva/03_development/_dev/web/eval-task-5844/.qa/design-options/direction-2-decision.html
+// REUSE_CHECKED: .qa/design-options/direction-2-decision.html (repo-relative, gitignored scratch dir)
 // is the only prior implementation of this animation (inline prototype script).
 // No other hero, Three.js, or node-graph module exists in this repo or sibling
 // web repos (searched: find -iname '*hero*' under repos, grep -rl 'THREE\.'
