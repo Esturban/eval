@@ -1,0 +1,40 @@
+{{/*
+  TASK-5844 finish-gate rework, point 1: this replaces default-hero.html's
+  separate dark hero-shell card (headline + CTA + a static SVG "poster" scene
+  of its own). There is now exactly one hero: the pinned agent-network canvas
+  behind this text. No second boxed shell, no second illustrated scene
+  competing with it - this block is plain text sitting directly over the live
+  scene, the first thing inside .agent-scene__content, so it fills the first
+  viewport before any section content scrolls in (see main.css:
+  .agent-scene__content has margin-top: -100svh, pulling this section up over
+  the pinned canvas which is exactly 100svh tall).
+*/}}
+{{ $hero_title := .Site.Params.hero_title }}
+{{ $hero_subtitle := .Site.Params.hero_subtitle }}
+{{ $hero_cta := .Site.Params.hero_CTA }}
+{{ $hero_cta_link := .Site.Params.hero_CTA_link }}
+
+<section class="relative flex min-h-[100svh] items-center py-24">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-xl">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">
+                AI agents for founder-led teams
+            </p>
+            <h1 class="mt-6 max-w-[14ch] text-5xl font-semibold leading-[0.95] tracking-tight text-[#f7f4ee] sm:text-6xl lg:text-7xl">
+                {{ $hero_title }}
+            </h1>
+            <h2 class="mt-6 max-w-md text-lg font-medium leading-8 text-slate-300 sm:text-xl">
+                {{ $hero_subtitle | markdownify }}
+            </h2>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="{{ $hero_cta_link }}"
+                   class="inline-flex items-center justify-center rounded-full bg-[#f7f4ee] px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
+                    {{ $hero_cta }}
+                    <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

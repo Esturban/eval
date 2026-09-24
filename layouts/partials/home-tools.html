@@ -1,9 +1,11 @@
 {{/*
   "Tools & integrations" stage of the homepage scroll narrative (TASK-5844).
-  Content is top-n-services.html's existing, already-approved copy; only the
-  wrapper changed (id + a transparent background so the pinned agent-network
-  canvas behind it stays visible in the gaps and through the translucent
-  cards, which already used bg-slate-900/80 before this change).
+  Finish-gate rework (point 5): the walkthrough-style card paragraphs are
+  compressed to short "what we do" lines - same facts (the process pick, the
+  real-stack build, the process owner), no new claims added. Point 7
+  (restraint): cards dropped their filled bg-slate-900/80 boxes for a plain
+  top-rule treatment, matching the Mission section above, so this doesn't
+  read as a wall of boxed panels competing with the scene behind it.
 */}}
 {{ $top_n_services_title := .Site.Params.top_n_services_title | default "Services" }}
 {{ $top_n_services_subtitle := .Site.Params.top_n_services_subtitle | default "Growing businesses with our full scale data suites" }}
@@ -18,17 +20,14 @@
             <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
                 {{ $top_n_services_subtitle | markdownify | safeHTML }}
             </p>
-            <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-                An agent only earns its place once it can plug into the tools your team already runs: your inbox, your CRM, your project tool, your document system. Nothing gets automated that has nowhere real to live.
-            </p>
         </div>
 
-        <div class="mt-10 grid gap-4 lg:grid-cols-3">
-            <article class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">One Repeated Process</p>
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+            <article class="border-t border-slate-800/70 pt-6">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">One repeated process</p>
                 <h3 class="mt-4 text-2xl font-semibold text-white">Take the first job off the founder's plate.</h3>
                 <p class="mt-3 text-base leading-7 text-slate-300">
-                    We pick one repeated process, map how it runs today, and measure it before the build, so the result can be compared honestly.
+                    Mapped and measured before the build, so the result can be compared honestly.
                 </p>
                 <a href="/services/ai-agent-implementation/" class="mt-6 inline-flex items-center text-sm font-semibold text-cyan-300 transition hover:text-cyan-200">
                     See how a project runs
@@ -37,11 +36,11 @@
                     </svg>
                 </a>
             </article>
-            <article class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Your Existing Tools</p>
+            <article class="border-t border-slate-800/70 pt-6">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Your existing tools</p>
                 <h3 class="mt-4 text-2xl font-semibold text-white">Build inside the stack you already run.</h3>
                 <p class="mt-3 text-base leading-7 text-slate-300">
-                    The agent runs in accounts you own, connected to your CRM, project tool, inboxes, or documents, with access scoped to the minimum it needs. You get the test log, the access list, and a before-and-after measure, so you can check the result and revoke anything without calling us.
+                    Your CRM, project tool, inboxes, or documents. Scoped access, a test log, and a before-and-after measure.
                 </p>
                 <a href="/services/ai-agent-implementation/" class="mt-6 inline-flex items-center text-sm font-semibold text-cyan-300 transition hover:text-cyan-200">
                     See what you get
@@ -50,11 +49,11 @@
                     </svg>
                 </a>
             </article>
-            <article class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">No New Hire</p>
+            <article class="border-t border-slate-800/70 pt-6">
+                <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">No new hire</p>
                 <h3 class="mt-4 text-2xl font-semibold text-white">Hand it to the owner you already have.</h3>
                 <p class="mt-3 text-base leading-7 text-slate-300">
-                    Your process owner gives about one to two hours a week during the build, approves every output while it is tested, then gets a runbook, a recorded walkthrough, and the access list to run, review, and pause the agent without anyone new.
+                    About an hour a week during the build, then a runbook and the access list to run it themselves.
                 </p>
                 <a href="/live-audit/" class="mt-6 inline-flex items-center text-sm font-semibold text-cyan-300 transition hover:text-cyan-200">
                     Start with a free Live Audit

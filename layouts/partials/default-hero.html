@@ -1,44 +1,17 @@
-<!--Standard Hero for EV Advisory-->
-{{ $hero_title := .Site.Params.hero_title }}
-{{ $hero_subtitle := .Site.Params.hero_subtitle }}
-{{ $hero_cta := .Site.Params.hero_CTA }}
-{{ $hero_cta_link := .Site.Params.hero_CTA_link }}
-{{ $grain := resources.Get "images/hero-grain.png" | fingerprint }}
+{{/*
+  RETIRED 2026-09-24 (TASK-5844 finish-gate rework, point 1): this partial
+  used to render a separate dark "hero-shell" card with its own headline, CTA,
+  and a static SVG poster scene (hero-plate-poster.html) stacked above the
+  agent-network background. EV's review: "still looks cheap... Remove the
+  competing hero banner at the top. One hero only: the 3D scene."
 
-<section class="bg-stone-50">
-    <div class="mx-auto max-w-7xl sm:px-6 sm:pt-6 lg:px-8 lg:pt-8">
-        <div class="hero-shell relative overflow-clip bg-[#020617] sm:rounded-[2rem] lg:grid lg:min-h-[min(88svh,760px)] lg:grid-cols-12">
-            <div class="relative z-10 px-4 pb-10 pt-12 sm:px-10 sm:pb-12 sm:pt-16 lg:col-span-5 lg:self-center lg:py-24 lg:pl-12 lg:pr-12">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">
-                    AI agents for founder-led teams
-                </p>
-                <h1 class="mt-6 max-w-[13ch] text-5xl font-semibold leading-[0.95] tracking-tight text-[#f7f4ee] sm:text-6xl">
-                    {{ $hero_title }}
-                </h1>
-                <h2 class="mt-6 max-w-md text-lg font-medium leading-8 text-slate-300 sm:text-xl">
-                  {{ $hero_subtitle | markdownify }}
-                </h2>
-                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <a href="{{ $hero_cta_link }}"
-                       class="inline-flex items-center justify-center rounded-full bg-[#f7f4ee] px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
-                        {{ $hero_cta }}
-                        <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div id="hero-plate"
-                 class="hero-plate relative aspect-[4/3] overflow-clip lg:col-span-7 lg:col-start-6 lg:aspect-auto"
-                 aria-hidden="true">
-                <div class="hero-plate__poster">
-                    {{ partial "hero-plate-poster.html" . }}
-                </div>
-                <div class="hero-plate__grain" style="background-image: url('{{ $grain.RelPermalink }}')"></div>
-            </div>
-        </div>
-    </div>
-</section>
-{{/* 2026-09-24: the settle-in motion module (hero-plate.js) was retired.
-     The static poster above is now the permanent hero image; the scroll-driven
-     story lives in the agent-network background further down the page. */}}
+  The headline/subtitle/CTA now live in layouts/partials/hero-intro.html,
+  rendered as the first block inside .agent-scene__content in
+  layouts/index.html, so they sit directly over the pinned agent-network
+  canvas instead of over a second illustrated scene. hero-plate-poster.html
+  and the .hero-plate CSS in assets/css/main.css are unused as of this
+  change; left in the tree (git history) rather than deleted outright.
+
+  This file is no longer called from layouts/index.html. Kept only as a
+  record of the retirement; it renders nothing.
+*/}}
