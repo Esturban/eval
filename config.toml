@@ -240,14 +240,12 @@ permalink = "index.xml"
 [security]
   [security.funcs]
     getenv = ['^HUGO_', '^CI$', '^WHATSAPP_NUMBER$']
-  # Hugo 0.161+ runs Node.js tools (postcss, js.Build) with the --permission
-  # flag by default, which denies all filesystem reads unless explicitly
-  # allowed. Without this, PostCSS cannot load native addons such as
-  # lightningcss from node_modules, and js.Build cannot resolve npm packages
-  # such as three. Scope is the project working directory only.
+  # Hugo 0.161+ can run Node.js tools (postcss, js.Build) with the --permission
+  # flag, but that flag's name and stability vary across Node major versions
+  # (this project's pinned production Node is 24; local dev machines may run
+  # an older Node that rejects the flag outright). The scoped allowRead/
+  # allowAddons keys below only narrow the sandbox when it is active; they do
+  # not turn it off, so a Node version mismatch still breaks the build. This
+  # project does not rely on that sandbox for anything, so disable it outright.
   [security.node.permissions]
-    allowRead = ["."]
-    # lightningcss (used by the Tailwind v4 PostCSS plugin) loads a native
-    # .node addon; Node's permission model blocks native addons by default
-    # even when fs reads are allowed, so postcss needs this explicitly.
-    allowAddons = ["postcss"]
+    disable = true
