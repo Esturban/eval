@@ -7,7 +7,7 @@ headline = "Find the first automation worth shipping, on one free call."
 lede = "Esteban reviews the tools your team already uses, live, and names the one automation to build first."
 cta_text = "Book your Live Audit"
 cta_link = "https://cal.com/este-val/audit-fit-call"
-cta_note = "Free. 20 minutes. Your screen, your tools."
+cta_note = "Your screen, your tools, live. Walk away with the first automation named."
 
 [[sections]]
 eyebrow = "What it is"

@@ -44,16 +44,16 @@ hero_subtitle = "For founder-led agencies already running a CRM, project tools, 
 hero_CTA = "Get a free Live Audit"
 hero_CTA_link = "/live-audit/"
 hero_img= "images/featured/data-natural-beauty.png"
-hero_description = "Start with a free Live Audit. Esteban Valencia, founder of EV Advisory, reviews your actual tool stack with you, live, and names the first automation worth shipping."
+hero_description = "Walk away from one call already knowing which process to automate first and what it takes to ship it. Esteban Valencia, founder of EV Advisory, reviews your actual stack with you, live."
 
 
 # Mission section elements
 mission_quote = "Founder-led teams are rarely short on AI ideas. What they are short on is a working agent inside the tools they already run, owned by someone on the team and measured against how the work ran before. That is what this practice builds."
 mission_author = "Esteban Valencia, Founder at EV Advisory"
-mission_description = "EV Advisory ships AI agents for founder-led agencies and service teams, starting with the repeated process that should go first. Each agent is built into the tools you already use, measured before and after, and handed to an owner you already have. The goal is not more software. The goal is work off the founder's plate without adding headcount."
+mission_description = "EV Advisory ships AI agents for founder-led agencies and service teams, starting with whichever repeated process costs the most time. Each agent is built into the tools you already use, measured before and after, and handed to an owner you already have. The goal is not more software. The goal is work off the founder's plate without adding headcount."
 
 top_n_services_title = "Your first agent, built around how you already work"
-top_n_services_subtitle = "Your first agent takes one repeated process off the founder's plate, live in 2 to 6 weeks, built into the tools your team already runs, and handed over so nobody new is needed."
+top_n_services_subtitle = "One agent takes a repeated process off the founder's plate, live in 2 to 6 weeks, built into the tools your team already runs, and handed over so nobody new is needed."
 
 
 
