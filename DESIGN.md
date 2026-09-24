@@ -41,10 +41,11 @@
 - **Border radius:** 16px for small surfaces, 24px for major cards, 32px for hero/CTA shells
 
 ## Motion
-- **Approach:** Minimal-functional
-- **Use:** hover and focus feedback only; no decorative motion needed for the homepage pass
+- **Approach:** One restrained hero element, otherwise minimal-functional
+- **Use:** hover and focus feedback throughout, plus one contained hero visualization: a small node graph that converges into a single highlighted point, representing scattered work resolving into one decision. It is lazy-loaded after first paint, stops animating once it settles, respects reduced-motion preferences with a static fallback graphic, and is confined to its own bounded panel so it never crosses the headline, subheadline, or body copy.
 
 ## Decisions Log
 | Date | Decision | Rationale |
 |------|----------|-----------|
 | 2026-03-25 | Homepage moved to restrained technical editorial system | Tightens credibility and better matches the audit-first offer |
+| 2026-09-24 | Motion approach changed from no decorative motion to one restrained hero element (decision node graph) with light scroll motion, lazy-loaded, reduced-motion-safe, contained so it never crosses body copy | Homepage modernization pass |
