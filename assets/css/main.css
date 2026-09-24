@@ -65,6 +65,111 @@
       linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 1) 100%);
   }
 
+  /* Hero plate: the single dark plate on the homepage. Geometry is a one-point
+     perspective with the vanishing point at (490, 240) in a 700 x 600 viewBox. */
+  .hero-plate {
+    --hp-vp: 490px 240px;
+    view-timeline: --hero-plate block;
+  }
+
+  .hero-plate__poster,
+  .hero-plate__detail,
+  .hero-plate__grain {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-plate .hp-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-plate__grain {
+    pointer-events: none;
+    background-repeat: repeat;
+    background-size: 128px 128px;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+  }
+
+  .hero-plate .hp-pane,
+  .hero-plate .hp-pane-inner,
+  .hero-plate .hp-line,
+  .hero-plate .hp-floor {
+    transform-box: view-box;
+    transform-origin: var(--hp-vp);
+  }
+
+  .hero-plate__detail.is-intro .hp-pane-inner {
+    will-change: transform;
+  }
+
+  /* Mobile: four panes, no callout labels. */
+  @media (max-width: 1023px) {
+    .hero-plate .hp-far,
+    .hero-plate .hp-label {
+      display: none;
+    }
+  }
+
+  /* Desktop: the plate's left edge dissolves into the shell ink. */
+  @media (min-width: 1024px) {
+    .hero-plate {
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%);
+      mask-image: linear-gradient(to right, transparent 0, #000 12%);
+    }
+  }
+
+  /* Scroll parallax, CSS only, where supported. A camera rising by K moves a
+     point at depth z up by K / z: panes translate by var(--hp-k) (1 / z), and
+     the line (plane y = 1.0) and floor (plane y = 2.5) scale about the
+     vanishing point, so the line stays threaded through every port.
+     K = 28.8 viewBox units: near pane about 24px, far pane about 4px. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .hero-plate__detail .hp-pane,
+      .hero-plate__detail .hp-line,
+      .hero-plate__detail .hp-floor {
+        animation-duration: 1ms;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: --hero-plate;
+        animation-range: exit 0% exit 100%;
+      }
+
+      .hero-plate__detail .hp-pane {
+        animation-name: hp-drift-pane;
+      }
+
+      .hero-plate__detail .hp-line {
+        animation-name: hp-drift-line;
+      }
+
+      .hero-plate__detail .hp-floor {
+        animation-name: hp-drift-floor;
+      }
+    }
+  }
+
+  @keyframes hp-drift-pane {
+    to {
+      transform: translateY(calc(var(--hp-k, 0) * -28.8px));
+    }
+  }
+
+  @keyframes hp-drift-line {
+    to {
+      transform: scaleY(0.88);
+    }
+  }
+
+  @keyframes hp-drift-floor {
+    to {
+      transform: scaleY(0.952);
+    }
+  }
+
   .home-logo-row img {
     filter: saturate(0) contrast(1.05);
   }
