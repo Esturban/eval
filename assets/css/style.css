@@ -2175,6 +2175,13 @@
       }
     }
   }
+  .hover\:bg-cyan-500 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-cyan-500) !important;
+      }
+    }
+  }
   .hover\:bg-gray-50 {
     &:hover {
       @media (hover: hover) {
@@ -2283,6 +2290,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-indigo-600) !important;
+      }
+    }
+  }
+  .hover\:text-slate-950 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-slate-950) !important;
       }
     }
   }
