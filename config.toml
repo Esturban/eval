@@ -38,24 +38,24 @@ gtm_id = "GTM-TWK47J8"
 fb_id = "588541705981208"
 CADPhone = "647-542-9921"
 USAPhone = "786-529-6998"
-description = "Free Live Audit for founder-led agencies: Esteban Valencia reviews your real tool stack live and names the first AI automation worth shipping"
+description = "Free Live Audit for teams shipping with AI: Esteban Valencia reviews your real tool stack live and names the first AI automation worth shipping"
 mainSections = ['services','case study']
 # Hero section elements
-hero_title = "Get AI agents shipped into your agency without hiring anyone"
-hero_subtitle = "For founder-led agencies and small teams already running on real tools"
+hero_title = "Get AI agents shipped into your business without hiring anyone"
+hero_subtitle = "For any team already running on real tools who wants AI to actually ship, not just get discussed"
 hero_CTA = "Get a free Live Audit"
 hero_CTA_link = "/live-audit/"
 hero_img= "images/featured/data-natural-beauty.png"
-hero_description = "Start with a free Live Audit. Esteban reviews your actual tool stack with you, live, and names the first automation worth shipping."
+hero_description = "Start with a free Live Audit, or run the free Narrow Agent Fit Checklist first. Esteban reviews your actual tool stack with you, live, and names the first automation worth shipping."
 
 
 # Mission section elements
-mission_quote = "The teams we help usually are not short on dashboards. They are short on confidence that the numbers are trustworthy enough to drive profitable ecommerce decisions."
+mission_quote = "The teams we help are not short on tools. They are short on confidence that the next AI build is worth shipping, or that the one they already shipped is actually working."
 mission_author = "Esteban Valencia, Founder at EV Advisory"
-mission_description = "We help ecommerce and Shopify teams rebuild trust in the information behind growth decisions. The goal is not more dashboards. The goal is faster, cleaner decisions backed by data your team can actually trust."
+mission_description = "We help owner-operators, sales leaders, and procurement or IT teams answer one question before they spend the budget: is this AI idea narrow enough, safe enough, and worth building. The goal is not another dashboard. The goal is a faster, honest yes or no."
 
 top_n_services_title = "What we fix first"
-top_n_services_subtitle = "Start with signal quality, conversion leakage, and the reporting gaps that keep good teams from moving decisively."
+top_n_services_subtitle = "Start with the AI idea nobody has scoped yet, the competitor pattern your sales team keeps losing to, or the governance gap standing between you and a signed vendor."
 
 
 

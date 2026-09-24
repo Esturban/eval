@@ -19,7 +19,7 @@ faq:
     answer: "A clear map of the trust breaks, the highest-risk gaps, and a practical recommendation for what needs to be fixed first."
 ---
 
-Revenue Signal Diagnostics is for teams that are not short on dashboards. They are short on confidence.
+Before we touch a single dashboard, we find out which number you're actually deciding on, and whether you can trust it yet.
 
 The problem usually shows up like this:
 
@@ -53,3 +53,5 @@ This is diagnostic work first. The value is clarity on where the noise is coming
 This is usually a fit when the business is already spending on growth and the team needs better commercial trust, not more abstract analytics.
 
 If your team keeps pausing performance decisions because the numbers do not reconcile cleanly, start here, or take the [Revenue Signal Scorecard]({{< relref "scorecard" >}}) first.
+
+If your budget is closer to USD 500 than a full engagement, start with the DIY AI Workflow Audit Kit or the AI Workflow Audit in the [store]({{< relref "store" >}}) instead.
