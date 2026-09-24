@@ -1,28 +1,10 @@
 {{ define "main" }}
-<main>
-    {{/* TASK-5844 finish-gate rework: EV's 7-point "still looks cheap"
-         review. Point 1/2 (one hero, no competing banners) and point 4
-         (continuous flow) together mean the pinned agent-network canvas now
-         runs the WHOLE homepage story - hero through Reviews - instead of
-         starting after a separate static hero section. hero-intro.html (the
-         headline/subtitle/CTA) and default-mission.html (the "why work gets
-         stuck" panel) are now the first two blocks scrolling over the same
-         canvas that Tools/Proof/Reviews already used, so there is one
-         continuous dark scene instead of hero -> white section -> dark scene
-         banding. Only the closing Live Audit CTA stays outside it, as the
-         page's one light, unambiguous "stop scrolling and act" moment. */}}
-    {{ $sceneSrc := partial "agent-network-scene-src.html" . }}
-    <div id="agent-scene" class="agent-scene" data-agent-scene data-scene-src="{{ $sceneSrc }}">
-        {{ partial "agent-network-pin.html" . }}
-        <div class="agent-scene__content">
-            {{ partial "hero-intro.html" . }}
-            {{ partial "default-mission.html" . }}
-            {{ partial "home-tools.html" . }}
-            {{ partial "home-validation.html" . }}
-            {{ partial "home-reviews.html" . }}
-        </div>
-    </div>
-
+<main class="home-arc">
+    {{ partial "hero-intro.html" . }}
+    {{ partial "default-mission.html" . }}
+    {{ partial "home-tools.html" . }}
+    {{ partial "home-validation.html" . }}
+    {{ partial "home-reviews.html" . }}
     {{ partial "register-cta.html" . }}
 </main>
 {{ end }}
