@@ -4,7 +4,7 @@ title = "Services"
 description = "EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools. Revenue signal services for Shopify and ecommerce teams continue alongside."
 +++
 
-EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools, without adding headcount, typically live within 2 to 6 weeks of kickoff. Start with a free [Live Audit](/live-audit/) to find the first automation worth shipping.
+EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools, without adding headcount. A first agent is typically live within 2 to 6 weeks of kickoff. Start with a free [Live Audit](/live-audit/) to find the first automation worth shipping.
 
 The revenue signal services below continue for Shopify and ecommerce teams. That work is built around a narrow operating problem: teams cannot move decisively when the revenue signal is noisy.
 
