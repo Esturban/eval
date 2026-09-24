@@ -1,0 +1,48 @@
+# Canonical entity block for EV Advisory and its founder.
+# Single source of truth for structured data (layouts/partials/schema/*),
+# the footer tagline, and the lead paragraph of static/llms.txt.
+# Change the business description here, then mirror it in llms.txt and about.md.
+#
+# Sources: hero copy in config.toml (hero_title, hero_subtitle), founder
+# description in content/about.md, contact and social params in config.toml.
+
+name = "EV Advisory"
+url = "https://evadvisory.ca/"
+description = "EV Advisory ships AI agents into founder-led agencies and small teams that already run on real tools, without adding headcount."
+tagline = "AI agents shipped into founder-led agencies and small teams."
+email = "info@evadvisory.ca"
+telephone = ["+1-647-542-9921", "+1-786-529-6998"]
+logo = "/images/evadvisory-logo.png"
+areaServed = ["Canada", "United States"]
+
+# Lead service first. Earlier ecommerce work stays listed as secondary.
+services = [
+  "AI agent implementation",
+  "Revenue signal diagnostics",
+  "Conversion systems and lifecycle improvement",
+  "Reporting and operations redesign",
+]
+
+knowsAbout = [
+  "AI agents",
+  "AI agent implementation",
+  "Workflow automation",
+  "Ecommerce analytics",
+  "Revenue signal diagnostics",
+]
+
+sameAs = [
+  "https://www.linkedin.com/company/ev-advisory/",
+  "https://facebook.com/evadvisory",
+  "https://instagram.com/evadvisory",
+  "https://github.com/EV-Advisory",
+]
+
+[founder]
+name = "Esteban Valencia"
+jobTitle = "Founder"
+description = "Esteban Valencia is a data and growth operator who works across strategy, implementation, and operating design. He founded and leads EV Advisory."
+image = "/assets/images/global/author.webp"
+url = "https://evadvisory.ca/about/"
+# Personal profile URLs (for example a personal LinkedIn) go here once confirmed.
+sameAs = []

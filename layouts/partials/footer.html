@@ -102,6 +102,6 @@
         <div class="mt-8 flex flex-wrap items-center justify-center border-t border-slate-800 pt-6 text-slate-400">
           <p class="text-sm text-center text-slate-500">&copy; {{ now.Format "2006" }}
               {{ .Site.Title }}. All rights reserved.</p>
-          <p class="mt-2 w-full text-center text-sm text-slate-500">Built for operators who need cleaner revenue decisions.</p>
+          <p class="mt-2 w-full text-center text-sm text-slate-500">{{ hugo.Data.entity.tagline }}</p>
         </div>
 </footer>

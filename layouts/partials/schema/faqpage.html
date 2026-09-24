@@ -1,0 +1,12 @@
+{{- /* FAQPage node from front matter `faq` (list of question/answer).
+   Entries with an empty answer are skipped, so scaffolded questions never ship
+   as empty answers. Returns an empty dict when nothing is answerable. */ -}}
+{{- $questions := slice -}}
+{{- range .Params.faq -}}
+  {{- if and .question .answer -}}
+    {{- $questions = $questions | append (dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" (.answer | plainify))) -}}
+  {{- end -}}
+{{- end -}}
+{{- $node := dict -}}
+{{- if $questions -}}{{- $node = dict "@type" "FAQPage" "@id" (printf "%s#faq" .Permalink) "mainEntity" $questions -}}{{- end -}}
+{{- return $node -}}

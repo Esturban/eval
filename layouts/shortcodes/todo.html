@@ -1,0 +1,10 @@
+{{- /*
+  Authoring note for scaffolded pages. Renders nothing, so notes (including
+  internal blockers) never reach the built HTML. Usage:
+    {{< todo "What goes here, and any blocker." >}}
+  Remove the note once the section is written. Building a published (non-draft)
+  page that still carries a note prints a warning so it is not forgotten.
+*/ -}}
+{{- if not .Page.Draft -}}
+  {{- warnf "unresolved authoring note on %s" .Page.RelPermalink -}}
+{{- end -}}

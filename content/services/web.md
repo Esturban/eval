@@ -1,4 +1,7 @@
 ---
+schema:
+  service:
+    audience: Shopify and ecommerce operators
 title: "Web"
 date: 2022-07-17T11:10:36+08:00
 draft: true

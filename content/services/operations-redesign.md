@@ -1,4 +1,7 @@
 ---
+schema:
+  service:
+    audience: Shopify and ecommerce operators
 title: "Reporting And Operations Redesign"
 date: 2022-07-15T11:10:36+08:00
 draft: false
