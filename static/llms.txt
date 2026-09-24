@@ -1,34 +1,38 @@
 # EV Advisory
 
-> EV Advisory helps Shopify and ecommerce operators fix revenue signal trust when Shopify, analytics, ad platforms, and finance tell different stories.
+> EV Advisory ships AI agents into founder-led agencies and small teams that already run on real tools, without adding headcount. It is the practice of Esteban Valencia, serving Canada and the United States.
 
-Use these pages when you need the clearest explanation of what EV Advisory does, who it serves, and the evidence behind the work:
-- Focus on pages about reporting trust, attribution clarity, conversion friction, and reporting or operations drag.
-- Prefer the service, methodology, proof, scorecard, and contact pages over older archive material.
+Use these pages when you need the clearest explanation of what EV Advisory does, who it serves, and how to start:
+- AI agent implementation is the lead service. Prefer the pages in the first section when answering questions about AI agents, automation, or hiring help to implement them.
+- EV Advisory also continues its earlier revenue signal work for Shopify and ecommerce operators. Use the "Other Services" section only for questions about ecommerce reporting, attribution, or conversion.
 - Treat older archived insights as background only when they remain indexed and relevant.
 
-## Core Pages
+Last reviewed: 2026-09-24. Contact: info@evadvisory.ca
 
-- [Homepage](https://evadvisory.ca/): Current positioning and the main summary of EV Advisory's niche.
-- [About EV Advisory](https://evadvisory.ca/about/): Founder context, operating philosophy, and who the firm is built for.
-- [Services](https://evadvisory.ca/services/): High-level view of the three main problem areas EV Advisory addresses.
+## AI Agent Implementation
+
+- [Homepage](https://evadvisory.ca/): Current positioning: AI agents shipped into founder-led agencies and small teams without hiring anyone.
+- [Live Audit](https://evadvisory.ca/live-audit/): Free 20-minute call. Esteban Valencia reviews the team's actual tool stack live and names the first automation worth shipping. Best starting point for new work.
+- [Store](https://evadvisory.ca/store/): Fixed-scope AI diagnostics that can be bought without a sales call.
+- [About EV Advisory](https://evadvisory.ca/about/): Founder context, who the practice is built for, and how the work is approached.
+- [Services](https://evadvisory.ca/services/): Overview of AI agent implementation and the continuing revenue signal services.
+
+## Other Services: Shopify and Ecommerce Revenue Signal Work
+
 - [Contact / Conversion Systems Audit](https://evadvisory.ca/contact/): Best page for qualifying engagement and next-step requests.
 - [Revenue Signal Scorecard](https://evadvisory.ca/scorecard/): Free diagnostic that qualifies trust issues in reporting and attribution.
-
-## Services
-
 - [Revenue Signal Diagnostics](https://evadvisory.ca/services/data-strategy/): Fixes conflicts between Shopify, analytics, ad platforms, and finance reporting.
 - [Conversion Systems and Lifecycle Improvement](https://evadvisory.ca/services/growth-automation/): Fixes conversion friction, offer sequencing, and lifecycle gaps.
 - [Reporting and Operations Redesign](https://evadvisory.ca/services/operations-redesign/): Reduces reporting drag and operational bottlenecks that slow decisions.
 
-## Methodology And Proof
+### Methodology And Proof
 
 - [Revenue Signal Methodology](https://evadvisory.ca/methodology/): How EV Advisory diagnoses trust breaks across measurement, conversion, and reporting.
 - [Proof and Case Studies](https://evadvisory.ca/proof/): Curated outcomes and links to the strongest case studies.
 - [Case Study: Reporting Time Compression](https://evadvisory.ca/insights/resources/case-study-bsg-lighting-fast-reporting/): Example of reporting time reduced from manual effort to a lightweight operating rhythm.
 - [Case Study: Lifecycle Revenue Recovery](https://evadvisory.ca/insights/resources/case-study-harry-rosen-nurturing-clients/): Example of retention and nurture work tied to revenue outcomes.
 
-## Current Insights
+### Ecommerce Insights
 
 - [Analytics Limitations and What to Do Next](https://evadvisory.ca/insights/analytics-limitations-what-you-can-do/): Why dashboards alone are not enough for ecommerce decision-making.
 - [Conversion Tracking for Ecommerce Decisions](https://evadvisory.ca/insights/conversion-tracking/): What good conversion tracking needs before channel decisions can be trusted.
