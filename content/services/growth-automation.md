@@ -49,3 +49,5 @@ The goal is not to automate more for the sake of automation. The goal is to make
 - a more defensible plan for what to test next
 
 If the team first needs to understand whether the measurement is reliable enough to diagnose these issues cleanly, begin with [Revenue Signal Diagnostics]({{< relref "services/data-strategy" >}}).
+
+If the leak is happening in sales conversations instead of on the site, start with the Competitor Review Objection Radar in the [store]({{< relref "store" >}}) instead.

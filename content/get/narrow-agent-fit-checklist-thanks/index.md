@@ -17,3 +17,9 @@ Thanks. Grab your checklist below.
 [Download the PDF](/dl/3d3e2954b2ac/narrow-agent-fit-checklist.pdf)
 
 Keep this link. It is not indexed or listed anywhere.
+
+## Once you've run the six checks
+
+If the process turned out narrow enough to build, the next step is a free [Live Audit]({{< relref "live-audit" >}}). Bring what you found and Esteban will name the first automation worth shipping on the call.
+
+If it did not turn out narrow enough yet, that is a useful answer too. Read the [methodology]({{< relref "methodology" >}}) to see how to break the process down further, or [contact us]({{< relref "contact" >}}) and describe what you found. We will tell you what to build first.

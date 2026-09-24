@@ -23,4 +23,14 @@ body = "It fits if your team already works in real tools and you are open to ado
 eyebrow = "Build in public"
 heading = "Your call can become your case study."
 body = "With your permission, the call becomes a public post: a free case study showing your team building with AI. Nothing goes out without your sign-off."
+
+[[sections]]
+eyebrow = "Not ready to book?"
+heading = "Run the free checklist first."
+body = "Not ready for a call yet? Run the free 10-minute Narrow Agent Fit Checklist and see if the idea holds up on its own before you book."
+
+[[sections]]
+eyebrow = "Governance and security"
+heading = "Procurement and IT questions are welcome."
+body = "If you are evaluating this for procurement or IT, governance and security questions are welcome on the call. Bring them."
 +++

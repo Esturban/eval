@@ -47,3 +47,5 @@ That includes:
 - a reporting rhythm that helps decisions happen earlier
 
 This service becomes especially valuable after the business already knows where signal trust is weak and wants to turn that diagnosis into a more stable operating system.
+
+If your team is still hand-drafting the same tender response every time an RFP or RFI comes in, that is not a reporting problem anymore, it is an automation problem. See the RFP/RFI Response Automation item in the [store]({{< relref "store" >}}).
