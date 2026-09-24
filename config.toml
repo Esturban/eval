@@ -39,7 +39,7 @@ USAPhone = "786-529-6998"
 description = "Free Live Audit for founder-led agencies: Esteban Valencia reviews your real tool stack live and names the first AI automation worth shipping"
 mainSections = ['services','case study']
 # Hero section elements
-hero_title = "Get AI agents shipped into your agency without hiring anyone"
+hero_title = "An AI agent in your tools. No new hire."
 hero_subtitle = "For founder-led agencies and small teams already running on real tools"
 hero_CTA = "Get a free Live Audit"
 hero_CTA_link = "/live-audit/"
@@ -48,12 +48,12 @@ hero_description = "Start with a free Live Audit. Esteban reviews your actual to
 
 
 # Mission section elements
-mission_quote = "The teams we help usually are not short on dashboards. They are short on confidence that the numbers are trustworthy enough to drive profitable ecommerce decisions."
+mission_quote = "The agencies we work with are not short on AI ideas. They are short on one working agent inside the tools they already run, owned by someone on the team."
 mission_author = "Esteban Valencia, Founder at EV Advisory"
-mission_description = "We help ecommerce and Shopify teams rebuild trust in the information behind growth decisions. The goal is not more dashboards. The goal is faster, cleaner decisions backed by data your team can actually trust."
+mission_description = "We help founder-led agencies and small service teams hand one repeated process to an AI agent, built into the tools they already use. The goal is not more software. The goal is one process off the founder's plate, measured before and after, without adding headcount."
 
 top_n_services_title = "What we fix first"
-top_n_services_subtitle = "Start with signal quality, conversion leakage, and the reporting gaps that keep good teams from moving decisively."
+top_n_services_subtitle = "Start with one repeated process, built into the tools your team already runs, and handed over so nobody new is needed."
 
 
 
