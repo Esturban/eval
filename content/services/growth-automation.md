@@ -4,7 +4,7 @@ schema:
     audience: Shopify and ecommerce operators
 title: "Conversion Systems And Lifecycle Improvement"
 date: 2022-07-16T11:10:36+08:00
-draft: false
+draft: true
 language: en
 featured_image: /images/featured/growth-automation.png
 summary: Improve the site and lifecycle journeys that quietly suppress conversion so growth performance becomes easier to explain and easier to scale.

@@ -4,7 +4,7 @@ schema:
     audience: Shopify and ecommerce operators
 title: "Reporting And Operations Redesign"
 date: 2022-07-15T11:10:36+08:00
-draft: false
+draft: true
 language: en
 featured_image: /images/featured/ops-redesign.png
 summary: Reduce reporting drag, manual handoffs, and recurring operating friction so ecommerce teams can spend more time acting on signal and less time rebuilding it.

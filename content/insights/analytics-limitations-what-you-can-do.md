@@ -62,4 +62,4 @@ When the signal is weak, teams usually need a combination of:
 
 That is the difference between seeing movement and understanding what decision the movement should support.
 
-If your team is stuck in that gap, start with the [Revenue Signal Scorecard]({{< relref "scorecard" >}}) or review the [Revenue Signal Diagnostics service]({{< relref "services/data-strategy" >}}).
+If your team is stuck in that gap, start with the [Revenue Signal Scorecard]({{< relref "scorecard" >}}).
