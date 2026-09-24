@@ -19,13 +19,46 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
+// TASK-5844 finish-gate rework: the pinned scene wrapper now starts at the
+// hero (point 1/2, one hero, no separate static section) instead of at the
+// Tools section, so its total scroll range is much taller than when the 3D
+// "story" (camera keyframes, node labels, agent-to-agent handoffs) was
+// tuned. Without adjustment, that story now plays out proportionally too
+// early - e.g. the first agent's label lands mid-hero instead of near the
+// Tools section that actually talks about inboxes. Rather than hand-tune a
+// fixed pixel or percentage offset (fragile, re-breaks on any copy/layout
+// change - see home-validation.html's own comment on avoiding exactly this
+// trap), this measures the real DOM: the hero + mission "prologue" height is
+// whatever sits above #tools inside the wrapper, computed once from layout.
+// Progress below that prologue fraction is reported as flat 0 (the scene
+// stays in its idle/ambient state - nodes lit dim, particle stream still
+// flowing - behind the hero and mission text); progress above it is
+// rescaled back to a full 0-1 range across the Tools/Proof/Reviews content,
+// so the story timing this scene's camera keyframes and node positions were
+// tuned against is preserved.
+let prologueFraction = null;
+
+function getPrologueFraction(wrapper, total) {
+  if (prologueFraction !== null) return prologueFraction;
+  const storyStart = wrapper.querySelector('#tools');
+  if (!storyStart || total <= 0) {
+    prologueFraction = 0;
+    return prologueFraction;
+  }
+  prologueFraction = clamp(storyStart.offsetTop / total, 0, 0.9);
+  return prologueFraction;
+}
+
 function computeProgress(wrapper) {
   const rect = wrapper.getBoundingClientRect();
   const total = wrapper.offsetHeight - window.innerHeight;
   if (total <= 0) return 0;
   // rect.top is how far the wrapper's start is above the viewport top; as the
   // visitor scrolls, rect.top goes from 0 to -total across the pinned range.
-  return clamp(-rect.top / total, 0, 1);
+  const raw = clamp(-rect.top / total, 0, 1);
+  const prologue = getPrologueFraction(wrapper, total);
+  if (prologue <= 0) return raw;
+  return clamp((raw - prologue) / (1 - prologue), 0, 1);
 }
 
 function init() {

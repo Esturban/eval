@@ -34,7 +34,11 @@
        alt=""
        aria-hidden="true"
        loading="lazy" />
-  {{ range slice "Inbox" "CRM" "Project tool" "Documents" }}
+  {{/* TASK-5844 rework: relabeled from tool names to agent instances, matching
+       agent-network-scene.js's NODE_DEFS (same order: inbox, crm, project,
+       docs) so the visual reads as agents handing work to each other, not a
+       single courier visiting tool icons. */}}
+  {{ range slice "Inbox agent" "CRM agent" "Project agent" "Docs agent" }}
   <span class="agent-scene__label" aria-hidden="true">{{ . }}</span>
   {{ end }}
 </div>
