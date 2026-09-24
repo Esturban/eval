@@ -1,10 +1,12 @@
 +++
 author = "Esteban Valencia"
 title = "Services"
-description = "EV Advisory services are organized around reporting trust, conversion friction, lifecycle improvement, and reporting or operations drag for Shopify and ecommerce teams."
+description = "EV Advisory ships AI agents into founder-led agencies and small teams that already run on real tools. Revenue signal services for Shopify and ecommerce teams continue alongside."
 +++
 
-EV Advisory is built around a narrow operating problem: teams cannot move decisively when the revenue signal is noisy.
+EV Advisory ships AI agents into founder-led agencies and small teams that already run on real tools, without adding headcount. Start with a free [Live Audit](/live-audit/) to find the first automation worth shipping.
+
+The revenue signal services below continue for Shopify and ecommerce teams. That work is built around a narrow operating problem: teams cannot move decisively when the revenue signal is noisy.
 
 The service set is therefore organized around the places where trust usually breaks first:
 

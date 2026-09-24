@@ -1,5 +1,5 @@
 ---
-author: Esteban V.
+author: Esteban Valencia
 title: "Get the Narrow Agent Fit Checklist"
 description: "One page, six checks, run it today against any repeated process before you build, buy, or hire for it."
 date: 2026-09-23T00:00:00.000Z
