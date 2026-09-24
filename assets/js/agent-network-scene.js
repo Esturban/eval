@@ -23,12 +23,44 @@ import * as THREE from 'three';
 // content/services/ai-agent-implementation.md: "a CRM, a project tool, shared
 // inboxes, a document system"), each paired with the kind of item an agent
 // picks up there.
-const NODES = [
-  { id: 'inbox', label: 'Inbox', item: 'mail', position: new THREE.Vector3(-3.2, 0.5, -0.4) },
-  { id: 'crm', label: 'CRM', item: 'contact', position: new THREE.Vector3(-1.15, -0.55, 1.1) },
-  { id: 'project', label: 'Project tool', item: 'check', position: new THREE.Vector3(1.15, -0.55, 1.1) },
-  { id: 'docs', label: 'Documents', item: 'key', position: new THREE.Vector3(3.2, 0.5, -0.4) },
+const NODE_DEFS = [
+  { id: 'inbox', label: 'Inbox', item: 'mail' },
+  { id: 'crm', label: 'CRM', item: 'contact' },
+  { id: 'project', label: 'Project tool', item: 'check' },
+  { id: 'docs', label: 'Documents', item: 'key' },
 ];
+
+// TASK-5844: EV rejected the earlier crescent/bow arrangement ("it should
+// feel like agents on an information highway"). Geometry is now one straight
+// main lane running along Z (receding away from camera at MAIN_LANE_Z_FAR,
+// passing near/toward the viewer at MAIN_LANE_Z_NEAR) with each tool node
+// sitting off to alternating sides, joined to the lane by a short diagonal
+// on-ramp spur instead of lying directly on a single curve. Nodes alternate
+// left/right and up/down purely for on-ramp readability; travel order
+// (inbox -> crm -> project -> docs) is unchanged.
+const MAIN_LANE_Y = -0.05;
+const MAIN_LANE_Z_FAR = -1.5;
+const MAIN_LANE_Z_NEAR = 1.5;
+const RAMP_LATERAL = 1.8; // how far a node sits off the main lane, in X
+const RAMP_SET_BACK = 1.6; // how far upstream (in Z) the node is from its own merge point, so the ramp meets the lane at an angle instead of head-on
+const MERGE_T = [0.15, 0.4, 0.62, 0.85]; // where each node's on-ramp joins the main lane, as a fraction of lane length
+const RAMP_SIDE = [-1, 1, -1, 1];
+const RAMP_LIFT = [0.42, -0.35, 0.35, -0.42];
+
+function lerpNum(a, b, t) {
+  return a + (b - a) * t;
+}
+
+const NODES = NODE_DEFS.map((def, i) => {
+  const mergeZ = lerpNum(MAIN_LANE_Z_FAR, MAIN_LANE_Z_NEAR, MERGE_T[i]);
+  const mergePoint = new THREE.Vector3(0, MAIN_LANE_Y, mergeZ);
+  const position = new THREE.Vector3(
+    RAMP_SIDE[i] * RAMP_LATERAL,
+    MAIN_LANE_Y + RAMP_LIFT[i],
+    mergeZ - RAMP_SET_BACK
+  );
+  return { ...def, position, mergePoint };
+});
 
 const STAGE_BOUNDS = [0, 1 / 3, 2 / 3, 1];
 
@@ -192,12 +224,40 @@ export function createAgentScene({ canvas, wrapper }) {
     return { ...node, mesh, sprite };
   });
 
-  // The path the agent physically travels: through every node in offer order,
-  // inbox to documents, so "picking up" reads left to right like the copy.
-  const pathPoints = nodeMeshes.map((n) => n.mesh.position.clone());
-  const curve = new THREE.CatmullRomCurve3(pathPoints, false, 'catmullrom', 0.5);
+  // The path the agent physically travels: the straight main lane, with a
+  // detour out to each node's position along its on-ramp and back onto the
+  // lane before continuing, in offer order (inbox to documents) so "picking
+  // up" reads left to right like the copy. Built from straight LineCurve3
+  // segments only (no CatmullRom smoothing) so the path itself is literally
+  // straight lane + straight ramps, never a bow/arc.
+  const laneStart = new THREE.Vector3(0, MAIN_LANE_Y, MAIN_LANE_Z_FAR);
+  const laneEnd = new THREE.Vector3(0, MAIN_LANE_Y, MAIN_LANE_Z_NEAR);
+  const waypoints = [laneStart];
+  const nodeArrivalIndex = [];
+  nodeMeshes.forEach((node) => {
+    waypoints.push(node.mergePoint.clone());
+    waypoints.push(node.mesh.position.clone());
+    nodeArrivalIndex.push(waypoints.length - 1);
+    waypoints.push(node.mergePoint.clone());
+  });
+  waypoints.push(laneEnd);
 
-  const lineGeo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(64));
+  const curve = new THREE.CurvePath();
+  for (let i = 0; i < waypoints.length - 1; i += 1) {
+    curve.add(new THREE.LineCurve3(waypoints[i], waypoints[i + 1]));
+  }
+
+  // Arc-length fraction (0-1 of the whole travelled path) at which the agent
+  // is exactly at each node, so "isNear"/"collected" logic below reflects the
+  // new lane+ramp path length instead of assuming nodes are evenly spaced.
+  const segmentLengths = curve.curves.map((c) => c.getLength());
+  const totalLength = segmentLengths.reduce((a, b) => a + b, 0);
+  const cumLengths = [0];
+  segmentLengths.forEach((len) => cumLengths.push(cumLengths[cumLengths.length - 1] + len));
+  const nodeT = nodeArrivalIndex.map((idx) => cumLengths[idx] / totalLength);
+  const NODE_NEAR_WINDOW = 0.09;
+
+  const lineGeo = new THREE.BufferGeometry().setFromPoints(waypoints);
   scene.add(new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0x0891b2, transparent: true, opacity: 0.32 })));
 
   const agentGeo = new THREE.IcosahedronGeometry(0.17, 1);
@@ -265,7 +325,15 @@ export function createAgentScene({ canvas, wrapper }) {
   function updateLabels() {
     const rect = canvas.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
-    const nearestIndex = clamp(Math.round(progress * (NODES.length - 1)), 0, NODES.length - 1);
+    let nearestIndex = 0;
+    let nearestDist = Infinity;
+    nodeT.forEach((t, i) => {
+      const dist = Math.abs(progress - t);
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearestIndex = i;
+      }
+    });
     nodeMeshes.forEach((node, i) => {
       const el = labelEls[i];
       if (!el) return;
@@ -273,7 +341,7 @@ export function createAgentScene({ canvas, wrapper }) {
       const x = (projected.x * 0.5 + 0.5) * rect.width;
       const y = (1 - (projected.y * 0.5 + 0.5)) * rect.height;
       el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, calc(-100% - 14px))`;
-      const revealed = progress > i / (NODES.length + 1) - 0.04 || i === 0;
+      const revealed = progress > nodeT[i] - NODE_NEAR_WINDOW || i === 0;
       const isActive = revealed && i === nearestIndex;
       el.classList.toggle('is-active', isActive);
       // Dim inactive-but-revealed labels so they read as background context
@@ -296,8 +364,7 @@ export function createAgentScene({ canvas, wrapper }) {
     agentHalo.position.y = agent.position.y;
 
     nodeMeshes.forEach((node, i) => {
-      const nodeT = i / (NODES.length - 1);
-      const isNear = Math.abs(pathT - nodeT) < 1 / (NODES.length - 1);
+      const isNear = Math.abs(pathT - nodeT[i]) < NODE_NEAR_WINDOW;
       const targetIntensity = isNear ? 1.05 : 0.4;
       const targetColor = isNear ? BRIGHT : DIM;
       node.mesh.material.emissiveIntensity += (targetIntensity - node.mesh.material.emissiveIntensity) * 0.08;
@@ -307,8 +374,7 @@ export function createAgentScene({ canvas, wrapper }) {
     });
 
     items.forEach((item, i) => {
-      const nodeT = i / (NODES.length - 1);
-      const collected = pathT >= nodeT;
+      const collected = pathT >= nodeT[i];
       const targetOpacity = collected ? 0.9 : 0;
       item.sprite.material.opacity += (targetOpacity - item.sprite.material.opacity) * 0.1;
       if (collected) {
