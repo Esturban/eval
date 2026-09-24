@@ -2,6 +2,17 @@
      the caller can put it on the outer wrapper's data-scene-src attribute
      before that wrapper's children are rendered. Kept as its own partial
      purely so it can `return` a plain string (see agent-network-pin.html for
-     the matching canvas/poster/label markup and the small loader script). */}}
-{{ $scene := resources.Get "js/agent-network-scene.js" | js.Build (dict "format" "esm" "target" "es2020" "minify" true) }}
+     the matching canvas/poster/label markup and the small loader script).
+
+     ROOT-RELATIVE ASSET URL (TASK-5844 finish-gate fix, same bug as
+     agent-network-pin.html's loader/poster): this site's config.toml sets
+     baseURL to the production domain with canonifyURLs = true, so Hugo's
+     canonify pass absolute-ifies any "/..." URL, including a plain
+     .RelPermalink, into https://evadvisory.ca/... - which 404s and gets
+     ORB-blocked under a bare local static-serve preview since this bundle
+     isn't live in production yet. Piping through resources.PostProcess (as
+     agent-network-pin.html already does for the loader/poster) substitutes
+     the resource in as the literal final publish step, after canonify has
+     already run, so the URL survives root-relative. */}}
+{{ $scene := resources.Get "js/agent-network-scene.js" | js.Build (dict "format" "esm" "target" "es2020" "minify" true) | resources.PostProcess }}
 {{ return $scene.RelPermalink }}
