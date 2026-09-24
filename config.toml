@@ -39,9 +39,12 @@ USAPhone = "786-529-6998"
 description = "EV Advisory ships AI agents into the tools founder-led agencies and operations teams already run. Start with a free 20-minute Live Audit that names the first automation worth shipping."
 mainSections = ['services','case study']
 # Hero section elements
-hero_title = "An AI agent in your tools. No new hire."
-hero_subtitle = "For founder-led agencies already running a CRM, project tools, and shared inboxes"
-hero_CTA = "Get a free Live Audit"
+hero_title = "We ship a working AI agent into your systems in weeks, not months."
+hero_title_follow = "Built into the tools you already run."
+hero_subtitle = "Microsoft, Google, SAP, Salesforce, or spreadsheets. We build on what you already run."
+hero_CTA = "Book your first ship"
+# Line beside the hero call to action. Unset it and nothing renders.
+hero_guarantee = "First agent live in your systems within 10 business days of access, or next month is free."
 hero_CTA_link = "/live-audit/"
 hero_img= "images/featured/data-natural-beauty.png"
 hero_description = "Walk away from one call already knowing which process to automate first and what it takes to ship it. Esteban Valencia, founder of EV Advisory, reviews your actual stack with you, live."

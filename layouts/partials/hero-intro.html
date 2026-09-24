@@ -1,14 +1,16 @@
 {{/*
-  Homepage hero: a literal highway. Agent vehicles drive real lanes, each
-  carrying a name-and-job header and a live event tag with its tool icon.
-  The stage is sticky inside a tall section, so scrolling moves the story
-  through four steps (inputs arrive, agents pick up, tools get used, work
-  lands) while traffic keeps cruising on its own.
+  Homepage hero: a divided highway with one overpass. Agent vehicles drive
+  toward the viewer carrying a live event tag, pass under the overpass where
+  the tag turns into finished work, and drive away on the far side still
+  carrying it. Labels are type on a stem, never panels. The stage is sticky
+  inside a tall section, so scrolling moves the story through four steps
+  while traffic keeps cruising on its own.
 
   Script URLs go through resources.PostProcess so they stay root-relative
   after the canonifyURLs pass (baseURL points at production).
 */}}
 {{ $hero_title := .Site.Params.hero_title }}
+{{ $hero_title_follow := .Site.Params.hero_title_follow }}
 {{ $hero_subtitle := .Site.Params.hero_subtitle }}
 {{ $hero_cta := .Site.Params.hero_CTA }}
 {{ $hero_cta_link := .Site.Params.hero_CTA_link }}
@@ -42,25 +44,33 @@
 
     <div class="hw__copy">
       <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl" data-hw-copy>
+        <div class="max-w-[46rem]" data-hw-copy>
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300 sm:text-sm">
             AI agents for founder-led teams
           </p>
-          <h1 class="mt-5 max-w-[13ch] text-[3.25rem] font-semibold leading-[0.92] tracking-tight text-[#f7f4ee] sm:text-7xl lg:text-8xl">
+          <h1 class="mt-5 max-w-[19ch] text-[2.1rem] [text-wrap:balance] font-semibold leading-[1.02] tracking-[-0.035em] text-[#f7f4ee] sm:text-[3.4rem] lg:text-[4rem]">
             {{ $hero_title }}
+            {{ with $hero_title_follow }}<span class="mt-4 block text-[0.56em] [text-wrap:balance] font-medium leading-[1.12] tracking-[-0.02em] text-slate-300">{{ . }}</span>{{ end }}
           </h1>
-          <p class="mt-5 max-w-lg text-lg font-medium leading-7 text-slate-300 sm:text-2xl sm:leading-9">
+          <p class="mt-6 max-w-xl text-base font-medium leading-7 text-slate-300 sm:text-xl sm:leading-8">
             {{ $hero_subtitle | markdownify }}
           </p>
-          <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a href="{{ $hero_cta_link }}"
-               class="inline-flex items-center justify-center rounded-full bg-[#f7f4ee] px-7 py-3.5 text-base font-semibold text-slate-950 transition hover:bg-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
+               class="group inline-flex items-center justify-center rounded-full bg-[#f7f4ee] px-7 py-3.5 text-base font-semibold text-slate-950 shadow-[0_0_0_1px_rgba(247,244,238,0.4),0_12px_40px_-12px_rgba(34,211,238,0.55)] transition duration-200 hover:bg-cyan-300 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
               {{ $hero_cta }}
-              <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg class="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
               </svg>
             </a>
-            <a href="#flow" class="hidden text-base sm:inline font-semibold text-slate-200 underline decoration-slate-600 underline-offset-8 transition hover:text-cyan-200 hover:decoration-cyan-300">See how it works</a>
+            {{/* Guarantee beside the call to action; renders only while
+                 site.Params.hero_guarantee is set in config.toml. */}}
+            {{ with site.Params.hero_guarantee }}
+            <p class="flex max-w-[22rem] items-start gap-2.5 text-sm font-medium leading-6 text-slate-300">
+              <svg class="mt-1 h-4 w-4 flex-none text-emerald-300" aria-hidden="true"><use href="#i-check"></use></svg>
+              <span>{{ . }}</span>
+            </p>
+            {{ end }}
           </div>
         </div>
       </div>
@@ -79,7 +89,7 @@
     </div>
 
     <p class="sr-only">
-      Illustration: agent vehicles driving a highway.
+      Illustration: agent vehicles drive in along a highway with live work, pass under an overpass, and drive away with the work finished.
       {{ range $bots }}{{ .name }}, {{ lower .job }}: {{ range $i, $e := .events }}{{ if $i }}, {{ end }}{{ lower $e.text }}{{ end }}, then {{ lower .done.text }}. {{ end }}
     </p>
   </div>
