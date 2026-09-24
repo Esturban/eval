@@ -1,0 +1,72 @@
+{{/*
+  "How it works" as one picture: tool icons come in on the left, an agent
+  picks them up in the middle, finished work goes out on the right. One row
+  per agent from data/highway.yaml, so the rows match the vehicles in the
+  hero. Wires and packets are CSS only; reduced motion freezes them.
+*/}}
+{{ $names := dict "mail" "Email" "calendar" "Calendar" "chat" "Chat" "crm" "CRM" "api" "API" "task" "Tasks" "sheet" "Spreadsheet" "invoice" "Invoices" "database" "Database" "doc" "Docs" }}
+{{ $stream := slice "mail" "calendar" "crm" "sheet" "chat" "task" "database" "invoice" "api" "doc" "mail" "crm" "calendar" "sheet" "task" "chat" }}
+
+<section id="flow" class="arc-section overflow-hidden py-24 sm:py-32" data-tone="#0b1426" style="background-color:#0b1426">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300 sm:text-sm">How it works</p>
+      <h2 class="mt-5 text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+        Work comes in. An agent picks it up. Finished work goes out.
+      </h2>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl sm:leading-9">
+        The tools stay the ones your team already logs into. The agent works inside them, and a person checks the output.
+      </p>
+    </div>
+  </div>
+
+  <div class="flow-stream mt-14" aria-hidden="true">
+    <div class="flow-stream__track">
+      {{ range (slice 1 2) }}
+      {{ range $stream }}
+      <span class="flow-chip flow-chip--stream"><svg><use href="#i-{{ . }}"></use></svg>{{ index $names . }}</span>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="mx-auto mt-14 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flow-head" aria-hidden="true">
+      <span>Comes in</span><span></span><span>Agent picks it up</span><span></span><span>Goes out, finished</span>
+    </div>
+    <ol class="flow-rows">
+      {{ range $i, $b := site.Data.highway.bots }}
+      <li class="flow-row" style="--bot: {{ $b.color | safeCSS }}; --i: {{ $i }}">
+        <div class="flow-in">
+          <span class="flow-label">Comes in</span>
+          <div class="flex flex-wrap gap-2">
+            {{ range $b.inputs }}
+            <span class="flow-chip"><svg aria-hidden="true"><use href="#i-{{ . }}"></use></svg>{{ index $names . }}</span>
+            {{ end }}
+          </div>
+        </div>
+        <div class="flow-wire" aria-hidden="true"><i class="flow-packet"><svg><use href="#i-{{ index $b.inputs 0 }}"></use></svg></i></div>
+        <div class="flow-agent">
+          <span class="flow-agent__icon"><svg aria-hidden="true"><use href="#i-bot"></use></svg></span>
+          <span>
+            <span class="block text-lg font-semibold text-white sm:text-xl">{{ $b.name }}</span>
+            <span class="block font-mono text-xs uppercase tracking-[0.14em] text-slate-400">{{ $b.job }}</span>
+          </span>
+        </div>
+        <div class="flow-wire flow-wire--out" aria-hidden="true"><i class="flow-packet"><svg><use href="#i-check"></use></svg></i></div>
+        <div class="flow-out">
+          <span class="flow-label">Goes out</span>
+          <p class="flex items-start gap-3 text-base font-semibold leading-6 text-white sm:text-lg">
+            <svg class="mt-0.5 h-6 w-6 flex-none text-emerald-400" aria-hidden="true"><use href="#i-check"></use></svg>
+            {{ $b.output }}
+          </p>
+        </div>
+      </li>
+      {{ end }}
+    </ol>
+    <p class="mt-10 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-slate-400 sm:text-sm">
+      <svg class="h-5 w-5 flex-none text-cyan-300" aria-hidden="true"><use href="#i-person"></use></svg>
+      Example agents. A person approves the output until your team trusts it.
+    </p>
+  </div>
+</section>
