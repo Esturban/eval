@@ -61,4 +61,4 @@ When creating your content calendar, be sure to consider the following best prac
 
 This is a simple summary of the best practices, but there is information available from leaders in the industry such as [Hubspot that help you get organized with their guides for Social Media and Content Calendars.](https://offers.hubspot.com/social-media-content-calendar)   
 
-Don't let your social media efforts fall short! Make sure to have a clear understanding of your goals and target audience, as well as a consistent approach to content creation. In the event you've got outstanding questions on the subject, [contact EV Advisory today to learn more about how to create a winning social media plan and calendar that delivers results!]({{< relref "contact" >}})  
+Don't let your social media efforts fall short! Make sure to have a clear understanding of your goals and target audience, as well as a consistent approach to content creation. If keeping this calendar current has turned into a repeated chore your team keeps doing by hand, run the free [Narrow Agent Fit Checklist]({{< relref "get/narrow-agent-fit-checklist" >}}) and see if it's narrow enough to automate.  

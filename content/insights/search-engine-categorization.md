@@ -50,4 +50,4 @@ The right outcome is not to rank for everything related to marketing or analytic
 
 That is a much stronger authority position than broad visibility across unrelated generic topics.
 
-If your site has already evolved into a narrower niche, the structure and archive should evolve with it. Otherwise search engines and answer engines keep reading the old story.
+If your site has already evolved into a narrower niche, the structure and archive should evolve with it. Otherwise search engines and answer engines keep reading the old story. See the [Methodology]({{< relref "methodology" >}}) for how EV Advisory decides which pages should carry that authority first.

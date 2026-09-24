@@ -93,3 +93,5 @@ web for similar audiences. If your content is geared towards sports, food, techn
 content will spread as you make an effort to put it in front of the right readers. To learn more about how to
 develop your web presence, [see how EV Advisory recommends you build your web presence and how we help businesses
 like yours grow online with data-first strategy.]({{<relref "insights/web-presence" >}})  
+
+If keeping this kind of link-building and content upkeep running is really the question, not just SEO tactics, run the free [Narrow Agent Fit Checklist]({{<relref "get/narrow-agent-fit-checklist" >}}) and see if it is narrow enough to hand off to an agent.

@@ -163,3 +163,5 @@ and the best search engine for you will depend on your specific needs and prefer
 You may require further research on exactly what you're offering and where users
 might be able to find it as it may be a combination of several search engines to
 get your information in front of your target audience.  
+
+If you're not confident the attribution behind these PPC results is defensible, the [Revenue Signal Scorecard]({{< relref "scorecard" >}}) checks exactly that in about two minutes.

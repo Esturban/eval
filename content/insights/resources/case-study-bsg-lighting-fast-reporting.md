@@ -42,4 +42,4 @@ That translated into:
 - faster access to the performance story
 - more room for the team to spend time on action instead of assembly
 
-This is the kind of outcome EV Advisory targets when reporting drag is the main commercial bottleneck.
+This is the kind of outcome EV Advisory targets when reporting drag is the main commercial bottleneck. See [Reporting and Operations Redesign]({{< relref "services/operations-redesign" >}}) for the full service, or run the free [Narrow Agent Fit Checklist]({{< relref "get/narrow-agent-fit-checklist" >}}) if your reporting task is smaller than a full engagement.

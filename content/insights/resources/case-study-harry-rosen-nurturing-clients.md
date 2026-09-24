@@ -32,4 +32,4 @@ Over three months, the improved lifecycle approach generated more than $100,000 
 
 That outcome matters because it shows the value of cleaner commercial sequencing, not just more traffic.
 
-This is the kind of work EV Advisory focuses on when revenue is already present in the system but the lifecycle engine is not converting it efficiently enough.
+This is the kind of work EV Advisory focuses on when revenue is already present in the system but the lifecycle engine is not converting it efficiently enough. See [Conversion Systems and Lifecycle Improvement]({{< relref "services/growth-automation" >}}) for the full service.

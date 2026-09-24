@@ -50,4 +50,4 @@ For a consulting site like EV Advisory, the important hierarchy is simple:
 
 That is the structure both people and machines can understand.
 
-If your site has useful content but still feels hard to categorize, start by fixing the structure around the pages that matter most.
+If your site has useful content but still feels hard to categorize, start by fixing the structure around the pages that matter most. See the [Methodology]({{< relref "methodology" >}}) for how EV Advisory decides which pages should carry that authority first.
