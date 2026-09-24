@@ -9,7 +9,13 @@
 
 const ROOT_MARGIN = '600px 0px';
 const STEP_COUNT = 4;
-const ARC_BLEND = 0.45; // share of the viewport height used to blend two tones
+// Colour arc: each blend between two tones spans this share of the viewport
+// height. It starts where it always did (the next section 105% down the
+// viewport) but runs on past the boundary instead of finishing at it, so the
+// dark-to-light change is spread over twice the scroll.
+const ARC_BLEND = 0.9;
+const ARC_LEAD = 0.45; // how far past the probe line the blend keeps going
+const ARC_PROBE = 0.6; // where in the viewport a boundary counts as crossed
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -107,6 +113,13 @@ function smooth(t) {
   return t * t * (3 - 2 * t);
 }
 
+// Half linear, half smoothstep: still eases in and out, but its steepest
+// rate of change is well under smoothstep's, so no stretch of scroll flips
+// the page hard.
+function gentle(t) {
+  return 0.5 * t + 0.5 * smooth(t);
+}
+
 function setupArc(main) {
   const sections = Array.from(main.querySelectorAll('.arc-section[data-tone]'));
   if (sections.length < 2) return () => {};
@@ -120,19 +133,20 @@ function setupArc(main) {
 
   function update() {
     const vh = window.innerHeight;
-    const probe = window.scrollY + vh * 0.6;
+    const probe = window.scrollY + vh * ARC_PROBE;
     let i = 0;
     while (i < tops.length - 1 && probe >= tops[i + 1]) i += 1;
     let color = tones[i];
-    const next = i + 1;
-    if (next < tops.length) {
-      const blendStart = tops[next] - vh * ARC_BLEND;
-      const t = clamp((probe - blendStart) / (vh * ARC_BLEND), 0, 1);
-      if (t > 0) {
-        const k = smooth(t);
-        color = tones[i].map((c, j) => Math.round(c + (tones[next][j] - c) * k));
-      }
-    }
+    // The nearest boundary whose blend window holds the probe, whether it
+    // is still ahead (next) or was just crossed (current).
+    [i + 1, i].forEach((b) => {
+      if (b < 1 || b >= tops.length) return;
+      const blendStart = tops[b] - vh * (ARC_BLEND - ARC_LEAD);
+      const t = (probe - blendStart) / (vh * ARC_BLEND);
+      if (t <= 0 || t >= 1) return;
+      const k = gentle(t);
+      color = tones[b - 1].map((c, j) => Math.round(c + (tones[b][j] - c) * k));
+    });
     main.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
   }
 
