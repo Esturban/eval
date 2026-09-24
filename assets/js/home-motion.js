@@ -1,9 +1,6 @@
-// REUSE_CHECKED: none - assets/js holds no other lazy-load, scroll or
-// reduced-motion code since the previous hero loader was retired.
-//
 // Homepage motion, the small part that always ships:
 // 1. Highway hero: decides whether to animate at all (reduced motion wins),
-//    lazy-loads the three.js bundle only when the hero is near the viewport,
+//    lazy-loads the 3D scene bundle only when the hero is near the viewport,
 //    and feeds it scroll progress through the pinned stage.
 // 2. Step rail: highlights the current story step from scroll position.
 // 3. Colour arc: one continuous background colour across the page, blended

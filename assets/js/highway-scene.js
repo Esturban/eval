@@ -1,6 +1,3 @@
-// REUSE_CHECKED: none - the previous network scene was retired outright; only
-// its renderer budget and pause-offscreen contract are carried forward here.
-//
 // Homepage hero: a literal highway at night. Four lanes with dashed lane
 // markings, solid edge lines, guardrails, street lamps and one overhead sign
 // gantry. Agent vehicles drive toward the viewer; each carries an HTML
