@@ -65,45 +65,11 @@
       linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 1) 100%);
   }
 
-  /* Hero plate: the single dark plate on the homepage, now a static poster
-     only (2026-09-24: the settle-in motion module and its scroll-driven
-     detail layer were retired; the scroll-driven story now lives in the
-     agent-network background below the hero, see agent-network-*.js). */
-  .hero-plate__poster,
-  .hero-plate__grain {
-    position: absolute;
-    inset: 0;
-  }
-
-  .hero-plate .hp-svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .hero-plate__grain {
-    pointer-events: none;
-    background-repeat: repeat;
-    background-size: 128px 128px;
-    opacity: 0.045;
-    mix-blend-mode: overlay;
-  }
-
-  /* Mobile: four panes, no callout labels. */
-  @media (max-width: 1023px) {
-    .hero-plate .hp-far,
-    .hero-plate .hp-label {
-      display: none;
-    }
-  }
-
-  /* Desktop: the plate's left edge dissolves into the shell ink. */
-  @media (min-width: 1024px) {
-    .hero-plate {
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%);
-      mask-image: linear-gradient(to right, transparent 0, #000 12%);
-    }
-  }
+  /* Hero plate CSS retired 2026-09-24 (TASK-5844 finish-gate rework,
+     point 1): default-hero.html and hero-plate-poster.html no longer
+     render, so the .hero-plate rules that styled them were removed here
+     too - see layouts/partials/default-hero.html for the retirement note
+     and layouts/partials/hero-intro.html for the replacement. */
 
   .home-logo-row img {
     filter: saturate(0) contrast(1.05);
