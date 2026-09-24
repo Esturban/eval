@@ -12,10 +12,29 @@ Last reviewed: 2026-09-24. Contact: info@evadvisory.ca
 ## AI Agent Implementation
 
 - [Homepage](https://evadvisory.ca/): Current positioning: AI agents shipped into founder-led agencies and small teams without hiring anyone.
+- [AI Agent Implementation](https://evadvisory.ca/services/ai-agent-implementation/): The entry offer. One working AI agent built into a founder-led agency or small team's existing tools, scoped on a free Live Audit.
 - [Live Audit](https://evadvisory.ca/live-audit/): Free 20-minute call. Esteban Valencia reviews the team's actual tool stack live and names the first automation worth shipping. Best starting point for new work.
 - [Store](https://evadvisory.ca/store/): Fixed-scope AI diagnostics that can be bought without a sales call.
 - [About EV Advisory](https://evadvisory.ca/about/): Founder context, who the practice is built for, and how the work is approached.
 - [Services](https://evadvisory.ca/services/): Overview of AI agent implementation and the continuing revenue signal services.
+
+### AI Agent Implementation Answers
+
+- [Who can implement an AI agent for my business in Canada?](https://evadvisory.ca/answers/who-can-implement-an-ai-agent/): Five kinds of providers, and where to start for a first agent.
+- [How much does AI agent implementation cost for a small business in Canada? (2026)](https://evadvisory.ca/answers/ai-agent-implementation-cost/): A 2026 cost table by approach, fixed-price and monthly.
+- [What should I automate first with AI in my business?](https://evadvisory.ca/answers/what-to-automate-first-with-ai/): Five criteria for picking a first automation, with good alternatives.
+- [What is the difference between an AI agent and automation like Zapier or Make?](https://evadvisory.ca/answers/ai-agent-vs-automation/): A comparison table and when a small business needs both.
+- [How do I find a good AI agent implementation consultant in Canada?](https://evadvisory.ca/answers/find-ai-agent-implementation-consultant/): An evaluation table with good signs and red flags.
+- [Should I build or buy an AI agent for my small business?](https://evadvisory.ca/answers/build-or-buy-ai-agent/): A build vs buy decision table.
+- [How long does it take to implement an AI agent in a business?](https://evadvisory.ca/answers/how-long-ai-agent-implementation-takes/): A timeline table by agent type and a week-by-week plan.
+- [What are the risks of using AI agents in my business, and how do I reduce them?](https://evadvisory.ca/answers/ai-agent-risks/): Seven risks with reductions, and Canadian privacy context.
+- [What should I ask before hiring an AI agent developer or agency?](https://evadvisory.ca/answers/questions-before-hiring-ai-agent-developer/): Ten questions with good answers and red flags.
+- [What is the best first AI agent for a small agency?](https://evadvisory.ca/answers/best-first-ai-agent-for-small-agency/): The first agent by agency type, and what not to automate first.
+- [Do I need an AI consultant, or can I set up AI agents myself?](https://evadvisory.ca/answers/ai-consultant-or-diy/): A decision table for founders on DIY vs hiring.
+- [What does an AI agent implementation project include?](https://evadvisory.ca/answers/what-ai-agent-implementation-includes/): Six phases and nine deliverables.
+- [How do I measure ROI on an AI agent?](https://evadvisory.ca/answers/measure-ai-agent-roi/): A metrics table, formula, and worked example.
+- [What tasks can an AI agent handle for a service business today?](https://evadvisory.ca/answers/ai-agent-tasks-for-service-business/): A task table of what agents can and cannot own yet.
+- [Freelancer, agency, or consultant: who should build AI agents for a founder-led business?](https://evadvisory.ca/answers/freelancer-vs-agency-vs-consultant-ai-agents/): A comparison table with Canadian rate ranges.
 
 ## Other Services: Shopify and Ecommerce Revenue Signal Work
 
