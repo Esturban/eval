@@ -1,0 +1,114 @@
+{{/*
+  "Reviews & confirmations" stage of the homepage scroll narrative (TASK-5844).
+
+  HONEST CONTENT NOTE: this repo has no real named-client testimonial quotes
+  or star ratings anywhere (data/testimonials.yml is placeholder copy -
+  "Testimonial Author 1/2/3" - and was never wired into any page; the two real
+  case studies in content/insights/resources/ have no client quotes either,
+  just narrative + numbers). Per this repo's no-invented-numbers rule, this
+  section does not fabricate any. Instead it reuses three things that ARE
+  real and already in this repo: the verification-standard paragraph from
+  content/services/ai-agent-implementation.md's own "## Proof" section (moved
+  here near-verbatim, reworded only for card format), the real client logos
+  that used to sit in homepage-proof.html, and the two real case studies with
+  their real, already-published numbers. Flagged back to the dispatching
+  session in the build report: a genuine client-quote reviews section is a
+  content gap, not something this pass should invent.
+*/}}
+{{ $logo_1 := resources.Get "images/global/logos/gd-logo-alt.svg" }}
+{{ $logo_2 := resources.Get "images/global/logos/hr-logo.svg" }}
+{{ $logo_3 := resources.Get "images/global/logos/bsg-logo-1.png" }}
+{{ $logo_4 := resources.Get "images/global/logos/r4u-logo.svg" }}
+{{ $logo_5 := resources.Get "images/global/logos/subaru-logo.svg" }}
+{{ $logo_6 := resources.Get "images/global/logos/cco-logo.png" }}
+
+<section id="reviews" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">Stage 3 &middot; Reviews &amp; confirmations</p>
+      <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        Confirmed, not promised
+      </h2>
+      <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+        Before you hire anyone to build an agent, including EV Advisory, ask to see agents running in production, not demos. That is the standard this practice holds itself to.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-4 lg:grid-cols-3">
+      <article class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">The method</p>
+        <p class="mt-3 text-base leading-7 text-slate-300">
+          Every project is scoped, baselined, tested on real examples, and measured after launch. The written scope you receive after the Live Audit spells out how your result will be measured.
+        </p>
+      </article>
+      <article class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">The work in public</p>
+        <p class="mt-3 text-base leading-7 text-slate-300">
+          With your permission, your Live Audit can become a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
+        </p>
+      </article>
+      <article class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Earlier operating work</p>
+        <p class="mt-3 text-base leading-7 text-slate-300">
+          Before focusing on AI agents, EV Advisory ran reporting and operations work for teams across enterprise commerce, premium retail, subscription, automotive, and complex operations, confirmed below.
+        </p>
+      </article>
+    </div>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {{ $bsgCase := site.GetPage "insights/resources/case-study-bsg-lighting-fast-reporting" }}
+      <a href="{{ with $bsgCase }}{{ .RelPermalink }}{{ else }}/insights/resources/case-study-bsg-lighting-fast-reporting/{{ end }}"
+         class="group rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm transition hover:border-cyan-400/40">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Confirmed outcome</p>
+        <h3 class="mt-3 text-xl font-semibold text-white">30 hours a month of reporting, down to 5 minutes</h3>
+        <p class="mt-2 text-sm leading-6 text-slate-400">More than $4,000 in monthly operating savings. Read the full case study.</p>
+        <span class="mt-4 inline-flex items-center text-sm font-semibold text-cyan-300 group-hover:text-cyan-200">
+          Read the confirmation
+          <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+          </svg>
+        </span>
+      </a>
+      {{ $hrCase := site.GetPage "insights/resources/case-study-harry-rosen-nurturing-clients" }}
+      <a href="{{ with $hrCase }}{{ .RelPermalink }}{{ else }}/insights/resources/case-study-harry-rosen-nurturing-clients/{{ end }}"
+         class="group rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm transition hover:border-cyan-400/40">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Confirmed outcome</p>
+        <h3 class="mt-3 text-xl font-semibold text-white">$100k+ recovered from existing clients in 3 months</h3>
+        <p class="mt-2 text-sm leading-6 text-slate-400">A nurture and lifecycle redesign, not new ad spend. Read the full case study.</p>
+        <span class="mt-4 inline-flex items-center text-sm font-semibold text-cyan-300 group-hover:text-cyan-200">
+          Read the confirmation
+          <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="mt-10 rounded-3xl border border-slate-800 bg-slate-900/80 px-6 py-8 text-slate-200 backdrop-blur-sm sm:px-8">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div class="max-w-xl">
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Past clients</p>
+          <p class="mt-3 text-sm leading-7 text-slate-300 sm:text-base">
+            EV Advisory has supported teams across enterprise commerce, premium retail, subscription, automotive, and complex operations.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a href="/proof/" class="inline-flex items-center rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
+              See the results
+            </a>
+            <a href="/methodology/" class="inline-flex items-center rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">
+              Review methodology
+            </a>
+          </div>
+        </div>
+        <div class="home-logo-row grid flex-1 grid-cols-2 gap-3 sm:grid-cols-3 lg:max-w-3xl">
+          <div class="rounded-2xl border border-slate-800 bg-white px-5 py-4"><img src="{{ $logo_1.RelPermalink }}" alt="General Dynamics logo" class="mx-auto h-10 w-auto" /></div>
+          <div class="rounded-2xl border border-slate-800 bg-white px-5 py-4"><img src="{{ $logo_2.RelPermalink }}" alt="Harry Rosen logo" class="mx-auto h-10 w-auto" /></div>
+          <div class="rounded-2xl border border-slate-800 bg-white px-5 py-4"><img src="{{ $logo_3.RelPermalink }}" alt="Bio Seaweed Gel logo" class="mx-auto h-10 w-auto" /></div>
+          <div class="rounded-2xl border border-slate-800 bg-white px-5 py-4"><img src="{{ $logo_4.RelPermalink }}" alt="Rentals 4U logo" class="mx-auto h-10 w-auto" /></div>
+          <div class="rounded-2xl border border-slate-800 bg-white px-5 py-4"><img src="{{ $logo_5.RelPermalink }}" alt="Subaru logo" class="mx-auto h-10 w-auto" /></div>
+          <div class="rounded-2xl border border-slate-800 bg-white px-5 py-4"><img src="{{ $logo_6.RelPermalink }}" alt="Cancer Care Ontario logo" class="mx-auto h-10 w-auto" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
