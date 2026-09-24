@@ -47,21 +47,47 @@
         });
     }
 
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              load();
-              observer.disconnect();
-            }
-          });
-        },
-        { rootMargin: '200px' }
-      );
-      observer.observe(panel);
+    function scheduleLoad() {
+      // Downloading and initializing the WebGL renderer is real main-thread
+      // work. Running it the moment the panel is merely near the viewport
+      // (as soon as DOMContentLoaded fires) competes with the page's own
+      // initial paint/interactivity work and shows up as blocking time even
+      // though the panel is "lazy loaded" in the download sense. Deferring
+      // to requestIdleCallback keeps the download lazy (still gated on
+      // visibility) while keeping the actual execution off the critical path.
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(load, { timeout: 1500 });
+      } else {
+        setTimeout(load, 200);
+      }
+    }
+
+    function startObserving() {
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                scheduleLoad();
+                observer.disconnect();
+              }
+            });
+          },
+          { rootMargin: '200px' }
+        );
+        observer.observe(panel);
+      } else {
+        scheduleLoad();
+      }
+    }
+
+    // Wait for the page's own load event before even starting to watch the
+    // panel, so this script never competes with first paint or the rest of
+    // the page's initial scripts, regardless of where the panel sits.
+    if (document.readyState === 'complete') {
+      startObserving();
     } else {
-      window.addEventListener('load', load);
+      window.addEventListener('load', startObserving);
     }
   }
 
