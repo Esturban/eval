@@ -23,76 +23,13 @@
         </div>
         <nav :class="{'flex': open, 'hidden': !open}"
              class="hidden flex-col pb-4 md:flex md:flex-row md:items-center md:justify-end md:pb-0">
-            <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                <button @click="open = !open"
-                        class="mt-2 flex w-full flex-row items-center rounded-full bg-transparent px-4 py-2 text-left text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2 md:inline md:w-auto">
-                    <span>Services</span>
-                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
-                         class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
-                        <path fill-rule="evenodd"
-                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div x-show="open" x-transition:enter="transition ease-out duration-100"
-                     x-transition:enter-start="transform opacity-0 scale-95"
-                     x-transition:enter-end="transform opacity-100 scale-100"
-                     x-transition:leave="transition ease-in duration-75"
-                     x-transition:leave-start="transform opacity-100 scale-100"
-                     x-transition:leave-end="transform opacity-0 scale-95"
-                        class="absolute right-0 z-30 mt-2 w-full origin-top-right md:max-w-sm md:w-screen">
-                    <div class="rounded-2xl border border-slate-200 bg-white px-2 pb-4 pt-2 text-zinc-900 shadow-lg">
-                        <div class="grid grid-cols-1 gap-4">
-                            {{- /* Lead service. Appears automatically once the page is published (not a draft). */ -}}
-                            {{ with site.GetPage "/services/ai-agent-implementation" }}
-                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
-                               href="{{ .RelPermalink }}">
-                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                         class="w-4 h-4 md:h-6 md:w-6">
-                                        <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="font-semibold">AI Agent Implementation</p>
-                                    <p class="text-sm">Ship AI agents into your agency without hiring anyone</p>
-                                </div>
-                            </a>
-                            {{ end }}
-
-                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
-                               href="/live-audit/">
-                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                         class="w-4 h-4 md:h-6 md:w-6">
-                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="font-semibold">Live Audit</p>
-                                    <p class="text-sm">Free review of your real tool stack, live</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a class="mt-2 rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2"
-               href="/store/">Store</a>
-            {{ if .IsHome }}
-            {{/* TASK-5844: section anchors for the homepage's scroll narrative
-                 (Tools / Proof / Reviews). Same pill styling as Store, only
-                 rendered on the homepage since these ids only exist there. */}}
-            <a class="mt-2 rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2"
-               href="#tools">Tools</a>
-            <a class="mt-2 rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2"
-               href="#proof">Proof</a>
-            <a class="mt-2 rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2"
-               href="#reviews">Reviews</a>
+            {{/* Homepage sections only; every item is an anchor that exists on the homepage. */}}
+            {{ $base := "/" }}{{ if .IsHome }}{{ $base = "" }}{{ end }}
+            {{ range slice (slice "flow" "How it works") (slice "tools" "Tools") (slice "proof" "Proof") (slice "reviews" "Reviews") }}
+            <a class="mt-2 rounded-full px-4 py-2 text-base font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-1" href="{{ $base }}#{{ index . 0 }}" @click="open = false">{{ index . 1 }}</a>
             {{ end }}
+            {{ if not .IsHome }}
+            <a class="mt-2 rounded-full px-4 py-2 text-base font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-1" href="/store/">Store</a>
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
                         class="mt-2 flex w-full flex-row items-center rounded-full bg-transparent px-4 py-2 text-left text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2 md:inline md:w-auto">
@@ -182,7 +119,8 @@
                     </div>
                 </div>
             </div>
-            <a class="mt-2 rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus:outline-none focus:shadow-outline md:mt-0 md:ml-3"
+            {{ end }}
+            <a class="mt-2 rounded-full bg-cyan-400 px-5 py-2 text-base font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus:outline-none focus:shadow-outline md:mt-0 md:ml-3"
                href="/scorecard/">
                 Free Scorecard
             </a>
