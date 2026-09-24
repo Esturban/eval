@@ -1,4 +1,4 @@
-# Design System — EV Advisory Homepage
+# Design System: EV Advisory Homepage
 
 ## Product Context
 - **What this is:** A consulting homepage for EV Advisory focused on Shopify, ecommerce, conversion, and revenue-signal trust.
