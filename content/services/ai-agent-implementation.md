@@ -134,9 +134,7 @@ Every seat includes one active request at a time, an unlimited queue behind it, 
 
 **You see the numbers, not a demo.** Every agent gets a baseline before launch and the same measure after it is in daily use. If the after number is not better, you will see that too.
 
-**We run our own firm on these agents.** One of our own AI agents finds, scores, and enriches prospect accounts for our own pipeline, with a person on our team reviewing and approving its output before any outreach goes out.
-
-**Beyond our own pipeline, three more are live for a client.** They are answering in production today. We checked this month by sending each one a real request and confirming a real response came back, not a status page, an actual answer.
+**We build new agents every day, and we run our own firm on them.** One of our own AI agents finds, scores, and enriches prospect accounts for our own pipeline, with a person on our team reviewing and approving its output before any outreach goes out. Beyond our own pipeline, three more are live for a client, verified this month by sending each one a real request and confirming a real response came back, not a status page, an actual answer.
 
 **Client work shipped.** For a two-store cosmetics brand, a mobile checkout fix we shipped reached 75 percent of the store's mobile shopper traffic, and a separate app audit found an estimated CA$1,031 a year in duplicate app spend.
 
