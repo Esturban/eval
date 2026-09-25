@@ -431,6 +431,7 @@ function yieldToMain() {
 
 export async function createHighwayScene({ canvas, root }) {
   if (!canvas || !window.WebGLRenderingContext) return null;
+  if (!canvas.getContext('webgl2') && !canvas.getContext('webgl')) return null;
   let renderer;
   try {
     renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' });
