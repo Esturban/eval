@@ -59,6 +59,15 @@ const DECK_Y = 3.45; // deck centre height; clearance reads right against the ca
 const ROOF_Y = 0.95;
 const LABEL_Y = 1.9;
 const FLASH_SECONDS = 0.7;
+// CRO-6731 Pass 5: EV, watching the live preview, "the cars accelerate too
+// much; keep a calm, steady speed." SCROLL_PUSH's contribution to travel
+// used to track raw scroll progress 1:1, so a burst of scroll (several
+// scroll events landing between animation frames) spiked the vehicles'
+// apparent speed. PROGRESS_RATE_CAP bounds how fast the scroll-driven push
+// can change per second, regardless of how violently the page is scrolled,
+// so the peak scroll-added speed stays a gentle fraction of the vehicles'
+// own cruise rate (1 / LOOP_SECONDS) instead of spiking with scroll speed.
+const PROGRESS_RATE_CAP = 0.09;
 
 const LAYOUTS = {
   wide: { fov: 30, camY: 2.3, camZ: 1.5, vx: 0.7, vy: 0.46, dpr: 1.75, fade: [40, 52] },
@@ -74,6 +83,25 @@ const DAY_PROGRESS_LAMP_FADE = 0.4; // lamps are fully off by this share of day 
 
 function clamp(v, a, b) {
   return Math.min(b, Math.max(a, v));
+}
+
+// CRO-6731 Pass 5: the hero-to-rail handoff used to be a binary switch
+// (LAYOUTS.wide -> LAYOUTS.rail the instant the canvas was re-parented),
+// which read as a pop. `railT` is now continuous (0 = full hero framing, 1
+// = docked in the rail), so the camera itself eases between the two tunings
+// over the same scroll span home-motion.js uses to shrink the canvas.
+function lerpLayout(a, b, t) {
+  if (t <= 0) return a;
+  if (t >= 1) return b;
+  return {
+    fov: a.fov + (b.fov - a.fov) * t,
+    camY: a.camY + (b.camY - a.camY) * t,
+    camZ: a.camZ + (b.camZ - a.camZ) * t,
+    vx: a.vx + (b.vx - a.vx) * t,
+    vy: a.vy + (b.vy - a.vy) * t,
+    dpr: a.dpr + (b.dpr - a.dpr) * t,
+    fade: [a.fade[0] + (b.fade[0] - a.fade[0]) * t, a.fade[1] + (b.fade[1] - a.fade[1]) * t],
+  };
 }
 
 function fract(v) {
@@ -548,9 +576,11 @@ export async function createHighwayScene({ canvas, root }) {
   let layout = LAYOUTS.wide;
   let copyRect = null;
   let progress = 0;
+  let displayProgress = 0; // eased toward `progress`; see PROGRESS_RATE_CAP
+  let lastElapsed = 0;
   let wanted = false;
   let running = false;
-  let railMode = false;
+  let railT = 0; // 0 = full hero framing, 1 = docked in the rail
   let size = { w: 1, h: 1 };
 
   function resize() {
@@ -559,7 +589,12 @@ export async function createHighwayScene({ canvas, root }) {
     if (!w || !h) return;
     size = { w, h };
     bots.forEach((bot) => { bot.width = 0; bot.height = 0; });
-    layout = railMode ? LAYOUTS.rail : (w / h >= 1 ? LAYOUTS.wide : LAYOUTS.tall);
+    // During the handoff (railT > 0) the hero was always desktop/wide at
+    // railT === 0, so the interpolation source is pinned to LAYOUTS.wide
+    // rather than re-derived from the current (shrinking) aspect ratio,
+    // which would otherwise flip to LAYOUTS.tall partway through the
+    // transition and jump the camera.
+    layout = railT > 0 ? lerpLayout(LAYOUTS.wide, LAYOUTS.rail, railT) : (w / h >= 1 ? LAYOUTS.wide : LAYOUTS.tall);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, layout.dpr));
     renderer.setSize(w, h, false);
     camera.fov = layout.fov;
@@ -570,7 +605,7 @@ export async function createHighwayScene({ canvas, root }) {
     // the view offset slides the frame so it lands where the layout wants.
     camera.setViewOffset(w, h, (0.5 - layout.vx) * w, (0.5 - layout.vy) * h, w, h);
     camera.updateProjectionMatrix();
-    if (railMode) {
+    if (railT > 0) {
       copyRect = null;
       return;
     }
@@ -651,9 +686,16 @@ export async function createHighwayScene({ canvas, root }) {
 
   function render() {
     const elapsed = clock.getElapsedTime();
+    const delta = Math.max(0, elapsed - lastElapsed);
+    lastElapsed = elapsed;
+    // Chase `progress` at a capped rate rather than adopting it outright:
+    // this is what keeps the scroll-added push calm and steady no matter
+    // how many scroll events land in a single frame.
+    const maxStep = PROGRESS_RATE_CAP * delta;
+    displayProgress += clamp(progress - displayProgress, -maxStep, maxStep);
     const placed = [];
     bots.forEach((bot, i) => {
-      const run = bot.offset + (elapsed * bot.speed) / LOOP_SECONDS + progress * SCROLL_PUSH;
+      const run = bot.offset + (elapsed * bot.speed) / LOOP_SECONDS + displayProgress * SCROLL_PUSH;
       const loop = fract(run);
       const { x, inbound } = travel(loop);
       const z = inbound ? bot.laneIn : bot.laneOut;
@@ -668,10 +710,10 @@ export async function createHighwayScene({ canvas, root }) {
       updateTag(bot, i, elapsed, isDone, Math.floor(run));
       // The rail is a narrow, fixed backdrop: the HTML labels live inside
       // the hero stage and scroll out of view with it, so skip the
-      // per-frame label projection work once the canvas has moved to it.
-      if (!railMode) placed.push(placeLabel(bot, x, z));
+      // per-frame label projection work once the handoff has started.
+      if (railT <= 0) placed.push(placeLabel(bot, x, z));
     });
-    if (!railMode) resolveLabels(placed);
+    if (railT <= 0) resolveLabels(placed);
     flashStrip(elapsed);
     renderer.render(scene, camera);
   }
@@ -716,12 +758,14 @@ export async function createHighwayScene({ canvas, root }) {
     setDayProgress(value) {
       applyDayProgress(value);
     },
-    // Switches the camera/renderer tuning between the full-bleed hero
-    // framing and the narrow rail column once the canvas is re-parented.
-    // Callers must also call resize() after the canvas's new host has laid
-    // out, since this only changes which LAYOUTS profile resize() reads.
-    setRailMode(next) {
-      railMode = Boolean(next);
+    // Continuously blends the camera/renderer tuning between the full-bleed
+    // hero framing (0) and the narrow rail column (1) as home-motion.js
+    // shrinks the canvas over the handoff scroll span (CRO-6731 Pass 5: one
+    // continuous motion, not a swap at a threshold). Callers must also call
+    // resize() after changing the canvas's box, since this only changes
+    // which point resize() reads on the wide -> rail interpolation.
+    setRailT(t) {
+      railT = clamp(t, 0, 1);
     },
     resize,
   };
