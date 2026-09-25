@@ -1,0 +1,35 @@
+{{/*
+  Small, page-scoped before/after visual for one insights case study.
+  Reuses the icon sprite and the flow-chip/flow-wire visual language built
+  for the homepage "How it works" section (layouts/partials/home-flow.html,
+  .flow-chip/.flow-wire in assets/css/main.css), scaled down and restyled
+  for a light article page instead of the dark homepage hero. Static, no
+  motion, no Three.js/canvas.
+*/}}
+{{ partial "icon-sprite.html" . }}
+<div class="cs-ba not-prose" role="img" aria-label="Before: generic, untimed follow-up, one-size-fits-all messaging, and blanket offers. After: follow-up timed to each customer's buying stage, messaging built around shown interest, and offers matched to intent.">
+  <ol class="cs-ba__rows">
+    <li class="cs-ba__row">
+      <p class="cs-ba__kicker">Follow-up timing</p>
+      <span class="cs-ba__chip cs-ba__chip--before"><svg aria-hidden="true"><use href="#i-calendar"></use></svg><span class="cs-ba__tag">Before</span>Generic, untimed</span>
+      <span class="cs-ba__wire" aria-hidden="true"></span>
+      <span class="cs-ba__chip cs-ba__chip--after"><svg aria-hidden="true"><use href="#i-check"></use></svg><span class="cs-ba__tag">After</span>Timed to each buying stage</span>
+    </li>
+    <li class="cs-ba__row">
+      <p class="cs-ba__kicker">Re-engagement messaging</p>
+      <span class="cs-ba__chip cs-ba__chip--before"><svg aria-hidden="true"><use href="#i-chat"></use></svg><span class="cs-ba__tag">Before</span>Same for every customer</span>
+      <span class="cs-ba__wire" aria-hidden="true"></span>
+      <span class="cs-ba__chip cs-ba__chip--after"><svg aria-hidden="true"><use href="#i-check"></use></svg><span class="cs-ba__tag">After</span>Built around shown interest</span>
+    </li>
+    <li class="cs-ba__row">
+      <p class="cs-ba__kicker">Offer targeting</p>
+      <span class="cs-ba__chip cs-ba__chip--before"><svg aria-hidden="true"><use href="#i-invoice"></use></svg><span class="cs-ba__tag">Before</span>Blanket blast</span>
+      <span class="cs-ba__wire" aria-hidden="true"></span>
+      <span class="cs-ba__chip cs-ba__chip--after"><svg aria-hidden="true"><use href="#i-check"></use></svg><span class="cs-ba__tag">After</span>Matched to intent</span>
+    </li>
+  </ol>
+  <p class="cs-ba__outcome">
+    <svg aria-hidden="true"><use href="#i-check"></use></svg>
+    <strong>&gt;$100,000</strong>&nbsp;recovered in three months, from customers already in the ecosystem.
+  </p>
+</div>

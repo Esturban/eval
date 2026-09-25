@@ -10,26 +10,18 @@ categories: ["resources"]
 tags: ["case study"]
 ---
 
-This case study reflects a common ecommerce reality: new acquisition is not the only place where revenue is being lost.
+For a high-luxury retail client, new acquisition was not where revenue was being lost. The opportunity was already inside the customer base. The nurture system just was not strong enough to turn it into repeatable revenue.
 
 ## The problem
 
-The opportunity was already inside the customer base, but the nurture system was not strong enough to turn that attention into repeatable revenue.
+Existing customers were getting generic follow-up, not sequencing tied to what they had already shown interest in. The fix was not more messages. It was better sequencing.
 
-The commercial challenge was not just to send more messages. It was to improve how existing demand was sequenced and recovered.
+## Before and after
 
-## The EV Advisory focus
-
-- We identified the moments that mattered most after a customer's first purchase in this ecommerce customer base, so follow-up landed when it counted.
-- We rebuilt the sequence used to re-engage existing customers, replacing generic messages with ones tied to what they had already shown interest in.
-- We matched each customer's intent to the next offer, so the message sent matched where they actually were, not a generic blast.
-
-That shift is what recovered more than $100,000 in revenue over three months, detailed below.
+{{< case-study-before-after >}}
 
 ## The outcome
 
-Over three months, the improved lifecycle approach generated more than $100,000 in business from customers who were already in the ecosystem.
+Over three months, this shift recovered more than $100,000 in revenue from customers already in the ecosystem. Cleaner sequencing, not more traffic, drove the result.
 
-That outcome matters because it shows the value of cleaner commercial sequencing, not just more traffic.
-
-This is the kind of work EV Advisory focuses on when revenue is already present in the system but the lifecycle engine is not converting it efficiently enough.
+This is the kind of work EV Advisory focuses on when revenue is already present in the system but the lifecycle engine is not converting it efficiently enough. [Book a free Live Audit](/live-audit/) to find the first automation worth shipping in your own stack.

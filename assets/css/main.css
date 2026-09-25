@@ -677,4 +677,122 @@
       left: 50%;
     }
   }
+
+  /* Case-study before/after (insights/resources/case-study-harry-rosen-nurturing-clients).
+     A small, static, page-scoped variant of the flow-chip/flow-wire language
+     above, recolored for a light article page. No animation. */
+  .cs-ba {
+    margin-block: 28px;
+    border-top: 1px solid var(--ev-line);
+    border-bottom: 1px solid var(--ev-line);
+  }
+
+  .cs-ba__rows {
+    display: grid;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cs-ba__row {
+    display: grid;
+    gap: 10px;
+    padding: 18px 0;
+    border-top: 1px solid var(--ev-line);
+  }
+
+  .cs-ba__row:first-child {
+    border-top: none;
+  }
+
+  .cs-ba__kicker {
+    margin: 0;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+
+  .cs-ba__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--ev-line);
+    background: var(--ev-panel);
+    color: var(--ev-ink);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .cs-ba__chip svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    color: #94a3b8;
+  }
+
+  .cs-ba__tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #94a3b8;
+  }
+
+  .cs-ba__chip--after {
+    border-color: color-mix(in srgb, var(--ev-accent) 45%, var(--ev-line));
+    background: color-mix(in srgb, var(--ev-accent) 10%, var(--ev-panel));
+  }
+
+  .cs-ba__chip--after svg {
+    color: #0d9488;
+  }
+
+  .cs-ba__chip--after .cs-ba__tag {
+    color: var(--ev-accent-deep);
+  }
+
+  .cs-ba__wire {
+    justify-self: center;
+    width: 2px;
+    height: 20px;
+    background: repeating-linear-gradient(180deg, var(--ev-line) 0 5px, transparent 5px 10px);
+  }
+
+  .cs-ba__outcome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 18px 0;
+    border-top: 1px solid var(--ev-line);
+    font-size: 15px;
+    color: var(--ev-ink);
+  }
+
+  .cs-ba__outcome svg {
+    width: 22px;
+    height: 22px;
+    flex: none;
+    color: #0d9488;
+  }
+
+  @media (min-width: 700px) {
+    .cs-ba__row {
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr) 32px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cs-ba__wire {
+      justify-self: stretch;
+      width: auto;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--ev-line) 0 5px, transparent 5px 10px);
+    }
+  }
 }
