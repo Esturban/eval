@@ -20,6 +20,16 @@ const ARC_BLEND = 0.9;
 const ARC_LEAD = 0.45; // how far past the probe line the blend keeps going
 const ARC_PROBE = 0.6; // where in the viewport a boundary counts as crossed
 
+// Full-page rail handoff (CRO-6731 Pass 5): matches the rail's own CSS
+// clamp(220px, 22vw, 340px) in main.css so the JS-driven dock box lands
+// exactly on the CSS-defined rail once docked.
+const RAIL_MIN = 220;
+const RAIL_MAX = 340;
+const RAIL_VW = 0.22;
+function railTargetWidth() {
+  return clamp(window.innerWidth * RAIL_VW, RAIL_MIN, RAIL_MAX);
+}
+
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
@@ -46,35 +56,6 @@ function setupSteps(hero) {
   };
 }
 
-// Moves the hero's own canvas (never a second one) into the fixed `.hw-rail`
-// host once the hero's pinned stage has scrolled past, and back into the
-// hero stage if the user scrolls back up above it. The rail host is a
-// static, empty element already in the page (layouts/index.html) so its
-// authored width is measurable even before the scene has loaded.
-function setupRail(canvas) {
-  const host = document.querySelector('.hw-rail');
-  const stageParent = canvas.parentNode;
-  const stageNextSibling = canvas.nextSibling;
-  let inRail = false;
-
-  return {
-    get inRail() { return inRail; },
-    mount() {
-      if (inRail || !host) return;
-      host.appendChild(canvas);
-      inRail = true;
-    },
-    unmount() {
-      if (!inRail) return;
-      stageParent.insertBefore(canvas, stageNextSibling);
-      inRail = false;
-    },
-    width() {
-      return host ? host.getBoundingClientRect().width : 0;
-    },
-  };
-}
-
 function setupHighway(hero, onProgress) {
   const canvas = hero.querySelector('.hw__canvas');
   const sceneSrc = hero.dataset.sceneSrc;
@@ -92,7 +73,17 @@ function setupHighway(hero, onProgress) {
   // whole feature); the footer sentinel is what stops it there instead. On
   // phone, which has no rail, the hero's own visibility is still the gate.
   const wantedVisible = () => (isDesktop() ? !pastFooter : heroVisible);
-  const rail = setupRail(canvas);
+  let pinned = false; // true once the canvas is JS-positioned (desktop, live)
+
+  // Restores the canvas to its default stylesheet-driven box (absolute,
+  // filling the sticky hero stage) so mobile/tablet, and the moment before
+  // the scene has loaded, are completely unaffected by the dock logic below.
+  function unpin() {
+    if (!pinned) return;
+    canvas.style.cssText = '';
+    pinned = false;
+    if (controller) { controller.setRailT(0); controller.resize(); }
+  }
 
   // The scene is decoration: fetch it after the page has loaded and the
   // browser is idle, so it never competes with the first paint.
@@ -172,29 +163,52 @@ function setupHighway(hero, onProgress) {
     setDayProgress(value) {
       if (controller && isDesktop()) controller.setDayProgress(value);
     },
-    // Re-parents the canvas between the hero stage and the fixed rail host
-    // as the hero's pinned stage crosses the top of the viewport, and keeps
-    // --rail-w in sync so every arc-section's content gutter tracks the
-    // rail's real (clamp()-shrunk) width.
+    // Docks the canvas by taking over its own position (fixed, not the
+    // hero's native sticky) once the hero's pinned stage would otherwise
+    // release it, and continuously shrinks it into the rail's box over the
+    // next viewport height of scroll instead of re-parenting it at a
+    // threshold. The canvas never moves in the DOM (CRO-6731 Pass 5: EV,
+    // "midway down the page... a sudden jump and change... make that
+    // handoff one continuous motion... no swap or pop").
     updateRail() {
       if (!isDesktop()) {
-        if (rail.inRail) {
-          rail.unmount();
-          if (controller) { controller.setRailMode(false); controller.resize(); }
-        }
+        unpin();
         document.documentElement.style.setProperty('--rail-w', '0px');
         return;
       }
-      const pastHero = hero.getBoundingClientRect().bottom <= 0;
-      if (pastHero && !rail.inRail && controller) {
-        rail.mount();
-        controller.setRailMode(true);
-        controller.resize();
-      } else if (!pastHero && rail.inRail) {
-        rail.unmount();
-        if (controller) { controller.setRailMode(false); controller.resize(); }
-      }
-      document.documentElement.style.setProperty('--rail-w', `${rail.width()}px`);
+      if (!controller) return;
+      pinned = true;
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const railW = railTargetWidth();
+      // 0 while the hero's pinned stage still has room (the point at which
+      // native sticky would itself release the canvas); 1 a further
+      // viewport height of scroll later. Reusing exactly the scroll
+      // distance sticky used to spend sliding the canvas off-screen means
+      // the section height (250svh) does not need to change.
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const t = smooth(clamp((vh - heroBottom) / vh, 0, 1));
+
+      canvas.style.position = 'fixed';
+      canvas.style.inset = 'auto';
+      canvas.style.top = '0px';
+      canvas.style.left = `${(vw - railW) * t}px`;
+      canvas.style.width = `${vw + (railW - vw) * t}px`;
+      canvas.style.height = `${vh}px`;
+      canvas.style.zIndex = '5';
+      canvas.style.pointerEvents = 'none';
+      // Same WCAG-guard mask the rail's own CSS box already carries, moved
+      // onto the canvas itself since the canvas no longer re-parents into
+      // .hw-rail; applied throughout the dock (not just once t reaches 1)
+      // since the transition plays out over still-dark sections, well
+      // above where the light sections' contrast risk actually begins.
+      canvas.style.maskImage = 'linear-gradient(to left, white 62%, transparent 100%)';
+      canvas.style.webkitMaskImage = canvas.style.maskImage;
+
+      controller.setRailT(t);
+      controller.resize();
+      document.documentElement.style.setProperty('--rail-w', `${railW * t}px`);
     },
   };
 }

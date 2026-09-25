@@ -5991,14 +5991,6 @@
       mask-image: linear-gradient(to left, white 62%, transparent 100%);
       -webkit-mask-image: linear-gradient(to left, white 62%, transparent 100%);
     }
-    .hw-rail canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      opacity: 1;
-    }
     .arc-section:not(.hw) {
       padding-inline-end: calc(var(--rail-w, 0px) + 48px);
     }

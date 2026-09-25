@@ -1,9 +1,11 @@
 {{ define "main" }}
-{{/* Desktop-only host the highway scene's canvas is re-parented into once
-     the hero's pinned stage ends, so the road continues down the page as a
-     narrow fixed rail instead of stopping at the hero (CRO-6731). Empty at
-     first paint: home-motion.js moves the existing .hw__canvas element in
-     and out of it on scroll, there is no second WebGL context. */}}
+{{/* Desktop-only backdrop plate behind the highway scene once it docks
+     into the rail (CRO-6731). Always empty: home-motion.js never re-parents
+     the canvas here (Pass 5 dropped that in favour of positioning the
+     canvas itself, so the handoff can be a continuous shrink instead of a
+     swap at a threshold); it just gives the canvas's fixed, masked edge a
+     matching dark ground to sit in front of, and a fallback if the canvas
+     never loads. There is only ever one WebGL context. */}}
 <div class="hw-rail" aria-hidden="true"></div>
 <main class="home-arc">
     {{ partial "icon-sprite.html" . }}

@@ -364,13 +364,17 @@
     z-index: 3;
   }
 
-  /* Full-page rail (CRO-6731): desktop only. home-motion.js re-parents the
-     hero's own .hw__canvas into this fixed host once the hero's pinned
-     stage scrolls past; there is no second WebGL context. The mask
-     feathers the rail's inner (content-facing) edge to transparent so
-     <main>'s own arc background shows through right where body copy sits,
-     one of two independent WCAG AA contrast guards (the other is the
-     scene's own materials lightening with setDayProgress). */
+  /* Full-page rail (CRO-6731): desktop only. Always an empty backdrop
+     plate; home-motion.js never re-parents the hero's own .hw__canvas here
+     (Pass 5: the canvas positions itself directly instead, so the handoff
+     can be a continuous shrink over a scroll span rather than a swap at a
+     threshold). This div just gives the canvas's fixed, masked edge a
+     matching dark ground, and a fallback if the canvas never loads; there
+     is only ever one WebGL context. The mask feathers the rail's
+     inner (content-facing) edge to transparent so <main>'s own arc
+     background shows through right where body copy sits, one of two
+     independent WCAG AA contrast guards (the other is the scene's own
+     materials lightening with setDayProgress). */
   .hw-rail {
     display: none;
   }
@@ -400,20 +404,6 @@
          visible" under either interpretation. */
       mask-image: linear-gradient(to left, white 62%, transparent 100%);
       -webkit-mask-image: linear-gradient(to left, white 62%, transparent 100%);
-    }
-
-    /* The canvas keeps its .hw__canvas class (and its base opacity: 0)
-       once re-parented here: the "fade in once live" rule above is scoped
-       to .hw.is-live .hw__canvas, a descendant selector that stops
-       matching the moment the canvas leaves .hw. It is only ever moved
-       here once the scene is already live, so it is always shown. */
-    .hw-rail canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      opacity: 1;
     }
 
     /* Every section below the hero keeps clear of the rail. --rail-w is
