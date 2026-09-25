@@ -81,4 +81,4 @@ No. Statistics Canada reported that in the second quarter of 2026, [19.9% of bus
 
 ## Next step
 
-If you want a second opinion on which workflow to start with, book a free 20-minute [Live Audit](/live-audit/). Esteban Valencia reviews your agency's actual tools with you and names the first agent worth building. To see what a full build includes, read about [AI agent implementation](/services/ai-agent-implementation/).
+If you want a second opinion on which workflow to start with, book a free 20-minute [Live Audit](/live-audit/). We review your agency's actual tools with you and name the first agent worth building. To see what a full build includes, read about [AI agent implementation](/services/ai-agent-implementation/).

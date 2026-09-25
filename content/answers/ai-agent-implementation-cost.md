@@ -64,7 +64,7 @@ Then compare it with what the process costs you today: hours per week, times the
 
 ## Does EV Advisory publish a price?
 
-Not a fixed one. Each EV Advisory project is quoted in writing after a free 20-minute Live Audit, once the process and tools are clear. See what a project includes on the [AI agent implementation](/services/ai-agent-implementation/) page.
+Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the first 3 founding seats, locked for 6 months (USD 2,995/mo for seats after that). That is a different shape than the one-off project ranges above: instead of a single quoted build, one request is in flight at a time with a queue behind it, and the seat covers every agent shipped from that queue. See the full offer on the [AI agent implementation](/services/ai-agent-implementation/) page.
 
 ## Sources
 
@@ -75,4 +75,4 @@ Not a fixed one. Each EV Advisory project is quoted in writing after a free 20-m
 
 ## Next step
 
-To get a written scope and quote for your own first agent, book a free 20-minute [Live Audit](/live-audit/). Esteban Valencia reviews your actual tools with you and names the first workflow worth automating.
+To find the first workflow worth automating in your own stack, book a free 20-minute [Live Audit](/live-audit/). We review your actual tools with you and name the first workflow worth automating.

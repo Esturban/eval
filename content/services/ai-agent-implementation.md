@@ -1,126 +1,129 @@
 ---
-title: "One AI Agent, Live in Your Tools Within 6 Weeks, No New Hire"
-description: "EV Advisory ships one working AI agent into a founder-led agency or service team, built into the tools you already use, without adding headcount. Serving Canada and the United States."
-summary: "One narrow AI agent, built into your existing tools, tested on your real work, and handed over with documentation your team can run. Scoped on a free Live Audit."
+title: "Build Queue: AI Agents Shipped Into Your Tools, One Monthly Subscription"
+description: "Build Queue is EV Advisory's monthly AI subscription for founder-led agencies and service teams. We ship working AI agents into the tools you already run, one request at a time. USD 1,995/mo. Canada and the United States."
+summary: "A monthly subscription that works like a retainer: one request in flight, unlimited queue behind it, first agent live within 10 business days of access or next month is free. USD 1,995/mo."
 date: 2026-09-24
-dateModified: 2026-09-24
+dateModified: 2026-09-25
 draft: false
 weight: 1
 language: en
-author: Esteban Valencia
+author: EV Advisory
 authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
 schema:
   type: service
   service:
-    name: AI agent implementation
-    service_type: AI agent implementation
+    name: Build Queue
+    service_type: AI agent implementation subscription
     audience: Founder-led agencies and service teams
     area_served: [Canada, United States]
   offer:
-    # No price, guarantee, or fixed product name until the offer is locked.
-    # The offer URL is the Live Audit, which scopes each project.
-    name: AI agent implementation project
-    description: "One narrow AI agent designed, built into the client's existing tools, tested on real examples, and handed over with documentation. Scope and price are set in writing after a free Live Audit."
+    # Locked 2026-09-25 (CRO-5617). Founding seat price only; no other tiers on the page.
+    name: Build Queue founding seat
+    description: "Monthly AI agent implementation subscription. One active request at a time, unlimited queue behind it. USD 1,995 per month for the first 3 seats, locked for 6 months. Cancel in the first 14 days for 75 percent back. First request live within 10 business days of system access, or the next month is free."
+    price: 1995
+    price_currency: USD
     url: /live-audit/
 faq:
-  - question: "Who is AI agent implementation for?"
-    answer: "Founder-led agencies and service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have one repeated process they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
-  - question: "How long does an AI agent implementation take?"
-    answer: "You leave the Live Audit already knowing which process comes first. From there, a single narrow agent is live within 2 to 6 weeks, with exact dates set in your written scope. Most of that time depends on how quickly access to your tools is granted and how fast your team reviews test results."
-  - question: "What do I get at the end of the project?"
-    answer: "A working agent running in accounts you own, a written scope and workflow map, a test log of real examples with results, a runbook your team can follow, a list of every access and credential the agent uses, and a before-and-after measure of the process it took over."
-  - question: "What does my team need to do during the project?"
-    answer: "Name one owner for the process, grant access to the tools involved, share 20 to 30 real past examples of the work, and review test outputs at two or three agreed checkpoints. Plan for about one to two hours a week from the owner, far less time than interviewing and onboarding a new hire."
+  - question: "What is Build Queue?"
+    answer: "Build Queue is a monthly AI subscription that works like a retainer. You add the processes you want off your plate to a queue. We build one at a time, as a working AI agent inside the tools you already run, and start the next one as soon as the current one ships. Cancel anytime."
+  - question: "Who is Build Queue for?"
+    answer: "Founder-led agencies and service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have repeated processes they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
   - question: "How much does it cost?"
-    answer: "Every project is scoped and quoted in writing after a free 20-minute Live Audit, because cost depends on how many tools the agent touches and how much judgment the task needs. For public Canadian market ranges, see the [AI agent cost guide](/answers/ai-agent-implementation-cost/)."
-  - question: "Do I need to hire anyone to run the agent afterwards?"
-    answer: "No. The agent is designed so the process owner you already have can run it, review its exceptions, and pause it. The handoff includes a runbook and a walkthrough so nobody new is needed."
+    answer: "USD 1,995 per month for the first 3 founding seats, with that price locked for 6 months. Seats after that are USD 2,995 per month. One request is in flight at a time, with as many queued behind it as you like. There are no per-project quotes and no setup fee."
+  - question: "What is the guarantee?"
+    answer: "Two parts. First, cancel in the first 14 days and get 75 percent of your payment back, no conditions. Second, if your first request is not live in your own systems within 10 business days of you granting system access, your next month is free."
+  - question: "How fast is the first agent live?"
+    answer: "Within 10 business days of you granting access to the tools involved, or your next month is free. The clock starts at access, not at signup, because access is the one step only your team can complete. We send a short access checklist on day one so it takes minutes, not a security review."
+  - question: "What does my team need to do?"
+    answer: "Name one owner for each process, grant least-privilege access to the tools involved, share 20 to 30 real past examples of the work, and review test outputs before each agent goes live. Plan for about one to two hours a week from the owner, far less time than interviewing and onboarding a new hire."
+  - question: "Do I need to hire anyone to run the agents?"
+    answer: "No. Each agent is designed so the process owner you already have can run it, review its exceptions, and pause it. Every handoff includes a runbook and a walkthrough, so nobody new is needed, and the agents keep running in your accounts if you cancel."
 ---
 
-EV Advisory implements AI agents for founder-led agencies and service teams in Canada and the United States: one narrow agent, built into the tools you already use, tested on your real work, and handed over so your existing team can run it without a new hire. Every project starts with a free 20-minute [Live Audit](/live-audit/), where Esteban Valencia reviews your actual tool stack with you and names the first process worth handing to an agent.
+Build Queue is a monthly AI subscription for founder-led agencies and service teams in Canada and the United States. It works like a retainer: you keep a queue of the processes you want off your plate, and we ship them one at a time as working AI agents inside the tools you already use, tested on your real work and handed to an owner you already have. No new hire, no per-project quotes.
 
-The work is deliberately narrow. One agent, one repeated process, one owner on your side, and a clear measure of whether it worked. A second agent only gets scoped once the first one is earning its keep.
+**USD 1,995/mo** for the first 3 founding seats, locked for 6 months. **Your first agent is live in your systems within 10 business days of access, or next month is free.**
 
-*Updated 2026-09-24. Written by Esteban Valencia, founder of EV Advisory.*
+Every seat starts with a free 20-minute [Live Audit](/live-audit/), where we review your actual tool stack with you and name the first process worth handing to an agent.
+
+*Updated 2026-09-25. EV Advisory.*
 
 ## Who is this for?
 
-This service fits if all three of these are true:
+Build Queue fits if all three of these are true:
 
 - **You run a founder-led agency or service team.** Marketing, creative, consulting, or professional services, where the founder still feels every bottleneck directly.
 - **Your team already works in real tools.** A CRM, a project or ticketing tool, shared inboxes, a document system. An agent needs somewhere to plug in.
-- **You are open to adopting an agent.** Someone on the team is willing to own the process, review the agent's work in the first weeks, and change a habit or two.
+- **You are open to adopting agents.** Someone on the team is willing to own each process, review the agent's work in the first weeks, and change a habit or two.
 
 It is not a fit, yet, if:
 
 - The process you want automated is not written down anywhere and changes every time it runs.
 - You want a large platform rollout across many departments at once. That needs a bigger team than a senior-led practice.
-- You need the agent to make final decisions on money, hiring, legal, or medical matters without a person checking. That is not something this practice builds.
+- You need an agent to make final decisions on money, hiring, legal, or medical matters without a person checking. That is not something this practice builds.
 
 If you are unsure, the [Live Audit](/live-audit/) exists to answer exactly that question in 20 minutes.
 
-## How long does it take?
+## How does the queue work?
 
-You leave the Live Audit already knowing which process comes first. The agent itself is live within **2 to 6 weeks**, with exact dates set in your written scope.
+One request is in flight at a time. Everything else waits in your queue, in the order you choose, and you can reorder it whenever priorities change.
 
-| Phase | What happens | Typical duration |
+| Step | What happens | When |
 |---|---|---|
 | Live Audit | Free call on your screen. We walk through your tools and name the first process worth automating. | 20 minutes |
-| Scope | Written scope: the process, the tools involved, what the agent does, what stays human, how success is measured, and the quote. | 2 to 5 business days |
-| Access and examples | Your team grants tool access and shares real past examples of the work. | Usually 2 to 5 business days (this is the step that most often slows projects down) |
-| Build | The agent is built inside your accounts and connected to your tools. | 1 to 3 weeks |
-| Test on real work | The agent runs against your past examples, then alongside your team on live work, with a person approving every output. | 1 to 2 weeks |
-| Launch and handoff | The agent moves into daily use. Your owner gets the runbook, a walkthrough, and the access list. | 1 to 3 days |
-| Early monitoring | We watch exceptions and error rates and tune the agent while the team settles in. | First 2 to 4 weeks after launch |
+| Seat starts | You take a seat, we send the access checklist, and your first request goes to the top of the queue. | Day one |
+| Access and examples | Your team grants least-privilege access and shares real past examples of the work. | Usually a few days; the guarantee clock starts here |
+| First agent live | Built inside your accounts, tested on your past examples, then run alongside your team with a person approving outputs. | Within 10 business days of access, or next month is free |
+| Next request | As soon as one agent ships, the next request in your queue starts. | Continuous while your seat is active |
+| Ongoing tuning | We watch exceptions and error rates on agents already live and tune them while your seat is active. | Every month |
 
-## What do you get?
+## What do you get with every request?
 
-This is what an implementation project includes. Nothing on this list is optional.
+Each agent that ships from your queue comes with the same standard. Nothing on this list is optional.
 
-| Deliverable | What it is | When you get it |
-|---|---|---|
-| Written scope | One document: the process, the tools, what the agent does and does not do, the success measure, and the price. | Before any build work starts |
-| Workflow map | The process as it runs today and as it runs with the agent, including every point where a person reviews or takes over. | During scope |
-| Baseline measure | How long the process takes, how often it runs, and its error rate today, so the result can be compared honestly. | Before build |
-| The working agent | Built and running inside accounts you own, connected to the tools named in the scope. | At launch |
-| Test log | The real examples the agent was tested on, what it produced, and what was corrected. | Before launch |
-| Runbook | Plain-language instructions: how to run, pause, and review the agent, and what to do when it gets something wrong. | At handoff |
-| Access and credentials list | Every account, key, and permission the agent uses, so you can revoke or move anything without calling us. | At handoff |
-| Handoff walkthrough | A recorded session with your process owner. | At handoff |
-| After measure | The same measure as the baseline, taken once the agent is in daily use. | End of early monitoring |
+| Deliverable | What it is |
+|---|---|
+| Workflow map | The process as it runs today and as it runs with the agent, including every point where a person reviews or takes over. |
+| Baseline measure | How long the process takes, how often it runs, and its error rate today, so the result can be compared honestly. |
+| The working agent | Built and running inside accounts you own, connected to the tools the process uses. |
+| Test log | The real examples the agent was tested on, what it produced, and what was corrected. |
+| Runbook | Plain-language instructions: how to run, pause, and review the agent, and what to do when it gets something wrong. |
+| Access and credentials list | Every account, key, and permission the agent uses, so you can revoke or move anything without calling us. |
+| Handoff walkthrough | A recorded session with your process owner. |
+| After measure | The same measure as the baseline, taken once the agent is in daily use. |
 
-For a deeper explanation of each phase, and what to ask any provider about deliverables, see [what an AI agent implementation project includes](/answers/what-ai-agent-implementation-includes/).
+For a deeper explanation of what a well-run implementation should include, and what to ask any provider, see [what an AI agent implementation project includes](/answers/what-ai-agent-implementation-includes/).
 
 ## What does your team need to do?
 
-An agent only works if someone on your side owns it. During the project your team:
+An agent only works if someone on your side owns it. While your seat is active, your team:
 
-- **Names one process owner.** The person who does the work today, or manages it. They answer questions and approve outputs.
-- **Grants access.** To the specific tools named in the scope, using accounts your business owns. Access is scoped to the minimum the agent needs.
-- **Shares real examples.** Usually 20 to 30 past instances of the work (emails, briefs, tickets, reports) so the agent is tested on reality, not a demo.
-- **Reviews at checkpoints.** Two or three agreed review points: after the scope, after testing on past examples, and before launch.
-- **Plans for one to two hours a week** from the owner during the build and test phases, far less time than interviewing and onboarding a new hire.
+- **Names one owner per process.** The person who does the work today, or manages it. They answer questions and approve outputs.
+- **Grants access.** To the specific tools the process uses, with accounts your business owns. Access is scoped to the minimum the agent needs and can be revoked anytime.
+- **Shares real examples.** Usually 20 to 30 past instances of the work (emails, briefs, tickets, reports) so each agent is tested on reality, not a demo.
+- **Reviews before launch.** A person on your side approves test outputs before each agent goes live.
+- **Plans for one to two hours a week** from the owner, far less time than interviewing and onboarding a new hire.
 
 ## How much does it cost?
 
-Each project is quoted in writing after the free Live Audit, once the process, the tools involved, and the amount of judgment the task needs are clear. There is no charge for the Live Audit and no obligation after it.
+**USD 1,995 per month** for the first 3 founding seats, with that price locked for 6 months. Seats after that are USD 2,995 per month.
 
-What moves the quote most:
+That covers one active request at a time, an unlimited queue behind it, the full deliverable standard above on every agent, and ongoing tuning on the agents already live. No setup fee, no per-project quotes, cancel anytime.
 
-- **Number of tools the agent connects to.** One tool is simpler than four.
-- **How much judgment the task needs.** Sorting and drafting is simpler than deciding.
-- **Whether the agent touches client or customer data.** More safeguards, more testing.
-- **Whether a person approves every output or only exceptions.**
+**The guarantee:**
 
-If you want a sense of the market before the call, the [AI agent implementation cost guide for Canada](/answers/ai-agent-implementation-cost/) summarizes publicly published price ranges, with sources.
+1. **Cancel in the first 14 days and get 75 percent back.** No conditions.
+2. **If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free.**
 
-[Book a free 20-minute Live Audit](/live-audit/), no pitch, no obligation, just a written scope and quote for your process.
+If you want a sense of the market first, the [AI agent implementation cost guide for Canada](/answers/ai-agent-implementation-cost/) summarizes publicly published price ranges, with sources.
+
+[Book a free 20-minute Live Audit](/live-audit/). No pitch, no obligation. You leave knowing which process goes first in your queue.
 
 ## Proof
 
-**The method.** Every project is scoped, baselined, tested on real examples, and measured after launch, as described above. The written scope you receive after the Live Audit spells out how your result will be measured.
+**The method.** Every agent is baselined, tested on real examples, and measured after launch, as described above. You see the before and after numbers for each one.
 
 Before you hire anyone to build an agent, including EV Advisory, ask to see agents running in production, not demos. That is the standard this practice holds itself to.
 
@@ -133,6 +136,6 @@ On your Live Audit, hold us to the same questions you would ask anyone else. The
 
 ## Start with a free Live Audit
 
-The Live Audit is a free 20-minute call. You share your screen and walk through the tools your team runs on. Esteban names the first process worth handing to an agent and explains why it comes first. If it is a fit, you get a written scope and quote afterwards. If it is not, you leave with a clear first step you can take on your own.
+The Live Audit is a free 20-minute call. You share your screen and walk through the tools your team runs on. We name the first process worth handing to an agent and explain why it comes first. If Build Queue is a fit, that process becomes the first request in your queue. If it is not, you leave with a clear first step you can take on your own.
 
 [Book your free Live Audit](/live-audit/)

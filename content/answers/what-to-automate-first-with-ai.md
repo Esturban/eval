@@ -78,4 +78,4 @@ Yes. Statistics Canada reported that in the second quarter of 2026, [19.2% of Ca
 
 ## Next step
 
-Picking the first workflow is exactly what the free 20-minute [Live Audit](/live-audit/) is for. Esteban Valencia reviews your real tools with you, live, and names the first automation worth shipping. To see what building it involves, read about [AI agent implementation](/services/ai-agent-implementation/).
+Picking the first workflow is exactly what the free 20-minute [Live Audit](/live-audit/) is for. We review your real tools with you, live, and name the first automation worth shipping. To see what building it involves, read about [AI agent implementation](/services/ai-agent-implementation/).

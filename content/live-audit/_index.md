@@ -1,10 +1,10 @@
 +++
 type = "live-audit"
 title = "Live Audit"
-description = "A free 20-minute call. Esteban Valencia reviews your actual tool stack live and names the first automation worth shipping."
+description = "A free 20-minute call. We review your actual tool stack live and name the first automation worth shipping."
 eyebrow = "Live Audit"
 headline = "Find the first automation worth shipping, on one free call."
-lede = "Esteban reviews the tools your team already uses, live, and names the one automation to build first."
+lede = "We review the tools your team already uses, live, and name the one automation to build first."
 cta_text = "Book your Live Audit"
 cta_link = "https://cal.com/este-val/audit-fit-call"
 cta_note = "Your screen, your tools, live. Walk away with the first automation named."
@@ -12,7 +12,7 @@ cta_note = "Your screen, your tools, live. Walk away with the first automation n
 [[sections]]
 eyebrow = "What it is"
 heading = "A free call on your real stack."
-body = "You share your screen and walk through the tools your team runs on. Esteban names the first automation worth shipping, and why it comes first."
+body = "You share your screen and walk through the tools your team runs on. We name the first automation worth shipping, and why it comes first."
 
 [[sections]]
 eyebrow = "Who it is for"
