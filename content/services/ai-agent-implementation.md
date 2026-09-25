@@ -42,7 +42,7 @@ faq:
     answer: "No. Each agent is designed so the process owner you already have can run it, review its exceptions, and pause it. Every handoff includes a runbook and a walkthrough, so nobody new is needed, and the agents keep running in your accounts if you cancel."
 ---
 
-Build Queue is a monthly AI subscription for founder-led agencies and service teams in Canada and the United States. It works like a retainer: you keep a queue of the processes you want off your plate, and we ship them one at a time as working AI agents inside the tools you already use, tested on your real work and handed to an owner you already have. No new hire, no per-project quotes.
+Build Queue takes the repeated work off your team's plate, one AI agent at a time. You keep a queue of the processes you want gone, like weekly client updates, lead intake, or report assembly. We ship them in order as working agents inside the tools you already run, tested on your real work and handed to an owner you already have. It is a monthly subscription for founder-led agencies and service teams in Canada and the United States. No new hire, no per-project quotes.
 
 **USD 1,995/mo** for the first 3 founding seats, locked for 6 months. **Your first agent is live in your systems within 10 business days of access, or next month is free.**
 
@@ -68,7 +68,7 @@ If you are unsure, the [Live Audit](/live-audit/) exists to answer exactly that 
 
 ## How does the queue work?
 
-One request is in flight at a time. Everything else waits in your queue, in the order you choose, and you can reorder it whenever priorities change.
+One request is in flight at a time, and that is deliberate. Each agent is finished, tested on your real examples, and owned by someone on your team before the next one starts. No half-built pilots. Everything else waits in your queue, in the order you choose, and you can reorder it whenever priorities change.
 
 | Step | What happens | When |
 |---|---|---|
@@ -108,31 +108,32 @@ An agent only works if someone on your side owns it. While your seat is active, 
 
 ## How much does it cost?
 
-**USD 1,995 per month** for the first 3 founding seats, with that price locked for 6 months. Seats after that are USD 2,995 per month.
+**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, for the first 3 seats only, with that price locked for 6 months. The price is locked. You are not: cancel anytime.
 
-That covers one active request at a time, an unlimited queue behind it, the full deliverable standard above on every agent, and ongoing tuning on the agents already live. No setup fee, no per-project quotes, cancel anytime.
+For context: published Canadian rates for a single fixed-price agent project run about CAD 5,000 to 15,000, plus about CAD 300 to 800 a month to maintain it ([sources](/answers/ai-agent-implementation-cost/)). That buys one agent. A Build Queue seat keeps shipping from your queue for as long as it is active, with tuning on every agent already live.
 
-**The guarantee:**
+Or do the math on your own work: take the hours a week your team spends on the processes you would queue, multiply by their loaded hourly cost, then by 4.3. That is what those processes cost you each month today.
 
-1. **Cancel in the first 14 days and get 75 percent back.** No conditions.
-2. **If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free.**
+Every seat includes one active request at a time, an unlimited queue behind it, the full deliverable standard above on every agent, and ongoing tuning. No setup fee, no per-project quotes.
 
-If you want a sense of the market first, the [AI agent implementation cost guide for Canada](/answers/ai-agent-implementation-cost/) summarizes publicly published price ranges, with sources.
+**The 10-Day Ship Guarantee:**
 
-[Book a free 20-minute Live Audit](/live-audit/). No pitch, no obligation. You leave knowing which process goes first in your queue.
+1. **If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free.**
+2. **Changed your mind? Cancel in the first 14 days and get 75 percent back.** No conditions.
 
-## Proof
+[Book a free 20-minute Live Audit](/live-audit/). No obligation. You leave knowing which process goes first, whether or not you take a seat.
 
-**The method.** Every agent is baselined, tested on real examples, and measured after launch, as described above. You see the before and after numbers for each one.
+## Why you can hold us to this
 
-Before you hire anyone to build an agent, including EV Advisory, ask to see agents running in production, not demos. That is the standard this practice holds itself to.
+**The guarantee puts the risk on us.** If your first request is not live in your systems within 10 business days of access, you do not pay for next month. We would not write that if we could not ship.
 
-Here is what else you can check today:
+**You see the numbers, not a demo.** Every agent gets a baseline before launch and the same measure after it is in daily use. If the after number is not better, you will see that too.
 
-- **The work in public.** With your permission, your Live Audit can become a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
-- **Earlier operating work.** Before focusing on AI agents, EV Advisory ran reporting and operations work for teams across enterprise commerce, premium retail, subscription, automotive, and complex operations. See the [proof and case studies](/proof/) page.
+**The work in public.** With your permission, your Live Audit can become a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
 
-On your Live Audit, hold us to the same questions you would ask anyone else. The [questions to ask before hiring an AI agent developer](/answers/questions-before-hiring-ai-agent-developer/) are a good checklist.
+**Earlier operating work.** Before focusing on AI agents, EV Advisory ran reporting and operations work for teams across enterprise commerce, premium retail, subscription, automotive, and complex operations. See the [proof and case studies](/proof/) page.
+
+On your Live Audit, hold us to the same [questions you would ask any AI agent developer](/answers/questions-before-hiring-ai-agent-developer/).
 
 ## Start with a free Live Audit
 

@@ -13,7 +13,7 @@ faq:
   - question: "Are there hidden costs after launch?"
     answer: "Yes, three are common: model usage fees that grow with volume, tool subscriptions the agent needs, and maintenance when a connected tool changes. Published Canadian maintenance arrangements run about $300 to $800 a month, and managed optimization of more complex systems about $2,000 to $5,000 a month. Ask any provider to estimate monthly run cost in writing before you sign."
   - question: "Is a fixed-fee project cheaper than hourly billing?"
-    answer: "Not always cheaper, but usually safer. A fixed fee puts the risk of overruns on the provider and forces a clear scope up front. Hourly billing can work for small, well-defined changes after launch. For the first build, ask for a fixed price tied to a written scope."
+    answer: "Not always cheaper, but usually safer. A fixed fee puts the risk of overruns on the provider and forces a clear scope up front. Hourly billing can work for small, well-defined changes after launch. For the first build, ask for a fixed price tied to a written scope. A flat monthly subscription with a delivery guarantee is another way to cap the cost."
   - question: "Is sales tax charged on AI consulting in Canada?"
     answer: "Generally yes. Consulting and implementation services supplied in Canada by a GST/HST registrant are normally taxable, and the rate depends on the province or territory of supply, for example 13% HST in Ontario. Check the Canada Revenue Agency's guidance on which rate to charge, and ask your accountant; this is not tax advice."
 ---
@@ -64,7 +64,7 @@ Then compare it with what the process costs you today: hours per week, times the
 
 ## Does EV Advisory publish a price?
 
-Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the first 3 founding seats, locked for 6 months (USD 2,995/mo for seats after that). That is a different shape than the one-off project ranges above: instead of a single quoted build, one request is in flight at a time with a queue behind it, and the seat covers every agent shipped from that queue. See the full offer on the [AI agent implementation](/services/ai-agent-implementation/) page.
+Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the first 3 founding seats, locked for 6 months (USD 2,995/mo for seats after that), with no setup fee. It is priced differently from the project ranges above: instead of paying for one quoted build and then a separate maintenance plan, your seat covers every agent shipped from your queue, one at a time, plus tuning on the agents already live. Build Queue is priced in US dollars; the ranges above are in Canadian dollars. See the full offer on the [Build Queue](/services/ai-agent-implementation/) page.
 
 ## Sources
 
@@ -75,4 +75,4 @@ Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the
 
 ## Next step
 
-To find the first workflow worth automating in your own stack, book a free 20-minute [Live Audit](/live-audit/). We review your actual tools with you and name the first workflow worth automating.
+Want to know which workflow is worth paying for first? Book a free 20-minute [Live Audit](/live-audit/). We review your actual tools with you and name it, live.

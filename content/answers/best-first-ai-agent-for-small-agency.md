@@ -13,7 +13,7 @@ faq:
   - question: "Do I need a paid AI assistant plan before building an agent?"
     answer: "Not always, but it helps. A business plan for a general assistant gives your team a safe place to learn how the model behaves and most business tiers state that your data is not used for model training by default (check the terms of the plan you pick). The first agent itself runs on your existing tools plus a model account your business owns."
   - question: "How long until the first agent is running?"
-    answer: "For a narrow workflow like the weekly client update, 2 to 4 weeks is realistic: about a week to connect the tools and gather examples, one to two weeks of testing alongside your team, then daily use."
+    answer: "For a narrow workflow like the weekly client update, expect the agent to be live about two weeks after the tools are connected, then a short period running alongside your team before daily use. Through Build Queue, the first agent is live within 10 business days of you granting access, or your next month is free."
   - question: "Can an agent work inside the tools my agency already uses?"
     answer: "Usually yes. Most project tools, CRMs, inboxes, and document systems agencies use have APIs or automation connectors an agent can read from and draft into. If a tool has no way in, that workflow is not the right first pick."
 ---
@@ -81,4 +81,4 @@ No. Statistics Canada reported that in the second quarter of 2026, [19.9% of bus
 
 ## Next step
 
-If you want a second opinion on which workflow to start with, book a free 20-minute [Live Audit](/live-audit/). We review your agency's actual tools with you and name the first agent worth building. To see what a full build includes, read about [AI agent implementation](/services/ai-agent-implementation/).
+Want to know which workflow goes first in your agency? Book a free 20-minute [Live Audit](/live-audit/). We review your agency's actual tools with you and name the first agent worth building. Through [Build Queue](/services/ai-agent-implementation/), that agent is live within 10 business days of access, or your next month is free.
