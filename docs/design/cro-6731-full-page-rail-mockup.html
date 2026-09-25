@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>CRO-6731 mockup</title>
+<style>
+  :root{
+    --ink:#020617; --graphite:#0f172a; --surface:#f7f4ee; --panel:#f8fafc;
+    --line:#dbe3ee; --cyan:#22d3ee; --cyan-deep:#0891b2; --emerald:#34d399;
+    --violet:#a78bfa; --amber:#fbbf24;
+    --rail-w:340px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; width:1440px; background:#e7e2d6;
+    font-family:-apple-system,"Segoe UI",Inter,sans-serif;
+    color:var(--ink);
+  }
+  .sheet{padding:40px 40px 60px;}
+  .kicker{
+    font-family:"SFMono-Regular",Menlo,monospace; font-size:12px; letter-spacing:.24em;
+    text-transform:uppercase; color:#334155; margin:0 0 4px;
+  }
+  h1.doc-title{
+    font-size:26px; margin:0 0 4px; letter-spacing:-0.01em; font-weight:700;
+  }
+  .doc-sub{ font-size:14px; color:#475569; margin:0 0 28px; max-width:900px; line-height:1.5;}
+
+  /* ---- scroll-state bands ---- */
+  .band-label{
+    font-family:"SFMono-Regular",Menlo,monospace; font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:#1e293b; margin:22px 0 8px; display:flex; gap:10px; align-items:center;
+  }
+  .band-label b{ color:var(--cyan-deep); }
+  .band{
+    position:relative; height:340px; border-radius:18px; overflow:hidden;
+    display:flex; box-shadow:0 1px 0 rgba(15,23,42,.06);
+    border:1px solid rgba(15,23,42,.08);
+  }
+  .band .content{
+    flex:1; display:flex; flex-direction:column; justify-content:center;
+    padding:0 44px; position:relative; z-index:2;
+  }
+  .band .rail{
+    width:var(--rail-w); position:relative; flex:none; overflow:hidden;
+  }
+  .band .rail .mask{
+    position:absolute; inset:0;
+  }
+  .gutter-note{
+    position:absolute; top:8px; left:calc(100% - var(--rail-w) - 108px); z-index:5;
+    font-family:"SFMono-Regular",monospace; font-size:9.5px; color:#0891b2; letter-spacing:.06em;
+    background:rgba(255,255,255,.72); padding:2px 6px; border-radius:4px; white-space:nowrap;
+  }
+
+  /* Band A: hero, night */
+  .band-a{ background:var(--ink); }
+  .band-a .content{ color:var(--surface); }
+  .band-a .eyebrow{ font-family:monospace; font-size:11px; letter-spacing:.28em; color:var(--cyan); text-transform:uppercase; margin:0 0 10px;}
+  .band-a h2.sample{ font-size:42px; line-height:1.03; letter-spacing:-.03em; font-weight:700; margin:0 0 10px; max-width:12ch;}
+  .band-a p.sample{ font-size:16px; line-height:1.6; color:#cbd5e1; max-width:34ch; margin:0;}
+  .band-a .rail{ background:linear-gradient(180deg,#020617 0%,#0b2233 55%,#132a1f 100%); }
+  .band-a .stars{position:absolute; inset:0; background-image:radial-gradient(1px 1px at 20% 15%, #ffffff55 0, transparent 60%),radial-gradient(1px 1px at 60% 30%, #ffffff33 0, transparent 60%),radial-gradient(1px 1px at 80% 10%, #ffffff44 0, transparent 60%),radial-gradient(1px 1px at 35% 55%, #ffffff33 0, transparent 60%);}
+  .band-a .road{position:absolute; left:36%; right:0; bottom:0; top:60%; background:linear-gradient(180deg,#0e1829,#111c2e);}
+  .band-a .lane{position:absolute; bottom:0; top:60%; left:50%; width:2px; background:repeating-linear-gradient(180deg,#e2e8f0 0 14px, transparent 14px 26px); opacity:.7;}
+  .band-a .veh{position:absolute; left:56%; top:70%; width:86px; height:22px; border-radius:11px; background:linear-gradient(90deg,var(--cyan),#0891b2); box-shadow:0 0 22px 4px #22d3ee99;}
+  .band-a .veh::after{content:"";position:absolute; left:-46px; top:8px; width:46px; height:5px; border-radius:3px; background:linear-gradient(90deg,transparent,#22d3ee99);}
+  .band-a .stem{position:absolute; left:64%; top:38%; width:1px; height:32%; background:linear-gradient(180deg,var(--cyan),transparent);}
+  .band-a .tag{position:absolute; left:57%; top:30%; font-family:monospace; font-size:9px; letter-spacing:.1em; color:#f1f5f9;}
+  .band-a .tag b{display:block; font-family:-apple-system,sans-serif; font-size:12px; color:var(--cyan); letter-spacing:0; font-weight:600;}
+
+  /* Band B: mid-scroll, dawn over first light section */
+  .band-b{ background:var(--surface); }
+  .band-b .content{ color:var(--ink); }
+  .band-b .eyebrow{ font-family:monospace; font-size:11px; letter-spacing:.28em; color:#0891b2; text-transform:uppercase; margin:0 0 10px;}
+  .band-b h2.sample{ font-size:38px; line-height:1.05; letter-spacing:-.03em; font-weight:700; margin:0 0 10px; max-width:14ch; color:#020617;}
+  .band-b p.sample{ font-size:16px; line-height:1.6; color:#475569; max-width:36ch; margin:0;}
+  .band-b .rail{ background:linear-gradient(180deg,#0b2233 0%,#7c5a3f 32%,#e8b98a 52%,#f3d9b8 68%,#f7f4ee 100%); }
+  .band-b .rail .mask{ background:linear-gradient(90deg, var(--surface) 0%, rgba(247,244,238,0) 42%); }
+  .band-b .road{position:absolute; left:30%; right:0; bottom:0; top:66%; background:linear-gradient(180deg,#4b5563,#94a3b8);}
+  .band-b .lane{position:absolute; bottom:0; top:66%; left:48%; width:2px; background:repeating-linear-gradient(180deg,#f8fafc 0 12px, transparent 12px 24px); opacity:.8;}
+  .band-b .veh{position:absolute; left:50%; top:74%; width:70px; height:18px; border-radius:9px; background:linear-gradient(90deg,#fbbf24,#f59e0b); box-shadow:0 0 16px 3px #fbbf2488;}
+  .band-b .sun{position:absolute; left:58%; top:30%; width:46px; height:46px; border-radius:50%; background:radial-gradient(circle,#fff2d6,#f3b95f 70%,transparent 100%);}
+  .band-b .stem{position:absolute; left:53%; top:50%; width:1px; height:22%; background:linear-gradient(180deg,#f59e0b,transparent);}
+  .band-b .tag{position:absolute; left:46%; top:44%; font-family:monospace; font-size:9px; letter-spacing:.1em; color:#1e293b;}
+  .band-b .tag b{display:block; font-family:-apple-system,sans-serif; font-size:12px; color:#b45309; letter-spacing:0; font-weight:600;}
+
+  /* Band C: late scroll, day, near CTA */
+  .band-c{ background:#ffffff; }
+  .band-c .content{ color:var(--ink); }
+  .band-c .eyebrow{ font-family:monospace; font-size:11px; letter-spacing:.28em; color:#0891b2; text-transform:uppercase; margin:0 0 10px;}
+  .band-c h3.sample{ font-size:27px; line-height:1.15; letter-spacing:-.02em; font-weight:700; margin:0 0 8px; max-width:18ch; color:#020617;}
+  .band-c p.sample{ font-size:16px; line-height:1.6; color:#475569; max-width:36ch; margin:0;}
+  .band-c .rail{ background:linear-gradient(180deg,#cfe6f7 0%,#e7f2fb 45%,#f7f4ee 100%);}
+  .band-c .rail .mask{ background:linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 40%); }
+  .band-c .road{position:absolute; left:24%; right:0; bottom:0; top:70%; background:linear-gradient(180deg,#cbd5e1,#e2e8f0);}
+  .band-c .veh{position:absolute; left:46%; top:78%; width:54px; height:14px; border-radius:7px; background:linear-gradient(90deg,#94a3b8,#e2e8f0); opacity:.85; box-shadow:0 0 10px 2px #cbd5e199;}
+  .band-c .veh::after{content:"";position:absolute; left:-54px; top:5px; width:54px; height:4px; border-radius:2px; background:linear-gradient(90deg,transparent,#94a3b899);}
+
+  .caption{font-size:11.5px; color:#64748b; margin-top:8px; max-width:1000px; line-height:1.5;}
+
+  /* ---- type scale strip ---- */
+  .section-title{font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:#0f172a; margin:44px 0 4px;}
+  .section-note{font-size:12px; color:#64748b; margin:0 0 16px;}
+  .scale{
+    background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px 32px;
+  }
+  .scale-row{display:flex; align-items:baseline; gap:20px; padding:14px 0; border-bottom:1px dashed #e2e8f0;}
+  .scale-row:last-child{border-bottom:none;}
+  .scale-row .tok{width:190px; flex:none; font-family:monospace; font-size:11px; color:#0891b2; letter-spacing:.04em;}
+  .scale-row .sample-text{flex:1; color:#020617; font-weight:700; letter-spacing:-.02em;}
+  .scale-row .px{width:150px; flex:none; text-align:right; font-family:monospace; font-size:11px; color:#64748b;}
+  .h1s{font-size:56px; line-height:1;}
+  .h2s{font-size:44px; line-height:1;}
+  .h3s{font-size:27px; line-height:1.1;}
+  .h4s{font-size:20px; line-height:1.1;}
+  .bodys{font-size:18px; font-weight:400; line-height:1.4;}
+  .mono-s{font-family:monospace; font-size:12px; letter-spacing:.24em; text-transform:uppercase; font-weight:600;}
+
+  /* ---- logo chips ---- */
+  .chips{display:flex; gap:14px; flex-wrap:wrap;}
+  .chip{
+    display:flex; align-items:center; gap:9px; background:#0b1426; border-radius:999px;
+    padding:9px 16px 9px 10px; font-family:monospace; font-size:11px; letter-spacing:.08em;
+    color:#e2e8f0; text-transform:uppercase;
+  }
+  .chip .swatch{width:20px;height:20px;border-radius:5px; flex:none;}
+  .chip.mono .swatch{background:#94a3b8;}
+  .chip.official{ outline:1.5px dashed #f59e0b55; }
+  .chip.official .tag2{font-family:-apple-system,sans-serif; text-transform:none; letter-spacing:0; font-size:9.5px; color:#fbbf24; margin-left:4px;}
+  .outlook .swatch{background:linear-gradient(135deg,#0A2767,#28A8EA);}
+  .slack .swatch{background:conic-gradient(from 0deg,#36C5F0,#2EB67D,#ECB22E,#E01E5A);}
+  .salesforce .swatch{background:radial-gradient(circle,#00A1E0,#00558C);}
+  .gmail .swatch{background:#EA4335;}
+  .hubspot .swatch{background:#FF7A59;}
+
+  .legend{font-size:11.5px; color:#64748b; margin-top:14px; line-height:1.6; max-width:1000px;}
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <p class="kicker">EV Advisory, evadvisory.ca, design pass mockup</p>
+    <h1 class="doc-title">CRO-6731: full-page side rail, day/night scroll, type scale, official tool logos</h1>
+    <p class="doc-sub">Three simulated scroll states of the same page (hero, then the first light section, then the closing CTA) showing the persistent side rail transitioning night to dawn to day, the content gutter that keeps the rail off body copy, and the corrected heading scale. Not a live capture, a static plan mockup built for this design pass. Full spec is in DESIGN.md, Motion and Typography sections.</p>
+
+    <div class="band-label"><b>01</b> Hero, scroll 0%, night, full-bleed scene (unchanged from current hero)</div>
+    <div class="band band-a">
+      <div class="content">
+        <p class="eyebrow">AI agents for founder-led teams</p>
+        <h2 class="sample">We ship a working AI agent in weeks, not months.</h2>
+        <p class="sample">Hero stays exactly as it renders today: full-bleed scene, h1 at 34 to 64px.</p>
+      </div>
+      <div class="rail">
+        <div class="stars"></div>
+        <div class="road"></div>
+        <div class="lane"></div>
+        <div class="stem"></div>
+        <div class="veh"></div>
+        <div class="tag">INBOX AGENT<b>New email</b></div>
+      </div>
+    </div>
+    <p class="caption">At this point the rail is the hero, same camera, same geometry. No behaviour change here.</p>
+
+    <div class="band-label"><b>02</b> Mid-scroll, about 45%, rail hands off to a narrow fixed column, dawn</div>
+    <div class="band band-b">
+      <span class="gutter-note">content gutter</span>
+      <div class="content">
+        <p class="eyebrow">Tools, handled</p>
+        <h2 class="sample">Which tool, what the agent does, what stays with a person</h2>
+        <p class="sample">Section heading now reliably renders at 36 to 72px, body copy at 18 to 20px. Rail has faded to a narrow fixed column; its inner edge is masked so raw art never touches this copy.</p>
+      </div>
+      <div class="rail">
+        <div class="road"></div>
+        <div class="lane"></div>
+        <div class="sun"></div>
+        <div class="stem"></div>
+        <div class="veh"></div>
+        <div class="mask"></div>
+        <div class="tag">CRM AGENT<b>Record synced</b></div>
+      </div>
+    </div>
+    <p class="caption">Rail width narrows from full-bleed to a fixed 340px desktop column, using <code>clamp(220px, 22vw, 340px)</code>. Sky, road and light materials lerp from ink toward the section's own off-white tone on the same scroll signal that drives home-motion.js's colour arc. A left-edge mask feathers the rail into the page background so text contrast is never fought.</p>
+
+    <div class="band-label"><b>03</b> Late scroll, about 90%, day, approaching the closing CTA</div>
+    <div class="band band-c">
+      <span class="gutter-note">content gutter</span>
+      <div class="content">
+        <p class="eyebrow">Case study</p>
+        <h3 class="sample">Card heading sample, 24 to 30px</h3>
+        <p class="sample">Vehicle has softened to a light-streak, data-packet form, no more boxy sedan. Lamps and light pools are gone in daylight; only a soft, fast-moving streak remains. Rail all but disappears into the white section, consistent with reading "day and night" as a full backdrop, not a competing graphic.</p>
+      </div>
+      <div class="rail">
+        <div class="road"></div>
+        <div class="veh"></div>
+        <div class="mask"></div>
+      </div>
+    </div>
+    <p class="caption">By the closing CTA the rail is pale enough that a reviewer scanning only for AA contrast on body copy sees effectively flat off-white or white. The streak is a texture, not a competing panel.</p>
+
+    <div class="section-title">Type scale, concrete values (see DESIGN.md, Typography, for the CSS block)</div>
+    <p class="section-note">Fixes the PR 141 finding: h2 was rendering at 16px/400 (Tailwind preflight's <code>font-size:inherit</code> winning wherever a template did not set an explicit text-size utility). Base-layer fallback sizes below make h1 greater than h2 greater than h3 greater than body true everywhere, even unstyled headings; explicit utility classes still override per instance.</p>
+    <div class="scale">
+      <div class="scale-row"><span class="tok">h1 (hero)</span><span class="sample-text h1s">Hero headline</span><span class="px">34 to 64px / 700</span></div>
+      <div class="scale-row"><span class="tok">h2 (section heading)</span><span class="sample-text h2s">Section heading</span><span class="px">36 to 72px / 700</span></div>
+      <div class="scale-row"><span class="tok">h3 (card heading)</span><span class="sample-text h3s">Card heading</span><span class="px">24 to 30px / 700</span></div>
+      <div class="scale-row"><span class="tok">h4 (stat / sub-head)</span><span class="sample-text h4s">Stat label</span><span class="px">20 to 24px / 600</span></div>
+      <div class="scale-row"><span class="tok">body</span><span class="sample-text bodys">Body copy default</span><span class="px">18 to 20px / 400</span></div>
+      <div class="scale-row"><span class="tok">mono label</span><span class="sample-text mono-s">Mono Uppercase Label</span><span class="px">12 to 14px / 600</span></div>
+    </div>
+
+    <div class="section-title">Official tool logos in the "works with" chips (Outlook, Slack, Salesforce)</div>
+    <p class="section-note">These three already rotate through the highway's live chips as name-only text (glyph is null; Simple Icons carries no mark for them). Plan: source each official mark from the vendor's own brand page, render it unmodified in the chip at official colour, a bounded, documented exception to the "monochrome" rule for exactly these three sourced files, audited in DESIGN.md. Swatches below stand in for the real marks, which are not embedded in this mockup pending sourcing.</p>
+    <div class="chips">
+      <div class="chip official outlook"><span class="swatch"></span>Outlook<span class="tag2">official mark, planned</span></div>
+      <div class="chip official slack"><span class="swatch"></span>Slack<span class="tag2">official mark, planned</span></div>
+      <div class="chip official salesforce"><span class="swatch"></span>Salesforce<span class="tag2">official mark, planned</span></div>
+      <div class="chip mono gmail"><span class="swatch"></span>Gmail</div>
+      <div class="chip mono hubspot"><span class="swatch"></span>HubSpot</div>
+    </div>
+    <p class="legend">Grey chips (Gmail, HubSpot, and the rest) stay exactly as they are today: monochrome Simple Icons glyphs, CC0. The three official marks are the only chips allowed to show in real brand colour, because they are official downloads, used unaltered, under each vendor's own nominative "works with" terms. Not redrawn, not recoloured, no implied endorsement. Sourcing and legal framing recorded in DESIGN.md, Motion section.</p>
+  </div>
+</body>
+</html>
