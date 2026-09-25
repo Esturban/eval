@@ -1,0 +1,6 @@
+{{- /* Stable @id values for the sitewide entities, so page nodes can reference them. */ -}}
+{{- $e := hugo.Data.entity -}}
+{{- return dict
+  "organization" (printf "%s#organization" $e.url)
+  "founder" (printf "%s#founder" $e.url)
+-}}

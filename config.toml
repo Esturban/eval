@@ -67,6 +67,10 @@ case_studies_cta_link = "tags/case-study"
 [markup.goldmark.renderer]
 unsafe = true
 
+[frontmatter]
+  # An explicit dateModified in front matter wins; otherwise the git commit date.
+  lastmod = ["dateModified", ":default"]
+
 [taxonomies]
 category = "Categories"
 tag = "Tags"

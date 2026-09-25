@@ -1,0 +1,17 @@
+{{- /* Organization node, built from data/entity.toml. Emitted on every page. */ -}}
+{{- $e := hugo.Data.entity -}}
+{{- $ids := partial "schema/ids.html" . -}}
+{{- return dict
+  "@type" "Organization"
+  "@id" $ids.organization
+  "name" $e.name
+  "url" $e.url
+  "description" $e.description
+  "email" $e.email
+  "telephone" $e.telephone
+  "logo" (dict "@type" "ImageObject" "url" ($e.logo | absURL))
+  "areaServed" (partial "schema/places.html" $e.areaServed)
+  "knowsAbout" $e.knowsAbout
+  "sameAs" $e.sameAs
+  "founder" (dict "@id" $ids.founder)
+-}}

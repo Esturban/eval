@@ -1,4 +1,7 @@
 ---
+schema:
+  service:
+    audience: Shopify and ecommerce operators
 title: "Conversion Systems And Lifecycle Improvement"
 date: 2022-07-16T11:10:36+08:00
 draft: false

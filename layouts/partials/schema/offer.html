@@ -1,0 +1,19 @@
+{{- /* Offer node. Context: dict "page" <page> "offer" <front matter schema.offer map>.
+   price and price_currency are emitted only when set in front matter. Leave price
+   unset until the offer's pricing is locked; never put a placeholder number here. */ -}}
+{{- $p := .page -}}
+{{- $o := .offer -}}
+{{- $e := hugo.Data.entity -}}
+{{- $ids := partial "schema/ids.html" . -}}
+{{- $offer := dict
+  "@type" "Offer"
+  "name" ($o.name | default $p.Title)
+  "url" (($o.url | default $p.RelPermalink) | absURL)
+  "seller" (dict "@id" $ids.organization)
+  "areaServed" (partial "schema/places.html" ($o.area_served | default $e.areaServed))
+-}}
+{{- with $o.description -}}{{- $offer = merge $offer (dict "description" .) -}}{{- end -}}
+{{- with $o.price -}}
+  {{- $offer = merge $offer (dict "price" (string .) "priceCurrency" ($o.price_currency | default "CAD")) -}}
+{{- end -}}
+{{- return $offer -}}

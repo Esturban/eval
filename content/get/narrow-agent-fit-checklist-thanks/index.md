@@ -1,5 +1,5 @@
 ---
-author: Esteban V.
+author: Esteban Valencia
 title: "Your Download: Narrow Agent Fit Checklist"
 date: 2026-09-23T00:00:00.000Z
 noindex: true

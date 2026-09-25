@@ -47,6 +47,23 @@
                         class="absolute right-0 z-30 mt-2 w-full origin-top-right md:max-w-sm md:w-screen">
                     <div class="rounded-2xl border border-slate-200 bg-white px-2 pb-4 pt-2 text-zinc-900 shadow-lg">
                         <div class="grid grid-cols-1 gap-4">
+                            {{- /* Lead service. Appears automatically once the page is published (not a draft). */ -}}
+                            {{ with site.GetPage "/services/ai-agent-implementation" }}
+                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
+                               href="{{ .RelPermalink }}">
+                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                         class="w-4 h-4 md:h-6 md:w-6">
+                                        <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-semibold">AI Agent Implementation</p>
+                                    <p class="text-sm">Ship AI agents into your agency without hiring anyone</p>
+                                </div>
+                            </a>
+                            {{ end }}
                             <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
                                href="/services/data-strategy">
                                 <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">

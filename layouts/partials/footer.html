@@ -46,6 +46,10 @@
             <div class="px-5 py-2">
                 <a href="/contact/" class="text-sm text-slate-400 transition hover:text-cyan-200">Contact</a>
             </div>
+
+            <div class="px-5 py-2">
+                <a href="https://cal.com/este-val/audit-fit-call" class="text-sm text-cyan-300 transition hover:text-cyan-200">Grab a time here</a>
+            </div>
         </nav>
 {{ with .Site.Params.Facebook }}
         <div class="flex justify-center mt-8 space-x-6">
@@ -102,6 +106,6 @@
         <div class="mt-8 flex flex-wrap items-center justify-center border-t border-slate-800 pt-6 text-slate-400">
           <p class="text-sm text-center text-slate-500">&copy; {{ now.Format "2006" }}
               {{ .Site.Title }}. All rights reserved.</p>
-          <p class="mt-2 w-full text-center text-sm text-slate-500">Built for operators who need cleaner revenue decisions.</p>
+          <p class="mt-2 w-full text-center text-sm text-slate-500">{{ hugo.Data.entity.tagline }}</p>
         </div>
 </footer>
