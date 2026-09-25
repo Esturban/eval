@@ -222,20 +222,27 @@
 
   .hw-bot__name {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11.5px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: #f1f5f9;
+    text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
   }
 
+  /* Raised from 11.5px/500/#7c8aa0 (CRO-6731 Pass 4): computed styles at
+     1440px showed this subtitle as the lowest-contrast text in the scene
+     against the shade's variable-opacity dark overlay. A brighter colour
+     plus the icon-style drop-shadow halo above keep it >=AA regardless of
+     where the shade gradient (or the day/night sky behind it) sits. */
   .hw-bot__job {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11.5px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #7c8aa0;
+    color: #cbd5e1;
+    text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
   }
 
   .hw-bot__job::before {
@@ -277,10 +284,11 @@
     border-left: 1px solid rgba(219, 227, 238, 0.28);
     color: #e2e8f0;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11.5px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
   }
 
   .hw-bot__tool[hidden] {
@@ -426,17 +434,22 @@
     border-top: 1px solid rgba(219, 227, 238, 0.14);
   }
 
+  /* Raised from 12px/#64748b (CRO-6731 Pass 4): computed styles at 1440px
+     flagged this inactive-step colour as failing "pronounced" against the
+     hero shade. Lightened one step (slate-500 -> slate-400) plus the same
+     drop-shadow halo used on the agent labels above. */
   .hw-steps__item {
     position: relative;
     display: flex;
     gap: 8px;
     padding-top: 12px;
-    color: #64748b;
+    color: #94a3b8;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
     transition: color 0.4s ease;
   }
 
@@ -455,7 +468,7 @@
   }
 
   .hw-steps__item span {
-    color: #475569;
+    color: #64748b;
     transition: color 0.4s ease;
   }
 
