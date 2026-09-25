@@ -2,10 +2,10 @@
 title: "What should I automate first with AI in my business?"
 description: "Automate inbound lead intake and first response first: it is frequent, rules-based, easy to measure, and a person can approve every reply. Five criteria for picking your first AI automation, good alternatives, and what not to automate first."
 date: 2026-09-24
-dateModified: 2026-09-24
+dateModified: 2026-09-25
 draft: false
 weight: 9
-author: Esteban Valencia
+author: EV Advisory
 areaServed: [Canada, United States]
 schema:
   type: article
@@ -22,7 +22,7 @@ faq:
 
 If lead intake is not a problem for you, use the five criteria below to pick a different first workflow. The rule behind them: start with work that is frequent, predictable, reviewed before it leaves the business, and measurable today.
 
-*Updated 2026-09-24 by Esteban Valencia, EV Advisory. Written for founder-led businesses in Canada and the United States.*
+*Updated 2026-09-24 by EV Advisory. Written for founder-led businesses in Canada and the United States.*
 
 ## How do you pick the first process to automate?
 
@@ -78,4 +78,4 @@ Yes. Statistics Canada reported that in the second quarter of 2026, [19.2% of Ca
 
 ## Next step
 
-Picking the first workflow is exactly what the free 20-minute [Live Audit](/live-audit/) is for. Esteban Valencia reviews your real tools with you, live, and names the first automation worth shipping. To see what building it involves, read about [AI agent implementation](/services/ai-agent-implementation/).
+Picking the first workflow is exactly what the free 20-minute [Live Audit](/live-audit/) is for. We review your real tools with you, live, and name the first automation worth shipping. Through [Build Queue](/services/ai-agent-implementation/), that automation is live within 10 business days of access, or your next month is free.

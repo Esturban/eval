@@ -1,17 +1,11 @@
 +++
-author = "Esteban Valencia"
+author = "EV Advisory"
 title = "Services"
-description = "EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools. Revenue signal services for Shopify and ecommerce teams continue alongside."
+description = "EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools."
 +++
 
-EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools, without adding headcount. A first agent is typically live within 2 to 6 weeks of kickoff. Start with a free [Live Audit](/live-audit/) to find the first automation worth shipping.
+EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools, so repeated work leaves the founder's plate without adding headcount.
 
-The revenue signal services below continue for Shopify and ecommerce teams. That work is built around a narrow operating problem: teams cannot move decisively when the revenue signal is noisy.
+We offer one thing: **[Build Queue](/services/ai-agent-implementation/)**, a monthly subscription. You keep a queue of the processes you want gone, and we ship them one at a time as working agents inside your tools. Your first request is live within 10 business days of access, or next month is free. Founding seats are USD 1,995/mo for the first 3, locked for 6 months, and you can cancel in the first 14 days for 75 percent back.
 
-The service set is therefore organized around the places where trust usually breaks first:
-
-- **reporting trust** across Shopify, analytics, ads, and finance
-- **conversion friction** across the site and post-click journey
-- **reporting and operational drag** in the workflows that support weekly decisions
-
-Each service is designed to lead to clearer decisions, not just more analysis.
+Not sure what goes first? Book a free 20-minute [Live Audit](/live-audit/) and we will name it with you.

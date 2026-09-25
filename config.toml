@@ -39,31 +39,31 @@ USAPhone = "786-529-6998"
 description = "EV Advisory ships AI agents into the tools founder-led agencies and operations teams already run. Start with a free 20-minute Live Audit that names the first automation worth shipping."
 mainSections = ['services','case study']
 # Hero section elements
-hero_title = "We ship a working AI agent into your systems in weeks, not months."
-hero_title_follow = "Built into the tools you already run."
+hero_title = "Get your agency's repeat work off the founder's plate, without hiring."
+hero_title_follow = "One AI agent at a time, built into the tools you already run and handed to someone already on your team. No new hire."
 # Stack line: the hero sub-line and the tool-handling table both read it.
 stack_line = "Microsoft, Google, SAP, Salesforce, or spreadsheets. We build on what you already run."
-hero_CTA = "Book your first ship"
+hero_CTA = "Book my free 20-minute Live Audit"
 # Line beside the hero call to action. Unset it and nothing renders.
 hero_guarantee = "First agent live in your systems within 10 business days of access, or next month is free."
 hero_CTA_link = "/live-audit/"
 hero_img= "images/featured/data-natural-beauty.png"
-hero_description = "Walk away from one call already knowing which process to automate first and what it takes to ship it. Esteban Valencia, founder of EV Advisory, reviews your actual stack with you, live."
+hero_description = "Walk away from one free 20-minute call already knowing which process to automate first and what it takes to ship it. We review your actual stack with you, live."
 
 
 # Mission section elements
-mission_quote = "Founder-led teams are rarely short on AI ideas. What they are short on is a working agent inside the tools they already run, owned by someone on the team and measured against how the work ran before. That is what this practice builds."
-mission_author = "Esteban Valencia, Founder at EV Advisory"
+mission_quote = "Founder-led teams do not need more AI ideas. They need the Friday status updates, the intake emails, and the report assembly off their plate, handled by a working agent inside the tools they already run. That is what we build."
+mission_author = "EV Advisory"
 mission_description = "EV Advisory ships AI agents for founder-led agencies and service teams, starting with whichever repeated process costs the most time. Each agent is built into the tools you already use, measured before and after, and handed to an owner you already have. The goal is not more software. The goal is work off the founder's plate without adding headcount."
 
-top_n_services_title = "Your first agent, built around how you already work"
-top_n_services_subtitle = "One agent takes a repeated process off the founder's plate, live in 2 to 6 weeks, built into the tools your team already runs, and handed over so nobody new is needed."
+top_n_services_title = "Build Queue: your repeat work, shipped as AI agents, one at a time"
+top_n_services_subtitle = "One monthly subscription. You keep a queue of the processes you want gone; we ship them one at a time into the tools your team already runs. Your first agent is live within 10 business days of access, or next month is free."
 
 
 
 #Case studies section elements
-case_studies_title = "Testimonials"
-case_studies_subtitle  = "See what we have done for our clients in the past"
+case_studies_title = "Proof"
+case_studies_subtitle  = "Operating and reporting work we delivered before focusing on AI agents"
 case_studies_cta = "See all case studies and our free reference material &nbsp&rarr;"
 case_studies_cta_link = "tags/case-study"
 [markup]

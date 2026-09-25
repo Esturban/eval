@@ -12,19 +12,19 @@ Every product carries its own written guarantee. The guarantee on the product yo
 
 ## Competitor Review Objection Radar, USD 897
 
-Full refund if the memo does not name at least 3 objections your team can act on this week.
+Full refund if the memo doesn't name three objections you can act on this week.
 
 ## AI Security Posture Audit, USD 9,000
 
-You see the full risk classification method and scoring rubric before the second payment is due. If the posture map does not surface at least one finding your team did not already know about, the second payment is waived.
+If the review doesn't surface anything your team didn't already know, we waive the second half of your invoice.
 
 ## Call Recording Retention and Deletion Audit, USD 4,500
 
-If the deletion path matrix does not show at least one gap between your written policy and what your vendor actually does, there is no invoice.
+Full refund if we find no gap between your policy and what your vendors actually do.
 
 ## AI Workflow Audit, USD 497 or USD 897
 
-Full refund if the report does not name a single thing your team can act on.
+Full refund if the report doesn't name a single thing you can act on.
 
 ## RFP and RFI Response Automation, SAP Ariba, USD 24,000
 

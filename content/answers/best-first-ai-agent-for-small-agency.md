@@ -2,10 +2,10 @@
 title: "What is the best first AI agent for a small agency?"
 description: "For most small agencies, the best first AI agent drafts the weekly client status update from your project tool for a person to approve. Here is why, plus the first agent by agency type and what not to automate first."
 date: 2026-09-24
-dateModified: 2026-09-24
+dateModified: 2026-09-25
 draft: false
 weight: 1
-author: Esteban Valencia
+author: EV Advisory
 areaServed: [Canada, United States]
 schema:
   type: article
@@ -13,7 +13,7 @@ faq:
   - question: "Do I need a paid AI assistant plan before building an agent?"
     answer: "Not always, but it helps. A business plan for a general assistant gives your team a safe place to learn how the model behaves and most business tiers state that your data is not used for model training by default (check the terms of the plan you pick). The first agent itself runs on your existing tools plus a model account your business owns."
   - question: "How long until the first agent is running?"
-    answer: "For a narrow workflow like the weekly client update, 2 to 4 weeks is realistic: about a week to connect the tools and gather examples, one to two weeks of testing alongside your team, then daily use."
+    answer: "For a narrow workflow like the weekly client update, plan on about two weeks from the moment the tools are connected, then a short period running alongside your team before daily use. Build Queue puts that timeline in writing: live within 10 business days of you granting access, or your next month is free."
   - question: "Can an agent work inside the tools my agency already uses?"
     answer: "Usually yes. Most project tools, CRMs, inboxes, and document systems agencies use have APIs or automation connectors an agent can read from and draft into. If a tool has no way in, that workflow is not the right first pick."
 ---
@@ -22,7 +22,7 @@ faq:
 
 Most lists of "AI tools for agencies" answer a different question: which software to buy. An agency owner's real question is which workflow to hand over first. That is what this page answers, by workflow, with the reasoning behind each pick.
 
-*Updated 2026-09-24 by Esteban Valencia, EV Advisory. Written for founder-led agencies in Canada and the United States.*
+*Updated 2026-09-24 by EV Advisory. Written for founder-led agencies in Canada and the United States.*
 
 ## Which agency workflow should get an AI agent first?
 
@@ -81,4 +81,4 @@ No. Statistics Canada reported that in the second quarter of 2026, [19.9% of bus
 
 ## Next step
 
-If you want a second opinion on which workflow to start with, book a free 20-minute [Live Audit](/live-audit/). Esteban Valencia reviews your agency's actual tools with you and names the first agent worth building. To see what a full build includes, read about [AI agent implementation](/services/ai-agent-implementation/).
+Want to know which workflow goes first in your agency? Book a free 20-minute [Live Audit](/live-audit/). We review your agency's actual tools with you and name the first agent worth building. Through [Build Queue](/services/ai-agent-implementation/), that agent is live within 10 business days of access, or your next month is free.

@@ -1,0 +1,44 @@
+<!-- REUSE_CHECKED: none -- offer-specific host page for CRO-6814; see
+     engine/beatgrid.js for the search covering this whole folder. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AI Agent Implementation -- explainer scene</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f7f4ee;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" width="1440" height="1440"></canvas>
+    <script src="engine/beatgrid.js"></script>
+    <script src="engine/springs.js"></script>
+    <script src="engine/cursor.js"></script>
+    <script src="engine/camera.js"></script>
+    <script src="engine/seek.js"></script>
+    <script src="scene.js"></script>
+    <script>
+      // Canvas size is set from the URL so the render harness can produce
+      // the 1440x1440 master and the 1920x1080 cut from one scene, each
+      // getting its own honest camera fit (see engine/camera.js) instead of
+      // a lossy crop/pad of the square master.
+      (function () {
+        const params = new URLSearchParams(location.search);
+        const w = parseInt(params.get("w") || "1440", 10);
+        const h = parseInt(params.get("h") || "1440", 10);
+        const canvas = document.getElementById("stage");
+        canvas.width = w;
+        canvas.height = h;
+        window.__seek(0);
+      })();
+    </script>
+  </body>
+</html>

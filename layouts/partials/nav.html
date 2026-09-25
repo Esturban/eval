@@ -29,7 +29,7 @@
             <a class="mt-2 rounded-full px-4 py-2 text-base font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-1" href="{{ $base }}#{{ index . 0 }}" @click="open = false">{{ index . 1 }}</a>
             {{ end }}
             {{ if not .IsHome }}
-            <a class="mt-2 rounded-full px-4 py-2 text-base font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-1" href="/store/">Store</a>
+            <a class="mt-2 rounded-full px-4 py-2 text-base font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-1" href="/store/" data-cta="store">Store</a>
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
                         class="mt-2 flex w-full flex-row items-center rounded-full bg-transparent px-4 py-2 text-left text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2 md:inline md:w-auto">

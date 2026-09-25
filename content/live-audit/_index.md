@@ -1,23 +1,33 @@
 +++
 type = "live-audit"
 title = "Live Audit"
-description = "A free 20-minute call. Esteban Valencia reviews your actual tool stack live and names the first automation worth shipping."
+description = "A free 20-minute call. We review your actual tool stack live and name the first automation worth shipping."
 eyebrow = "Live Audit"
 headline = "Find the first automation worth shipping, on one free call."
-lede = "Esteban reviews the tools your team already uses, live, and names the one automation to build first."
+lede = "For founder-led agencies and service teams. We review the tools your team already uses, live, and name the one automation to build first."
 cta_text = "Book your Live Audit"
 cta_link = "https://cal.com/este-val/audit-fit-call"
-cta_note = "Your screen, your tools, live. Walk away with the first automation named."
+cta_note = "20 minutes, free, on your own screen. You leave with the first automation named, whether or not you work with us."
 
 [[sections]]
 eyebrow = "What it is"
 heading = "A free call on your real stack."
-body = "You share your screen and walk through the tools your team runs on. Esteban names the first automation worth shipping, and why it comes first."
+body = "You share your screen and walk through the tools your team runs on. We name the first automation worth shipping, and why it comes first."
 
 [[sections]]
 eyebrow = "Who it is for"
 heading = "Teams with a stack an agent can plug into."
 body = "It fits if your team already works in real tools and you are open to adopting an agent. If either is missing, the call is not for you yet."
+
+[[sections]]
+eyebrow = "Before the call"
+heading = "Two minutes of prep makes it sharper."
+body = "Pick two or three repeated tasks that eat your week, and have the tools they live in open. For a head start, the Narrow Agent Fit Checklist on this site walks you through the same thing in about ten minutes."
+
+[[sections]]
+eyebrow = "What happens next"
+heading = "If it is a fit, it becomes your first request."
+body = "Teams that take a Build Queue seat start with the automation named on this call. Your first request is live within 10 business days of access, or next month is free. Build Queue founding seats are USD 1,995/mo, so you know the number before we talk. If it is not a fit, you still leave with a clear first step."
 
 [[sections]]
 eyebrow = "Build in public"

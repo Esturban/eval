@@ -19,7 +19,29 @@
 {{/* Tool logos: a lazily fetched sprite (only the live scene references it)
      plus the name registry. Logos name software the agents work with, no
      more. See scripts/build-brand-sprite.mjs. */}}
-{{ $brands := site.Data.brands }}
+{{/* Outlook / Slack / Salesforce (CRO-6731): a bounded, documented exception
+     to the monochrome-chip rule above, sourced unmodified from each
+     vendor's own brand page into assets/icons/brands-official/ and kept
+     fully separate from the Simple Icons sprite pipeline. Deliberately not
+     wired up yet: as of this pass none of the three vendors expose their
+     current mark as a plain, unauthenticated public download (Slack and
+     Salesforce gate theirs behind a Widen/Brand-Central portal that needs
+     an account, and Microsoft's Office/Outlook icon toolkit requires
+     accepting an express license, none of which this build step can do on
+     EV's behalf). A brand entry only ever gets an officialLogo field once
+     someone with that access has dropped the real file in here; this
+     resolves it to a real asset URL the moment that happens, no other
+     code change required. */}}
+{{ $brands := dict }}
+{{ range $key, $b := site.Data.brands }}
+  {{ $entry := $b }}
+  {{ with $b.officialLogo }}
+    {{ with resources.Get . }}
+      {{ $entry = merge $b (dict "officialLogo" .RelPermalink) }}
+    {{ end }}
+  {{ end }}
+  {{ $brands = merge $brands (dict $key $entry) }}
+{{ end }}
 {{ $brandSprite := resources.Get "icons/brands.svg" | fingerprint | resources.PostProcess }}
 
 <section id="top" class="hw arc-section" data-tone="#020617" style="background-color:#020617" data-highway data-scene-src="{{ $scene.RelPermalink }}" data-brand-sprite="{{ $brandSprite.RelPermalink }}" data-brands="{{ $brands | jsonify }}">
@@ -42,7 +64,7 @@
         <div class="hw-bot__tag">
           <svg class="hw-bot__icon" aria-hidden="true"><use href="#i-{{ $first.icon }}"></use></svg>
           <span class="hw-bot__text">{{ $first.text }}</span>
-          <span class="hw-bot__tool" hidden><svg class="hw-bot__brand" aria-hidden="true"><use></use></svg><span class="hw-bot__toolname"></span></span>
+          <span class="hw-bot__tool" hidden><svg class="hw-bot__brand" aria-hidden="true"><use></use></svg><img class="hw-bot__brand-img" alt="" aria-hidden="true"><span class="hw-bot__toolname"></span></span>
         </div>
       </div>
       {{ end }}

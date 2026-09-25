@@ -12,7 +12,7 @@
             <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Start free. Then a kit you run yourself tonight, a fixed-price audit you can buy in one sitting, or a fit call first for anything bigger. Nothing above USD 897 is sold here without a 20-minute conversation.</p>
             <div class="mt-8 flex flex-wrap gap-3">
                 <a href="#free" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">See what's free</a>
-                <a href="{{ $fitCall }}" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">Grab a time here</a>
+                <a href="{{ $fitCall }}" data-cta="fit-call" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">Grab a time here</a>
             </div>
         </div>
     </header>
@@ -66,10 +66,11 @@
                     <p class="text-base leading-7 text-slate-600">{{ .delivery }}</p>
                     <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}</div>
                     <div class="flex flex-wrap gap-2">
+                        {{ $cta := printf "buy-%s" .slug }}{{ if eq .slug "narrow-agent-fit-checklist" }}{{ $cta = "checklist" }}{{ end }}
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
+                        <span data-cta="{{ $cta }}" class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
-                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        <a href="{{ .url }}" data-cta="{{ $cta }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
                     </div>
                 </article>
@@ -97,9 +98,9 @@
                     <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}{{ with .price_note }}<small class="mt-1 block text-sm font-normal text-slate-500">{{ . }}</small>{{ end }}</div>
                     <div class="flex flex-wrap gap-2">
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
+                        <span data-cta="buy-{{ .slug }}" class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
-                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        <a href="{{ .url }}" data-cta="buy-{{ .slug }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
                     </div>
                 </article>
@@ -128,16 +129,18 @@
                     {{ with .refund }}<p class="text-sm leading-6 text-slate-400">{{ . }}</p>{{ end }}
                     <div class="mt-auto pt-2 text-2xl font-bold text-white">{{ .price }}{{ with .price_note }}<small class="mt-1 block text-sm font-normal text-slate-400">{{ . }}</small>{{ end }}</div>
                     <div class="flex flex-wrap gap-2">
+                        {{ $cta1 := printf "buy-%s" .slug }}{{ if eq .url $fitCall }}{{ $cta1 = "fit-call" }}{{ end }}
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
+                        <span data-cta="{{ $cta1 }}" class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
-                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        <a href="{{ .url }}" data-cta="{{ $cta1 }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
                         {{ if .button2 }}
+                        {{ $cta2 := printf "buy-%s-deep-scan" .slug }}{{ if eq .url2 $fitCall }}{{ $cta2 = "fit-call" }}{{ end }}
                         {{ if eq .url2 "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button2 }}</span>
+                        <span data-cta="{{ $cta2 }}" class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button2 }}</span>
                         {{ else }}
-                        <a href="{{ .url2 }}" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">{{ .button2 }}</a>
+                        <a href="{{ .url2 }}" data-cta="{{ $cta2 }}" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">{{ .button2 }}</a>
                         {{ end }}
                         {{ end }}
                     </div>
@@ -181,7 +184,7 @@
                         <h2 class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">Not sure which one? Grab a time here.</h2>
                         <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">20 minutes, no pitch. You leave knowing whether any of this fits, and which one.</p>
                         <div class="mt-8">
-                            <a href="{{ $fitCall }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Grab a time here</a>
+                            <a href="{{ $fitCall }}" data-cta="fit-call" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Grab a time here</a>
                         </div>
                     </div>
                     <div class="grid gap-3 text-sm text-slate-200">
@@ -211,9 +214,9 @@
                     <div class="mt-auto pt-2 text-2xl font-bold text-slate-950">{{ .price }}</div>
                     <div class="flex flex-wrap gap-2">
                         {{ if eq .url "#" }}
-                        <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
+                        <span data-cta="buy-{{ .slug }}" class="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</span>
                         {{ else }}
-                        <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
+                        <a href="{{ .url }}" data-cta="buy-{{ .slug }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .button }}</a>
                         {{ end }}
                     </div>
                 </article>
