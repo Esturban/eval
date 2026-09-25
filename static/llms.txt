@@ -40,9 +40,6 @@ Last reviewed: 2026-09-24. Contact: info@evadvisory.ca
 
 - [Contact / Conversion Systems Audit](https://evadvisory.ca/contact/): Best page for qualifying engagement and next-step requests.
 - [Revenue Signal Scorecard](https://evadvisory.ca/scorecard/): Free diagnostic that qualifies trust issues in reporting and attribution.
-- [Revenue Signal Diagnostics](https://evadvisory.ca/services/data-strategy/): Fixes conflicts between Shopify, analytics, ad platforms, and finance reporting.
-- [Conversion Systems and Lifecycle Improvement](https://evadvisory.ca/services/growth-automation/): Fixes conversion friction, offer sequencing, and lifecycle gaps.
-- [Reporting and Operations Redesign](https://evadvisory.ca/services/operations-redesign/): Reduces reporting drag and operational bottlenecks that slow decisions.
 
 ### Methodology And Proof
 

@@ -1,0 +1,88 @@
+{{/* "How each tool is handled": which tool, what the agent does inside it,
+     and what stays with a person. First light section of the colour arc.
+     Facts come from the AI agent implementation page: scoped access in
+     accounts the client owns, a listed credential set at handoff, a named
+     owner, 2 to 6 weeks, 20 to 30 real examples. */}}
+{{ $top_n_services_title := .Site.Params.top_n_services_title | default "Services" }}
+{{ $top_n_services_subtitle := .Site.Params.top_n_services_subtitle | default "" }}
+{{ $rows := slice
+  (dict "icon" "mail" "tool" "Shared inbox" "does" "Reads new email, sorts it, drafts the reply." "human" "You approve before anything is sent.")
+  (dict "icon" "calendar" "tool" "Calendar" "does" "Reads invites and proposes times from the thread." "human" "You accept the meeting.")
+  (dict "icon" "crm" "tool" "CRM" "does" "Adds and updates records from emails and calls." "human" "You review the exceptions it flags.")
+  (dict "icon" "task" "tool" "Project tool" "does" "Updates tasks and drafts the weekly status." "human" "The owner signs off the report.")
+  (dict "icon" "sheet" "tool" "Spreadsheets and documents" "does" "Fills report rows and files documents where they belong." "human" "You check the numbers it pulls.")
+  (dict "icon" "invoice" "tool" "Invoices" "does" "Matches each invoice to its order." "human" "A person approves every payment.")
+}}
+
+<section id="tools" class="arc-section py-24 sm:py-32" data-tone="#f7f4ee" style="background-color:#f7f4ee">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700 sm:text-sm">Tools, handled</p>
+      <h2 class="mt-5 text-4xl font-semibold leading-[1.02] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+        {{ $top_n_services_title | markdownify | safeHTML }}
+      </h2>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl sm:leading-9">
+        {{ $top_n_services_subtitle | markdownify | safeHTML }}
+      </p>
+    </div>
+
+    {{ with site.Params.stack_line }}
+    <div class="mt-12 flex max-w-5xl flex-col gap-3 border-l-2 border-cyan-500 pl-5 sm:flex-row sm:items-baseline sm:gap-8 sm:pl-6">
+      <p class="flex-none font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700">Your stack</p>
+      <p class="text-xl font-semibold leading-8 tracking-tight text-slate-950 sm:text-2xl sm:leading-9">{{ . }}</p>
+    </div>
+    {{ end }}
+
+    <div class="mt-10 overflow-hidden rounded-[2rem] border border-slate-300/70 bg-white">
+      <div class="hidden grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1fr)] gap-6 border-b border-slate-200 px-8 py-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 md:grid">
+        <span>Which tool</span><span>What the agent does</span><span>What stays with a person</span>
+      </div>
+      <ul class="divide-y divide-slate-200">
+        {{ range $rows }}
+        <li class="grid gap-3 px-5 py-6 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1fr)] md:items-center md:gap-6">
+          <div class="flex items-center gap-4">
+            <span class="grid h-12 w-12 flex-none place-items-center rounded-2xl bg-slate-950 text-cyan-300">
+              <svg class="h-6 w-6" aria-hidden="true"><use href="#i-{{ .icon }}"></use></svg>
+            </span>
+            <span class="text-xl font-semibold text-slate-950 sm:text-2xl">{{ .tool }}</span>
+          </div>
+          <p class="flex gap-3 text-base leading-7 text-slate-800 sm:text-lg">
+            <svg class="mt-1 h-5 w-5 flex-none text-cyan-700" aria-hidden="true"><use href="#i-bot"></use></svg>
+            <span><span class="sr-only">Agent: </span>{{ .does }}</span>
+          </p>
+          <p class="flex gap-3 text-base leading-7 text-slate-600 sm:text-lg">
+            <svg class="mt-1 h-5 w-5 flex-none text-emerald-600" aria-hidden="true"><use href="#i-person"></use></svg>
+            <span><span class="sr-only">Person: </span>{{ .human }}</span>
+          </p>
+        </li>
+        {{ end }}
+      </ul>
+      <div class="flex items-start gap-3 border-t border-slate-200 bg-slate-50 px-5 py-5 text-base leading-7 text-slate-700 sm:px-8">
+        <svg class="mt-1 h-5 w-5 flex-none text-slate-900" aria-hidden="true"><use href="#i-lock"></use></svg>
+        <p>Access is scoped to the minimum the agent needs, in accounts you own. Every key and permission is listed at handoff, so you can revoke anything without calling us.</p>
+      </div>
+    </div>
+
+    <dl class="mt-14 grid gap-8 sm:grid-cols-3">
+      <div class="border-t-2 border-slate-950 pt-5">
+        <dt class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Time to live</dt>
+        <dd class="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">2 to 6 weeks</dd>
+        <p class="mt-2 text-sm leading-6 text-slate-600">Fully tested and handed off. First version live in your systems within 10 business days of access.</p>
+      </div>
+      <div class="border-t-2 border-slate-950 pt-5">
+        <dt class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Tested on</dt>
+        <dd class="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">20 to 30 real examples</dd>
+      </div>
+      <div class="border-t-2 border-slate-950 pt-5">
+        <dt class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Run by</dt>
+        <dd class="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">The owner you have</dd>
+      </div>
+    </dl>
+    <a href="/live-audit/" class="mt-10 inline-flex items-center text-lg font-semibold text-slate-950 underline decoration-cyan-500 decoration-2 underline-offset-8 transition hover:text-cyan-700">
+      Find your first agent on a free Live Audit
+      <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  </div>
+</section>

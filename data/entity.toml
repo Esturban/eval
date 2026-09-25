@@ -8,8 +8,8 @@
 
 name = "EV Advisory"
 url = "https://evadvisory.ca/"
-description = "EV Advisory ships AI agents into founder-led agencies and small teams that already run on real tools, without adding headcount."
-tagline = "AI agents shipped into founder-led agencies and small teams."
+description = "EV Advisory ships AI agents into the tools founder-led agencies already run, without adding headcount."
+tagline = "AI agents built into the tools founder-led agencies already run."
 email = "info@evadvisory.ca"
 telephone = ["+1-647-542-9921", "+1-786-529-6998"]
 logo = "/images/evadvisory-logo.png"

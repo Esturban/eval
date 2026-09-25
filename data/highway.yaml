@@ -1,0 +1,84 @@
+# Agent vehicles on the homepage highway, and the rows of the process flow.
+# Illustrative agents built around the tool types named on the AI agent
+# implementation page (shared inboxes, a CRM, a project tool, a document
+# system) plus the invoice example the owner asked for. The page says so in
+# plain words under the hero. Money decisions always go to a person: that is
+# a stated limit of the offer, so the procurement agent ends at "approval
+# requested", never "paid".
+#
+# lane: 0 is the inside lane. offset: starting position along the road, 0-1.
+# speed: relative cruising speed. color: accent for the roof beacon and dot.
+# tools: keys from data/brands.json. Each time an event comes round again
+# its tag names the next tool in this list, as a "works with" chip. The
+# finished-work tag names where the work landed, one tool per loop.
+bots:
+  - id: inbox
+    name: Inbox agent
+    job: Email and calendar
+    color: "#22d3ee"
+    lane: 1
+    offset: 0.08
+    speed: 1.0
+    events:
+      - { icon: mail, text: New email, tools: [outlook, gmail, protonmail] }
+      - { icon: mail, text: Email updated, tools: [gmail, protonmail, outlook] }
+      - { icon: calendar, text: Calendar invite, tools: [googlecalendar, teams, protoncalendar, zoom, googlemeet] }
+    done: { icon: check, text: Reply drafted, tools: [outlook, gmail, protonmail] }
+    inputs: [mail, calendar, chat]
+    output: Reply drafted for review
+  - id: crm
+    name: CRM agent
+    job: Contacts and deals
+    color: "#34d399"
+    lane: 2
+    offset: 0.3
+    speed: 0.86
+    events:
+      - { icon: crm, text: CRM record added, tools: [hubspot, salesforce, zoho, odoo] }
+      - { icon: crm, text: Contact updated, tools: [salesforce, googleworkspace, hubspot, zoho] }
+      - { icon: mail, text: Reply logged, tools: [outlook, gmail, whatsapp] }
+    done: { icon: check, text: Record up to date, tools: [salesforce, hubspot, zoho, odoo] }
+    inputs: [mail, crm, api]
+    output: CRM record added and updated
+  - id: project
+    name: Project agent
+    job: Tasks and status
+    color: "#a78bfa"
+    lane: 0
+    offset: 0.52
+    speed: 1.12
+    events:
+      - { icon: task, text: Project task updated, tools: [jira, githubactions, asana, gitlab, trello, jenkins, clickup, bitbucket, notion] }
+      - { icon: chat, text: Team message, tools: [teams, slack, googlechat, whatsapp] }
+      - { icon: sheet, text: Report rows filled, tools: [excel, googlesheets, airtable, googlebigquery] }
+    done: { icon: check, text: Status report ready, tools: [excel, googlesheets, notion, sharepoint] }
+    inputs: [task, chat, sheet]
+    output: Weekly status report ready
+  - id: procurement
+    name: Procurement agent
+    job: Invoices and orders
+    color: "#fbbf24"
+    lane: 3
+    offset: 0.7
+    speed: 0.78
+    events:
+      - { icon: invoice, text: Invoice matched, tools: [sap, quickbooks, xero, odoo] }
+      - { icon: sheet, text: Spreadsheet updated, tools: [excel, googlesheets, airtable] }
+      - { icon: database, text: Order checked, tools: [sap, postgresql, snowflake, googlebigquery] }
+    done: { icon: check, text: Sent for approval, tools: [sap, teams, slack, outlook] }
+    inputs: [invoice, sheet, database]
+    output: Invoice matched, sent to a person to approve
+  - id: docs
+    name: Docs agent
+    job: Documents and files
+    color: "#60a5fa"
+    lane: 1
+    offset: 0.86
+    speed: 0.95
+    events:
+      - { icon: doc, text: Document filed, tools: [sharepoint, googledrive, protondrive, dropbox, box] }
+      - { icon: api, text: Folder synced, tools: [aws, azure, googlecloud, protonvpn, wireguard] }
+      - { icon: doc, text: Brief drafted, tools: [word, googledocs, notion, googleworkspace] }
+    done: { icon: check, text: Filed and linked, tools: [sharepoint, googledrive, protondrive, dropbox, box] }
+    inputs: [doc, api, mail]
+    output: Document filed and linked

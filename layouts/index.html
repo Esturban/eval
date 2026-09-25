@@ -1,9 +1,12 @@
 {{ define "main" }}
-<main>
-    {{ partial "default-hero.html" . }}
+<main class="home-arc">
+    {{ partial "icon-sprite.html" . }}
+    {{ partial "hero-intro.html" . }}
     {{ partial "default-mission.html" . }}
-    {{ partial "homepage-proof.html" . }}
-    {{ partial "top-n-services.html" . }}
+    {{ partial "home-flow.html" . }}
+    {{ partial "home-tools.html" . }}
+    {{ partial "home-validation.html" . }}
+    {{ partial "home-reviews.html" . }}
     {{ partial "register-cta.html" . }}
 </main>
 {{ end }}

@@ -18,6 +18,7 @@
     "start": "concurrently npm:watch:*",
     "watch:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
     "watch:hugo": "hugo server --disableFastRender",
+    "prebuild": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css",
     "build": "hugo --gc --minify",
     "test": "node --test test/scorecard.test.cjs && hugo"
   },
@@ -46,5 +47,8 @@
   "bugs": {
     "url": "https://github.com/Esturban/eval/issues"
   },
-  "homepage": "https://github.com/Esturban/eval"
+  "homepage": "https://github.com/Esturban/eval",
+  "dependencies": {
+    "three": "^0.186.1"
+  }
 }

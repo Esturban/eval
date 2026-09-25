@@ -4,7 +4,7 @@ schema:
     audience: Shopify and ecommerce operators
 title: "Revenue Signal Diagnostics"
 date: 2022-07-18T11:10:36+08:00
-draft: false
+draft: true
 language: en
 featured_image: /images/featured/ds-female-1.png
 summary: Diagnose where reporting trust breaks across Shopify, analytics, ad platforms, and finance so commercial decisions stop depending on reconciliation by debate.
@@ -38,11 +38,11 @@ We find where your sales numbers stop agreeing, so you can make budget calls wit
 We check:
 
 - whether Shopify, GA4, and your ad platforms tell the same story
-- how much you can trust your attribution
-- whether your conversion tracking is clean or noisy
+- whether you know which ads actually drive sales
+- whether your site records every sale correctly
 - where your reporting breaks down before it reaches you
 
-In one engagement, this kind of diagnostic work cut recurring reporting time from 30 hours a month to 5 minutes, saving more than $4,000 a month. Most engagements start with the [Revenue Signal Scorecard]({{< relref "scorecard" >}}).
+In one engagement, this kind of diagnostic work cut recurring reporting time from 30 hours a month to 5 minutes, saving more than $4,000 a month. Start free with the [Revenue Signal Scorecard]({{< relref "scorecard" >}}): an immediate score, no cost.
 
 ## Typical deliverables
 

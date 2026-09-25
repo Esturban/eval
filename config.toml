@@ -36,24 +36,28 @@ gtm_id = "GTM-TWK47J8"
 fb_id = "588541705981208"
 CADPhone = "647-542-9921"
 USAPhone = "786-529-6998"
-description = "Free Live Audit for founder-led agencies: Esteban Valencia reviews your real tool stack live and names the first AI automation worth shipping"
+description = "EV Advisory ships AI agents into the tools founder-led agencies and operations teams already run. Start with a free 20-minute Live Audit that names the first automation worth shipping."
 mainSections = ['services','case study']
 # Hero section elements
-hero_title = "Get AI agents shipped into your agency without hiring anyone"
-hero_subtitle = "For founder-led agencies and small teams already running on real tools"
-hero_CTA = "Get a free Live Audit"
+hero_title = "We ship a working AI agent into your systems in weeks, not months."
+hero_title_follow = "Built into the tools you already run."
+# Stack line: the hero sub-line and the tool-handling table both read it.
+stack_line = "Microsoft, Google, SAP, Salesforce, or spreadsheets. We build on what you already run."
+hero_CTA = "Book your first ship"
+# Line beside the hero call to action. Unset it and nothing renders.
+hero_guarantee = "First agent live in your systems within 10 business days of access, or next month is free."
 hero_CTA_link = "/live-audit/"
 hero_img= "images/featured/data-natural-beauty.png"
-hero_description = "Start with a free Live Audit. Esteban reviews your actual tool stack with you, live, and names the first automation worth shipping."
+hero_description = "Walk away from one call already knowing which process to automate first and what it takes to ship it. Esteban Valencia, founder of EV Advisory, reviews your actual stack with you, live."
 
 
 # Mission section elements
-mission_quote = "The teams we help usually are not short on dashboards. They are short on confidence that the numbers are trustworthy enough to drive profitable ecommerce decisions."
+mission_quote = "Founder-led teams are rarely short on AI ideas. What they are short on is a working agent inside the tools they already run, owned by someone on the team and measured against how the work ran before. That is what this practice builds."
 mission_author = "Esteban Valencia, Founder at EV Advisory"
-mission_description = "We help ecommerce and Shopify teams rebuild trust in the information behind growth decisions. The goal is not more dashboards. The goal is faster, cleaner decisions backed by data your team can actually trust."
+mission_description = "EV Advisory ships AI agents for founder-led agencies and service teams, starting with whichever repeated process costs the most time. Each agent is built into the tools you already use, measured before and after, and handed to an owner you already have. The goal is not more software. The goal is work off the founder's plate without adding headcount."
 
-top_n_services_title = "What we fix first"
-top_n_services_subtitle = "Start with signal quality, conversion leakage, and the reporting gaps that keep good teams from moving decisively."
+top_n_services_title = "Your first agent, built around how you already work"
+top_n_services_subtitle = "One agent takes a repeated process off the founder's plate, live in 2 to 6 weeks, built into the tools your team already runs, and handed over so nobody new is needed."
 
 
 
@@ -240,3 +244,12 @@ permalink = "index.xml"
 [security]
   [security.funcs]
     getenv = ['^HUGO_', '^CI$', '^WHATSAPP_NUMBER$']
+  # Hugo 0.161+ can run Node.js tools (postcss, js.Build) with the --permission
+  # flag, but that flag's name and stability vary across Node major versions
+  # (this project's pinned production Node is 24; local dev machines may run
+  # an older Node that rejects the flag outright). The scoped allowRead/
+  # allowAddons keys below only narrow the sandbox when it is active; they do
+  # not turn it off, so a Node version mismatch still breaks the build. This
+  # project does not rely on that sandbox for anything, so disable it outright.
+  [security.node.permissions]
+    disable = true

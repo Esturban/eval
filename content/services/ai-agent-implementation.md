@@ -1,6 +1,6 @@
 ---
 title: "AI Agent Implementation for Founder-Led Agencies in Canada and the US"
-description: "EV Advisory ships one working AI agent into a founder-led agency or small team, inside the tools you already use, without adding headcount. Serving Canada and the United States."
+description: "EV Advisory ships one working AI agent into a founder-led agency or service team, built into the tools you already use, without adding headcount. Serving Canada and the United States."
 summary: "One narrow AI agent, built into your existing tools, tested on your real work, and handed over with documentation your team can run. Scoped on a free Live Audit."
 date: 2026-09-24
 dateModified: 2026-09-24
@@ -16,7 +16,7 @@ schema:
   service:
     name: AI agent implementation
     service_type: AI agent implementation
-    audience: Founder-led agencies and small service businesses
+    audience: Founder-led agencies and service teams
     area_served: [Canada, United States]
   offer:
     # No price, guarantee, or fixed product name until the offer is locked.
@@ -26,7 +26,7 @@ schema:
     url: /live-audit/
 faq:
   - question: "Who is AI agent implementation for?"
-    answer: "Founder-led agencies and small service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have one repeated process they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
+    answer: "Founder-led agencies and service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have one repeated process they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
   - question: "How long does an AI agent implementation take?"
     answer: "A single narrow agent is usually live within 2 to 6 weeks of kickoff. The exact timeline is written into your scope after the Live Audit, and it depends mostly on how quickly access to your tools is granted and how fast your team reviews test results."
   - question: "What do I get at the end of the project?"
@@ -39,7 +39,7 @@ faq:
     answer: "No. The agent is designed so the process owner you already have can run it, review its exceptions, and pause it. The handoff includes a runbook and a walkthrough so nobody new is needed."
 ---
 
-EV Advisory implements AI agents for founder-led agencies and small service teams in Canada and the United States: one narrow agent, built into the tools you already use, tested on your real work, and handed over so your existing team can run it without a new hire. Every project starts with a free 20-minute [Live Audit](/live-audit/), where Esteban Valencia reviews your actual tool stack with you and names the first process worth handing to an agent.
+EV Advisory implements AI agents for founder-led agencies and service teams in Canada and the United States: one narrow agent, built into the tools you already use, tested on your real work, and handed over so your existing team can run it without a new hire. Every project starts with a free 20-minute [Live Audit](/live-audit/), where Esteban Valencia reviews your actual tool stack with you and names the first process worth handing to an agent.
 
 The work is deliberately narrow. One agent, one repeated process, one owner on your side, and a clear measure of whether it worked. A second agent only gets scoped once the first one is earning its keep.
 
@@ -49,7 +49,7 @@ The work is deliberately narrow. One agent, one repeated process, one owner on y
 
 This service fits if all three of these are true:
 
-- **You run a founder-led agency or small service team.** Marketing, creative, consulting, or professional services, small enough that the founder still feels every bottleneck.
+- **You run a founder-led agency or service team.** Marketing, creative, consulting, or professional services, where the founder still feels every bottleneck directly.
 - **Your team already works in real tools.** A CRM, a project or ticketing tool, shared inboxes, a document system. An agent needs somewhere to plug in.
 - **You are open to adopting an agent.** Someone on the team is willing to own the process, review the agent's work in the first weeks, and change a habit or two.
 
@@ -126,7 +126,7 @@ Here is what you can check today:
 
 - **The method.** Every project is scoped, baselined, tested on real examples, and measured after launch, as described above. The written scope you receive after the Live Audit spells out how your result will be measured.
 - **The work in public.** With your permission, your Live Audit can become a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
-- **Earlier operating work.** Before focusing on AI agents, EV Advisory ran reporting and operations work for ecommerce teams. See the [proof and case studies](/proof/) page.
+- **Earlier operating work.** Before focusing on AI agents, EV Advisory ran reporting and operations work for teams across enterprise commerce, premium retail, subscription, automotive, and complex operations. See the [proof and case studies](/proof/) page.
 
 On your Live Audit, hold us to the same questions you would ask anyone else. The [questions to ask before hiring an AI agent developer](/answers/questions-before-hiring-ai-agent-developer/) are a good checklist.
 

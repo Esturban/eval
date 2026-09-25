@@ -12,6 +12,9 @@ hugo.darwin
 hugo.linux
 .hugo_build.lock
 
+# Scratch QA captures (screenshots, Lighthouse runs)
+.qa/
+
 # Environments
 .env*
 .venv
