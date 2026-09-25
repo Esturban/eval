@@ -12,7 +12,7 @@ Every product carries its own written guarantee. The guarantee on the product yo
 
 ## Competitor Review Objection Radar, USD 897
 
-If the memo does not name at least 3 objections your team can act on this week, full refund within 5 business days of delivery.
+Full refund if the memo does not name at least 3 objections your team can act on this week.
 
 ## AI Security Posture Audit, USD 9,000
 
@@ -22,9 +22,13 @@ You see the full risk classification method and scoring rubric before the second
 
 If the deletion path matrix does not show at least one gap between your written policy and what your vendor actually does, there is no invoice.
 
+## AI Workflow Audit, USD 497 or USD 897
+
+Full refund if the report does not name a single thing your team can act on.
+
 ## RFP and RFI Response Automation, SAP Ariba, USD 24,000
 
-You see the working compliance matrix and a first drafted section by the end of week 2. If the pipeline does not cut your team's first-draft response time by at least 30% on the pilot tender, the week 4 balance is waived.
+Guarantee terms for this product are confirmed on your scoping call before work begins.
 
 ## How a refund is paid
 
