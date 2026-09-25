@@ -33,16 +33,15 @@ The symptoms are familiar:
 
 ## What this service does
 
-Conversion Systems and Lifecycle Improvement looks at how demand is being translated into action.
+We follow a shopper from ad to checkout on your Shopify store, mark exactly where they stop, and fix the highest-impact drop-off points first.
 
-That includes:
+Three steps:
 
-- offer clarity and sequencing
-- landing and product-journey friction
-- lifecycle automation and recovery moments
-- handoffs between paid traffic, onsite experience, and retention flows
+1. Map the real path: ad, landing page, product page, checkout, follow-up.
+2. Find where buyers lose momentum, on the page or in a lifecycle message.
+3. Fix the biggest gaps first, not everything at once.
 
-The goal is not to automate more for the sake of automation. The goal is to make the commercial journey easier to understand and easier to improve.
+In one engagement, this approach recovered more than $100,000 in revenue over three months from customers already in the pipeline. Ready to start? [Request the Conversion Systems Audit]({{< relref "contact" >}}).
 
 ## Typical outcomes
 
