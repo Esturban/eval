@@ -39,6 +39,28 @@
   <div class="max-w-3xl w-screen object-none px-6 pt-6 pb-8 mx-auto prose dark:prose-invert dark:text-white">
     {{.Content}}
   </div>
+  {{ with .Params.store }}
+  {{ $storeSlug := . }}
+  {{ range site.Data.store.product }}
+  {{ if eq .slug $storeSlug }}
+  <div class="max-w-3xl w-screen mx-auto px-6 pb-10">
+    <div class="rounded-[2rem] border border-slate-200 bg-stone-50 p-6 dark:border-slate-700 dark:bg-slate-900">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300">Related from the store</p>
+      <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">{{ .name }}</h3>
+      <p class="mt-2 text-base leading-7 text-slate-600 dark:text-slate-300">{{ .outcome }}</p>
+      <div class="mt-4 flex flex-wrap items-center gap-4">
+        <span class="text-lg font-bold text-slate-950 dark:text-white">{{ .price }}</span>
+        <a href="/store/#{{ if eq .section "free" }}free{{ else if eq .section "guides" }}guides{{ else if eq .section "done" }}done-for-you{{ else }}books{{ end }}"
+           data-cta="{{ if eq .slug "narrow-agent-fit-checklist" }}checklist{{ else }}buy-{{ .slug }}{{ end }}"
+           class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
+          {{ .button }}
+        </a>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+  {{ end }}
   {{ partial "page-faq.html" . }}
 </article>
 {{end}}

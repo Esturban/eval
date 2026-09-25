@@ -16,6 +16,14 @@
                     <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300">Conversion Systems Audit</p>
                     <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">Make the intake faster and cleaner</h2>
                     <p class="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">{{ .Summary }}</p>
+                    <div class="mt-6">
+                        <a href="https://cal.com/este-val/audit-fit-call"
+                           data-cta="fit-call"
+                           class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
+                            Grab a time here
+                        </a>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Prefer to talk it through first? Book a 20-minute fit call instead of the form.</p>
+                    </div>
                     <div class="mt-6 grid gap-3">
                         <p class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">Best for Shopify and ecommerce teams that do not trust the numbers enough to move confidently.</p>
                         <p class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">If you came from the scorecard, the form keeps your score and bottleneck attached to the intake.</p>
@@ -84,34 +92,6 @@
                         </label>
                     </div>
 
-                    <div class="grid gap-5 sm:grid-cols-2">
-                        <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
-                            <span>Platform / stack</span>
-                            <select name="platform"
-                                    id="platform"
-                                    class="block w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white">
-                                <option value="shopify">Shopify</option>
-                                <option value="shopify-plus">Shopify Plus</option>
-                                <option value="woocommerce">WooCommerce</option>
-                                <option value="headless">Headless / custom web stack</option>
-                                <option value="marketplace">Marketplace-led ecommerce</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </label>
-                        <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
-                            <span>Primary bottleneck</span>
-                            <select name="bottleneck"
-                                    id="bottleneck"
-                                    class="block w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white">
-                                <option value="reporting-trust">We do not trust the numbers enough to move quickly</option>
-                                <option value="attribution">Attribution is muddy and channel spend is hard to defend</option>
-                                <option value="conversion-friction">The site is leaking conversion and we cannot isolate why</option>
-                                <option value="ops-drag">Reporting and ops are too manual</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </label>
-                    </div>
-
                     <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
                         <span>What is blocking decisions right now?</span>
                         <textarea id="message"
@@ -159,7 +139,6 @@
     var scoreField = document.getElementById('contact-score');
     var bandField = document.getElementById('contact-score-band');
     var issueField = document.getElementById('contact-dominant-issue');
-    var bottleneckField = document.getElementById('bottleneck');
     var messageField = document.getElementById('message');
     var contextBox = document.getElementById('contact-scorecard-context');
     var contextTitle = document.getElementById('contact-scorecard-title');
@@ -173,18 +152,10 @@
       reporting_drag: 'Reporting Drag'
     };
 
-    var issueSelectValues = {
-      revenue_signal_trust: 'reporting-trust',
-      attribution_confidence: 'attribution',
-      conversion_friction: 'conversion-friction',
-      reporting_drag: 'ops-drag'
-    };
-
     if (source && sourceField) sourceField.value = source;
     if (score && scoreField) scoreField.value = score;
     if (band && bandField) bandField.value = band;
     if (issue && issueField) issueField.value = issue;
-    if (issue && bottleneckField && issueSelectValues[issue]) bottleneckField.value = issueSelectValues[issue];
 
     if (source === 'scorecard' && contextBox && contextTitle && contextCopy) {
       contextBox.classList.remove('hidden');
