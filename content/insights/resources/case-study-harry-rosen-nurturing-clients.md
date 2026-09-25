@@ -24,7 +24,7 @@ The commercial challenge was not just to send more messages. It was to improve h
 - We rebuilt the sequence used to re-engage existing customers, replacing generic messages with ones tied to what they had already shown interest in.
 - We matched each customer's intent to the next offer, so the message sent matched where they actually were, not a generic blast.
 
-That shift is what recovered more than $100,000 in revenue over three months, detailed below. The same approach is behind [Conversion Systems and Lifecycle Improvement]({{< relref "services/growth-automation" >}}).
+That shift is what recovered more than $100,000 in revenue over three months, detailed below.
 
 ## The outcome
 
