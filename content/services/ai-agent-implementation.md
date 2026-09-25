@@ -136,6 +136,8 @@ Every seat includes one active request at a time, an unlimited queue behind it, 
 
 **We run our own firm on these agents.** One of our own AI agents finds, scores, and enriches prospect accounts for our own pipeline, with a person on our team reviewing and approving its output before any outreach goes out.
 
+**Beyond our own pipeline, three more are live for a client.** They are answering in production today. We checked this month by sending each one a real request and confirming a real response came back, not a status page, an actual answer.
+
 **Client work shipped.** For a two-store cosmetics brand, a mobile checkout fix we shipped reached 75 percent of the store's mobile shopper traffic, and a separate app audit found an estimated CA$1,031 a year in duplicate app spend.
 
 **Every first agent is shown, not described.** With your permission, your Live Audit becomes a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
