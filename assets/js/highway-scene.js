@@ -35,6 +35,7 @@ import {
   PlaneGeometry,
   SRGBColorSpace,
   Scene,
+  SphereGeometry,
   Vector3,
   WebGLRenderer,
 } from 'three';
@@ -270,23 +271,25 @@ function buildOverpass(scene, textures) {
 function sharedVehicleParts(textures) {
   return {
     radial: textures.radial,
-    bodyGeo: new BoxGeometry(1.9, 0.38, 0.92),
-    cabinGeo: new BoxGeometry(1.05, 0.3, 0.8),
-    stripeGeo: new BoxGeometry(1.92, 0.05, 0.94),
-    beaconGeo: new CylinderGeometry(0.1, 0.12, 0.1, 12),
-    lightGeo: new BoxGeometry(0.04, 0.07, 0.8),
-    wheelGeo: new CylinderGeometry(0.2, 0.2, 0.16, 12).rotateX(Math.PI / 2),
-    beamGeo: new PlaneGeometry(3.4, 1.5).rotateX(-Math.PI / 2),
+    beam: textures.beam,
+    // Tapered lozenge silhouette: a flattened, elongated ellipsoid reads as
+    // a moving light/data-packet instead of a boxed sedan, and it is
+    // naturally shorter and rounded at both ends without a separate cabin
+    // mesh. ~30% shorter vertically than the old BoxGeometry(1.9, 0.38,
+    // 0.92) body (0.38 tall -> ~0.26 tall here).
+    bodyGeo: new SphereGeometry(0.4, 16, 10).scale(2.15, 0.33, 1.15),
+    stripeGeo: new BoxGeometry(1.66, 0.035, 1.0),
+    beaconGeo: new CylinderGeometry(0.08, 0.1, 0.08, 12), // roof sensor: reads as a self-driving bot
+    lightGeo: new BoxGeometry(0.04, 0.05, 0.6),
+    tailGeo: new BoxGeometry(0.04, 0.05, 0.16),
+    // Trailing light streak: longer and more transparent than the old
+    // forward headlight beam, and tinted per vehicle in buildVehicle
+    // instead of the old shared white glow.
+    beamGeo: new PlaneGeometry(5.4, 1.6).rotateX(-Math.PI / 2),
     underGeo: new PlaneGeometry(2.8, 1.8).rotateX(-Math.PI / 2),
-    bodyMat: new MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.35, metalness: 0.35 }),
-    glassMat: new MeshStandardMaterial({ color: 0x0f1d33, roughness: 0.15, metalness: 0.8 }),
-    tireMat: new MeshStandardMaterial({ color: 0x0b0f17, roughness: 0.9 }),
+    bodyMat: new MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.3, metalness: 0.4 }),
     headMat: new MeshBasicMaterial({ color: 0xffffff }),
     tailMat: new MeshBasicMaterial({ color: 0xff3b4e }),
-    tailGeo: new BoxGeometry(0.04, 0.07, 0.22),
-    beamMat: new MeshBasicMaterial({
-      map: textures.beam, color: 0xdff6ff, transparent: true, opacity: 0.32, blending: AdditiveBlending, depthWrite: false,
-    }),
   };
 }
 
@@ -294,22 +297,24 @@ function buildVehicle(color, shared) {
   const group = new Group();
   const accent = new Color(color);
   const accentMat = new MeshStandardMaterial({ color: accent, emissive: accent, emissiveIntensity: 0.9 });
+  const streakMat = new MeshBasicMaterial({
+    map: shared.beam, color: accent, transparent: true, opacity: 0.22, blending: AdditiveBlending, depthWrite: false,
+  });
   const parts = [
-    [shared.bodyGeo, shared.bodyMat, 0, 0.36],
-    [shared.cabinGeo, shared.glassMat, -0.12, 0.68],
-    [shared.stripeGeo, accentMat, 0, 0.42],
-    [shared.beaconGeo, accentMat, -0.12, 0.9], // roof sensor: reads as a self-driving bot
-    [shared.lightGeo, shared.headMat, 0.96, 0.4],
-    [shared.beamGeo, shared.beamMat, 2.6, 0.012],
+    [shared.bodyGeo, shared.bodyMat, 0, 0.24],
+    [shared.stripeGeo, accentMat, 0, 0.34],
+    [shared.beaconGeo, accentMat, -0.1, 0.42],
+    [shared.lightGeo, shared.headMat, 0.86, 0.28],
+    [shared.beamGeo, streakMat, -2.9, 0.012],
   ];
   parts.forEach(([geo, mat, x, y]) => {
     const mesh = new Mesh(geo, mat);
     mesh.position.set(x, y, 0);
     group.add(mesh);
   });
-  [0.3, -0.3].forEach((z) => {
+  [0.28, -0.28].forEach((z) => {
     const tail = new Mesh(shared.tailGeo, shared.tailMat);
-    tail.position.set(-0.96, 0.42, z);
+    tail.position.set(-0.86, 0.28, z);
     group.add(tail);
   });
   const under = new Mesh(
@@ -318,13 +323,7 @@ function buildVehicle(color, shared) {
   );
   under.position.y = 0.011;
   group.add(under);
-  const wheels = [[0.6, 0.44], [0.6, -0.44], [-0.6, 0.44], [-0.6, -0.44]].map(([wx, wz]) => {
-    const wheel = new Mesh(shared.wheelGeo, shared.tireMat);
-    wheel.position.set(wx, 0.2, wz);
-    group.add(wheel);
-    return wheel;
-  });
-  return { group, wheels };
+  return { group };
 }
 
 function readBrands(root) {
@@ -441,7 +440,6 @@ export async function createHighwayScene({ canvas, root }) {
   bots.forEach((bot) => {
     const v = buildVehicle(bot.color, shared);
     bot.group = v.group;
-    bot.wheels = v.wheels;
     bot.accent = new Color(bot.color);
     scene.add(bot.group);
   });
@@ -566,7 +564,6 @@ export async function createHighwayScene({ canvas, root }) {
       bot.lastX = inbound ? x : null;
       bot.group.position.set(x, Math.sin(elapsed * 7 + i * 2) * 0.008, z);
       bot.group.rotation.y = inbound ? 0 : Math.PI;
-      bot.wheels.forEach((wheel) => { wheel.rotation.z = -elapsed * 9 * bot.speed; });
       updateTag(bot, i, elapsed, isDone, Math.floor(run));
       return placeLabel(bot, x, z);
     });
