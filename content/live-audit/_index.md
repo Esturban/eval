@@ -22,7 +22,7 @@ body = "It fits if your team already works in real tools and you are open to ado
 [[sections]]
 eyebrow = "Before the call"
 heading = "Two minutes of prep makes it sharper."
-body = "Pick two or three repeated tasks that eat your week, and have the tools they live in open. For a head start, run them through the one-page [Narrow Agent Fit Checklist](/get/narrow-agent-fit-checklist/). It takes about ten minutes."
+body = "Pick two or three repeated tasks that eat your week, and have the tools they live in open. For a head start, the Narrow Agent Fit Checklist on this site walks you through the same thing in about ten minutes."
 
 [[sections]]
 eyebrow = "What happens next"
