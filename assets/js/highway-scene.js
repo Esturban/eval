@@ -35,12 +35,9 @@ import {
   PlaneGeometry,
   SRGBColorSpace,
   Scene,
-  SphereGeometry,
   Vector3,
   WebGLRenderer,
 } from 'three';
-
-import { readToneStops } from './tone-stops.js';
 
 const LANE_WIDTH = 1.5;
 // Near carriageway (toward the viewer) on +z, far carriageway (away) on -z.
@@ -59,57 +56,18 @@ const DECK_Y = 3.45; // deck centre height; clearance reads right against the ca
 const ROOF_Y = 0.95;
 const LABEL_Y = 1.9;
 const FLASH_SECONDS = 0.7;
-// CRO-6731 Pass 5: EV, watching the live preview, "the cars accelerate too
-// much; keep a calm, steady speed." SCROLL_PUSH's contribution to travel
-// used to track raw scroll progress 1:1, so a burst of scroll (several
-// scroll events landing between animation frames) spiked the vehicles'
-// apparent speed. PROGRESS_RATE_CAP bounds how fast the scroll-driven push
-// can change per second, regardless of how violently the page is scrolled,
-// so the peak scroll-added speed stays a gentle fraction of the vehicles'
-// own cruise rate (1 / LOOP_SECONDS) instead of spiking with scroll speed.
-const PROGRESS_RATE_CAP = 0.09;
 
 const LAYOUTS = {
   wide: { fov: 30, camY: 2.3, camZ: 1.5, vx: 0.7, vy: 0.46, dpr: 1.75, fade: [40, 52] },
   tall: { fov: 44, camY: 2.9, camZ: 0.2, vx: 0.5, vy: 0.7, dpr: 1.25, fade: [30, 42] },
-  // Desktop side rail: a narrow, tall column (~22vw wide, full viewport
-  // height). A tighter FOV and a view offset that keeps the road centred
-  // in the strip reads better than reusing the phone "tall" tuning, which
-  // is built for a much less extreme aspect ratio.
-  rail: { fov: 24, camY: 2.6, camZ: 2.4, vx: 0.5, vy: 0.5, dpr: 1.5, fade: [26, 40] },
 };
-
-const DAY_PROGRESS_LAMP_FADE = 0.4; // lamps are fully off by this share of day progress
 
 function clamp(v, a, b) {
   return Math.min(b, Math.max(a, v));
 }
 
-// CRO-6731 Pass 5: the hero-to-rail handoff used to be a binary switch
-// (LAYOUTS.wide -> LAYOUTS.rail the instant the canvas was re-parented),
-// which read as a pop. `railT` is now continuous (0 = full hero framing, 1
-// = docked in the rail), so the camera itself eases between the two tunings
-// over the same scroll span home-motion.js uses to shrink the canvas.
-function lerpLayout(a, b, t) {
-  if (t <= 0) return a;
-  if (t >= 1) return b;
-  return {
-    fov: a.fov + (b.fov - a.fov) * t,
-    camY: a.camY + (b.camY - a.camY) * t,
-    camZ: a.camZ + (b.camZ - a.camZ) * t,
-    vx: a.vx + (b.vx - a.vx) * t,
-    vy: a.vy + (b.vy - a.vy) * t,
-    dpr: a.dpr + (b.dpr - a.dpr) * t,
-    fade: [a.fade[0] + (b.fade[0] - a.fade[0]) * t, a.fade[1] + (b.fade[1] - a.fade[1]) * t],
-  };
-}
-
 function fract(v) {
   return v - Math.floor(v);
-}
-
-function smoothstep(t) {
-  return t * t * (3 - 2 * t);
 }
 
 function canvasTexture(draw, w = 128, h = 128) {
@@ -175,16 +133,20 @@ function placeInstances(mesh, points) {
 }
 
 function buildRoad(scene, textures) {
-  const groundMat = new MeshStandardMaterial({ color: 0x030b18, roughness: 1 });
-  const ground = new Mesh(new PlaneGeometry(400, 200), groundMat);
+  const ground = new Mesh(
+    new PlaneGeometry(400, 200),
+    new MeshStandardMaterial({ color: 0x030b18, roughness: 1 })
+  );
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.02;
   scene.add(ground);
 
   const length = ROAD_NEAR - ROAD_FAR;
   const midX = (ROAD_NEAR + ROAD_FAR) / 2;
-  const roadMat = new MeshStandardMaterial({ color: 0x0e1829, roughness: 0.82, metalness: 0.05 });
-  const road = new Mesh(new PlaneGeometry(length, ROAD_HALF * 2 + 0.8), roadMat);
+  const road = new Mesh(
+    new PlaneGeometry(length, ROAD_HALF * 2 + 0.8),
+    new MeshStandardMaterial({ color: 0x0e1829, roughness: 0.82, metalness: 0.05 })
+  );
   road.rotation.x = -Math.PI / 2;
   road.position.set(midX, 0, 0);
   scene.add(road);
@@ -233,21 +195,17 @@ function buildRoad(scene, textures) {
   });
   scene.add(placeInstances(new InstancedMesh(new BoxGeometry(0.07, 0.55, 0.07), railMat, postPts.length), postPts));
 
-  const lamps = buildLamps(scene, textures);
+  buildLamps(scene, textures);
 
-  const skyMat = new MeshBasicMaterial({ map: textures.sky, transparent: true, depthWrite: false, fog: false });
-  const sky = new Mesh(new PlaneGeometry(260, 34), skyMat);
+  const sky = new Mesh(
+    new PlaneGeometry(260, 34),
+    new MeshBasicMaterial({ map: textures.sky, transparent: true, depthWrite: false, fog: false })
+  );
   sky.rotation.y = Math.PI / 2;
   sky.position.set(ROAD_FAR - 20, 4, 0);
   scene.add(sky);
-
-  return { groundMat, roadMat, skyMat, lamps };
 }
 
-// Returns the four instanced meshes so setDayProgress() can fade the lamps
-// out by day and pull them back out of the render list (mesh.visible, not
-// just opacity 0) instead of only relying on a transparent material to hide
-// draw calls that still run every frame.
 function buildLamps(scene, textures) {
   const spacing = 16;
   const poles = [];
@@ -264,17 +222,16 @@ function buildLamps(scene, textures) {
       pools.push([px, 0.01, pz - side * 2.2]);
     });
   }
-  const metalMat = new MeshStandardMaterial({ color: 0x334155, roughness: 0.6, metalness: 0.5, transparent: true });
-  const headMat = new MeshBasicMaterial({ color: 0xfff4d6, transparent: true });
+  const metal = new MeshStandardMaterial({ color: 0x334155, roughness: 0.6, metalness: 0.5 });
   const poolMat = new MeshBasicMaterial({
     map: textures.radial, color: 0xffe7b8, transparent: true, opacity: 0.16, blending: AdditiveBlending, depthWrite: false,
   });
-  const poleMesh = placeInstances(new InstancedMesh(new CylinderGeometry(0.05, 0.06, 4.6, 6), metalMat, poles.length), poles);
-  const armMesh = placeInstances(new InstancedMesh(new BoxGeometry(0.06, 0.06, 1.6), metalMat, arms.length), arms);
-  const headMesh = placeInstances(new InstancedMesh(new BoxGeometry(0.5, 0.08, 0.22), headMat, heads.length), heads);
-  const poolMesh = placeInstances(new InstancedMesh(new PlaneGeometry(5.5, 5.5).rotateX(-Math.PI / 2), poolMat, pools.length), pools);
-  scene.add(poleMesh, armMesh, headMesh, poolMesh);
-  return { meshes: [poleMesh, armMesh, headMesh], metalMat, headMat, poolMat, poolBaseOpacity: 0.16 };
+  scene.add(
+    placeInstances(new InstancedMesh(new CylinderGeometry(0.05, 0.06, 4.6, 6), metal, poles.length), poles),
+    placeInstances(new InstancedMesh(new BoxGeometry(0.06, 0.06, 1.6), metal, arms.length), arms),
+    placeInstances(new InstancedMesh(new BoxGeometry(0.5, 0.08, 0.22), new MeshBasicMaterial({ color: 0xfff4d6 }), heads.length), heads),
+    placeInstances(new InstancedMesh(new PlaneGeometry(5.5, 5.5).rotateX(-Math.PI / 2), poolMat, pools.length), pools)
+  );
 }
 
 // One overpass across both carriageways. No signs on it: a concrete deck,
@@ -313,25 +270,23 @@ function buildOverpass(scene, textures) {
 function sharedVehicleParts(textures) {
   return {
     radial: textures.radial,
-    beam: textures.beam,
-    // Tapered lozenge silhouette: a flattened, elongated ellipsoid reads as
-    // a moving light/data-packet instead of a boxed sedan, and it is
-    // naturally shorter and rounded at both ends without a separate cabin
-    // mesh. ~30% shorter vertically than the old BoxGeometry(1.9, 0.38,
-    // 0.92) body (0.38 tall -> ~0.26 tall here).
-    bodyGeo: new SphereGeometry(0.4, 16, 10).scale(2.15, 0.33, 1.15),
-    stripeGeo: new BoxGeometry(1.66, 0.035, 1.0),
-    beaconGeo: new CylinderGeometry(0.08, 0.1, 0.08, 12), // roof sensor: reads as a self-driving bot
-    lightGeo: new BoxGeometry(0.04, 0.05, 0.6),
-    tailGeo: new BoxGeometry(0.04, 0.05, 0.16),
-    // Trailing light streak: longer and more transparent than the old
-    // forward headlight beam, and tinted per vehicle in buildVehicle
-    // instead of the old shared white glow.
-    beamGeo: new PlaneGeometry(5.4, 1.6).rotateX(-Math.PI / 2),
+    bodyGeo: new BoxGeometry(1.9, 0.38, 0.92),
+    cabinGeo: new BoxGeometry(1.05, 0.3, 0.8),
+    stripeGeo: new BoxGeometry(1.92, 0.05, 0.94),
+    beaconGeo: new CylinderGeometry(0.1, 0.12, 0.1, 12),
+    lightGeo: new BoxGeometry(0.04, 0.07, 0.8),
+    wheelGeo: new CylinderGeometry(0.2, 0.2, 0.16, 12).rotateX(Math.PI / 2),
+    beamGeo: new PlaneGeometry(3.4, 1.5).rotateX(-Math.PI / 2),
     underGeo: new PlaneGeometry(2.8, 1.8).rotateX(-Math.PI / 2),
-    bodyMat: new MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.3, metalness: 0.4 }),
+    bodyMat: new MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.35, metalness: 0.35 }),
+    glassMat: new MeshStandardMaterial({ color: 0x0f1d33, roughness: 0.15, metalness: 0.8 }),
+    tireMat: new MeshStandardMaterial({ color: 0x0b0f17, roughness: 0.9 }),
     headMat: new MeshBasicMaterial({ color: 0xffffff }),
     tailMat: new MeshBasicMaterial({ color: 0xff3b4e }),
+    tailGeo: new BoxGeometry(0.04, 0.07, 0.22),
+    beamMat: new MeshBasicMaterial({
+      map: textures.beam, color: 0xdff6ff, transparent: true, opacity: 0.32, blending: AdditiveBlending, depthWrite: false,
+    }),
   };
 }
 
@@ -339,24 +294,22 @@ function buildVehicle(color, shared) {
   const group = new Group();
   const accent = new Color(color);
   const accentMat = new MeshStandardMaterial({ color: accent, emissive: accent, emissiveIntensity: 0.9 });
-  const streakMat = new MeshBasicMaterial({
-    map: shared.beam, color: accent, transparent: true, opacity: 0.22, blending: AdditiveBlending, depthWrite: false,
-  });
   const parts = [
-    [shared.bodyGeo, shared.bodyMat, 0, 0.24],
-    [shared.stripeGeo, accentMat, 0, 0.34],
-    [shared.beaconGeo, accentMat, -0.1, 0.42],
-    [shared.lightGeo, shared.headMat, 0.86, 0.28],
-    [shared.beamGeo, streakMat, -2.9, 0.012],
+    [shared.bodyGeo, shared.bodyMat, 0, 0.36],
+    [shared.cabinGeo, shared.glassMat, -0.12, 0.68],
+    [shared.stripeGeo, accentMat, 0, 0.42],
+    [shared.beaconGeo, accentMat, -0.12, 0.9], // roof sensor: reads as a self-driving bot
+    [shared.lightGeo, shared.headMat, 0.96, 0.4],
+    [shared.beamGeo, shared.beamMat, 2.6, 0.012],
   ];
   parts.forEach(([geo, mat, x, y]) => {
     const mesh = new Mesh(geo, mat);
     mesh.position.set(x, y, 0);
     group.add(mesh);
   });
-  [0.28, -0.28].forEach((z) => {
+  [0.3, -0.3].forEach((z) => {
     const tail = new Mesh(shared.tailGeo, shared.tailMat);
-    tail.position.set(-0.86, 0.28, z);
+    tail.position.set(-0.96, 0.42, z);
     group.add(tail);
   });
   const under = new Mesh(
@@ -365,7 +318,13 @@ function buildVehicle(color, shared) {
   );
   under.position.y = 0.011;
   group.add(under);
-  return { group };
+  const wheels = [[0.6, 0.44], [0.6, -0.44], [-0.6, 0.44], [-0.6, -0.44]].map(([wx, wz]) => {
+    const wheel = new Mesh(shared.wheelGeo, shared.tireMat);
+    wheel.position.set(wx, 0.2, wz);
+    group.add(wheel);
+    return wheel;
+  });
+  return { group, wheels };
 }
 
 function readBrands(root) {
@@ -401,7 +360,6 @@ function readBots(root) {
       tag: el.querySelector('.hw-bot__tag'),
       tool: el.querySelector('.hw-bot__tool'),
       toolGlyph: el.querySelector('.hw-bot__brand use'),
-      toolLogo: el.querySelector('.hw-bot__brand-img'),
       toolName: el.querySelector('.hw-bot__toolname'),
       shown: null,
       lastX: null,
@@ -410,26 +368,16 @@ function readBots(root) {
 }
 
 // The chip names one tool: where a live event came from, or where the
-// finished work landed. Three tools (Outlook, Slack, Salesforce) carry an
-// officialLogo instead of a Simple Icons glyph: a bounded, documented
-// exception to the monochrome chip rule (see DESIGN.md, data/brands.json).
-// officialLogo wins over glyph when both would somehow be present; glyph
-// wins over the name-only default; the branches are mutually exclusive.
+// finished work landed.
 function setTool(bot, brand, sprite) {
   if (!bot.tool) return;
   const show = Boolean(brand && brand.name);
   bot.tool.hidden = !show;
   if (!show) return;
   bot.toolName.textContent = brand.name;
-  const hasOfficialLogo = Boolean(brand.officialLogo && bot.toolLogo);
-  const hasGlyph = !hasOfficialLogo && Boolean(brand.glyph && sprite);
-  bot.tool.classList.toggle('has-official-logo', hasOfficialLogo);
+  const hasGlyph = Boolean(brand.glyph && sprite);
   bot.tool.classList.toggle('has-glyph', hasGlyph);
-  if (hasOfficialLogo) {
-    bot.toolLogo.src = brand.officialLogo;
-  } else if (hasGlyph) {
-    bot.toolGlyph.setAttribute('href', `${sprite}#b-${brand.glyph}`);
-  }
+  if (hasGlyph) bot.toolGlyph.setAttribute('href', `${sprite}#b-${brand.glyph}`);
 }
 
 function setTag(bot, item, isDone, brand, sprite) {
@@ -459,7 +407,6 @@ function yieldToMain() {
 
 export async function createHighwayScene({ canvas, root }) {
   if (!canvas || !window.WebGLRenderingContext) return null;
-  if (!canvas.getContext('webgl2') && !canvas.getContext('webgl')) return null;
   let renderer;
   try {
     renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' });
@@ -471,8 +418,7 @@ export async function createHighwayScene({ canvas, root }) {
 
   const scene = new Scene();
   scene.fog = new Fog(0x061426, 18, 66);
-  const hemi = new HemisphereLight(0x3b6a8f, 0x020617, 1.3);
-  scene.add(hemi);
+  scene.add(new HemisphereLight(0x3b6a8f, 0x020617, 1.3));
   const moon = new DirectionalLight(0xbcd3ee, 1.4);
   moon.position.set(12, 10, 6);
   const fill = new DirectionalLight(0x9fdcf0, 0.9);
@@ -481,79 +427,11 @@ export async function createHighwayScene({ canvas, root }) {
 
   const textures = { radial: radialTexture(), beam: beamTexture(), sky: skyTexture() };
   await yieldToMain();
-  const { groundMat, roadMat, skyMat, lamps } = buildRoad(scene, textures);
+  buildRoad(scene, textures);
   const overpass = buildOverpass(scene, textures);
   const stripBase = new Color(0x22d3ee);
   const flashColor = new Color();
   let flash = { at: -10, color: stripBase };
-
-  // Full-page rail day/night: rather than a second authored palette, lerp
-  // between the same colour-arc tone stops home-motion.js already blends
-  // <main>'s background across (the hero's night tone and the closing
-  // CTA's day tone).
-  const stops = readToneStops(root.ownerDocument || document);
-  const nightTone = new Color(stops[0] || '#020617');
-  const dayTone = new Color(stops[stops.length - 1] || '#f7f4ee');
-  const dayFog = dayTone.clone();
-  const dayHemiSky = new Color(0xdcf3ff);
-  const daySun = new Color(0xfff2d6);
-  const dayFill = new Color(0xffe3b8);
-  const dayRoad = new Color(0xc7cdd4);
-  const dayGround = dayTone.clone().lerp(new Color(0x9aa3ad), 0.35);
-  const nightFog = new Color(0x061426);
-  const nightHemiSky = new Color(0x3b6a8f);
-  const nightHemiGround = new Color(0x020617);
-  const nightMoon = new Color(0xbcd3ee);
-  const nightFill = new Color(0x9fdcf0);
-  const nightRoad = new Color(0x0e1829);
-  const nightGround = new Color(0x030b18);
-  const sunDisc = new Mesh(
-    new PlaneGeometry(6, 6),
-    new MeshBasicMaterial({ map: textures.radial, color: nightMoon, transparent: true, opacity: 0.6, blending: AdditiveBlending, depthWrite: false, fog: false })
-  );
-  sunDisc.position.set(ROAD_FAR - 14, 9, -6);
-  scene.add(sunDisc);
-  let dayProgress = 0;
-  const clearColor = new Color();
-
-  function applyDayProgress(value) {
-    dayProgress = clamp(value, 0, 1);
-    const t = smoothstep(dayProgress);
-    scene.fog.color.copy(nightFog).lerp(dayFog, t);
-    // The renderer's own clear colour and the static night-city sky plane
-    // both sit behind everything else; without lerping them too, whatever
-    // fills the frame past the fog (a lot of it, in the rail's narrow,
-    // close-up framing) stayed hard-coded night navy no matter how bright
-    // the rest of the scene got.
-    renderer.setClearColor(clearColor.copy(nightFog).lerp(dayFog, t), 1);
-    skyMat.opacity = 1 - t;
-    hemi.color.copy(nightHemiSky).lerp(dayHemiSky, t);
-    hemi.groundColor.copy(nightHemiGround).lerp(dayTone, t);
-    hemi.intensity = 1.3 + t * 0.9;
-    moon.color.copy(nightMoon).lerp(daySun, t);
-    moon.intensity = 1.4 + t * 0.3;
-    fill.color.copy(nightFill).lerp(dayFill, t);
-    fill.intensity = 0.9 + t * 0.5;
-    roadMat.color.copy(nightRoad).lerp(dayRoad, t);
-    groundMat.color.copy(nightGround).lerp(dayGround, t);
-    // A small disc rising along a fixed arc: the moon by night, the sun by
-    // day, using the same radial glow already used for the vehicle
-    // undercarriage and lamp pools.
-    const arc = Math.sin(dayProgress * Math.PI);
-    sunDisc.position.y = 5 + arc * 9;
-    sunDisc.material.color.copy(nightMoon).lerp(daySun, t);
-    sunDisc.material.opacity = 0.35 + arc * 0.35;
-    // Lamps fade out by DAY_PROGRESS_LAMP_FADE and drop out of the render
-    // list past it, not just out of sight, to keep the daylight draw-call
-    // count down.
-    const lampT = 1 - clamp(dayProgress / DAY_PROGRESS_LAMP_FADE, 0, 1);
-    lamps.metalMat.opacity = lampT;
-    lamps.headMat.opacity = lampT;
-    lamps.poolMat.opacity = lamps.poolBaseOpacity * lampT;
-    const lampsOn = dayProgress < DAY_PROGRESS_LAMP_FADE;
-    lamps.meshes.forEach((mesh) => { mesh.visible = lampsOn; });
-  }
-  applyDayProgress(0);
   await yieldToMain();
 
   const shared = sharedVehicleParts(textures);
@@ -563,6 +441,7 @@ export async function createHighwayScene({ canvas, root }) {
   bots.forEach((bot) => {
     const v = buildVehicle(bot.color, shared);
     bot.group = v.group;
+    bot.wheels = v.wheels;
     bot.accent = new Color(bot.color);
     scene.add(bot.group);
   });
@@ -576,11 +455,8 @@ export async function createHighwayScene({ canvas, root }) {
   let layout = LAYOUTS.wide;
   let copyRect = null;
   let progress = 0;
-  let displayProgress = 0; // eased toward `progress`; see PROGRESS_RATE_CAP
-  let lastElapsed = 0;
   let wanted = false;
   let running = false;
-  let railT = 0; // 0 = full hero framing, 1 = docked in the rail
   let size = { w: 1, h: 1 };
 
   function resize() {
@@ -589,12 +465,7 @@ export async function createHighwayScene({ canvas, root }) {
     if (!w || !h) return;
     size = { w, h };
     bots.forEach((bot) => { bot.width = 0; bot.height = 0; });
-    // During the handoff (railT > 0) the hero was always desktop/wide at
-    // railT === 0, so the interpolation source is pinned to LAYOUTS.wide
-    // rather than re-derived from the current (shrinking) aspect ratio,
-    // which would otherwise flip to LAYOUTS.tall partway through the
-    // transition and jump the camera.
-    layout = railT > 0 ? lerpLayout(LAYOUTS.wide, LAYOUTS.rail, railT) : (w / h >= 1 ? LAYOUTS.wide : LAYOUTS.tall);
+    layout = w / h >= 1 ? LAYOUTS.wide : LAYOUTS.tall;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, layout.dpr));
     renderer.setSize(w, h, false);
     camera.fov = layout.fov;
@@ -605,10 +476,6 @@ export async function createHighwayScene({ canvas, root }) {
     // the view offset slides the frame so it lands where the layout wants.
     camera.setViewOffset(w, h, (0.5 - layout.vx) * w, (0.5 - layout.vy) * h, w, h);
     camera.updateProjectionMatrix();
-    if (railT > 0) {
-      copyRect = null;
-      return;
-    }
     const stage = canvas.getBoundingClientRect();
     const r = copyEl ? copyEl.getBoundingClientRect() : null;
     copyRect = r ? { l: r.left - stage.left - 16, t: r.top - stage.top - 16, r: r.right - stage.left + 16, b: r.bottom - stage.top + 16 } : null;
@@ -686,16 +553,8 @@ export async function createHighwayScene({ canvas, root }) {
 
   function render() {
     const elapsed = clock.getElapsedTime();
-    const delta = Math.max(0, elapsed - lastElapsed);
-    lastElapsed = elapsed;
-    // Chase `progress` at a capped rate rather than adopting it outright:
-    // this is what keeps the scroll-added push calm and steady no matter
-    // how many scroll events land in a single frame.
-    const maxStep = PROGRESS_RATE_CAP * delta;
-    displayProgress += clamp(progress - displayProgress, -maxStep, maxStep);
-    const placed = [];
-    bots.forEach((bot, i) => {
-      const run = bot.offset + (elapsed * bot.speed) / LOOP_SECONDS + displayProgress * SCROLL_PUSH;
+    const placed = bots.map((bot, i) => {
+      const run = bot.offset + (elapsed * bot.speed) / LOOP_SECONDS + progress * SCROLL_PUSH;
       const loop = fract(run);
       const { x, inbound } = travel(loop);
       const z = inbound ? bot.laneIn : bot.laneOut;
@@ -707,13 +566,11 @@ export async function createHighwayScene({ canvas, root }) {
       bot.lastX = inbound ? x : null;
       bot.group.position.set(x, Math.sin(elapsed * 7 + i * 2) * 0.008, z);
       bot.group.rotation.y = inbound ? 0 : Math.PI;
+      bot.wheels.forEach((wheel) => { wheel.rotation.z = -elapsed * 9 * bot.speed; });
       updateTag(bot, i, elapsed, isDone, Math.floor(run));
-      // The rail is a narrow, fixed backdrop: the HTML labels live inside
-      // the hero stage and scroll out of view with it, so skip the
-      // per-frame label projection work once the handoff has started.
-      if (railT <= 0) placed.push(placeLabel(bot, x, z));
+      return placeLabel(bot, x, z);
     });
-    if (railT <= 0) resolveLabels(placed);
+    resolveLabels(placed);
     flashStrip(elapsed);
     renderer.render(scene, camera);
   }
@@ -751,21 +608,6 @@ export async function createHighwayScene({ canvas, root }) {
     setVisible(next) {
       wanted = Boolean(next);
       kick();
-    },
-    // Total-document-scroll-driven day/night, independent of the
-    // hero-local `progress` above (which only drives the traffic's
-    // forward-travel effect inside the pinned stage).
-    setDayProgress(value) {
-      applyDayProgress(value);
-    },
-    // Continuously blends the camera/renderer tuning between the full-bleed
-    // hero framing (0) and the narrow rail column (1) as home-motion.js
-    // shrinks the canvas over the handoff scroll span (CRO-6731 Pass 5: one
-    // continuous motion, not a swap at a threshold). Callers must also call
-    // resize() after changing the canvas's box, since this only changes
-    // which point resize() reads on the wide -> rail interpolation.
-    setRailT(t) {
-      railT = clamp(t, 0, 1);
     },
     resize,
   };
