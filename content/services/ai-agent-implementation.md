@@ -1,5 +1,5 @@
 ---
-title: "AI Agent Implementation for Founder-Led Agencies in Canada and the US"
+title: "One AI Agent, Live in Your Tools Within 6 Weeks, No New Hire"
 description: "EV Advisory ships one working AI agent into a founder-led agency or service team, built into the tools you already use, without adding headcount. Serving Canada and the United States."
 summary: "One narrow AI agent, built into your existing tools, tested on your real work, and handed over with documentation your team can run. Scoped on a free Live Audit."
 date: 2026-09-24
@@ -32,7 +32,7 @@ faq:
   - question: "What do I get at the end of the project?"
     answer: "A working agent running in accounts you own, a written scope and workflow map, a test log of real examples with results, a runbook your team can follow, a list of every access and credential the agent uses, and a before-and-after measure of the process it took over."
   - question: "What does my team need to do during the project?"
-    answer: "Name one owner for the process, grant access to the tools involved, share 20 to 30 real past examples of the work, and review test outputs at two or three agreed checkpoints. Plan for about one to two hours a week from the owner."
+    answer: "Name one owner for the process, grant access to the tools involved, share 20 to 30 real past examples of the work, and review test outputs at two or three agreed checkpoints. Plan for about one to two hours a week from the owner, far less time than interviewing and onboarding a new hire."
   - question: "How much does it cost?"
     answer: "Every project is scoped and quoted in writing after a free 20-minute Live Audit, because cost depends on how many tools the agent touches and how much judgment the task needs. For public Canadian market ranges, see the [AI agent cost guide](/answers/ai-agent-implementation-cost/)."
   - question: "Do I need to hire anyone to run the agent afterwards?"
@@ -63,7 +63,7 @@ If you are unsure, the [Live Audit](/live-audit/) exists to answer exactly that 
 
 ## How long does it take?
 
-A single narrow agent is usually live within **2 to 6 weeks** of kickoff. The exact dates are set in your written scope.
+You leave the Live Audit already knowing which process comes first. The agent itself is live within **2 to 6 weeks**, with exact dates set in your written scope.
 
 | Phase | What happens | Typical duration |
 |---|---|---|
@@ -101,7 +101,7 @@ An agent only works if someone on your side owns it. During the project your tea
 - **Grants access.** To the specific tools named in the scope, using accounts your business owns. Access is scoped to the minimum the agent needs.
 - **Shares real examples.** Usually 20 to 30 past instances of the work (emails, briefs, tickets, reports) so the agent is tested on reality, not a demo.
 - **Reviews at checkpoints.** Two or three agreed review points: after the scope, after testing on past examples, and before launch.
-- **Plans for one to two hours a week** from the owner during the build and test phases.
+- **Plans for one to two hours a week** from the owner during the build and test phases, far less time than interviewing and onboarding a new hire.
 
 ## How much does it cost?
 
@@ -116,15 +116,16 @@ What moves the quote most:
 
 If you want a sense of the market before the call, the [AI agent implementation cost guide for Canada](/answers/ai-agent-implementation-cost/) summarizes publicly published price ranges, with sources.
 
-[Book a free Live Audit](/live-audit/) to get a written scope and quote for your process.
+[Book a free 20-minute Live Audit](/live-audit/), no pitch, no obligation, just a written scope and quote for your process.
 
 ## Proof
 
+**The method.** Every project is scoped, baselined, tested on real examples, and measured after launch, as described above. The written scope you receive after the Live Audit spells out how your result will be measured.
+
 Before you hire anyone to build an agent, including EV Advisory, ask to see agents running in production, not demos. That is the standard this practice holds itself to.
 
-Here is what you can check today:
+Here is what else you can check today:
 
-- **The method.** Every project is scoped, baselined, tested on real examples, and measured after launch, as described above. The written scope you receive after the Live Audit spells out how your result will be measured.
 - **The work in public.** With your permission, your Live Audit can become a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
 - **Earlier operating work.** Before focusing on AI agents, EV Advisory ran reporting and operations work for teams across enterprise commerce, premium retail, subscription, automotive, and complex operations. See the [proof and case studies](/proof/) page.
 
