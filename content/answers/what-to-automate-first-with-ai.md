@@ -5,7 +5,7 @@ date: 2026-09-24
 dateModified: 2026-09-25
 draft: false
 weight: 9
-author: Esteban Valencia
+author: EV Advisory
 areaServed: [Canada, United States]
 schema:
   type: article
@@ -22,7 +22,7 @@ faq:
 
 If lead intake is not a problem for you, use the five criteria below to pick a different first workflow. The rule behind them: start with work that is frequent, predictable, reviewed before it leaves the business, and measurable today.
 
-*Updated 2026-09-24 by Esteban Valencia, EV Advisory. Written for founder-led businesses in Canada and the United States.*
+*Updated 2026-09-24 by EV Advisory. Written for founder-led businesses in Canada and the United States.*
 
 ## How do you pick the first process to automate?
 

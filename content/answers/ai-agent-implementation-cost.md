@@ -5,7 +5,7 @@ date: 2026-09-24
 dateModified: 2026-09-25
 draft: false
 weight: 5
-author: Esteban Valencia
+author: EV Advisory
 areaServed: [Canada, United States]
 schema:
   type: article
@@ -22,7 +22,7 @@ faq:
 
 The price depends mostly on how many tools the agent connects to, how much judgment the task needs, and whether it touches customer data. The ranges below are from publicly published 2026 Canadian sources, cited in each row.
 
-*Updated 2026-09-24 by Esteban Valencia, EV Advisory. Prices in Canadian dollars unless noted.*
+*Updated 2026-09-24 by EV Advisory. Prices in Canadian dollars unless noted.*
 
 ## What does an AI agent cost by approach?
 

@@ -5,7 +5,7 @@ date: 2026-09-24
 dateModified: 2026-09-25
 draft: false
 weight: 1
-author: Esteban Valencia
+author: EV Advisory
 areaServed: [Canada, United States]
 schema:
   type: article
@@ -22,7 +22,7 @@ faq:
 
 Most lists of "AI tools for agencies" answer a different question: which software to buy. An agency owner's real question is which workflow to hand over first. That is what this page answers, by workflow, with the reasoning behind each pick.
 
-*Updated 2026-09-24 by Esteban Valencia, EV Advisory. Written for founder-led agencies in Canada and the United States.*
+*Updated 2026-09-24 by EV Advisory. Written for founder-led agencies in Canada and the United States.*
 
 ## Which agency workflow should get an AI agent first?
 
