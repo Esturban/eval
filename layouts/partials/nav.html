@@ -120,9 +120,12 @@
                 </div>
             </div>
             {{ end }}
+            {{/* CRO-6839: a page may swap the nav CTA via front matter page_cta.nav_label/url. Every other page keeps Free Scorecard. */}}
+            {{ $navCtaLabel := "Free Scorecard" }}{{ $navCtaHref := "/scorecard/" }}
+            {{ with $.Params.page_cta }}{{ with .nav_label }}{{ $navCtaLabel = . }}{{ $navCtaHref = $.Params.page_cta.url }}{{ end }}{{ end }}
             <a class="mt-2 rounded-full bg-cyan-400 px-5 py-2 text-base font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus:outline-none focus:shadow-outline md:mt-0 md:ml-3"
-               href="/scorecard/">
-                Free Scorecard
+               href="{{ $navCtaHref }}">
+                {{ $navCtaLabel }}
             </a>
             <button id="theme-toggle" type="button"
                     class="p-2 text-sm text-gray-500 rounded-lg md: dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 md:ml-2 max-w-5 xs:hidden">

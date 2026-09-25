@@ -1,6 +1,6 @@
 ---
 title: "Build Queue: AI Agents Shipped Into Your Tools, One Monthly Subscription"
-description: "Build Queue is EV Advisory's monthly AI subscription for founder-led agencies and service teams. We ship working AI agents into the tools you already run, one request at a time. USD 1,995/mo. Canada and the United States."
+description: "A monthly subscription for founder-led agencies and service teams in Canada and the United States. We build one agent at a time inside the tools you already run, and you own every one. USD 1,995/mo for founding seats."
 summary: "A monthly subscription that works like a retainer: one request in flight, unlimited queue behind it, first agent live within 10 business days of access or next month is free. USD 1,995/mo."
 date: 2026-09-24
 dateModified: 2026-09-25
@@ -8,6 +8,17 @@ draft: false
 weight: 1
 language: en
 author: EV Advisory
+# CRO-6839 (UI finish-gate fixes): page-scoped presentation params read by
+# layouts/services/single.html and layouts/partials/nav.html. No other page sets them.
+h1: "Your team's repeated work, handed to AI agents. First one live in 10 business days."
+eyebrow: Build Queue
+hide_meta: true
+prose_class: offer-prose
+page_cta:
+  label: "Book your free 20-minute Live Audit"
+  url: /live-audit/
+  note: "No obligation. You leave knowing which process goes first."
+  nav_label: "Book a Live Audit"
 authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
@@ -42,13 +53,36 @@ faq:
     answer: "No. Each agent is designed so the process owner you already have can run it, review its exceptions, and pause it. Every handoff includes a runbook and a walkthrough, so nobody new is needed, and the agents keep running in your accounts if you cancel."
 ---
 
-Build Queue takes the repeated work off your team's plate, one AI agent at a time. You keep a queue of the processes you want gone, like weekly client updates, lead intake, or report assembly. We ship them in order as working agents inside the tools you already run, tested on your real work and handed to an owner you already have. It is a monthly subscription for founder-led agencies and service teams in Canada and the United States. No new hire, no per-project quotes. Every agent runs in accounts you own and keeps running if you cancel.
-
-**USD 1,995/mo** for the first 3 founding seats, locked for 6 months. **Your first agent is live in your systems within 10 business days of access, or next month is free.**
+<div class="not-prose my-8 grid gap-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:grid-cols-3 dark:border-slate-700 dark:bg-slate-950">
+<div>
+<p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">What you get</p>
+<ul class="mt-3 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
+<li>One agent in build at a time.</li>
+<li>Unlimited queue behind it.</li>
+<li>Every agent shipped to the 8-Part Ship Standard.</li>
+<li>Ongoing tuning on every live agent.</li>
+<li>No setup fee.</li>
+</ul>
+</div>
+<div>
+<p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">What it costs</p>
+<p class="mt-3 text-base leading-7 text-slate-700 dark:text-slate-200"><s class="text-slate-500 dark:text-slate-400">USD 2,995</s> <strong class="text-2xl font-bold text-slate-950 dark:text-white">USD 1,995/mo</strong></p>
+<ul class="mt-2 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
+<li>Founding price, locked 6 months.</li>
+<li>Cancel anytime.</li>
+<li class="font-semibold text-slate-950 dark:text-white">[N] of 3 founding seats open.</li>
+</ul>
+</div>
+<div>
+<p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">Two guarantees</p>
+<ul class="mt-3 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
+<li><strong class="text-slate-950 dark:text-white">10-Day Ship:</strong> first agent live within 10 business days of access, or next month is free.</li>
+<li><strong class="text-slate-950 dark:text-white">14-Day Exit:</strong> cancel in the first 14 days, get 75 percent back.</li>
+</ul>
+</div>
+</div>
 
 Every seat starts with a free 20-minute [Live Audit](/live-audit/), where we review your actual tool stack with you and name the first process worth handing to an agent.
-
-*Updated 2026-09-25. EV Advisory.*
 
 ## Who is this for?
 
@@ -113,39 +147,57 @@ An agent only works if someone on your side owns it. While your seat is active, 
 
 ## How much does it cost?
 
-**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, for the first 3 seats only, with that price locked for 6 months. The price is locked. You are not: cancel anytime.
+### Price
+
+**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, for the first 3 seats only. Price locked for 6 months. Cancel anytime.
+
+Every seat includes one active request at a time, an unlimited queue behind it, the full 8-Part Ship Standard on every agent, and ongoing tuning. No setup fee, no per-project quotes. The seat makes sense once your queue holds more than one process worth shipping. If you only ever want one agent, a fixed-price project may suit you better, and the Live Audit will tell you which you are.
+
+### What it is worth
 
 For context: published Canadian rates for a single fixed-price agent project run about CAD 5,000 to 15,000, plus about CAD 300 to 800 a month to maintain it ([sources](/answers/ai-agent-implementation-cost/)). That buys one agent. A Build Queue seat keeps shipping from your queue for as long as it is active, with tuning on every agent already live.
 
 Or do the math on your own work: take the hours a week your team spends on the processes you would queue, multiply by their loaded hourly cost, then by 4.3. That is what those processes cost you each month today.
 
-Every seat includes one active request at a time, an unlimited queue behind it, the full 8-Part Ship Standard on every agent, and ongoing tuning. No setup fee, no per-project quotes. The seat makes sense once your queue holds more than one process worth shipping. If you only ever want one agent, a fixed-price project may suit you better, and the Live Audit will tell you which you are.
+<div class="not-prose my-8 rounded-2xl border border-cyan-500/40 bg-cyan-50 px-5 py-4 dark:border-cyan-400/40 dark:bg-cyan-400/10">
+<p class="text-base leading-7 text-slate-800 dark:text-slate-100"><strong class="text-slate-950 dark:text-white">Example:</strong> 6 hours a week of client updates at a USD 60 loaded hourly cost is about USD 1,550 a month. Two processes like that pay for the seat.</p>
+</div>
+
+### Two guarantees
 
 **Two guarantees, in writing:**
 
 1. **The 10-Day Ship Guarantee.** If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free. Live means running in your accounts on your real work, with your owner approving its outputs. The clock starts at access because that is the one step only your team controls, and the day-one checklist makes it a matter of minutes.
 2. **The 14-Day Exit.** Changed your mind? Cancel in the first 14 days and get 75 percent back. No conditions.
 
-[Book a free 20-minute Live Audit](/live-audit/). No obligation. You leave knowing which process goes first, whether or not you take a seat.
+<div class="not-prose my-8">
+<a href="/live-audit/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Book your free 20-minute Live Audit</a>
+<p class="mt-3 text-sm text-slate-600 dark:text-slate-300">No obligation. You leave knowing which process goes first, whether or not you take a seat.</p>
+</div>
 
-## Why you can hold us to this
+## Agents running today
+
+| Agent | What it does | How it was verified |
+|---|---|---|
+| Prospect research agent (our own firm) | Finds, scores and enriches prospect accounts; a person approves before any outreach | Runs our own pipeline daily |
+| Client agent (1 of 3) | Live agent, function not itemized publicly | Verified this month: sent a real request, got a real answer back |
+| Client agent (2 of 3) | Live agent, function not itemized publicly | Verified this month: sent a real request, got a real answer back |
+| Client agent (3 of 3) | Live agent, function not itemized publicly | Verified this month: sent a real request, got a real answer back |
 
 **The guarantee puts the risk on us.** If your first request is not live in your systems within 10 business days of access, you do not pay for next month. We would not write that if we could not ship.
 
 **You see the numbers, not a demo.** Every agent gets a baseline before launch and the same measure after it is in daily use. If the after number is not better, you will see that too.
 
-**We build new agents every day, and we run our own firm on them.** One of our own AI agents finds, scores, and enriches prospect accounts for our own pipeline, with a person on our team reviewing and approving its output before any outreach goes out. Beyond our own pipeline, three more are live for a client, verified this month by sending each one a real request and confirming a real response came back, not a status page, an actual answer.
-
-**Client work shipped.** For a two-store cosmetics brand, a mobile checkout fix we shipped reached 75 percent of the store's mobile shopper traffic, and a separate app audit found an estimated CA$1,031 a year in duplicate app spend.
-
 **Every first agent is shown, not described.** With your permission, your Live Audit becomes a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
 
-**Earlier operating work.** Before focusing on AI agents, EV Advisory ran reporting and operations work for teams across enterprise commerce, premium retail, subscription, automotive, and complex operations. See the [proof and case studies](/proof/) page.
-
 On your Live Audit, hold us to the same [questions you would ask any AI agent developer](/answers/questions-before-hiring-ai-agent-developer/).
+
+Earlier non-agent work: see [proof and case studies](/proof/).
 
 ## Start with a free Live Audit
 
 The Live Audit is a free 20-minute call. You share your screen and walk through the tools your team runs on. We name the first process worth handing to an agent and explain why it comes first. If Build Queue is a fit, that process becomes the first request in your queue. If it is not, you leave with a clear first step you can take on your own.
 
-[Book your free Live Audit](/live-audit/)
+<div class="not-prose my-8">
+<a href="/live-audit/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Book your free 20-minute Live Audit</a>
+</div>
