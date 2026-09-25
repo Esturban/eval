@@ -4,7 +4,6 @@ on:
   push:
     branches:
     - dev  # Support wildcard matching
-    paths-ignore: ["docs/**", "**/*.md"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
