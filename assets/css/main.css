@@ -300,6 +300,23 @@
     display: block;
   }
 
+  /* Outlook, Slack, Salesforce (CRO-6731): a deliberate, documented
+     exception to the monochrome rule above. These three real, unmodified
+     marks render in their own colour since Simple Icons does not carry
+     them (see data/brands.json's officialLogo field and DESIGN.md). */
+  .hw-bot__brand-img {
+    display: none;
+    width: 15px;
+    height: 15px;
+    flex: none;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(2, 6, 23, 0.9));
+  }
+
+  .hw-bot__tool.has-official-logo .hw-bot__brand-img {
+    display: block;
+  }
+
   .hw-bot__tag.is-swap {
     animation: hw-pop 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
@@ -508,7 +525,8 @@
       padding-left: 7px;
     }
 
-    .hw-bot__brand {
+    .hw-bot__brand,
+    .hw-bot__brand-img {
       width: 13px;
       height: 13px;
     }

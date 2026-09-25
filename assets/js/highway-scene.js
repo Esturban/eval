@@ -373,6 +373,7 @@ function readBots(root) {
       tag: el.querySelector('.hw-bot__tag'),
       tool: el.querySelector('.hw-bot__tool'),
       toolGlyph: el.querySelector('.hw-bot__brand use'),
+      toolLogo: el.querySelector('.hw-bot__brand-img'),
       toolName: el.querySelector('.hw-bot__toolname'),
       shown: null,
       lastX: null,
@@ -381,16 +382,26 @@ function readBots(root) {
 }
 
 // The chip names one tool: where a live event came from, or where the
-// finished work landed.
+// finished work landed. Three tools (Outlook, Slack, Salesforce) carry an
+// officialLogo instead of a Simple Icons glyph: a bounded, documented
+// exception to the monochrome chip rule (see DESIGN.md, data/brands.json).
+// officialLogo wins over glyph when both would somehow be present; glyph
+// wins over the name-only default; the branches are mutually exclusive.
 function setTool(bot, brand, sprite) {
   if (!bot.tool) return;
   const show = Boolean(brand && brand.name);
   bot.tool.hidden = !show;
   if (!show) return;
   bot.toolName.textContent = brand.name;
-  const hasGlyph = Boolean(brand.glyph && sprite);
+  const hasOfficialLogo = Boolean(brand.officialLogo && bot.toolLogo);
+  const hasGlyph = !hasOfficialLogo && Boolean(brand.glyph && sprite);
+  bot.tool.classList.toggle('has-official-logo', hasOfficialLogo);
   bot.tool.classList.toggle('has-glyph', hasGlyph);
-  if (hasGlyph) bot.toolGlyph.setAttribute('href', `${sprite}#b-${brand.glyph}`);
+  if (hasOfficialLogo) {
+    bot.toolLogo.src = brand.officialLogo;
+  } else if (hasGlyph) {
+    bot.toolGlyph.setAttribute('href', `${sprite}#b-${brand.glyph}`);
+  }
 }
 
 function setTag(bot, item, isDone, brand, sprite) {
