@@ -1,0 +1,12 @@
+{
+  "name": "ai-agent-implementation-explainer",
+  "private": true,
+  "type": "module",
+  "description": "Render harness for the CRO-6814 code-only motion explainer. Not part of the Hugo build.",
+  "scripts": {
+    "render": "node engine/render.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}
