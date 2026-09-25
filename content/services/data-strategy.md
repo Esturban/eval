@@ -31,18 +31,18 @@ The problem usually shows up like this:
 - the team can see friction in outcomes but cannot isolate where it starts
 - weekly decisions are slowed down because nobody trusts the same version of performance
 
-## What this service is designed to do
+## What this service finds for you
 
-The goal is to identify where the revenue signal stops being decision-ready.
+We find where your sales numbers stop agreeing, so you can make budget calls without a debate.
 
-That means looking at:
+We check:
 
-- source-of-truth alignment across the main commercial systems
-- attribution logic and how much confidence the team should place in it
-- conversion-event quality and QA habits
-- reporting structure, definitions, and handoff points
+- whether Shopify, GA4, and your ad platforms tell the same story
+- how much you can trust your attribution
+- whether your conversion tracking is clean or noisy
+- where your reporting breaks down before it reaches you
 
-This is diagnostic work first. The value is clarity on where the noise is coming from and which gaps matter most.
+In one engagement, this kind of diagnostic work cut recurring reporting time from 30 hours a month to 5 minutes, saving more than $4,000 a month. Most engagements start with the [Revenue Signal Scorecard]({{< relref "scorecard" >}}).
 
 ## Typical deliverables
 

@@ -20,11 +20,11 @@ The commercial challenge was not just to send more messages. It was to improve h
 
 ## The EV Advisory focus
 
-The work centered on lifecycle performance:
+- We identified the moments that mattered most after a customer's first purchase in this ecommerce customer base, so follow-up landed when it counted.
+- We rebuilt the sequence used to re-engage existing customers, replacing generic messages with ones tied to what they had already shown interest in.
+- We matched each customer's intent to the next offer, so the message sent matched where they actually were, not a generic blast.
 
-- clarifying the moments that mattered most after the first purchase or interaction
-- improving the sequence used to re-engage known customers
-- tightening the relationship between customer intent and the next offer or message
+That shift is what produced the outcome below. The same approach is behind [Conversion Systems and Lifecycle Improvement]({{< relref "services/growth-automation" >}}).
 
 ## The outcome
 

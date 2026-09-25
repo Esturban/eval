@@ -4,6 +4,8 @@ date: 2022-01-01T00:00:36.000Z
 draft: false
 language: en
 description: EV Advisory upholds it's commitment your privacy And choices while using our website. This policy applies to information collected by us on our website.
+aliases:
+  - /privacy/
 ---
 
 Last Updated: 2022-01-01
