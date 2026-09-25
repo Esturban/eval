@@ -28,7 +28,7 @@ faq:
   - question: "Who is AI agent implementation for?"
     answer: "Founder-led agencies and service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have one repeated process they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
   - question: "How long does an AI agent implementation take?"
-    answer: "A single narrow agent is usually live within 2 to 6 weeks of kickoff. The exact timeline is written into your scope after the Live Audit, and it depends mostly on how quickly access to your tools is granted and how fast your team reviews test results."
+    answer: "You leave the Live Audit already knowing which process comes first. From there, a single narrow agent is live within 2 to 6 weeks, with exact dates set in your written scope. Most of that time depends on how quickly access to your tools is granted and how fast your team reviews test results."
   - question: "What do I get at the end of the project?"
     answer: "A working agent running in accounts you own, a written scope and workflow map, a test log of real examples with results, a runbook your team can follow, a list of every access and credential the agent uses, and a before-and-after measure of the process it took over."
   - question: "What does my team need to do during the project?"
