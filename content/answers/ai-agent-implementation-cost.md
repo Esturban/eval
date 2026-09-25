@@ -2,7 +2,7 @@
 title: "How much does AI agent implementation cost for a small business in Canada? (2026)"
 description: "Most Canadian small businesses spend about $5,000 to $15,000 CAD to implement a first AI agent as a fixed-price project, plus roughly $300 to $800 a month to run and maintain it. A 2026 cost table by approach, with sources."
 date: 2026-09-24
-dateModified: 2026-09-24
+dateModified: 2026-09-25
 draft: false
 weight: 5
 author: Esteban Valencia
@@ -64,7 +64,7 @@ Then compare it with what the process costs you today: hours per week, times the
 
 ## Does EV Advisory publish a price?
 
-Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the first 3 founding seats, locked for 6 months (USD 2,995/mo for seats after that), with no setup fee. It is priced differently from the project ranges above: instead of paying for one quoted build and then a separate maintenance plan, your seat covers every agent shipped from your queue, one at a time, plus tuning on the agents already live. Build Queue is priced in US dollars; the ranges above are in Canadian dollars. See the full offer on the [Build Queue](/services/ai-agent-implementation/) page.
+Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the first 3 founding seats, locked for 6 months (USD 2,995/mo for seats after that), with no setup fee. It is priced differently from the project ranges above: instead of paying for one quoted build and then a separate maintenance plan, your seat covers every agent shipped from your queue, one at a time, plus tuning on the agents already live. The comparison that matters is per agent shipped: the seat is built for teams with more than one process worth handing over. Build Queue is priced in US dollars; the ranges above are in Canadian dollars. See the full offer on the [Build Queue](/services/ai-agent-implementation/) page.
 
 ## Sources
 

@@ -2,7 +2,7 @@
 title: "What is the best first AI agent for a small agency?"
 description: "For most small agencies, the best first AI agent drafts the weekly client status update from your project tool for a person to approve. Here is why, plus the first agent by agency type and what not to automate first."
 date: 2026-09-24
-dateModified: 2026-09-24
+dateModified: 2026-09-25
 draft: false
 weight: 1
 author: Esteban Valencia
@@ -13,7 +13,7 @@ faq:
   - question: "Do I need a paid AI assistant plan before building an agent?"
     answer: "Not always, but it helps. A business plan for a general assistant gives your team a safe place to learn how the model behaves and most business tiers state that your data is not used for model training by default (check the terms of the plan you pick). The first agent itself runs on your existing tools plus a model account your business owns."
   - question: "How long until the first agent is running?"
-    answer: "For a narrow workflow like the weekly client update, expect the agent to be live about two weeks after the tools are connected, then a short period running alongside your team before daily use. Through Build Queue, the first agent is live within 10 business days of you granting access, or your next month is free."
+    answer: "For a narrow workflow like the weekly client update, plan on about two weeks from the moment the tools are connected, then a short period running alongside your team before daily use. Build Queue puts that timeline in writing: live within 10 business days of you granting access, or your next month is free."
   - question: "Can an agent work inside the tools my agency already uses?"
     answer: "Usually yes. Most project tools, CRMs, inboxes, and document systems agencies use have APIs or automation connectors an agent can read from and draft into. If a tool has no way in, that workflow is not the right first pick."
 ---

@@ -20,9 +20,14 @@ heading = "Teams with a stack an agent can plug into."
 body = "It fits if your team already works in real tools and you are open to adopting an agent. If either is missing, the call is not for you yet."
 
 [[sections]]
+eyebrow = "Before the call"
+heading = "Two minutes of prep makes it sharper."
+body = "Pick two or three repeated tasks that eat your week, and have the tools they live in open. For a head start, run them through the one-page [Narrow Agent Fit Checklist](/get/narrow-agent-fit-checklist/). It takes about ten minutes."
+
+[[sections]]
 eyebrow = "What happens next"
 heading = "If it is a fit, it becomes your first request."
-body = "Teams that take a Build Queue seat start with the automation named on this call. Your first request is live within 10 business days of access, or next month is free. If it is not a fit, you still leave with a clear first step."
+body = "Teams that take a Build Queue seat start with the automation named on this call. Your first request is live within 10 business days of access, or next month is free. Build Queue founding seats are USD 1,995/mo, so you know the number before we talk. If it is not a fit, you still leave with a clear first step."
 
 [[sections]]
 eyebrow = "Build in public"

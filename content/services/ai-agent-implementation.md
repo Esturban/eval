@@ -42,7 +42,7 @@ faq:
     answer: "No. Each agent is designed so the process owner you already have can run it, review its exceptions, and pause it. Every handoff includes a runbook and a walkthrough, so nobody new is needed, and the agents keep running in your accounts if you cancel."
 ---
 
-Build Queue takes the repeated work off your team's plate, one AI agent at a time. You keep a queue of the processes you want gone, like weekly client updates, lead intake, or report assembly. We ship them in order as working agents inside the tools you already run, tested on your real work and handed to an owner you already have. It is a monthly subscription for founder-led agencies and service teams in Canada and the United States. No new hire, no per-project quotes.
+Build Queue takes the repeated work off your team's plate, one AI agent at a time. You keep a queue of the processes you want gone, like weekly client updates, lead intake, or report assembly. We ship them in order as working agents inside the tools you already run, tested on your real work and handed to an owner you already have. It is a monthly subscription for founder-led agencies and service teams in Canada and the United States. No new hire, no per-project quotes. Every agent runs in accounts you own and keeps running if you cancel.
 
 **USD 1,995/mo** for the first 3 founding seats, locked for 6 months. **Your first agent is live in your systems within 10 business days of access, or next month is free.**
 
@@ -70,18 +70,23 @@ If you are unsure, the [Live Audit](/live-audit/) exists to answer exactly that 
 
 One request is in flight at a time, and that is deliberate. Each agent is finished, tested on your real examples, and owned by someone on your team before the next one starts. No half-built pilots. Everything else waits in your queue, in the order you choose, and you can reorder it whenever priorities change.
 
+### What counts as one request?
+
+One request is one process you can describe in one sentence, like "every Friday, draft each client's update from the project board." If something in your queue is bigger than that, we split it into requests with you before any build starts, so nothing stalls in flight.
+
 | Step | What happens | When |
 |---|---|---|
 | Live Audit | Free call on your screen. We walk through your tools and name the first process worth automating. | 20 minutes |
 | Seat starts | You take a seat, we send the access checklist, and your first request goes to the top of the queue. | Day one |
 | Access and examples | Your team grants least-privilege access and shares real past examples of the work. | Usually a few days; the guarantee clock starts here |
+| Map and baseline | You get the process as it runs today and its baseline time and error rate, so you can see exactly what the agent will change. | Before the build starts |
 | First agent live | Built inside your accounts, tested on your past examples, then run alongside your team with a person approving outputs. | Within 10 business days of access, or next month is free |
 | Next request | As soon as one agent ships, the next request in your queue starts. | Continuous while your seat is active |
 | Ongoing tuning | We watch exceptions and error rates on agents already live and tune them while your seat is active. | Every month |
 
-## What do you get with every request?
+## What ships with every request: the 8-Part Ship Standard
 
-Each agent that ships from your queue comes with the same standard. Nothing on this list is optional.
+Every agent that ships from your queue meets the same 8-part standard. Nothing on this list is optional, and nothing is billed extra.
 
 | Deliverable | What it is |
 |---|---|
@@ -101,7 +106,7 @@ For a deeper explanation of what a well-run implementation should include, and w
 An agent only works if someone on your side owns it. While your seat is active, your team:
 
 - **Names one owner per process.** The person who does the work today, or manages it. They answer questions and approve outputs.
-- **Grants access.** To the specific tools the process uses, with accounts your business owns. Access is scoped to the minimum the agent needs and can be revoked anytime.
+- **Grants access.** To the specific tools the process uses, with accounts your business owns. Access is scoped to the minimum the agent needs and can be revoked anytime. We send a day-one access checklist, so this takes minutes, not a security review.
 - **Shares real examples.** Usually 20 to 30 past instances of the work (emails, briefs, tickets, reports) so each agent is tested on reality, not a demo.
 - **Reviews before launch.** A person on your side approves test outputs before each agent goes live.
 - **Plans for one to two hours a week** from the owner, far less time than interviewing and onboarding a new hire.
@@ -114,12 +119,12 @@ For context: published Canadian rates for a single fixed-price agent project run
 
 Or do the math on your own work: take the hours a week your team spends on the processes you would queue, multiply by their loaded hourly cost, then by 4.3. That is what those processes cost you each month today.
 
-Every seat includes one active request at a time, an unlimited queue behind it, the full deliverable standard above on every agent, and ongoing tuning. No setup fee, no per-project quotes.
+Every seat includes one active request at a time, an unlimited queue behind it, the full 8-Part Ship Standard on every agent, and ongoing tuning. No setup fee, no per-project quotes. The seat makes sense once your queue holds more than one process worth shipping. If you only ever want one agent, a fixed-price project may suit you better, and the Live Audit will tell you which you are.
 
-**The 10-Day Ship Guarantee:**
+**Two guarantees, in writing:**
 
-1. **If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free.**
-2. **Changed your mind? Cancel in the first 14 days and get 75 percent back.** No conditions.
+1. **The 10-Day Ship Guarantee.** If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free. Live means running in your accounts on your real work, with your owner approving its outputs. The clock starts at access because that is the one step only your team controls, and the day-one checklist makes it a matter of minutes.
+2. **The 14-Day Exit.** Changed your mind? Cancel in the first 14 days and get 75 percent back. No conditions.
 
 [Book a free 20-minute Live Audit](/live-audit/). No obligation. You leave knowing which process goes first, whether or not you take a seat.
 
@@ -129,7 +134,7 @@ Every seat includes one active request at a time, an unlimited queue behind it, 
 
 **You see the numbers, not a demo.** Every agent gets a baseline before launch and the same measure after it is in daily use. If the after number is not better, you will see that too.
 
-**The work in public.** With your permission, your Live Audit can become a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
+**Every first agent is shown, not described.** With your permission, your Live Audit becomes a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
 
 **Earlier operating work.** Before focusing on AI agents, EV Advisory ran reporting and operations work for teams across enterprise commerce, premium retail, subscription, automotive, and complex operations. See the [proof and case studies](/proof/) page.
 

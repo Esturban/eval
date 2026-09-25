@@ -40,7 +40,7 @@ description = "EV Advisory ships AI agents into the tools founder-led agencies a
 mainSections = ['services','case study']
 # Hero section elements
 hero_title = "Get your agency's repeat work off the founder's plate, without hiring."
-hero_title_follow = "One AI agent at a time, built into the tools you already run, owned by someone already on your team."
+hero_title_follow = "One AI agent at a time, built into the tools you already run and handed to someone already on your team. No new hire."
 # Stack line: the hero sub-line and the tool-handling table both read it.
 stack_line = "Microsoft, Google, SAP, Salesforce, or spreadsheets. We build on what you already run."
 hero_CTA = "Book my free 20-minute Live Audit"
@@ -62,8 +62,8 @@ top_n_services_subtitle = "One monthly subscription. You keep a queue of the pro
 
 
 #Case studies section elements
-case_studies_title = "Testimonials"
-case_studies_subtitle  = "See what we have done for our clients in the past"
+case_studies_title = "Proof"
+case_studies_subtitle  = "Operating and reporting work we delivered before focusing on AI agents"
 case_studies_cta = "See all case studies and our free reference material &nbsp&rarr;"
 case_studies_cta_link = "tags/case-study"
 [markup]

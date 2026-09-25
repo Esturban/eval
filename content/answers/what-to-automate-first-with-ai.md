@@ -2,7 +2,7 @@
 title: "What should I automate first with AI in my business?"
 description: "Automate inbound lead intake and first response first: it is frequent, rules-based, easy to measure, and a person can approve every reply. Five criteria for picking your first AI automation, good alternatives, and what not to automate first."
 date: 2026-09-24
-dateModified: 2026-09-24
+dateModified: 2026-09-25
 draft: false
 weight: 9
 author: Esteban Valencia
