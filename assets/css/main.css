@@ -896,3 +896,27 @@
     }
   }
 }
+
+/* CRO-6839: Markdown tables on the Build Queue offer page only (the page sets
+   prose_class: offer-prose in front matter). Lives in the utilities layer
+   because the typography plugin's .prose rules land there; the extra class
+   gives these rules higher specificity than .prose :where(table).
+   - Body-size text (the plugin default is 0.875em, about 14px).
+   - Bold first column so each row scans by its label.
+   - The table itself becomes the horizontal scroll container, so a wide
+     table scrolls inside the column instead of widening the page at 390px. */
+@layer utilities {
+  .offer-prose table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .offer-prose table th:first-child,
+  .offer-prose table td:first-child {
+    font-weight: 600;
+  }
+}
