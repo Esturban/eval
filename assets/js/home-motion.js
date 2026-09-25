@@ -118,6 +118,13 @@ function setupHighway(hero, onProgress) {
         controller.setProgress(heroProgress(hero));
         controller.setVisible(wantedVisible());
         window.addEventListener('resize', () => controller.resize(), { passive: true });
+        // CRO-6731 Pass 4: highway-scene.js caches each label's offsetWidth
+        // on first measurement and only re-measures on resize. On a cold
+        // load that first measurement can land before "JetBrains Mono"
+        // finishes swapping in, caching the fallback font's narrower width
+        // and clipping the label once the real (wider) font paints. Forcing
+        // one resize() once fonts are ready clears that stale cache.
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => controller.resize());
       })
       .catch(() => {
         loading = false; // poster stays in place
