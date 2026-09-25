@@ -68,7 +68,7 @@ If you are unsure, the [Live Audit](/live-audit/) exists to answer exactly that 
 
 ## How does the queue work?
 
-One request is in flight at a time, and that is deliberate. Each agent is finished, tested on your real examples, and owned by someone on your team before the next one starts. No half-built pilots. Everything else waits in your queue, in the order you choose, and you can reorder it whenever priorities change.
+One request is in flight at a time, and that is deliberate. Each agent is finished, tested on your real examples, and owned by someone on your team before the next one starts. No half-built pilots. After that first agent, each new request typically ships in 3 to 5 business days, depending on scale. Everything else waits in your queue, in the order you choose, and you can reorder it whenever priorities change.
 
 ### What counts as one request?
 
@@ -81,7 +81,7 @@ One request is one process you can describe in one sentence, like "every Friday,
 | Access and examples | Your team grants least-privilege access and shares real past examples of the work. | Usually a few days; the guarantee clock starts here |
 | Map and baseline | You get the process as it runs today and its baseline time and error rate, so you can see exactly what the agent will change. | Before the build starts |
 | First agent live | Built inside your accounts, tested on your past examples, then run alongside your team with a person approving outputs. | Within 10 business days of access, or next month is free |
-| Next request | As soon as one agent ships, the next request in your queue starts. | Continuous while your seat is active |
+| Next request | As soon as one agent ships, the next request in your queue starts, typically shipping in 3 to 5 business days depending on scale. | Continuous while your seat is active |
 | Ongoing tuning | We watch exceptions and error rates on agents already live and tune them while your seat is active. | Every month |
 
 ## What ships with every request: the 8-Part Ship Standard
@@ -133,6 +133,10 @@ Every seat includes one active request at a time, an unlimited queue behind it, 
 **The guarantee puts the risk on us.** If your first request is not live in your systems within 10 business days of access, you do not pay for next month. We would not write that if we could not ship.
 
 **You see the numbers, not a demo.** Every agent gets a baseline before launch and the same measure after it is in daily use. If the after number is not better, you will see that too.
+
+**We run our own firm on these agents.** One of our own AI agents finds, scores, and enriches prospect accounts for our own pipeline, with a person on our team reviewing and approving its output before any outreach goes out.
+
+**Client work shipped.** For a two-store cosmetics brand, a mobile checkout fix we shipped reached 75 percent of the store's mobile shopper traffic, and a separate app audit found an estimated CA$1,031 a year in duplicate app spend.
 
 **Every first agent is shown, not described.** With your permission, your Live Audit becomes a public build post, so other founders can see how a first agent gets chosen on a real stack. Nothing is published without your sign-off.
 
