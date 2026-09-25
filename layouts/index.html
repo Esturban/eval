@@ -1,4 +1,10 @@
 {{ define "main" }}
+{{/* Desktop-only host the highway scene's canvas is re-parented into once
+     the hero's pinned stage ends, so the road continues down the page as a
+     narrow fixed rail instead of stopping at the hero (CRO-6731). Empty at
+     first paint: home-motion.js moves the existing .hw__canvas element in
+     and out of it on scroll, there is no second WebGL context. */}}
+<div class="hw-rail" aria-hidden="true"></div>
 <main class="home-arc">
     {{ partial "icon-sprite.html" . }}
     {{ partial "hero-intro.html" . }}
@@ -8,5 +14,12 @@
     {{ partial "home-validation.html" . }}
     {{ partial "home-reviews.html" . }}
     {{ partial "register-cta.html" . }}
+    {{/* Render-loop gate for the fixed rail: a position:fixed element is
+         always geometrically "in the viewport", so the hero's own
+         IntersectionObserver can't tell the rail to stop. This 1px marker
+         at the true end of main does: once it scrolls past, the closing
+         CTA/footer is showing and the scene stops; scrolling back up
+         resumes it. */}}
+    <div class="hw-sentinel" aria-hidden="true"></div>
 </main>
 {{ end }}

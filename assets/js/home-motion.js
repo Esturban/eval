@@ -7,8 +7,11 @@
 //    between each section's tone as its boundary crosses the viewport.
 //    Without this script every section keeps its own static background.
 
+import { readToneStops } from './tone-stops.js';
+
 const ROOT_MARGIN = '600px 0px';
 const STEP_COUNT = 4;
+const DESKTOP_QUERY = '(min-width: 1024px)';
 // Colour arc: each blend between two tones spans this share of the viewport
 // height. It starts where it always did (the next section 105% down the
 // viewport) but runs on past the boundary instead of finishing at it, so the
@@ -43,15 +46,53 @@ function setupSteps(hero) {
   };
 }
 
+// Moves the hero's own canvas (never a second one) into the fixed `.hw-rail`
+// host once the hero's pinned stage has scrolled past, and back into the
+// hero stage if the user scrolls back up above it. The rail host is a
+// static, empty element already in the page (layouts/index.html) so its
+// authored width is measurable even before the scene has loaded.
+function setupRail(canvas) {
+  const host = document.querySelector('.hw-rail');
+  const stageParent = canvas.parentNode;
+  const stageNextSibling = canvas.nextSibling;
+  let inRail = false;
+
+  return {
+    get inRail() { return inRail; },
+    mount() {
+      if (inRail || !host) return;
+      host.appendChild(canvas);
+      inRail = true;
+    },
+    unmount() {
+      if (!inRail) return;
+      stageParent.insertBefore(canvas, stageNextSibling);
+      inRail = false;
+    },
+    width() {
+      return host ? host.getBoundingClientRect().width : 0;
+    },
+  };
+}
+
 function setupHighway(hero, onProgress) {
   const canvas = hero.querySelector('.hw__canvas');
   const sceneSrc = hero.dataset.sceneSrc;
   let controller = null;
   let loading = false;
   let heroVisible = true;
+  let pastFooter = false;
 
   const canAnimate = !prefersReducedMotion() && canvas && sceneSrc && typeof window.IntersectionObserver === 'function';
-  if (!canAnimate) return { progress: onProgress };
+  if (!canAnimate) return { progress: onProgress, updateRail() {}, setDayProgress() {} };
+
+  const desktopQuery = window.matchMedia ? window.matchMedia(DESKTOP_QUERY) : null;
+  const isDesktop = () => Boolean(desktopQuery && desktopQuery.matches);
+  // On desktop the rail keeps running past the hero on purpose (that is the
+  // whole feature); the footer sentinel is what stops it there instead. On
+  // phone, which has no rail, the hero's own visibility is still the gate.
+  const wantedVisible = () => (isDesktop() ? !pastFooter : heroVisible);
+  const rail = setupRail(canvas);
 
   // The scene is decoration: fetch it after the page has loaded and the
   // browser is idle, so it never competes with the first paint.
@@ -75,7 +116,7 @@ function setupHighway(hero, onProgress) {
         if (!controller) return;
         hero.classList.add('is-live');
         controller.setProgress(heroProgress(hero));
-        controller.setVisible(heroVisible);
+        controller.setVisible(wantedVisible());
         window.addEventListener('resize', () => controller.resize(), { passive: true });
       })
       .catch(() => {
@@ -90,9 +131,26 @@ function setupHighway(hero, onProgress) {
   new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       heroVisible = e.isIntersecting;
-      if (controller) controller.setVisible(heroVisible);
+      if (controller) controller.setVisible(wantedVisible());
     });
   }, { threshold: 0 }).observe(hero);
+
+  // Observed the same way as the hero's own visibility gate above: once
+  // this 1px marker at the true end of main is intersecting at all, the
+  // closing CTA/footer is on screen, so the rail stops. Scrolling back up
+  // takes it out of view again and resumes it. A rect.top<=0 "fully
+  // scrolled past" check does not work here: the footer after main is
+  // shorter than one viewport, so the sentinel can never scroll above the
+  // top of the viewport on its own, and that check would never fire.
+  const sentinel = document.querySelector('.hw-sentinel');
+  if (sentinel) {
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        pastFooter = e.isIntersecting;
+        if (controller) controller.setVisible(wantedVisible());
+      });
+    }, { threshold: 0 }).observe(sentinel);
+  }
 
   canvas.addEventListener('webglcontextlost', () => hero.classList.remove('is-live'));
 
@@ -100,6 +158,36 @@ function setupHighway(hero, onProgress) {
     progress(value) {
       onProgress(value);
       if (controller) controller.setProgress(value);
+    },
+    // Total-document-scroll day/night. Phone has no rail and keeps its
+    // day/night story expressed the way it already is, through <main>'s
+    // colour-arc background, so this only drives the scene on desktop.
+    setDayProgress(value) {
+      if (controller && isDesktop()) controller.setDayProgress(value);
+    },
+    // Re-parents the canvas between the hero stage and the fixed rail host
+    // as the hero's pinned stage crosses the top of the viewport, and keeps
+    // --rail-w in sync so every arc-section's content gutter tracks the
+    // rail's real (clamp()-shrunk) width.
+    updateRail() {
+      if (!isDesktop()) {
+        if (rail.inRail) {
+          rail.unmount();
+          if (controller) { controller.setRailMode(false); controller.resize(); }
+        }
+        document.documentElement.style.setProperty('--rail-w', '0px');
+        return;
+      }
+      const pastHero = hero.getBoundingClientRect().bottom <= 0;
+      if (pastHero && !rail.inRail && controller) {
+        rail.mount();
+        controller.setRailMode(true);
+        controller.resize();
+      } else if (!pastHero && rail.inRail) {
+        rail.unmount();
+        if (controller) { controller.setRailMode(false); controller.resize(); }
+      }
+      document.documentElement.style.setProperty('--rail-w', `${rail.width()}px`);
     },
   };
 }
@@ -123,7 +211,7 @@ function gentle(t) {
 function setupArc(main) {
   const sections = Array.from(main.querySelectorAll('.arc-section[data-tone]'));
   if (sections.length < 2) return () => {};
-  const tones = sections.map((s) => parseHex(s.dataset.tone));
+  const tones = readToneStops(main.ownerDocument).map(parseHex);
   let tops = [];
 
   function measure() {
@@ -157,6 +245,12 @@ function setupArc(main) {
   return update;
 }
 
+function documentScrollFraction() {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  if (total <= 0) return 0;
+  return clamp(window.scrollY / total, 0, 1);
+}
+
 function init() {
   const main = document.querySelector('.home-arc');
   const hero = document.querySelector('[data-highway]');
@@ -170,10 +264,15 @@ function init() {
     requestAnimationFrame(() => {
       ticking = false;
       updateArc();
-      if (highway) highway.progress(heroProgress(hero));
+      if (highway) {
+        highway.progress(heroProgress(hero));
+        highway.setDayProgress(documentScrollFraction());
+        highway.updateRail();
+      }
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
 }
 

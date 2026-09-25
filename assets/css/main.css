@@ -10,6 +10,11 @@
     --ev-line: #dbe3ee;
     --ev-accent: #22d3ee;
     --ev-accent-deep: #0891b2;
+    /* Full-page highway rail (CRO-6731): set by home-motion.js on every
+       resize/scroll tick to the rail's real clamp()-shrunk width, 0 on
+       phone. arc-section content gutters read this so body copy never
+       sits under or beside the rail. */
+    --rail-w: 0px;
   }
 
   html {
@@ -332,6 +337,67 @@
     right: 0;
     bottom: 22px;
     z-index: 3;
+  }
+
+  /* Full-page rail (CRO-6731): desktop only. home-motion.js re-parents the
+     hero's own .hw__canvas into this fixed host once the hero's pinned
+     stage scrolls past; there is no second WebGL context. The mask
+     feathers the rail's inner (content-facing) edge to transparent so
+     <main>'s own arc background shows through right where body copy sits,
+     one of two independent WCAG AA contrast guards (the other is the
+     scene's own materials lightening with setDayProgress). */
+  .hw-rail {
+    display: none;
+  }
+
+  /* Empty 1px marker at the true end of main: see .hw-sentinel below and
+     layouts/index.html. Present at all breakpoints; invisible everywhere. */
+  .hw-sentinel {
+    height: 1px;
+  }
+
+  @media (min-width: 1024px) {
+    .hw-rail {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: clamp(220px, 22vw, 340px);
+      z-index: 5;
+      pointer-events: none;
+      overflow: hidden;
+      background: var(--ev-ink);
+      /* "white", not "black", for the visible stop: -webkit-mask-image
+         reads gradient luminance (white = fully shown, black = fully
+         hidden) while unprefixed mask-image reads alpha (both opaque
+         colours show); white is the one stop value that means "fully
+         visible" under either interpretation. */
+      mask-image: linear-gradient(to left, white 62%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to left, white 62%, transparent 100%);
+    }
+
+    /* The canvas keeps its .hw__canvas class (and its base opacity: 0)
+       once re-parented here: the "fade in once live" rule above is scoped
+       to .hw.is-live .hw__canvas, a descendant selector that stops
+       matching the moment the canvas leaves .hw. It is only ever moved
+       here once the scene is already live, so it is always shown. */
+    .hw-rail canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 1;
+    }
+
+    /* Every section below the hero keeps clear of the rail. --rail-w is
+       set by home-motion.js at each resize, so the gutter tracks the
+       rail's actual (clamp()-shrunk) width rather than assuming 340px on
+       every desktop viewport. */
+    .arc-section:not(.hw) {
+      padding-inline-end: calc(var(--rail-w, 0px) + 48px);
+    }
   }
 
   /* Step rail: plain type on one hairline; the active step lights its
