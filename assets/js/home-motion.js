@@ -25,6 +25,14 @@ function prefersReducedMotion() {
   return Boolean(window.matchMedia) && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+// Data saver on, or a device with very little memory: the static poster is
+// the better experience, so the 3D scene is never downloaded.
+function prefersPoster() {
+  const conn = navigator.connection;
+  const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 2;
+  return Boolean(conn && conn.saveData) || lowMemory;
+}
+
 function heroProgress(hero) {
   const rect = hero.getBoundingClientRect();
   const total = hero.offsetHeight - window.innerHeight;
@@ -50,7 +58,7 @@ function setupHighway(hero, onProgress) {
   let loading = false;
   let heroVisible = true;
 
-  const canAnimate = !prefersReducedMotion() && canvas && sceneSrc && typeof window.IntersectionObserver === 'function';
+  const canAnimate = !prefersReducedMotion() && !prefersPoster() && canvas && sceneSrc && typeof window.IntersectionObserver === 'function';
   if (!canAnimate) return { progress: onProgress };
 
   // The scene is decoration: fetch it after the page has loaded and the
