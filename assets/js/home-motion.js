@@ -3,8 +3,10 @@
 //    lazy-loads the 3D scene bundle only when the hero is near the viewport,
 //    and feeds it scroll progress through the pinned stage.
 // 2. Step rail: highlights the current story step from scroll position.
-// 3. Ride-along lane: the hero's first agent keeps driving down a thin lane
-//    in the right gutter as the reader scrolls (full-motion path only).
+// 3. Ride-along road: the hero's first agent keeps driving as the reader
+//    scrolls, changing lanes as the story moves on: down a two-lane road in
+//    the right margin from 1024px, across a strip under the header below
+//    that (full-motion path only).
 // The colour arc between sections is pure CSS now (main.css, .arc-section).
 
 const ROOT_MARGIN = '600px 0px';
@@ -105,14 +107,43 @@ function setupHighway(hero, onProgress) {
   };
 }
 
-// Ride-along lane: the hero's first agent keeps driving down a thin lane
-// pinned in the right gutter while the reader moves through the page. Its
-// position is scroll progress through the sections named in data-ride;
-// the caption and colour step through the same four story steps as the
-// hero rail. Transform and one class per step, nothing that lays out.
+// Ride-along road: the hero's first agent keeps driving while the reader
+// moves through the sections named in data-ride. Its position is scroll
+// progress through them. It changes lanes at every section boundary and
+// halfway through each section, and turns into each change (yaw) so it
+// reads as driving, not sliding. From 1024px the road runs down the right
+// margin; below that it runs across a strip under the header. The caption
+// and colour step through the same four story steps as the hero rail.
+// Transforms, custom properties and one class per step: nothing that lays out.
 const RIDE_IN = 0.35;  // shown once the hero has left: first section's top this far down the viewport
 const RIDE_OUT = 0.8;  // hidden once the last section's bottom rises above this share of the viewport
-const RIDE_LANES = [0, 6, 6, 0]; // px: the car eases one lane over while it works
+const RIDE_WIDE = '(min-width: 1024px)';
+const RIDE_LANE_WIDE = 18;   // px from the road centre to a lane centre, vertical road
+const RIDE_LANE_NARROW = 9;  // same, header strip
+const RIDE_CAR_NARROW = 44;  // px, car length on the strip
+const RIDE_INSET_NARROW = 16; // px kept clear at each end of the strip
+const RIDE_CHANGE_PX = 240;  // scroll distance one lane change takes
+const RIDE_MAX_CHANGE = 0.06; // ...but never more than this share of the ride
+const RIDE_MAX_YAW = 22;     // degrees
+
+function smoothstep(t) {
+  return t * t * (3 - 2 * t);
+}
+
+// Lane position, -1 to 1, eased through each change, and its rate of change
+// per unit of progress (which sets the yaw).
+function laneAt(p, changes, width) {
+  let lane = -1;
+  let rate = 0;
+  let delta = 2;
+  changes.forEach((c) => {
+    const t = clamp((p - (c - width / 2)) / width, 0, 1);
+    lane += delta * smoothstep(t);
+    rate += (delta * 6 * t * (1 - t)) / width;
+    delta = -delta;
+  });
+  return [lane, rate];
+}
 
 function parseHex(hex) {
   const n = parseInt(String(hex).replace('#', ''), 16);
@@ -131,20 +162,26 @@ function setupRide(ride) {
   // Seams count from their middle, where their colour turns over.
   const tones = Array.from(document.querySelectorAll('.arc-section[data-tone], .arc-seam[data-tone]'));
   const steps = JSON.parse(ride.dataset.steps || '[]');
-  const car = ride.querySelector('.ride__car');
   const caption = ride.querySelector('.ride__caption span');
   const label = ride.querySelector('.ride__caption b');
+  const header = document.querySelector('.site-header');
+  const wideQuery = window.matchMedia(RIDE_WIDE);
   let tops = [];
   let toneTops = [];
-  let height = 0;
+  let changes = [];
+  let changeWidth = RIDE_MAX_CHANGE;
+  let track = 0;
+  let rideTop = 0;
+  let wide = true;
   let current = -1;
   let theme = '';
 
   function measure() {
     const base = window.scrollY;
+    wide = wideQuery.matches;
+    if (header) ride.style.setProperty('--ride-top', `${header.offsetHeight}px`);
     tops = sections.map((s) => s.getBoundingClientRect().top + base);
-    const last = sections[sections.length - 1];
-    tops.push(last.getBoundingClientRect().bottom + base);
+    tops.push(sections[sections.length - 1].getBoundingClientRect().bottom + base);
     toneTops = tones
       .map((s) => {
         const r = s.getBoundingClientRect();
@@ -152,7 +189,20 @@ function setupRide(ride) {
         return [top, s.dataset.tone];
       })
       .sort((a, b) => a[0] - b[0]);
-    height = ride.clientHeight;
+    track = wide
+      ? ride.clientHeight
+      : Math.max(0, ride.clientWidth - RIDE_CAR_NARROW - RIDE_INSET_NARROW * 2);
+    rideTop = ride.getBoundingClientRect().top;
+
+    const first = tops[0];
+    const span = Math.max(1, tops[tops.length - 1] - first);
+    const toProgress = (docY) => (docY - first) / span;
+    changes = [];
+    sections.forEach((_, i) => {
+      if (i > 0) changes.push(toProgress(tops[i]));
+      changes.push(toProgress((tops[i] + tops[i + 1]) / 2));
+    });
+    changeWidth = Math.min(RIDE_MAX_CHANGE, RIDE_CHANGE_PX / span);
   }
 
   function setStep(i) {
@@ -164,7 +214,12 @@ function setupRide(ride) {
     void caption.offsetWidth; // restart the swap animation
     caption.classList.add('is-swap');
     ride.classList.toggle('is-done', i === steps.length - 1);
-    ride.style.setProperty('--ride-x', `${RIDE_LANES[i] || 0}px`);
+  }
+
+  function setTheme(next) {
+    if (next === theme) return;
+    theme = next;
+    ride.dataset.theme = next;
   }
 
   function update() {
@@ -178,28 +233,40 @@ function setupRide(ride) {
     // one leaving it, so the car arrives as the story does.
     const mid = y + vh * 0.5;
     const p = clamp((mid - first) / Math.max(1, end - first), 0, 1);
+    const [lane, rate] = laneAt(p, changes, changeWidth);
+    const half = wide ? RIDE_LANE_WIDE : RIDE_LANE_NARROW;
+    const slope = track > 0 ? (rate * half) / track : 0;
+    // Down the page, a move to the right turns the nose anticlockwise;
+    // across the strip, a move down turns it clockwise.
+    const yaw = clamp((Math.atan(slope) * 180) / Math.PI, -RIDE_MAX_YAW, RIDE_MAX_YAW) * (wide ? -1 : 1);
     ride.style.setProperty('--ride-p', p.toFixed(4));
-    ride.style.setProperty('--ride-y', `${(p * height).toFixed(1)}px`);
+    ride.style.setProperty('--ride-along', `${(p * track).toFixed(1)}px`);
+    ride.style.setProperty('--ride-cross', `${(lane * half).toFixed(1)}px`);
+    ride.style.setProperty('--ride-yaw', `${yaw.toFixed(2)}deg`);
 
     let i = 0;
     while (i < sections.length - 1 && mid >= tops[i + 1]) i += 1;
     setStep(i);
 
-    // Light or dark ink, from the tone of the section behind the car.
-    const carY = y + vh * 0.24 + p * height;
+    // The strip under the header is always dark. On the vertical road, ink
+    // follows the tone of the section behind the car.
+    if (!wide) {
+      setTheme('dark');
+      return;
+    }
+    const carY = y + rideTop + p * track;
     let tone = toneTops.length ? toneTops[0][1] : '#020617';
     toneTops.forEach(([top, t]) => { if (carY >= top) tone = t; });
-    const next = isLightTone(tone) ? 'light' : 'dark';
-    if (next !== theme) {
-      theme = next;
-      ride.dataset.theme = next;
-    }
+    setTheme(isLightTone(tone) ? 'light' : 'dark');
   }
 
-  measure();
   ride.classList.add('is-on');
-  window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
-  window.addEventListener('load', () => { measure(); update(); });
+  // The sections reserve their right margin for the road (main.css).
+  ride.parentElement.classList.add('has-ride');
+  measure();
+  const remeasure = () => { measure(); update(); };
+  window.addEventListener('resize', remeasure, { passive: true });
+  window.addEventListener('load', remeasure);
   return update;
 }
 

@@ -8,47 +8,47 @@
     <div class="mx-auto max-w-7xl overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
         <nav class="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
             <div class="px-5 py-2">
-                <a href="/about" class="text-sm text-slate-400 transition hover:text-cyan-200">About</a>
+                <a href="/about" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">About</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/services/" class="text-sm text-slate-400 transition hover:text-cyan-200">Services</a>
+                <a href="/services/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Services</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/proof/" class="text-sm text-slate-400 transition hover:text-cyan-200">Proof</a>
+                <a href="/proof/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Proof</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/insights/" class="text-sm text-slate-400 transition hover:text-cyan-200">Insights</a>
+                <a href="/insights/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Insights</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/scorecard/" class="text-sm text-slate-400 transition hover:text-cyan-200">Scorecard</a>
+                <a href="/scorecard/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Scorecard</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/store/" data-cta="store" class="text-sm text-slate-400 transition hover:text-cyan-200">Store</a>
+                <a href="/store/" data-cta="store" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Store</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/terms/" class="text-sm text-slate-400 transition hover:text-cyan-200">Terms</a>
+                <a href="/terms/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Terms</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/refund-policy/" class="text-sm text-slate-400 transition hover:text-cyan-200">Refund policy</a>
+                <a href="/refund-policy/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Refund policy</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/privacy-policy/" class="text-sm text-slate-400 transition hover:text-cyan-200">Privacy</a>
+                <a href="/privacy-policy/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Privacy</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="/contact/" class="text-sm text-slate-400 transition hover:text-cyan-200">Contact</a>
+                <a href="/contact/" class="inline-flex min-h-11 items-center text-base text-slate-300 transition hover:text-cyan-200">Contact</a>
             </div>
 
             <div class="px-5 py-2">
-                <a href="https://cal.com/este-val/audit-fit-call" data-cta="fit-call" class="text-sm text-cyan-300 transition hover:text-cyan-200">Grab a time here</a>
+                <a href="https://cal.com/este-val/audit-fit-call" data-cta="fit-call" class="inline-flex min-h-11 items-center text-base text-cyan-300 transition hover:text-cyan-200">Grab a time here</a>
             </div>
         </nav>
 {{ with .Site.Params.Facebook }}
@@ -104,9 +104,9 @@
 {{ end }}
         </div>
         <div class="mt-8 flex flex-wrap items-center justify-center border-t border-slate-800 pt-6 text-slate-400">
-          <p class="text-sm text-center text-slate-500">&copy; {{ now.Format "2006" }}
+          <p class="text-base text-center text-slate-400 sm:text-lg">&copy; {{ now.Format "2006" }}
               {{ .Site.Title }}. All rights reserved.</p>
-          <p class="mt-2 w-full text-center text-sm text-slate-500">{{ hugo.Data.entity.tagline }}</p>
-          <p class="mt-2 w-full text-center text-xs text-slate-600">{{ hugo.Data.entity.name }}, {{ hugo.Data.entity.address }}</p>
+          <p class="mt-2 w-full text-center text-base text-slate-300 sm:text-lg">{{ hugo.Data.entity.tagline }}</p>
+          <p class="mt-2 w-full text-center text-base text-slate-400 sm:text-lg">{{ hugo.Data.entity.name }}, {{ hugo.Data.entity.address }}</p>
         </div>
 </footer>
