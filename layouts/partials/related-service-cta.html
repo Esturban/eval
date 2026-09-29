@@ -1,0 +1,25 @@
+{{/* CRO-7363: Insights/Answers forward-path CTA band (Site Map Proposal Phase 1,
+     section 4, approved by EV). Reuses the slate/cyan card visual style already
+     used by register-cta.html, showing the resolved related service and a next
+     step CTA. Driven by two optional front matter fields: related_service
+     (a slug under /services/, defaults to ai-agent-implementation) and
+     next_step (a URL, defaults to /live-audit/). Zero content edits required
+     on the existing 18 Insights + 15 Answers posts. */}}
+{{ $relatedServiceSlug := .Params.related_service | default "ai-agent-implementation" }}
+{{ $relatedServicePage := site.GetPage (printf "/services/%s" $relatedServiceSlug) }}
+{{ $nextStepURL := .Params.next_step | default "/live-audit/" }}
+{{ if $relatedServicePage }}
+<section class="px-4 py-8 sm:px-6 lg:px-8" style="--tone:#f7f4ee; background-color:#f7f4ee">
+    <div class="mx-auto max-w-3xl">
+        <div class="flex flex-col items-start gap-6 rounded-[2rem] bg-slate-950 px-6 py-8 shadow-[0_30px_70px_-35px_rgba(15,23,42,0.6)] sm:flex-row sm:items-center sm:justify-between sm:px-10">
+            <p class="text-lg font-semibold leading-7 text-white sm:text-xl">
+                Related service: <a href="{{ $relatedServicePage.RelPermalink }}" class="text-cyan-300 underline decoration-cyan-300/40 underline-offset-4 transition hover:text-cyan-200">{{ $relatedServicePage.Title }}</a>
+            </p>
+            <a href="{{ $nextStepURL }}"
+               class="inline-flex min-h-11 flex-none items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-base font-semibold text-slate-950 transition hover:bg-cyan-300">
+                Book a free Live Audit
+            </a>
+        </div>
+    </div>
+</section>
+{{ end }}
