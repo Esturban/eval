@@ -7,15 +7,15 @@
 {{ $names := dict "mail" "Email" "calendar" "Calendar" "chat" "Chat" "crm" "CRM" "api" "API" "task" "Tasks" "sheet" "Spreadsheet" "invoice" "Invoices" "database" "Database" "doc" "Docs" }}
 {{ $stream := slice "mail" "calendar" "crm" "sheet" "chat" "task" "database" "invoice" "api" "doc" "mail" "crm" "calendar" "sheet" "task" "chat" }}
 
-<section id="flow" class="arc-section overflow-hidden py-24 sm:py-32" data-tone="#0b1426" style="background-color:#0b1426">
+<section id="flow" class="arc-section overflow-hidden py-24 sm:py-32" data-tone="#0b1426" style="--from:#050c1c; --tone:#0b1426; background-color:#0b1426">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl">
       <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300 sm:text-sm">How it works</p>
       <h2 class="mt-5 text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
         Work comes in. An agent picks it up. Finished work goes out.
       </h2>
-      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl sm:leading-9">
-        The tools stay the ones your team already logs into. The agent works inside them, and a person checks the output.
+      <p class="mt-7 max-w-3xl text-xl leading-8 text-slate-300 sm:text-2xl sm:leading-10">
+        Inside the tools your team already uses, with a person checking the output.
       </p>
     </div>
   </div>
@@ -64,9 +64,5 @@
       </li>
       {{ end }}
     </ol>
-    <p class="mt-10 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-slate-400 sm:text-sm">
-      <svg class="h-5 w-5 flex-none text-cyan-300" aria-hidden="true"><use href="#i-person"></use></svg>
-      Example agents. A person approves the output until your team trusts it.
-    </p>
   </div>
 </section>

@@ -3,19 +3,12 @@
 //    lazy-loads the 3D scene bundle only when the hero is near the viewport,
 //    and feeds it scroll progress through the pinned stage.
 // 2. Step rail: highlights the current story step from scroll position.
-// 3. Colour arc: one continuous background colour across the page, blended
-//    between each section's tone as its boundary crosses the viewport.
-//    Without this script every section keeps its own static background.
+// 3. Ride-along lane: the hero's first agent keeps driving down a thin lane
+//    in the right gutter as the reader scrolls (full-motion path only).
+// The colour arc between sections is pure CSS now (main.css, .arc-section).
 
 const ROOT_MARGIN = '600px 0px';
 const STEP_COUNT = 4;
-// Colour arc: each blend between two tones spans this share of the viewport
-// height. It starts where it always did (the next section 105% down the
-// viewport) but runs on past the boundary instead of finishing at it, so the
-// dark-to-light change is spread over twice the scroll.
-const ARC_BLEND = 0.9;
-const ARC_LEAD = 0.45; // how far past the probe line the blend keeps going
-const ARC_PROBE = 0.6; // where in the viewport a boundary counts as crossed
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -112,63 +105,110 @@ function setupHighway(hero, onProgress) {
   };
 }
 
+// Ride-along lane: the hero's first agent keeps driving down a thin lane
+// pinned in the right gutter while the reader moves through the page. Its
+// position is scroll progress through the sections named in data-ride;
+// the caption and colour step through the same four story steps as the
+// hero rail. Transform and one class per step, nothing that lays out.
+const RIDE_IN = 0.35;  // shown once the hero has left: first section's top this far down the viewport
+const RIDE_OUT = 0.8;  // hidden once the last section's bottom rises above this share of the viewport
+const RIDE_LANES = [0, 6, 6, 0]; // px: the car eases one lane over while it works
+
 function parseHex(hex) {
-  const n = parseInt(hex.replace('#', ''), 16);
+  const n = parseInt(String(hex).replace('#', ''), 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
-function smooth(t) {
-  return t * t * (3 - 2 * t);
+function isLightTone(hex) {
+  const [r, g, b] = parseHex(hex);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 140;
 }
 
-// Half linear, half smoothstep: still eases in and out, but its steepest
-// rate of change is well under smoothstep's, so no stretch of scroll flips
-// the page hard.
-function gentle(t) {
-  return 0.5 * t + 0.5 * smooth(t);
-}
-
-function setupArc(main) {
-  const sections = Array.from(main.querySelectorAll('.arc-section[data-tone]'));
+function setupRide(ride) {
+  const ids = (ride.dataset.ride || '').split(/\s+/).filter(Boolean);
+  const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
   if (sections.length < 2) return () => {};
-  const tones = sections.map((s) => parseHex(s.dataset.tone));
+  // Seams count from their middle, where their colour turns over.
+  const tones = Array.from(document.querySelectorAll('.arc-section[data-tone], .arc-seam[data-tone]'));
+  const steps = JSON.parse(ride.dataset.steps || '[]');
+  const car = ride.querySelector('.ride__car');
+  const caption = ride.querySelector('.ride__caption span');
+  const label = ride.querySelector('.ride__caption b');
   let tops = [];
+  let toneTops = [];
+  let height = 0;
+  let current = -1;
+  let theme = '';
 
   function measure() {
     const base = window.scrollY;
     tops = sections.map((s) => s.getBoundingClientRect().top + base);
+    const last = sections[sections.length - 1];
+    tops.push(last.getBoundingClientRect().bottom + base);
+    toneTops = tones
+      .map((s) => {
+        const r = s.getBoundingClientRect();
+        const top = r.top + base + (s.classList.contains('arc-seam') ? r.height / 2 : 0);
+        return [top, s.dataset.tone];
+      })
+      .sort((a, b) => a[0] - b[0]);
+    height = ride.clientHeight;
+  }
+
+  function setStep(i) {
+    if (i === current || !steps[i]) return;
+    current = i;
+    label.textContent = steps[i].n;
+    caption.textContent = steps[i].text;
+    caption.classList.remove('is-swap');
+    void caption.offsetWidth; // restart the swap animation
+    caption.classList.add('is-swap');
+    ride.classList.toggle('is-done', i === steps.length - 1);
+    ride.style.setProperty('--ride-x', `${RIDE_LANES[i] || 0}px`);
   }
 
   function update() {
     const vh = window.innerHeight;
-    const probe = window.scrollY + vh * ARC_PROBE;
+    const y = window.scrollY;
+    const first = tops[0];
+    const end = tops[tops.length - 1];
+    ride.classList.toggle('is-shown', y + vh * RIDE_IN > first && y + vh * RIDE_OUT < end);
+
+    // Progress runs from the first section reaching mid screen to the last
+    // one leaving it, so the car arrives as the story does.
+    const mid = y + vh * 0.5;
+    const p = clamp((mid - first) / Math.max(1, end - first), 0, 1);
+    ride.style.setProperty('--ride-p', p.toFixed(4));
+    ride.style.setProperty('--ride-y', `${(p * height).toFixed(1)}px`);
+
     let i = 0;
-    while (i < tops.length - 1 && probe >= tops[i + 1]) i += 1;
-    let color = tones[i];
-    // The nearest boundary whose blend window holds the probe, whether it
-    // is still ahead (next) or was just crossed (current).
-    [i + 1, i].forEach((b) => {
-      if (b < 1 || b >= tops.length) return;
-      const blendStart = tops[b] - vh * (ARC_BLEND - ARC_LEAD);
-      const t = (probe - blendStart) / (vh * ARC_BLEND);
-      if (t <= 0 || t >= 1) return;
-      const k = gentle(t);
-      color = tones[b - 1].map((c, j) => Math.round(c + (tones[b][j] - c) * k));
-    });
-    main.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+    while (i < sections.length - 1 && mid >= tops[i + 1]) i += 1;
+    setStep(i);
+
+    // Light or dark ink, from the tone of the section behind the car.
+    const carY = y + vh * 0.24 + p * height;
+    let tone = toneTops.length ? toneTops[0][1] : '#020617';
+    toneTops.forEach(([top, t]) => { if (carY >= top) tone = t; });
+    const next = isLightTone(tone) ? 'light' : 'dark';
+    if (next !== theme) {
+      theme = next;
+      ride.dataset.theme = next;
+    }
   }
 
   measure();
-  document.documentElement.classList.add('arc-live');
+  ride.classList.add('is-on');
   window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
   window.addEventListener('load', () => { measure(); update(); });
   return update;
 }
 
 function init() {
-  const main = document.querySelector('.home-arc');
   const hero = document.querySelector('[data-highway]');
-  const updateArc = main ? setupArc(main) : () => {};
+  const ride = document.querySelector('[data-ride]');
+  // The lane is motion: same gate as the 3D scene, so reduced motion,
+  // data saver and low memory keep the static page they had before.
+  const updateRide = ride && !prefersReducedMotion() && !prefersPoster() ? setupRide(ride) : () => {};
   const highway = hero ? setupHighway(hero, setupSteps(hero)) : null;
 
   let ticking = false;
@@ -177,7 +217,7 @@ function init() {
     ticking = true;
     requestAnimationFrame(() => {
       ticking = false;
-      updateArc();
+      updateRide();
       if (highway) highway.progress(heroProgress(hero));
     });
   }

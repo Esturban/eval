@@ -1,12 +1,38 @@
 {{ define "main" }}
+{{/* The ride-along lane carries the hero's first agent down the page:
+     same name, same first event, same finished work as its car on the
+     highway (data/highway.yaml), stepped through the hero's four steps. */}}
+{{ $bot := index site.Data.highway.bots 0 }}
+{{ $steps := slice
+  (dict "n" "01" "text" (printf "Inputs arrive: %s" (lower (index $bot.events 0).text)))
+  (dict "n" "02" "text" (printf "%s picks it up" $bot.name))
+  (dict "n" "03" "text" "Works in your tools")
+  (dict "n" "04" "text" (printf "Work lands: %s" (lower $bot.done.text)))
+}}
 <main class="home-arc">
     {{ partial "icon-sprite.html" . }}
     {{ partial "hero-intro.html" . }}
     {{ partial "default-mission.html" . }}
     {{ partial "home-flow.html" . }}
+    <div class="arc-seam" data-tone="#f7f4ee" style="--from:#0b1426; --to:#f7f4ee" aria-hidden="true"></div>
     {{ partial "home-tools.html" . }}
     {{ partial "home-validation.html" . }}
     {{ partial "home-reviews.html" . }}
     {{ partial "register-cta.html" . }}
+
+    <div class="ride" data-ride="why flow tools proof" data-steps="{{ $steps | jsonify }}" style="--ride-color: {{ $bot.color | safeCSS }}" aria-hidden="true">
+      <div class="ride__road"></div>
+      <div class="ride__trail"></div>
+      <div class="ride__car">
+        <svg viewBox="0 0 16 32" focusable="false">
+          <rect class="ride__stripe" x="-1.5" y="6" width="19" height="20" rx="6" opacity="0.28"></rect>
+          <path class="ride__body" d="M3 5.5C3 2.5 5 1 8 1s5 1.5 5 4.5V27c0 2.6-1.8 4-5 4s-5-1.4-5-4Z"></path>
+          <path class="ride__glass" d="M4.4 9.2c0-1 1.6-1.7 3.6-1.7s3.6.7 3.6 1.7l-.6 3.3H5Z"></path>
+          <path class="ride__glass" d="M5 22.5h6l.5 2.4c0 .8-1.6 1.4-3.5 1.4s-3.5-.6-3.5-1.4Z"></path>
+          <rect class="ride__stripe" x="7.4" y="13.5" width="1.2" height="8" rx="0.6"></rect>
+        </svg>
+      </div>
+      <p class="ride__caption"><b>{{ (index $steps 0).n }}</b><span>{{ (index $steps 0).text }}</span></p>
+    </div>
 </main>
 {{ end }}
