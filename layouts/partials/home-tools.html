@@ -69,11 +69,46 @@
       </div>
       {{ end }}
     </dl>
-    <a href="/live-audit/" class="mt-12 inline-flex items-center text-lg font-semibold text-slate-950 underline decoration-cyan-500 decoration-2 underline-offset-8 transition hover:text-cyan-700 sm:text-xl">
-      Find your first agent on a free Live Audit
-      <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+    {{/* What a founding seat gets (CRO-6837 round 4, EV). Every line is
+         taken from the Build Queue page (price, "What you get" and the
+         "Every seat includes" paragraph), so the two pages cannot disagree.
+         Only the price lock is founding-only; the rest is what every seat
+         gets, and the block says so. The price itself stays on that page. */}}
+    {{ $every := slice
+      "No setup fee. Your first agent's build is inside the seat."
+      "One agent in build at a time. Queue up as many as you like."
+      "Every agent built to the 8-Part Ship Standard, then tuned while live."
+    }}
+    <div class="founding mt-20 grid gap-10 border-t-2 border-slate-950 pt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+      <div>
+        <p class="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-cyan-700 sm:text-base">Founding seats</p>
+        <h3 class="mt-4 text-4xl font-semibold leading-[1.05] tracking-tight text-slate-950 [text-wrap:balance] sm:text-5xl">3 of 10 founding seats open.</h3>
+        <a href="/services/ai-agent-implementation/" class="mt-6 inline-flex items-center text-lg font-semibold text-slate-800 underline decoration-slate-400 decoration-1 underline-offset-8 transition hover:text-cyan-700 hover:decoration-cyan-500 sm:text-xl">
+          See the price and full seat details
+        </a>
+      </div>
+      <div>
+        <p class="text-xl font-semibold text-slate-950 sm:text-2xl">What a founding seat gets</p>
+        <p class="mt-6 flex items-start gap-4 text-lg font-semibold leading-7 text-slate-950 sm:text-xl sm:leading-8">
+          <svg class="mt-0.5 h-6 w-6 flex-none text-cyan-700 sm:mt-1" aria-hidden="true"><use href="#i-lock"></use></svg>
+          <span>The founding price, locked for 6 months.</span>
+        </p>
+        <p class="mt-8 font-mono text-sm font-semibold uppercase tracking-[0.16em] text-slate-600 sm:text-base">Plus what every seat gets</p>
+        <ul class="mt-5 space-y-5">
+          {{ range $every }}
+          <li class="flex items-start gap-4 text-lg leading-7 text-slate-800 sm:text-xl sm:leading-8">
+            <svg class="mt-0.5 h-6 w-6 flex-none text-emerald-600 sm:mt-1" aria-hidden="true"><use href="#i-check"></use></svg>
+            <span>{{ . }}</span>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+
+    <a href="/live-audit/" class="mt-14 inline-block text-lg font-semibold text-slate-950 underline decoration-cyan-500 decoration-2 underline-offset-8 transition hover:text-cyan-700 sm:text-xl">
+      Find your first agent on a free <span class="whitespace-nowrap">Live Audit<svg class="ml-2 inline-block h-5 w-5 align-[-0.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-      </svg>
+      </svg></span>
     </a>
   </div>
 </section>

@@ -101,12 +101,30 @@
   }
 
   /* The one dark to light change gets its own band of space, so text never
-     sits on the in-between colour. Eased stops in oklab keep the middle
-     clean instead of a muddy grey. */
+     sits on the in-between colour. CRO-6837 round 4: EV found the 34svh band
+     still too abrupt, so it now blends over a full viewport height through
+     eleven stops on a smoothstep curve in oklab: the rate of change is zero
+     at both ends (no visible band edge) and never more than 1.5 times the
+     average in the middle. The highway sweeps across the page here. */
   .arc-seam {
-    height: clamp(180px, 34svh, 360px);
+    height: 100vh;
+    height: 100svh;
+    min-height: 560px;
     background-color: var(--to);
-    background-image: linear-gradient(180deg, var(--from) 0%, var(--from) 6%, color-mix(in oklab, var(--from) 78%, var(--to)) 30%, color-mix(in oklab, var(--from) 22%, var(--to)) 70%, var(--to) 94%, var(--to) 100%);
+    /* Plain two-colour fallback for browsers without color-mix(). */
+    background-image: linear-gradient(180deg, var(--from), var(--to));
+    background-image: linear-gradient(180deg,
+      var(--from) 0%,
+      color-mix(in oklab, var(--from) 97.2%, var(--to)) 10%,
+      color-mix(in oklab, var(--from) 89.6%, var(--to)) 20%,
+      color-mix(in oklab, var(--from) 78.4%, var(--to)) 30%,
+      color-mix(in oklab, var(--from) 64.8%, var(--to)) 40%,
+      color-mix(in oklab, var(--from) 50%, var(--to)) 50%,
+      color-mix(in oklab, var(--from) 35.2%, var(--to)) 60%,
+      color-mix(in oklab, var(--from) 21.6%, var(--to)) 70%,
+      color-mix(in oklab, var(--from) 10.4%, var(--to)) 80%,
+      color-mix(in oklab, var(--from) 2.8%, var(--to)) 90%,
+      var(--to) 100%);
   }
 
   .home-arc section[id] {
@@ -115,7 +133,7 @@
 
   @media (max-width: 1023px) {
     .home-arc.has-ride section[id] {
-      scroll-margin-top: 124px;
+      scroll-margin-top: 150px;
     }
   }
 
@@ -548,86 +566,288 @@
     }
   }
 
-  /* Ride-along road (CRO-6837 round 3). The hero's Inbox agent keeps
-     driving while the reader moves through Why, How it works, the offer and
-     Start here, changing lanes each time the story moves on. EV asked for it
-     clearly bigger than round 2's 16px car on a 1px line, without it ever
-     sitting over the text.
-     - From 1024px: a two-lane road, 64px wide, in the right margin. The
-       sections it passes reserve that margin (utilities layer, below), so the
-       road never covers the text column at any width.
-     - Below 1024px: a 40px road strip pinned under the header; the car
-       drives left to right across it.
-     Hidden unless the motion script switches it on, and never shown with
-     reduced motion, data saver or low memory (home-motion.js decides, the
-     media query below backs it). */
+  /* Full-page highway (CRO-6837 round 4). EV: the road should run the full
+     page as one continuous highway, with an icon for each step the agent
+     does, and the car passing each icon as the page scrolls.
+     - From 1024px: the road is part of the page (.hwy, drawn by
+       page-road.js). It runs down the right margin through the dark
+       sections, sweeps across the whole page in the dark to light blend
+       (the one stretch with no text), then runs down the left margin to the
+       end of Reviews. The sections reserve whichever margin it uses
+       (utilities layer, below), so it never sits over text. Step signs sit
+       on the road and light up as the car passes them. The car is fixed in
+       the viewport; the road scrolls under it.
+     - Below 1024px: a route strip pinned under the header, the same five
+       step icons along it, the car driving past them once per loop.
+     Reduced motion, data saver and low memory: the road and its signs are
+     drawn still (all lit, no car); below 1024px nothing is shown. */
+  .home-arc {
+    position: relative;
+  }
+
+  .hwy {
+    --hwy-asphalt: #1b2436;
+    --hwy-edge: rgba(226, 232, 240, 0.55);
+    --hwy-dash: rgba(241, 245, 249, 0.7);
+    --hwy-agent: var(--ride-color, #22d3ee);
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+    pointer-events: none;
+    overflow: clip;
+    /* Never a scroll anchor: its signs are rebuilt on remeasure, and an
+       anchor that moves would nudge the reader's scroll position. */
+    overflow-anchor: none;
+  }
+
+  .hwy.is-on {
+    display: block;
+  }
+
+  .hwy__svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* The road fades in at the top of Why and out at the end of Reviews:
+     page-coloured caps over each end instead of a mask, so the tall road
+     layer never needs an offscreen surface of its own. */
+  .hwy::before,
+  .hwy::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 150px;
+  }
+
+  .hwy::before {
+    top: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(180deg, #020617 12%, rgba(2, 6, 23, 0));
+  }
+
+  .hwy::after {
+    bottom: 0;
+    left: 0;
+    height: 220px;
+    background: linear-gradient(0deg, #f7f4ee 18%, rgba(247, 244, 238, 0));
+  }
+
+  .hwy__svg path {
+    fill: none;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+  }
+
+  .hwy__edge {
+    stroke: var(--hwy-edge);
+    stroke-width: 76px;
+  }
+
+  .hwy__tone-dark {
+    stop-color: #1b2436;
+  }
+
+  .hwy__tone-light {
+    stop-color: #5b6679;
+  }
+
+  .hwy__asphalt {
+    stroke: url(#hwy-tone);
+    stroke-width: 72px;
+  }
+
+  .hwy__dash {
+    stroke: var(--hwy-dash);
+    stroke-width: 2px;
+    stroke-dasharray: 14 14;
+  }
+
+  /* The stretch already driven lights up along the centre line. */
+  .hwy__bend {
+    position: absolute;
+    left: 0;
+    overflow: visible;
+  }
+
+  .hwy__bend path {
+    fill: none;
+    stroke: var(--hwy-agent);
+    stroke-dasharray: 0 999999;
+  }
+
+  .hwy__trail {
+    stroke-width: 2px;
+  }
+
+  .hwy__glow {
+    stroke-width: 10px;
+    stroke-opacity: 0.22;
+  }
+
+  .hwy__run {
+    position: absolute;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--hwy-agent);
+    box-shadow: 0 0 6px 1px color-mix(in srgb, var(--hwy-agent) 45%, transparent);
+    transform-origin: 50% 0;
+    transform: scaleY(var(--run, 0));
+    will-change: transform;
+  }
+
+  /* Step signs: a round badge on the road, the step written along the
+     outer edge on its own backing panel (15px, so it keeps its contrast on
+     dark, light and in-between tones alike). */
+  .hwy-sign {
+    --sign-ink: #e2e8f0;
+    --sign-panel: rgba(2, 6, 23, 0.82);
+    --sign-num: var(--hwy-agent);
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .hwy-sign.is-light {
+    --sign-ink: #1e293b;
+    --sign-panel: rgba(255, 255, 255, 0.92);
+    --sign-num: #0e7490;
+  }
+
+  .hwy-sign__badge {
+    position: absolute;
+    left: -21px;
+    top: -21px;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 999px;
+    border: 2px solid #475569;
+    background: #0f172a;
+    color: #94a3b8;
+    transition: border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  }
+
+  .hwy-sign__badge svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hwy-sign.is-passed .hwy-sign__badge {
+    border-color: var(--hwy-agent);
+    background: color-mix(in oklab, var(--hwy-agent) 18%, #0f172a);
+    color: #f8fafc;
+    box-shadow: 0 0 14px color-mix(in srgb, var(--hwy-agent) 55%, transparent);
+  }
+
+  .hwy-sign.is-last .hwy-sign__badge {
+    border-color: #34d399;
+    background: color-mix(in oklab, #34d399 18%, #0f172a);
+  }
+
+  .hwy-sign.is-last.is-passed .hwy-sign__badge {
+    box-shadow: 0 0 14px rgba(52, 211, 153, 0.55);
+  }
+
+  .hwy-sign__label {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    padding: 10px 2px;
+    border-radius: 999px;
+    background: var(--sign-panel);
+    white-space: nowrap;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sign-ink);
+    opacity: 0.8;
+    transition: opacity 0.4s ease;
+  }
+
+  .hwy-sign.is-passed .hwy-sign__label {
+    opacity: 1;
+  }
+
+  .hwy-sign__label b {
+    color: var(--sign-num);
+    font-weight: 700;
+  }
+
+  /* Along a straight stretch the label runs down the road's outer edge. */
+  .hwy-sign[data-side="right"] .hwy-sign__label,
+  .hwy-sign[data-side="left"] .hwy-sign__label {
+    top: -21px;
+    writing-mode: vertical-rl;
+  }
+
+  .hwy-sign[data-side="right"] .hwy-sign__label {
+    left: 46px;
+  }
+
+  .hwy-sign[data-side="left"] .hwy-sign__label {
+    right: 46px;
+  }
+
+  /* On the sweep the road runs from top right to bottom left, so the clear
+     space is below and right of a badge in the left half, above and left
+     of one in the right half. */
+  .hwy-sign[data-side^="flat"] .hwy-sign__label {
+    padding: 8px 14px;
+  }
+
+  .hwy-sign[data-side="flat-left"] .hwy-sign__label {
+    top: 30px;
+    left: 34px;
+  }
+
+  .hwy-sign[data-side="flat-right"] .hwy-sign__label {
+    bottom: 30px;
+    right: 34px;
+  }
+
+  /* The car: top-down, front at the bottom of the drawing, the same pearl
+     body, dark glass and agent-colour stripes as the hero cars. Moved on
+     transform only. */
   .ride {
     --ride-asphalt: #1b2436;
     --ride-edge: rgba(226, 232, 240, 0.55);
     --ride-dash: rgba(241, 245, 249, 0.7);
-    --ride-ink: #e2e8f0;
-    --ride-panel: rgba(2, 6, 23, 0.78);
     --ride-body: #f1f5f9;
     --ride-roof: #cbd5e1;
     --ride-outline: rgba(2, 6, 23, 0.55);
-    --ride-beam: 0.45;
     --ride-agent: var(--ride-color, #22d3ee);
-    --ride-agent-ink: var(--ride-agent);
     position: fixed;
     z-index: 20;
+    display: none;
     pointer-events: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+    /* The car moves every frame: never a scroll anchor. */
+    overflow-anchor: none;
   }
 
-  .ride.is-on.is-shown {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s ease, visibility 0s;
-  }
-
-  /* Over the light sections only the caption changes: dark ink on a light
-     panel. The road stays asphalt, so the car reads the same everywhere. */
-  .ride[data-theme="light"] {
-    --ride-ink: #1e293b;
-    --ride-panel: rgba(255, 255, 255, 0.9);
-    --ride-agent-ink: #0e7490;
+  .ride.is-on {
+    display: block;
   }
 
   .ride.is-done {
     --ride-agent: #34d399;
   }
 
-  .ride.is-done[data-theme="light"] {
-    --ride-agent-ink: #047857;
-  }
-
-  .ride__road,
-  .ride__trail {
-    position: absolute;
-  }
-
-  .ride__road {
-    background-color: var(--ride-asphalt);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
-  }
-
-  /* The stretch already driven lights up along the centre line. */
-  .ride__trail {
-    background: var(--ride-agent);
-    box-shadow: 0 0 10px var(--ride-agent);
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.5s ease;
-  }
-
-  /* The car: top-down, front at the bottom of the drawing, the same pearl
-     body, dark glass and agent-colour stripes as the hero cars. It moves on
-     transform only; the yaw comes from the lane change in progress. */
   .ride__car {
     position: absolute;
     top: 0;
+    left: 0;
     transform-origin: 50% 50%;
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: transform;
   }
 
@@ -644,12 +864,10 @@
     fill: var(--ride-body);
     stroke: var(--ride-outline);
     stroke-width: 0.7;
-    transition: fill 0.5s ease, stroke 0.5s ease;
   }
 
   .ride__roof {
     fill: var(--ride-roof);
-    transition: fill 0.5s ease;
   }
 
   .ride__glass {
@@ -670,118 +888,68 @@
   }
 
   .ride__beam {
-    opacity: var(--ride-beam);
-    transition: opacity 0.5s ease;
+    opacity: 0.45;
   }
 
-  /* Caption: the current story step. 15px on its own backing panel, so it
-     keeps its contrast even while the page behind it turns from dark to
-     light. Only on the vertical road, where it has its own column. */
+  .ride__road,
+  .ride__trail,
+  .ride__stops,
   .ride__caption {
     display: none;
   }
 
-  .ride__caption span.is-swap {
-    animation: ride-swap 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-
-  @keyframes ride-swap {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  /* Vertical road, right margin. 102px block: a 72px road and a 22px
-     caption column, centred in the margin the sections reserve for it. */
+  /* Desktop: the car alone, fixed, placed by page-road.js. */
   @media (min-width: 1024px) {
     .ride {
-      top: max(96px, 16svh);
-      bottom: 10svh;
-      right: max(18px, calc((max(0px, (100vw - 80rem) / 2) - 70px) / 2));
-      width: 102px;
-    }
-
-    .ride__road {
       top: 0;
-      bottom: 0;
       left: 0;
-      width: 72px;
-      border-inline: 2px solid var(--ride-edge);
-      border-radius: 10px;
-      box-shadow: 0 12px 32px -18px rgba(2, 6, 23, 0.7);
-      background-image: repeating-linear-gradient(180deg, var(--ride-dash) 0 14px, transparent 14px 28px);
-      background-size: 2px 100%;
-      background-position: 50% 0;
-      background-repeat: no-repeat;
-    }
-
-    .ride__trail {
-      top: 0;
-      left: 35px;
-      width: 2px;
-      height: 100%;
-      transform-origin: 50% 0;
-      transform: scaleY(var(--ride-p, 0));
+      width: 0;
+      height: 0;
     }
 
     .ride__car {
-      left: 20px;
       width: 32px;
       height: 64px;
-      margin-top: -32px;
-      transform: translate3d(var(--ride-cross, 0px), var(--ride-along, 0px), 0) rotate(var(--ride-yaw, 0deg));
-    }
-
-    .ride__caption {
-      position: absolute;
-      top: 0;
-      left: 80px;
-      display: flex;
-      gap: 10px;
-      max-height: 100%;
-      overflow: hidden;
-      padding: 10px 2px;
-      border-radius: 999px;
-      background: var(--ride-panel);
-      writing-mode: vertical-rl;
-      white-space: nowrap;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ride-ink);
-      transition: color 0.5s ease, background-color 0.5s ease;
-    }
-
-    .ride__caption b {
-      color: var(--ride-agent-ink);
-      font-weight: 700;
-      transition: color 0.5s ease;
+      margin: -32px 0 0 -16px;
+      transform: translate3d(var(--car-x, -200px), var(--car-y, -200px), 0) rotate(var(--car-yaw, 0deg));
     }
   }
 
-  /* Horizontal road strip under the header, phones and tablets. The car
-     is drawn upright and turned to face the direction of travel. */
+  /* Phones and tablets: a route strip under the header. The car is drawn
+     upright and turned to face the direction of travel. */
   @media (max-width: 1023px) {
     .ride {
       top: var(--ride-top, 64px);
       left: 0;
       right: 0;
-      height: 44px;
-      background: rgba(2, 6, 23, 0.95);
+      height: 78px;
+      background: #020617;
       border-bottom: 1px solid #1e293b;
       box-shadow: 0 10px 24px -14px rgba(2, 6, 23, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+    }
+
+    .ride.is-shown {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.6s ease, visibility 0s;
+    }
+
+    .ride__road,
+    .ride__trail,
+    .ride__stops {
+      display: block;
+      position: absolute;
     }
 
     .ride__road {
-      inset: 5px 0;
+      top: 5px;
+      left: 0;
+      right: 0;
+      height: 38px;
+      background-color: var(--ride-asphalt);
       border-block: 1px solid var(--ride-edge);
       background-image: repeating-linear-gradient(90deg, var(--ride-dash) 0 12px, transparent 12px 24px);
       background-size: 100% 2px;
@@ -790,26 +958,108 @@
     }
 
     .ride__trail {
-      top: 21px;
+      top: 23px;
       left: 0;
       width: 100%;
       height: 2px;
+      background: var(--ride-agent);
+      box-shadow: 0 0 10px var(--ride-agent);
       transform-origin: 0 50%;
       transform: scaleX(var(--ride-p, 0));
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* The step the car last passed, in words, under the road. */
+    .ride__caption {
+      position: absolute;
+      top: 48px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 22px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+    }
+
+    .ride__caption b {
+      color: var(--ride-agent);
+      font-weight: 700;
+    }
+
+    .ride__stops {
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ride__stops li {
+      position: absolute;
+      top: 11px;
+      left: var(--stop-x, 0px);
+      display: grid;
+      width: 26px;
+      height: 26px;
+      margin-left: -13px;
+      place-items: center;
+      border-radius: 999px;
+      border: 1.5px solid #475569;
+      background: #0f172a;
+      color: #94a3b8;
+      transition: border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .ride__stops li.is-passed {
+      border-color: var(--ride-agent);
+      color: #f8fafc;
+      box-shadow: 0 0 10px color-mix(in srgb, var(--ride-agent) 55%, transparent);
+    }
+
+    .ride__stops li:last-child {
+      border-color: #34d399;
+    }
+
+    .ride__stops svg {
+      width: 15px;
+      height: 15px;
     }
 
     .ride__car {
       left: 27px;
-      width: 22px;
-      height: 44px;
-      top: 0;
+      width: 24px;
+      height: 48px;
       transform: translate3d(var(--ride-along, 0px), var(--ride-cross, 0px), 0) rotate(calc(-90deg + var(--ride-yaw, 0deg)));
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* The car leaving the right end and coming back in at the left for the
+       next loop: no slide back across the strip. */
+    .ride.is-wrap .ride__car,
+    .ride.is-wrap .ride__trail {
+      transition: none;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .ride {
       display: none !important;
+    }
+
+    .hwy-sign__badge,
+    .hwy-sign__label {
+      transition: none;
     }
   }
 
@@ -1163,13 +1413,18 @@
     line-height: 1.6;
   }
 
-  /* CRO-6837 round 3: while the ride-along road is on (desktop only), the
-     sections it drives past keep their right margin clear for it: 140px
+  /* CRO-6837 round 4: while the full-page highway is on (desktop only),
+     the sections it drives past keep its margin clear: the right margin for
+     the dark sections, the left for the light ones after the sweep. 160px
      from the viewport edge, or the normal gutter where that is wider. In
      the utilities layer so it outranks the container's lg:px-8. */
   @media (min-width: 1024px) {
-    .home-arc.has-ride :is(#why, #flow, #tools, #proof) > .max-w-7xl {
-      padding-right: max(2rem, calc(140px - max(0px, (100vw - 80rem) / 2)));
+    .home-arc.has-road :is(#why, #flow) > .max-w-7xl {
+      padding-right: max(2rem, calc(160px - max(0px, (100vw - 80rem) / 2)));
+    }
+
+    .home-arc.has-road :is(#tools, #proof, #reviews) > .max-w-7xl {
+      padding-left: max(2rem, calc(160px - max(0px, (100vw - 80rem) / 2)));
     }
   }
 

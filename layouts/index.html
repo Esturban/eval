@@ -1,13 +1,17 @@
 {{ define "main" }}
-{{/* The ride-along lane carries the hero's first agent down the page:
-     same name, same first event, same finished work as its car on the
-     highway (data/highway.yaml), stepped through the hero's four steps. */}}
+{{/* The full-page highway carries the hero's first agent down the page,
+     past a repeating beat of step signs (CRO-6837 round 4): the same name,
+     first event and finished work as its car on the hero highway and its
+     row in How it works (data/highway.yaml). "again" is the first sign's
+     text when the beat comes round a second time. */}}
 {{ $bot := index site.Data.highway.bots 0 }}
+{{ $first := index $bot.events 0 }}
 {{ $steps := slice
-  (dict "n" "01" "text" (printf "Inputs arrive: %s" (lower (index $bot.events 0).text)))
-  (dict "n" "02" "text" (printf "%s picks it up" $bot.name))
-  (dict "n" "03" "text" "Works in your tools")
-  (dict "n" "04" "text" (printf "Work lands: %s" (lower $bot.done.text)))
+  (dict "icon" $first.icon "text" (printf "%s arrives" $first.text) "again" (printf "Next %s arrives" (lower (replace $first.text "New " ""))))
+  (dict "icon" "bot" "text" (printf "%s picks it up" $bot.name))
+  (dict "icon" "eye" "text" "Reads it")
+  (dict "icon" "pen" "text" "Drafts the reply")
+  (dict "icon" "check" "text" $bot.output)
 }}
 <main class="home-arc">
     {{ partial "icon-sprite.html" . }}
@@ -20,9 +24,42 @@
     {{ partial "home-reviews.html" . }}
     {{ partial "register-cta.html" . }}
 
-    <div class="ride" data-ride="why flow tools proof" data-steps="{{ $steps | jsonify }}" style="--ride-color: {{ $bot.color | safeCSS }}" aria-hidden="true">
+    <div class="hwy" style="--ride-color: {{ $bot.color | safeCSS }}" aria-hidden="true">
+      <svg class="hwy__svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" focusable="false">
+        {{/* Asphalt tone along the page: night asphalt through the dark
+             sections, easing to a lighter slate as the page turns to cream,
+             so the road never outweighs the text (page-road.js sets the
+             stop positions). */}}
+        <defs>
+          <linearGradient id="hwy-tone" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1">
+            <stop class="hwy__tone-dark" offset="0"></stop>
+            <stop class="hwy__tone-dark" offset="0.5"></stop>
+            <stop class="hwy__tone-light" offset="0.6"></stop>
+            <stop class="hwy__tone-light" offset="1"></stop>
+          </linearGradient>
+        </defs>
+        <path class="hwy__edge"></path>
+        <path class="hwy__asphalt"></path>
+        <path class="hwy__dash"></path>
+      </svg>
+      {{/* The lit trail: composited runs on the straights, a small SVG on
+           the sweep, so nothing tall repaints while the car drives. */}}
+      <div class="hwy__run" data-run="a"></div>
+      <svg class="hwy__bend" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path class="hwy__glow"></path>
+        <path class="hwy__trail"></path>
+      </svg>
+      <div class="hwy__run" data-run="b"></div>
+      <div class="hwy__signs"></div>
+    </div>
+
+    <div class="ride" data-ride="why flow tools proof reviews" data-steps="{{ $steps | jsonify }}" style="--ride-color: {{ $bot.color | safeCSS }}" aria-hidden="true">
       <div class="ride__road"></div>
       <div class="ride__trail"></div>
+      <p class="ride__caption"><b>01</b><span>{{ (index $steps 0).text }}</span></p>
+      <ol class="ride__stops">
+        {{ range $steps }}<li><svg aria-hidden="true"><use href="#i-{{ .icon }}"></use></svg></li>{{ end }}
+      </ol>
       {{/* Top-down car, front at the bottom (it drives down the page):
            headlights and beams at the front, tail lights at the back, the
            agent colour on the bonnet, boot and sides. */}}
@@ -50,7 +87,6 @@
           <rect class="ride__tail" x="18.6" y="2.2" width="4.6" height="1.8" rx="0.9"></rect>
         </svg>
       </div>
-      <p class="ride__caption"><b>{{ (index $steps 0).n }}</b><span>{{ (index $steps 0).text }}</span></p>
     </div>
 </main>
 {{ end }}
