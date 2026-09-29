@@ -1,0 +1,234 @@
+#!/usr/bin/env bash
+# Internal-only tool. Not referenced anywhere in content/ or layouts/.
+#
+# Wraps the already-authenticated Stripe CLI (`stripe login`) to create a
+# one-off Payment Link or Invoice for fast manual deal billing: price a deal
+# in conversation, run this command, send the returned URL to the client.
+#
+# This script never reads, stores, prints, or hardcodes an API key or any
+# other credential. It relies entirely on whatever auth the Stripe CLI
+# already has configured. It defaults to Stripe test mode, matching the
+# Stripe CLI's own default; pass --live to bill for real.
+#
+# See "## Internal Stripe billing" in DESIGN.md for the short usage note.
+
+set -euo pipefail
+
+SCRIPT_NAME="$(basename "$0")"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  scripts/stripe-bill --type link    --amount CENTS --currency CODE --email EMAIL --description TEXT [options]
+  scripts/stripe-bill --type invoice --amount CENTS --currency CODE --email EMAIL --description TEXT [options]
+
+Required:
+  --type <link|invoice>   What to create.
+  --amount <integer>      Amount in the smallest currency unit (cents). Integer only,
+                           never a decimal. Example: 150000 for $1,500.00.
+  --email <address>       Client email. For --type link this is stored as metadata
+                           on the link (Payment Links cannot pre-fill a buyer email).
+                           For --type invoice this is used to find or create the
+                           Stripe Customer who gets billed.
+  --description <text>    Line-item description shown to the client.
+
+Options:
+  --currency <code>       ISO 4217 currency code, lowercase. Default: usd.
+  --product-name <text>   Line-item name shown at checkout. Default: same as
+                           --description.
+  --days-until-due <int>  Invoice only. Days before the invoice is due. Default: 7.
+  --memo <text>           Invoice only. Internal description attached to the invoice
+                           (Stripe's `description` field, visible in the Dashboard).
+  --live                  Use Stripe live mode. Default is test mode, passed straight
+                           through to the Stripe CLI's own --live flag.
+  --dry-run               Print the stripe CLI commands this run would execute, in
+                           order, and exit without calling the API or creating
+                           anything.
+  -h, --help              Show this help and exit.
+
+Examples:
+  scripts/stripe-bill --type link --amount 150000 --currency usd \
+    --email client@example.com --description "Q4 Shopify audit"
+
+  scripts/stripe-bill --type invoice --amount 500000 --currency usd \
+    --email client@example.com --description "Build Queue retainer, October" \
+    --days-until-due 14
+
+Notes:
+  - Test mode is the default. Pass --live only after you have confirmed the amount,
+    currency, and email with the client; there is no confirmation prompt beyond that.
+  - The Payment Link path creates a Stripe Price (with an inline Product) scoped to
+    this one deal, then a Payment Link pointing at it.
+  - The Invoice path looks up a Stripe Customer by --email (creating one if none
+    exists), creates a draft invoice, attaches the line item, finalizes it, and
+    sends it. The returned invoice is in the "open" state, billed via
+    collection_method=send_invoice (Stripe emails the client; no auto-charge).
+  - Every object this script creates carries metadata created_via=stripe-bill so it
+    is easy to find later in the Dashboard.
+EOF
+}
+
+die() {
+  echo "${SCRIPT_NAME}: error: $*" >&2
+  exit 1
+}
+
+require_cmd() {
+  command -v "$1" >/dev/null 2>&1 || die "'$1' is required on PATH but was not found."
+}
+
+TYPE=""
+AMOUNT=""
+CURRENCY="usd"
+EMAIL=""
+DESCRIPTION=""
+PRODUCT_NAME=""
+DAYS_UNTIL_DUE="7"
+MEMO=""
+LIVE_FLAG=()
+DRY_RUN="false"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --type) TYPE="${2:-}"; shift 2 ;;
+    --amount) AMOUNT="${2:-}"; shift 2 ;;
+    --currency) CURRENCY="${2:-}"; shift 2 ;;
+    --email) EMAIL="${2:-}"; shift 2 ;;
+    --description) DESCRIPTION="${2:-}"; shift 2 ;;
+    --product-name) PRODUCT_NAME="${2:-}"; shift 2 ;;
+    --days-until-due) DAYS_UNTIL_DUE="${2:-}"; shift 2 ;;
+    --memo) MEMO="${2:-}"; shift 2 ;;
+    --live) LIVE_FLAG=(--live); shift ;;
+    --dry-run) DRY_RUN="true"; shift ;;
+    -h|--help) usage; exit 0 ;;
+    *) die "unknown argument: $1 (see --help)" ;;
+  esac
+done
+
+[[ -n "$TYPE" ]] || die "--type is required (link or invoice)"
+[[ "$TYPE" == "link" || "$TYPE" == "invoice" ]] || die "--type must be 'link' or 'invoice', got '$TYPE'"
+[[ -n "$AMOUNT" ]] || die "--amount is required (integer, smallest currency unit)"
+[[ "$AMOUNT" =~ ^[0-9]+$ ]] || die "--amount must be a positive integer of minor units (cents), got '$AMOUNT'"
+[[ "$AMOUNT" -gt 0 ]] || die "--amount must be greater than zero"
+[[ -n "$CURRENCY" ]] || die "--currency is required"
+CURRENCY="$(echo "$CURRENCY" | tr '[:upper:]' '[:lower:]')"
+[[ "$CURRENCY" =~ ^[a-z]{3}$ ]] || die "--currency must be a 3-letter ISO 4217 code, got '$CURRENCY'"
+[[ -n "$EMAIL" ]] || die "--email is required"
+[[ "$EMAIL" == *"@"*"."* ]] || die "--email does not look like an email address: '$EMAIL'"
+[[ -n "$DESCRIPTION" ]] || die "--description is required"
+[[ "$DAYS_UNTIL_DUE" =~ ^[0-9]+$ ]] || die "--days-until-due must be a positive integer"
+
+[[ -z "$PRODUCT_NAME" ]] && PRODUCT_NAME="$DESCRIPTION"
+
+require_cmd stripe
+require_cmd jq
+
+if [[ "$DRY_RUN" == "true" ]]; then
+  echo "Dry run. No requests will be sent. Commands that would run:"
+  echo
+  if [[ "$TYPE" == "link" ]]; then
+    echo "  stripe prices create --currency ${CURRENCY} --unit-amount ${AMOUNT} \\"
+    echo "    --product-data.name \"${PRODUCT_NAME}\" -d \"metadata[created_via]=stripe-bill\" ${LIVE_FLAG[*]-}"
+    echo "  stripe payment_links create -d \"line_items[0][price]=<price_id>\" \\"
+    echo "    -d \"line_items[0][quantity]=1\" -d \"metadata[client_email]=${EMAIL}\" \\"
+    echo "    -d \"metadata[description]=${DESCRIPTION}\" -d \"metadata[created_via]=stripe-bill\" ${LIVE_FLAG[*]-}"
+  else
+    echo "  stripe customers list --email \"${EMAIL}\" --limit 1 ${LIVE_FLAG[*]-}"
+    echo "  stripe customers create --email \"${EMAIL}\" -d \"metadata[created_via]=stripe-bill\" ${LIVE_FLAG[*]-}   # only if no existing customer"
+    echo "  stripe invoices create --customer <customer_id> --collection-method send_invoice \\"
+    echo "    --days-until-due ${DAYS_UNTIL_DUE} --currency ${CURRENCY} --description \"${MEMO:-$DESCRIPTION}\" \\"
+    echo "    -d \"metadata[created_via]=stripe-bill\" ${LIVE_FLAG[*]-}"
+    echo "  stripe invoiceitems create --customer <customer_id> --invoice <invoice_id> \\"
+    echo "    --amount ${AMOUNT} --currency ${CURRENCY} --description \"${DESCRIPTION}\" ${LIVE_FLAG[*]-}"
+    echo "  stripe invoices finalize_invoice <invoice_id> ${LIVE_FLAG[*]-}"
+    echo "  stripe invoices send_invoice <invoice_id> ${LIVE_FLAG[*]-}"
+  fi
+  exit 0
+fi
+
+if [[ "$TYPE" == "link" ]]; then
+  PRICE_JSON="$(stripe prices create \
+    --currency "$CURRENCY" \
+    --unit-amount "$AMOUNT" \
+    --product-data.name "$PRODUCT_NAME" \
+    -d "metadata[created_via]=stripe-bill" \
+    "${LIVE_FLAG[@]}")" || die "failed to create the Stripe Price for this line item"
+  PRICE_ID="$(echo "$PRICE_JSON" | jq -r '.id // empty')"
+  [[ -n "$PRICE_ID" ]] || die "Stripe did not return a price id: $PRICE_JSON"
+
+  LINK_JSON="$(stripe payment_links create \
+    -d "line_items[0][price]=${PRICE_ID}" \
+    -d "line_items[0][quantity]=1" \
+    -d "metadata[client_email]=${EMAIL}" \
+    -d "metadata[description]=${DESCRIPTION}" \
+    -d "metadata[created_via]=stripe-bill" \
+    "${LIVE_FLAG[@]}")" || die "failed to create the Payment Link"
+  LINK_URL="$(echo "$LINK_JSON" | jq -r '.url // empty')"
+  LINK_ID="$(echo "$LINK_JSON" | jq -r '.id // empty')"
+  [[ -n "$LINK_URL" ]] || die "Stripe did not return a payment link url: $LINK_JSON"
+
+  echo "Payment Link created."
+  echo "  id:          ${LINK_ID}"
+  echo "  price:       ${PRICE_ID}"
+  echo "  amount:      ${AMOUNT} ${CURRENCY} (minor units)"
+  echo "  client email (metadata only, not pre-filled at checkout): ${EMAIL}"
+  echo "  url:         ${LINK_URL}"
+  exit 0
+fi
+
+# --type invoice
+EXISTING_JSON="$(stripe customers list --email "$EMAIL" --limit 1 "${LIVE_FLAG[@]}")" \
+  || die "failed to look up an existing Stripe customer for ${EMAIL}"
+CUSTOMER_ID="$(echo "$EXISTING_JSON" | jq -r '.data[0].id // empty')"
+
+if [[ -z "$CUSTOMER_ID" ]]; then
+  CUSTOMER_JSON="$(stripe customers create \
+    --email "$EMAIL" \
+    -d "metadata[created_via]=stripe-bill" \
+    "${LIVE_FLAG[@]}")" || die "failed to create a Stripe customer for ${EMAIL}"
+  CUSTOMER_ID="$(echo "$CUSTOMER_JSON" | jq -r '.id // empty')"
+  [[ -n "$CUSTOMER_ID" ]] || die "Stripe did not return a customer id: $CUSTOMER_JSON"
+  echo "Created new Stripe customer ${CUSTOMER_ID} for ${EMAIL}."
+else
+  echo "Billing existing Stripe customer ${CUSTOMER_ID} for ${EMAIL}."
+fi
+
+INVOICE_JSON="$(stripe invoices create \
+  --customer "$CUSTOMER_ID" \
+  --collection-method send_invoice \
+  --days-until-due "$DAYS_UNTIL_DUE" \
+  --currency "$CURRENCY" \
+  --description "${MEMO:-$DESCRIPTION}" \
+  -d "metadata[created_via]=stripe-bill" \
+  "${LIVE_FLAG[@]}")" || die "failed to create the draft invoice"
+INVOICE_ID="$(echo "$INVOICE_JSON" | jq -r '.id // empty')"
+[[ -n "$INVOICE_ID" ]] || die "Stripe did not return an invoice id: $INVOICE_JSON"
+
+ITEM_JSON="$(stripe invoiceitems create \
+  --customer "$CUSTOMER_ID" \
+  --invoice "$INVOICE_ID" \
+  --amount "$AMOUNT" \
+  --currency "$CURRENCY" \
+  --description "$DESCRIPTION" \
+  "${LIVE_FLAG[@]}")" \
+  || die "failed to attach the line item to draft invoice ${INVOICE_ID} (it is still open as an empty draft; void it in the Dashboard or with 'stripe invoices delete')"
+ITEM_ID="$(echo "$ITEM_JSON" | jq -r '.id // empty')"
+[[ -n "$ITEM_ID" ]] || die "Stripe did not return an invoice item id: $ITEM_JSON"
+
+stripe invoices finalize_invoice "$INVOICE_ID" "${LIVE_FLAG[@]}" >/dev/null \
+  || die "failed to finalize invoice ${INVOICE_ID} (it still has a line item attached; finalize or void it manually)"
+
+stripe invoices send_invoice "$INVOICE_ID" "${LIVE_FLAG[@]}" >/dev/null \
+  || die "invoice ${INVOICE_ID} was finalized but sending it failed; retry with 'stripe invoices send_invoice ${INVOICE_ID}'"
+
+FINAL_JSON="$(stripe invoices retrieve "$INVOICE_ID" "${LIVE_FLAG[@]}")" \
+  || die "invoice ${INVOICE_ID} was finalized and sent, but the confirmation lookup failed"
+HOSTED_URL="$(echo "$FINAL_JSON" | jq -r '.hosted_invoice_url // empty')"
+STATUS="$(echo "$FINAL_JSON" | jq -r '.status // empty')"
+
+echo "Invoice created and sent."
+echo "  id:          ${INVOICE_ID}"
+echo "  customer:    ${CUSTOMER_ID} (${EMAIL})"
+echo "  status:      ${STATUS}"
+echo "  amount:      ${AMOUNT} ${CURRENCY} (minor units)"
+echo "  url:         ${HOSTED_URL}"
