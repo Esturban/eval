@@ -1,12 +1,92 @@
 {{ define "main" }}
+{{/* The full-page highway carries the hero's first agent down the page,
+     past a repeating beat of step signs (CRO-6837 round 4): the same name,
+     first event and finished work as its car on the hero highway and its
+     row in How it works (data/highway.yaml). "again" is the first sign's
+     text when the beat comes round a second time. */}}
+{{ $bot := index site.Data.highway.bots 0 }}
+{{ $first := index $bot.events 0 }}
+{{ $steps := slice
+  (dict "icon" $first.icon "text" (printf "%s arrives" $first.text) "again" (printf "Next %s arrives" (lower (replace $first.text "New " ""))))
+  (dict "icon" "bot" "text" (printf "%s picks it up" $bot.name))
+  (dict "icon" "eye" "text" "Reads it")
+  (dict "icon" "pen" "text" "Drafts the reply")
+  (dict "icon" "check" "text" $bot.output)
+}}
 <main class="home-arc">
     {{ partial "icon-sprite.html" . }}
     {{ partial "hero-intro.html" . }}
     {{ partial "default-mission.html" . }}
     {{ partial "home-flow.html" . }}
+    <div class="arc-seam" data-tone="#f7f4ee" style="--from:#0b1426; --to:#f7f4ee" aria-hidden="true"></div>
     {{ partial "home-tools.html" . }}
     {{ partial "home-validation.html" . }}
     {{ partial "home-reviews.html" . }}
     {{ partial "register-cta.html" . }}
+
+    <div class="hwy" style="--ride-color: {{ $bot.color | safeCSS }}" aria-hidden="true">
+      <svg class="hwy__svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" focusable="false">
+        {{/* Asphalt tone along the page: night asphalt through the dark
+             sections, easing to a lighter slate as the page turns to cream,
+             so the road never outweighs the text (page-road.js sets the
+             stop positions). */}}
+        <defs>
+          <linearGradient id="hwy-tone" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1">
+            <stop class="hwy__tone-dark" offset="0"></stop>
+            <stop class="hwy__tone-dark" offset="0.5"></stop>
+            <stop class="hwy__tone-light" offset="0.6"></stop>
+            <stop class="hwy__tone-light" offset="1"></stop>
+          </linearGradient>
+        </defs>
+        <path class="hwy__edge"></path>
+        <path class="hwy__asphalt"></path>
+        <path class="hwy__dash"></path>
+      </svg>
+      {{/* The lit trail: composited runs on the straights, a small SVG on
+           the sweep, so nothing tall repaints while the car drives. */}}
+      <div class="hwy__run" data-run="a"></div>
+      <svg class="hwy__bend" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path class="hwy__glow"></path>
+        <path class="hwy__trail"></path>
+      </svg>
+      <div class="hwy__run" data-run="b"></div>
+      <div class="hwy__signs"></div>
+    </div>
+
+    <div class="ride" data-ride="why flow tools proof reviews" data-steps="{{ $steps | jsonify }}" style="--ride-color: {{ $bot.color | safeCSS }}" aria-hidden="true">
+      <div class="ride__road"></div>
+      <div class="ride__trail"></div>
+      <p class="ride__caption"><b>01</b><span>{{ (index $steps 0).text }}</span></p>
+      <ol class="ride__stops">
+        {{ range $steps }}<li><svg aria-hidden="true"><use href="#i-{{ .icon }}"></use></svg></li>{{ end }}
+      </ol>
+      {{/* Top-down car, front at the bottom (it drives down the page):
+           headlights and beams at the front, tail lights at the back, the
+           agent colour on the bonnet, boot and sides. */}}
+      <div class="ride__car">
+        <svg viewBox="0 0 28 56" focusable="false">
+          <defs>
+            <linearGradient id="ride-beam" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fef9c3" stop-opacity="0.9"></stop>
+              <stop offset="1" stop-color="#fef9c3" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <path class="ride__beam" fill="url(#ride-beam)" d="M4.5 53 L-3 80 H13 L9.5 53 Z M18.5 53 L15 80 H31 L23.5 53 Z"></path>
+          <path class="ride__body" d="M2.6 33.5 0.2 35.2 0.6 37 2.6 36.2Z M25.4 33.5 27.8 35.2 27.4 37 25.4 36.2Z"></path>
+          <path class="ride__body" d="M14 1.5C20.5 1.5 24.5 3.5 25 9L25.8 45C25.8 51.5 21.5 54.5 14 54.5C6.5 54.5 2.2 51.5 2.2 45L3 9C3.5 3.5 7.5 1.5 14 1.5Z"></path>
+          <rect class="ride__stripe" x="2.9" y="14" width="1.5" height="24" rx="0.75"></rect>
+          <rect class="ride__stripe" x="23.6" y="14" width="1.5" height="24" rx="0.75"></rect>
+          <path class="ride__glass" d="M6.5 11.5Q14 9 21.5 11.5L20.5 17H7.5Z"></path>
+          <rect class="ride__roof" x="7" y="17" width="14" height="15" rx="2.5"></rect>
+          <path class="ride__glass" d="M7 32H21L23.2 39.5Q14 42.5 4.8 39.5Z"></path>
+          <rect class="ride__stripe" x="12.6" y="42.5" width="2.8" height="10.5" rx="1.2"></rect>
+          <rect class="ride__stripe" x="12.6" y="3" width="2.8" height="7.5" rx="1.2"></rect>
+          <rect class="ride__lamp" x="4.5" y="51.2" width="5" height="2.2" rx="1.1"></rect>
+          <rect class="ride__lamp" x="18.5" y="51.2" width="5" height="2.2" rx="1.1"></rect>
+          <rect class="ride__tail" x="4.8" y="2.2" width="4.6" height="1.8" rx="0.9"></rect>
+          <rect class="ride__tail" x="18.6" y="2.2" width="4.6" height="1.8" rx="0.9"></rect>
+        </svg>
+      </div>
+    </div>
 </main>
 {{ end }}

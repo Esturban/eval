@@ -37,3 +37,33 @@ HUGO_ENABLEGITINFO = "true"
 from = "/npmjs/*"
 to = "/npmjs/"
 status = 200
+
+# CRO-7363: site map cleanup (Phase 1, approved by EV). These 5 pre-pivot
+# service pages were removed (all draft: true, never published, no live
+# traffic today). Redirects added anyway per EV's literal instruction that
+# every removed or renamed page gets a 301, as a safety net, each pointing to
+# the one live, sellable service rather than the homepage.
+[[redirects]]
+from = "/services/data-strategy/"
+to = "/services/ai-agent-implementation/"
+status = 301
+
+[[redirects]]
+from = "/services/growth-automation/"
+to = "/services/ai-agent-implementation/"
+status = 301
+
+[[redirects]]
+from = "/services/marketing/"
+to = "/services/ai-agent-implementation/"
+status = 301
+
+[[redirects]]
+from = "/services/operations-redesign/"
+to = "/services/ai-agent-implementation/"
+status = 301
+
+[[redirects]]
+from = "/services/web/"
+to = "/services/ai-agent-implementation/"
+status = 301

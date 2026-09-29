@@ -1,30 +1,32 @@
 {{ $cta_header := "Find the first automation worth shipping in one call."}}
-{{ $cta_description := "You leave the call knowing the first process worth handing to an agent, and why it beats the rest. If it is a fit, you get a written scope and quote. If it is not, you still walk away with a next step you can run yourself."}}
+{{/* One claim per block (CRO-6837 round 2): the no-lose call on the left,
+     the guarantee as the single claim on the right. */}}
+{{ $cta_description := "If it fits, you get a written scope and quote. If not, you leave with a next step you can run yourself."}}
 
 
-<section class="arc-section bg-stone-50 pb-24 pt-8 sm:pb-32" data-tone="#f7f4ee" style="background-color:#f7f4ee">
+<section class="arc-section bg-stone-50 pb-24 pt-8 sm:pb-32" data-tone="#f7f4ee" style="--tone:#f7f4ee; background-color:#f7f4ee">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="rounded-[2.5rem] bg-slate-950 px-6 py-10 shadow-[0_40px_90px_-40px_rgba(15,23,42,0.6)] sm:px-12 sm:py-14">
-                <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] lg:items-center">
+                <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(300px,380px)] lg:items-center">
                     <div>
-                        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Live Audit</p>
+                        <p class="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300 sm:text-base">Live Audit</p>
                         <h2 class="mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl">
                               {{ $cta_header }}
                         </h2>
-                        <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl sm:leading-9">{{ $cta_description | markdownify }}</p>
+                        <p class="mt-6 max-w-2xl text-xl leading-8 text-slate-300 sm:text-2xl sm:leading-10">{{ $cta_description | markdownify }}</p>
                         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                             <a href="/live-audit/"
-                               class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-7 py-3.5 text-base font-semibold text-slate-950 transition duration-200 hover:bg-cyan-300 active:scale-[0.97]">
+                               class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-7 py-3.5 text-base font-semibold text-slate-950 sm:text-lg transition duration-200 hover:bg-cyan-300 active:scale-[0.97]">
                                 Get a free Live Audit
                             </a>
-                            <p class="text-sm text-slate-400">Your screen, your tools, live. Not a canned demo.</p>
                         </div>
                     </div>
-                    <div class="grid gap-5 text-base leading-7 text-slate-300">
-                        <p class="border-t border-slate-800 pt-4"><span class="font-semibold text-white">A live audit of your real stack, not a demo environment.</span> You share your screen and walk through the tools your team uses today.</p>
-                        <p class="border-t border-slate-800 pt-4"><span class="font-semibold text-white">For teams an agent can plug into.</span> Your team already works in real tools and is open to adopting an agent.</p>
-                        <p class="border-t border-slate-800 pt-4"><span class="font-semibold text-white">Your call can become your case study.</span> With your permission, it becomes a public post. Nothing goes out without your sign-off.</p>
-                    </div>
+                    {{ with site.Params.hero_guarantee }}
+                    <p class="flex items-start gap-4 border-t border-slate-800 pt-6 text-2xl font-semibold leading-snug tracking-tight text-white [text-wrap:balance] sm:text-3xl lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                        <svg class="mt-1.5 h-7 w-7 flex-none text-emerald-300" aria-hidden="true"><use href="#i-check"></use></svg>
+                        <span>{{ . }}</span>
+                    </p>
+                    {{ end }}
                 </div>
             </div>
         </div>

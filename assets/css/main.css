@@ -10,11 +10,7 @@
     --ev-line: #dbe3ee;
     --ev-accent: #22d3ee;
     --ev-accent-deep: #0891b2;
-    /* Full-page highway rail (CRO-6731): set by home-motion.js on every
-       resize/scroll tick to the rail's real clamp()-shrunk width, 0 on
-       phone. arc-section content gutters read this so body copy never
-       sits under or beside the rail. */
-    --rail-w: 0px;
+    --site-header-h: 57px; /* nav.html: 56px row plus its 1px border */
   }
 
   html {
@@ -94,19 +90,51 @@
     opacity: 1;
   }
 
-  /* Homepage colour arc: each section carries its own tone as a static
-     background; once the motion script runs, sections go transparent and
-     <main> carries one colour blended across the scroll. */
-  .arc-live .arc-section {
-    background-color: transparent !important;
+  /* Homepage colour arc (CRO-6837 round 2). Each section paints a vertical
+     gradient from the tone above it (--from) into its own tone (--tone), so
+     no two sections ever meet at a hard edge. This replaced a script that
+     tinted the whole page one blended colour: that turned the dark to light
+     change into a flat mid grey behind both white and dark text. Pure CSS,
+     so it is the same with or without JavaScript or motion. */
+  .arc-section[style*="--tone"] {
+    background-image: linear-gradient(180deg, var(--from, var(--tone)) 0%, var(--tone) min(100%, 70svh));
   }
 
-  .home-arc {
-    transition: background-color 0.12s linear;
+  /* The one dark to light change gets its own band of space, so text never
+     sits on the in-between colour. CRO-6837 round 4: EV found the 34svh band
+     still too abrupt, so it now blends over a full viewport height through
+     eleven stops on a smoothstep curve in oklab: the rate of change is zero
+     at both ends (no visible band edge) and never more than 1.5 times the
+     average in the middle. The highway sweeps across the page here. */
+  .arc-seam {
+    height: 100vh;
+    height: 100svh;
+    min-height: 560px;
+    background-color: var(--to);
+    /* Plain two-colour fallback for browsers without color-mix(). */
+    background-image: linear-gradient(180deg, var(--from), var(--to));
+    background-image: linear-gradient(180deg,
+      var(--from) 0%,
+      color-mix(in oklab, var(--from) 97.2%, var(--to)) 10%,
+      color-mix(in oklab, var(--from) 89.6%, var(--to)) 20%,
+      color-mix(in oklab, var(--from) 78.4%, var(--to)) 30%,
+      color-mix(in oklab, var(--from) 64.8%, var(--to)) 40%,
+      color-mix(in oklab, var(--from) 50%, var(--to)) 50%,
+      color-mix(in oklab, var(--from) 35.2%, var(--to)) 60%,
+      color-mix(in oklab, var(--from) 21.6%, var(--to)) 70%,
+      color-mix(in oklab, var(--from) 10.4%, var(--to)) 80%,
+      color-mix(in oklab, var(--from) 2.8%, var(--to)) 90%,
+      var(--to) 100%);
   }
 
   .home-arc section[id] {
-    scroll-margin-top: 72px;
+    scroll-margin-top: 80px;
+  }
+
+  @media (max-width: 1023px) {
+    .home-arc.has-ride section[id] {
+      scroll-margin-top: 150px;
+    }
   }
 
   /* Highway hero. */
@@ -115,10 +143,28 @@
     height: 250svh;
   }
 
+  /* Hero exit: a band of night that rises over the bottom of the pinned
+     road in the last stretch of the hero, so the scene dissolves into the
+     next section instead of ending on a hard line. Spatial, not animated:
+     it sits at the bottom of the tall section and scrolls in with it. */
+  .hw::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 30svh;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 0.55) 45%, #020617 100%);
+  }
+
+  /* Sticks below the header, so the step rail and note at its foot are on
+     screen at the first paint instead of 57px under the fold. */
   .hw__stage {
     position: sticky;
-    top: 0;
-    height: 100svh;
+    top: var(--site-header-h);
+    height: calc(100svh - var(--site-header-h));
     overflow: hidden;
     background: var(--ev-ink);
   }
@@ -141,12 +187,14 @@
     opacity: 1;
   }
 
-  .hw__poster {
-    transition: opacity 0.6s ease;
+  .hw__poster-frame {
+    display: contents;
   }
 
-  .hw__poster--tall {
-    display: none;
+  .hw__poster {
+    object-fit: cover;
+    object-position: 50% 50%;
+    transition: opacity 0.6s ease;
   }
 
   .hw.is-live .hw__poster {
@@ -185,7 +233,7 @@
     transform-origin: 0 0;
     white-space: nowrap;
     will-change: transform, opacity;
-    text-shadow: 0 1px 2px rgba(2, 6, 23, 0.9), 0 0 14px rgba(2, 6, 23, 0.95);
+    text-shadow: 0 1px 2px rgba(2, 6, 23, 0.9), 0 0 16px rgba(2, 6, 23, 0.95);
   }
 
   .hw-bot::after {
@@ -193,7 +241,7 @@
     position: absolute;
     top: 100%;
     left: var(--stem-x, 3px);
-    width: 1px;
+    width: 1.5px;
     height: var(--stem, 18px);
     background: linear-gradient(var(--bot), color-mix(in srgb, var(--bot) 10%, transparent));
   }
@@ -203,8 +251,8 @@
     position: absolute;
     top: calc(100% + var(--stem, 18px) - 2px);
     left: calc(var(--stem-x, 3px) - 2px);
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 999px;
     background: var(--bot);
     box-shadow: 0 0 8px var(--bot);
@@ -220,13 +268,16 @@
     display: none;
   }
 
+  /* Label sizes (CRO-6837): the agent name leads at 15px, the live tag is
+     the loudest line at 20px, and nothing scales with distance any more,
+     so these are the sizes a reader actually sees. */
   .hw-bot__name {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #f1f5f9;
+    color: #f8fafc;
     text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
   }
 
@@ -237,9 +288,9 @@
      where the shade gradient (or the day/night sky behind it) sits. */
   .hw-bot__job {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #cbd5e1;
     text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
@@ -252,18 +303,19 @@
   .hw-bot__tag {
     display: flex;
     align-items: center;
-    gap: 7px;
-    margin-top: 4px;
+    gap: 8px;
+    margin-top: 6px;
     color: var(--bot);
     font-family: "Instrument Sans", ui-sans-serif, sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
-    letter-spacing: -0.005em;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 
   .hw-bot__icon {
-    width: 16px;
-    height: 16px;
+    width: 19px;
+    height: 19px;
     flex: none;
     filter: drop-shadow(0 0 6px rgba(2, 6, 23, 0.9));
   }
@@ -284,9 +336,9 @@
     border-left: 1px solid rgba(219, 227, 238, 0.28);
     color: #e2e8f0;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
   }
@@ -364,63 +416,12 @@
     z-index: 3;
   }
 
-  /* Full-page rail (CRO-6731): desktop only. Always an empty backdrop
-     plate; home-motion.js never re-parents the hero's own .hw__canvas here
-     (Pass 5: the canvas positions itself directly instead, so the handoff
-     can be a continuous shrink over a scroll span rather than a swap at a
-     threshold). This div just gives the canvas's fixed, masked edge a
-     matching dark ground, and a fallback if the canvas never loads; there
-     is only ever one WebGL context. The mask feathers the rail's
-     inner (content-facing) edge to transparent so <main>'s own arc
-     background shows through right where body copy sits, one of two
-     independent WCAG AA contrast guards (the other is the scene's own
-     materials lightening with setDayProgress). */
-  .hw-rail {
-    display: none;
-  }
-
-  /* Empty 1px marker at the true end of main: see .hw-sentinel below and
-     layouts/index.html. Present at all breakpoints; invisible everywhere. */
-  .hw-sentinel {
-    height: 1px;
-  }
-
-  @media (min-width: 1024px) {
-    .hw-rail {
-      display: block;
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: clamp(220px, 22vw, 340px);
-      z-index: 5;
-      pointer-events: none;
-      overflow: hidden;
-      background: var(--ev-ink);
-      /* "white", not "black", for the visible stop: -webkit-mask-image
-         reads gradient luminance (white = fully shown, black = fully
-         hidden) while unprefixed mask-image reads alpha (both opaque
-         colours show); white is the one stop value that means "fully
-         visible" under either interpretation. */
-      mask-image: linear-gradient(to left, white 62%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to left, white 62%, transparent 100%);
-    }
-
-    /* Every section below the hero keeps clear of the rail. --rail-w is
-       set by home-motion.js at each resize, so the gutter tracks the
-       rail's actual (clamp()-shrunk) width rather than assuming 340px on
-       every desktop viewport. */
-    .arc-section:not(.hw) {
-      padding-inline-end: calc(var(--rail-w, 0px) + 48px);
-    }
-  }
-
   /* Step rail: plain type on one hairline; the active step lights its
      segment of the line. No pills. */
   .hw-steps {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    max-width: 44rem;
+    max-width: 54rem;
     border-top: 1px solid rgba(219, 227, 238, 0.14);
   }
 
@@ -435,9 +436,9 @@
     padding-top: 12px;
     color: #94a3b8;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
     transition: color 0.4s ease;
@@ -458,7 +459,7 @@
   }
 
   .hw-steps__item span {
-    color: #64748b;
+    color: #94a3b8;
     transition: color 0.4s ease;
   }
 
@@ -480,10 +481,9 @@
 
   .hw__note {
     margin-top: 10px;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    color: #94a3b8;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #cbd5e1;
   }
 
   @media (max-width: 767px) {
@@ -493,21 +493,13 @@
 
     .hw__copy {
       align-items: flex-start;
-      padding-top: 40px;
+      padding-top: 28px;
       padding-bottom: 0;
-    }
-
-    .hw__poster--wide {
-      display: none;
-    }
-
-    .hw__poster--tall {
-      display: block;
     }
 
     .hw__shade {
       background:
-        linear-gradient(180deg, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.8) 42%, rgba(2, 6, 23, 0) 60%),
+        linear-gradient(180deg, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.8) 44%, rgba(2, 6, 23, 0) 58%),
         linear-gradient(0deg, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0) 20%);
     }
 
@@ -516,16 +508,21 @@
     }
 
     .hw-bot__name {
-      font-size: 10.5px;
-    }
-
-    .hw-bot__tag {
       font-size: 14px;
     }
 
+    .hw-bot__tag {
+      font-size: 17px;
+    }
+
+    .hw-bot__icon {
+      width: 17px;
+      height: 17px;
+    }
+
     .hw-bot__tool {
-      font-size: 10px;
-      padding-left: 7px;
+      font-size: 14px;
+      padding-left: 8px;
     }
 
     .hw-bot__brand,
@@ -540,9 +537,13 @@
     }
 
     .hw-steps__item {
-      font-size: 10.5px;
-      letter-spacing: 0.06em;
+      font-size: 14px;
+      letter-spacing: 0.04em;
       white-space: nowrap;
+    }
+
+    .hw__note {
+      font-size: 16px;
     }
 
     .hw-steps__item::before {
@@ -562,6 +563,503 @@
 
     .hw-bot__tag.is-swap {
       animation: none;
+    }
+  }
+
+  /* Full-page highway (CRO-6837 round 4). EV: the road should run the full
+     page as one continuous highway, with an icon for each step the agent
+     does, and the car passing each icon as the page scrolls.
+     - From 1024px: the road is part of the page (.hwy, drawn by
+       page-road.js). It runs down the right margin through the dark
+       sections, sweeps across the whole page in the dark to light blend
+       (the one stretch with no text), then runs down the left margin to the
+       end of Reviews. The sections reserve whichever margin it uses
+       (utilities layer, below), so it never sits over text. Step signs sit
+       on the road and light up as the car passes them. The car is fixed in
+       the viewport; the road scrolls under it.
+     - Below 1024px: a route strip pinned under the header, the same five
+       step icons along it, the car driving past them once per loop.
+     Reduced motion, data saver and low memory: the road and its signs are
+     drawn still (all lit, no car); below 1024px nothing is shown. */
+  .home-arc {
+    position: relative;
+  }
+
+  .hwy {
+    --hwy-asphalt: #1b2436;
+    --hwy-edge: rgba(226, 232, 240, 0.55);
+    --hwy-dash: rgba(241, 245, 249, 0.7);
+    --hwy-agent: var(--ride-color, #22d3ee);
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+    pointer-events: none;
+    overflow: clip;
+    /* Never a scroll anchor: its signs are rebuilt on remeasure, and an
+       anchor that moves would nudge the reader's scroll position. */
+    overflow-anchor: none;
+  }
+
+  .hwy.is-on {
+    display: block;
+  }
+
+  .hwy__svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* The road fades in at the top of Why and out at the end of Reviews:
+     page-coloured caps over each end instead of a mask, so the tall road
+     layer never needs an offscreen surface of its own. */
+  .hwy::before,
+  .hwy::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 150px;
+  }
+
+  .hwy::before {
+    top: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(180deg, #020617 12%, rgba(2, 6, 23, 0));
+  }
+
+  .hwy::after {
+    bottom: 0;
+    left: 0;
+    height: 220px;
+    background: linear-gradient(0deg, #f7f4ee 18%, rgba(247, 244, 238, 0));
+  }
+
+  .hwy__svg path {
+    fill: none;
+    stroke-linecap: butt;
+    stroke-linejoin: round;
+  }
+
+  .hwy__edge {
+    stroke: var(--hwy-edge);
+    stroke-width: 76px;
+  }
+
+  .hwy__tone-dark {
+    stop-color: #1b2436;
+  }
+
+  .hwy__tone-light {
+    stop-color: #5b6679;
+  }
+
+  .hwy__asphalt {
+    stroke: url(#hwy-tone);
+    stroke-width: 72px;
+  }
+
+  .hwy__dash {
+    stroke: var(--hwy-dash);
+    stroke-width: 2px;
+    stroke-dasharray: 14 14;
+  }
+
+  /* The stretch already driven lights up along the centre line. */
+  .hwy__bend {
+    position: absolute;
+    left: 0;
+    overflow: visible;
+  }
+
+  .hwy__bend path {
+    fill: none;
+    stroke: var(--hwy-agent);
+    stroke-dasharray: 0 999999;
+  }
+
+  .hwy__trail {
+    stroke-width: 2px;
+  }
+
+  .hwy__glow {
+    stroke-width: 10px;
+    stroke-opacity: 0.22;
+  }
+
+  .hwy__run {
+    position: absolute;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--hwy-agent);
+    box-shadow: 0 0 6px 1px color-mix(in srgb, var(--hwy-agent) 45%, transparent);
+    transform-origin: 50% 0;
+    transform: scaleY(var(--run, 0));
+    will-change: transform;
+  }
+
+  /* Step signs: a round badge on the road, the step written along the
+     outer edge on its own backing panel (15px, so it keeps its contrast on
+     dark, light and in-between tones alike). */
+  .hwy-sign {
+    --sign-ink: #e2e8f0;
+    --sign-panel: rgba(2, 6, 23, 0.82);
+    --sign-num: var(--hwy-agent);
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .hwy-sign.is-light {
+    --sign-ink: #1e293b;
+    --sign-panel: rgba(255, 255, 255, 0.92);
+    --sign-num: #0e7490;
+  }
+
+  .hwy-sign__badge {
+    position: absolute;
+    left: -21px;
+    top: -21px;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 999px;
+    border: 2px solid #475569;
+    background: #0f172a;
+    color: #94a3b8;
+    transition: border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  }
+
+  .hwy-sign__badge svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hwy-sign.is-passed .hwy-sign__badge {
+    border-color: var(--hwy-agent);
+    background: color-mix(in oklab, var(--hwy-agent) 18%, #0f172a);
+    color: #f8fafc;
+    box-shadow: 0 0 14px color-mix(in srgb, var(--hwy-agent) 55%, transparent);
+  }
+
+  .hwy-sign.is-last .hwy-sign__badge {
+    border-color: #34d399;
+    background: color-mix(in oklab, #34d399 18%, #0f172a);
+  }
+
+  .hwy-sign.is-last.is-passed .hwy-sign__badge {
+    box-shadow: 0 0 14px rgba(52, 211, 153, 0.55);
+  }
+
+  .hwy-sign__label {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    padding: 10px 2px;
+    border-radius: 999px;
+    background: var(--sign-panel);
+    white-space: nowrap;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sign-ink);
+    opacity: 0.8;
+    transition: opacity 0.4s ease;
+  }
+
+  .hwy-sign.is-passed .hwy-sign__label {
+    opacity: 1;
+  }
+
+  .hwy-sign__label b {
+    color: var(--sign-num);
+    font-weight: 700;
+  }
+
+  /* Along a straight stretch the label runs down the road's outer edge. */
+  .hwy-sign[data-side="right"] .hwy-sign__label,
+  .hwy-sign[data-side="left"] .hwy-sign__label {
+    top: -21px;
+    writing-mode: vertical-rl;
+  }
+
+  .hwy-sign[data-side="right"] .hwy-sign__label {
+    left: 46px;
+  }
+
+  .hwy-sign[data-side="left"] .hwy-sign__label {
+    right: 46px;
+  }
+
+  /* On the sweep the road runs from top right to bottom left, so the clear
+     space is below and right of a badge in the left half, above and left
+     of one in the right half. */
+  .hwy-sign[data-side^="flat"] .hwy-sign__label {
+    padding: 8px 14px;
+  }
+
+  .hwy-sign[data-side="flat-left"] .hwy-sign__label {
+    top: 30px;
+    left: 34px;
+  }
+
+  .hwy-sign[data-side="flat-right"] .hwy-sign__label {
+    bottom: 30px;
+    right: 34px;
+  }
+
+  /* The car: top-down, front at the bottom of the drawing, the same pearl
+     body, dark glass and agent-colour stripes as the hero cars. Moved on
+     transform only. */
+  .ride {
+    --ride-asphalt: #1b2436;
+    --ride-edge: rgba(226, 232, 240, 0.55);
+    --ride-dash: rgba(241, 245, 249, 0.7);
+    --ride-body: #f1f5f9;
+    --ride-roof: #cbd5e1;
+    --ride-outline: rgba(2, 6, 23, 0.55);
+    --ride-agent: var(--ride-color, #22d3ee);
+    position: fixed;
+    z-index: 20;
+    display: none;
+    pointer-events: none;
+    /* The car moves every frame: never a scroll anchor. */
+    overflow-anchor: none;
+  }
+
+  .ride.is-on {
+    display: block;
+  }
+
+  .ride.is-done {
+    --ride-agent: #34d399;
+  }
+
+  .ride__car {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+
+  .ride__car svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--ride-agent) 60%, transparent)) drop-shadow(0 2px 3px rgba(2, 6, 23, 0.35));
+    transition: filter 0.5s ease;
+  }
+
+  .ride__body {
+    fill: var(--ride-body);
+    stroke: var(--ride-outline);
+    stroke-width: 0.7;
+  }
+
+  .ride__roof {
+    fill: var(--ride-roof);
+  }
+
+  .ride__glass {
+    fill: #0f172a;
+  }
+
+  .ride__stripe {
+    fill: var(--ride-agent);
+    transition: fill 0.5s ease;
+  }
+
+  .ride__lamp {
+    fill: #fef9c3;
+  }
+
+  .ride__tail {
+    fill: #f43f5e;
+  }
+
+  .ride__beam {
+    opacity: 0.45;
+  }
+
+  .ride__road,
+  .ride__trail,
+  .ride__stops,
+  .ride__caption {
+    display: none;
+  }
+
+  /* Desktop: the car alone, fixed, placed by page-road.js. */
+  @media (min-width: 1024px) {
+    .ride {
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .ride__car {
+      width: 32px;
+      height: 64px;
+      margin: -32px 0 0 -16px;
+      transform: translate3d(var(--car-x, -200px), var(--car-y, -200px), 0) rotate(var(--car-yaw, 0deg));
+    }
+  }
+
+  /* Phones and tablets: a route strip under the header. The car is drawn
+     upright and turned to face the direction of travel. */
+  @media (max-width: 1023px) {
+    .ride {
+      top: var(--ride-top, 64px);
+      left: 0;
+      right: 0;
+      height: 78px;
+      background: #020617;
+      border-bottom: 1px solid #1e293b;
+      box-shadow: 0 10px 24px -14px rgba(2, 6, 23, 0.8);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+    }
+
+    .ride.is-shown {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.6s ease, visibility 0s;
+    }
+
+    .ride__road,
+    .ride__trail,
+    .ride__stops {
+      display: block;
+      position: absolute;
+    }
+
+    .ride__road {
+      top: 5px;
+      left: 0;
+      right: 0;
+      height: 38px;
+      background-color: var(--ride-asphalt);
+      border-block: 1px solid var(--ride-edge);
+      background-image: repeating-linear-gradient(90deg, var(--ride-dash) 0 12px, transparent 12px 24px);
+      background-size: 100% 2px;
+      background-position: 0 50%;
+      background-repeat: no-repeat;
+    }
+
+    .ride__trail {
+      top: 23px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--ride-agent);
+      box-shadow: 0 0 10px var(--ride-agent);
+      transform-origin: 0 50%;
+      transform: scaleX(var(--ride-p, 0));
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* The step the car last passed, in words, under the road. */
+    .ride__caption {
+      position: absolute;
+      top: 48px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 22px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+    }
+
+    .ride__caption b {
+      color: var(--ride-agent);
+      font-weight: 700;
+    }
+
+    .ride__stops {
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ride__stops li {
+      position: absolute;
+      top: 11px;
+      left: var(--stop-x, 0px);
+      display: grid;
+      width: 26px;
+      height: 26px;
+      margin-left: -13px;
+      place-items: center;
+      border-radius: 999px;
+      border: 1.5px solid #475569;
+      background: #0f172a;
+      color: #94a3b8;
+      transition: border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .ride__stops li.is-passed {
+      border-color: var(--ride-agent);
+      color: #f8fafc;
+      box-shadow: 0 0 10px color-mix(in srgb, var(--ride-agent) 55%, transparent);
+    }
+
+    .ride__stops li:last-child {
+      border-color: #34d399;
+    }
+
+    .ride__stops svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .ride__car {
+      left: 27px;
+      width: 24px;
+      height: 48px;
+      transform: translate3d(var(--ride-along, 0px), var(--ride-cross, 0px), 0) rotate(calc(-90deg + var(--ride-yaw, 0deg)));
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* The car leaving the right end and coming back in at the left for the
+       next loop: no slide back across the strip. */
+    .ride.is-wrap .ride__car,
+    .ride.is-wrap .ride__trail {
+      transition: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ride {
+      display: none !important;
+    }
+
+    .hwy-sign__badge,
+    .hwy-sign__label {
+      transition: none;
     }
   }
 
@@ -645,10 +1143,10 @@
     display: block;
     margin-bottom: 10px;
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-size: 14px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #64748b;
+    color: #94a3b8;
   }
 
   .flow-agent {
@@ -741,10 +1239,10 @@
     .flow-head {
       padding: 0 0 14px;
       font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 13px;
-      letter-spacing: 0.18em;
+      font-size: 15px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #94a3b8;
+      color: #cbd5e1;
     }
 
     .flow-label {
@@ -894,5 +1392,44 @@
       height: 2px;
       background: repeating-linear-gradient(90deg, var(--ev-line) 0 5px, transparent 5px 10px);
     }
+  }
+}
+
+/* CRO-6839: Markdown tables on the Build Queue offer page only (the page sets
+   prose_class: offer-prose in front matter). Lives in the utilities layer
+   because the typography plugin's .prose rules land there; the extra class
+   gives these rules higher specificity than .prose :where(table).
+   - Body-size text (the plugin default is 0.875em, about 14px).
+   - Bold first column so each row scans by its label.
+   - The table itself becomes the horizontal scroll container, so a wide
+     table scrolls inside the column instead of widening the page at 390px. */
+@layer utilities {
+  .offer-prose table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* CRO-6837 round 4: while the full-page highway is on (desktop only),
+     the sections it drives past keep its margin clear: the right margin for
+     the dark sections, the left for the light ones after the sweep. 160px
+     from the viewport edge, or the normal gutter where that is wider. In
+     the utilities layer so it outranks the container's lg:px-8. */
+  @media (min-width: 1024px) {
+    .home-arc.has-road :is(#why, #flow) > .max-w-7xl {
+      padding-right: max(2rem, calc(160px - max(0px, (100vw - 80rem) / 2)));
+    }
+
+    .home-arc.has-road :is(#tools, #proof, #reviews) > .max-w-7xl {
+      padding-left: max(2rem, calc(160px - max(0px, (100vw - 80rem) / 2)));
+    }
+  }
+
+  .offer-prose table th:first-child,
+  .offer-prose table td:first-child {
+    font-weight: 600;
   }
 }

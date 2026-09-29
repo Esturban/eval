@@ -40,24 +40,25 @@ description = "EV Advisory ships AI agents into the tools founder-led agencies a
 mainSections = ['services','case study']
 # Hero section elements
 hero_title = "Get your agency's repeat work off the founder's plate, without hiring."
-hero_title_follow = "One AI agent at a time, built into the tools you already run and handed to someone already on your team. No new hire."
-# Stack line: the hero sub-line and the tool-handling table both read it.
+hero_title_follow = "One AI agent at a time, inside the tools you already run."
+# Stack line: the offer section (home-tools.html) reads it.
 stack_line = "Microsoft, Google, SAP, Salesforce, or spreadsheets. We build on what you already run."
 hero_CTA = "Book my free 20-minute Live Audit"
 # Line beside the hero call to action. Unset it and nothing renders.
 hero_guarantee = "First agent live in your systems within 10 business days of access, or next month is free."
 hero_CTA_link = "/live-audit/"
 hero_img= "images/featured/data-natural-beauty.png"
-hero_description = "Walk away from one free 20-minute call already knowing which process to automate first and what it takes to ship it. We review your actual stack with you, live."
+hero_description = "20 minutes on your real stack. You leave knowing which process to hand off first."
 
 
-# Mission section elements
+# Mission section elements. The homepage (CRO-6837 round 2) reads only
+# mission_description, as one line; the quote and author are kept for reuse.
 mission_quote = "Founder-led teams do not need more AI ideas. They need the Friday status updates, the intake emails, and the report assembly off their plate, handled by a working agent inside the tools they already run. That is what we build."
 mission_author = "EV Advisory"
-mission_description = "EV Advisory ships AI agents for founder-led agencies and service teams, starting with whichever repeated process costs the most time. Each agent is built into the tools you already use, measured before and after, and handed to an owner you already have. The goal is not more software. The goal is work off the founder's plate without adding headcount."
+mission_description = "You do not need more AI ideas. You need Friday's status update off your plate."
 
-top_n_services_title = "Build Queue: your repeat work, shipped as AI agents, one at a time"
-top_n_services_subtitle = "One monthly subscription. You keep a queue of the processes you want gone; we ship them one at a time into the tools your team already runs. Your first agent is live within 10 business days of access, or next month is free."
+top_n_services_title = "Build Queue: your repeat work, shipped as agents, one at a time."
+top_n_services_subtitle = "One monthly subscription. You keep the queue; we ship the next agent."
 
 
 

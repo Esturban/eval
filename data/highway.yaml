@@ -6,8 +6,13 @@
 # a stated limit of the offer, so the procurement agent ends at "approval
 # requested", never "paid".
 #
-# lane: 0 is the inside lane. offset: starting position along the road, 0-1.
-# speed: relative cruising speed. color: accent for the roof beacon and dot.
+# lane: 0 is the inside lane; every other vehicle eases across one lane on
+# its way in. offset: starting position along the loop, 0-1; keep them evenly
+# spaced (0.2 apart for five vehicles, starting off 0.05 so cars going in
+# never mirror cars going out) so traffic has an even rhythm.
+# speed: keep every vehicle at 1.0. One steady speed means nothing overtakes
+# and no two cars ever overlap. color: the agent's accent, used for the line
+# along the car's side, its underglow and its label.
 # tools: keys from data/brands.json. Each time an event comes round again
 # its tag names the next tool in this list, as a "works with" chip. The
 # finished-work tag names where the work landed, one tool per loop.
@@ -17,7 +22,7 @@ bots:
     job: Email and calendar
     color: "#22d3ee"
     lane: 1
-    offset: 0.08
+    offset: 0.05
     speed: 1.0
     events:
       - { icon: mail, text: New email, tools: [outlook, gmail, protonmail] }
@@ -31,8 +36,8 @@ bots:
     job: Contacts and deals
     color: "#34d399"
     lane: 2
-    offset: 0.3
-    speed: 0.86
+    offset: 0.25
+    speed: 1.0
     events:
       - { icon: crm, text: CRM record added, tools: [hubspot, salesforce, zoho, odoo] }
       - { icon: crm, text: Contact updated, tools: [salesforce, googleworkspace, hubspot, zoho] }
@@ -45,8 +50,8 @@ bots:
     job: Tasks and status
     color: "#a78bfa"
     lane: 0
-    offset: 0.52
-    speed: 1.12
+    offset: 0.45
+    speed: 1.0
     events:
       - { icon: task, text: Project task updated, tools: [jira, githubactions, asana, gitlab, trello, jenkins, clickup, bitbucket, notion] }
       - { icon: chat, text: Team message, tools: [teams, slack, googlechat, whatsapp] }
@@ -59,8 +64,8 @@ bots:
     job: Invoices and orders
     color: "#fbbf24"
     lane: 3
-    offset: 0.7
-    speed: 0.78
+    offset: 0.65
+    speed: 1.0
     events:
       - { icon: invoice, text: Invoice matched, tools: [sap, quickbooks, xero, odoo] }
       - { icon: sheet, text: Spreadsheet updated, tools: [excel, googlesheets, airtable] }
@@ -73,8 +78,8 @@ bots:
     job: Documents and files
     color: "#60a5fa"
     lane: 1
-    offset: 0.86
-    speed: 0.95
+    offset: 0.85
+    speed: 1.0
     events:
       - { icon: doc, text: Document filed, tools: [sharepoint, googledrive, protondrive, dropbox, box] }
       - { icon: api, text: Folder synced, tools: [aws, azure, googlecloud, protonvpn, wireguard] }

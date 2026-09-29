@@ -1,49 +1,32 @@
 {{/* "Why work gets stuck": the problem, still in the dark part of the
-     colour arc, right after the highway hero. */}}
-{{ $testimonial_card_description := .Site.Params.mission_quote }}
-{{ $mission_author :=  .Site.Params.mission_author }}
+     colour arc, right after the highway hero. One claim per block
+     (CRO-6837 round 2): a headline, one line, four one-line pains. */}}
 {{ $mission_description :=  .Site.Params.mission_description }}
 {{ $cards := slice
-  (dict "n" "01" "icon" "sheet" "title" "Repeated manual work" "body" "The same reports and follow-ups, rebuilt by hand every week.")
-  (dict "n" "02" "icon" "doc" "title" "Process lives in memory" "body" "One person's head, not a document, so it can't be handed off.")
-  (dict "n" "03" "icon" "person" "title" "No clear owner" "body" "Nobody owns it end to end, so it slips when the team gets busy.")
-  (dict "n" "04" "icon" "crm" "title" "Hiring as the default fix" "body" "More work usually means another hire, even with tools already in place.")
+  (dict "icon" "sheet" "title" "The same reports, rebuilt by hand every week.")
+  (dict "icon" "doc" "title" "The process lives in one person's head.")
+  (dict "icon" "person" "title" "Nobody owns it end to end.")
+  (dict "icon" "crm" "title" "More work means another hire.")
 }}
 
-<section id="why" class="arc-section py-24 sm:py-32" data-tone="#050c1c" style="background-color:#050c1c">
-  <div class="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)] lg:px-8">
-    <div>
-      <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300 sm:text-sm">Why work gets stuck</p>
-      <h2 class="mt-5 max-w-3xl text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl">
-        Why the same work keeps landing on the founder
-      </h2>
-      <div class="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl sm:leading-9">
-        {{ $mission_description | markdownify | emojify }}
-      </div>
-      <div class="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2">
-        {{ range $cards }}
-        <article class="border-t border-slate-700/70 pt-6">
-          <div class="flex items-center gap-3">
-            <span class="grid h-11 w-11 place-items-center rounded-xl bg-slate-800 text-cyan-300">
-              <svg class="h-6 w-6" aria-hidden="true"><use href="#i-{{ .icon }}"></use></svg>
-            </span>
-            <span class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{{ .n }}</span>
-          </div>
-          <h3 class="mt-4 text-2xl font-semibold text-white">{{ .title }}</h3>
-          <p class="mt-2 text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">{{ .body }}</p>
-        </article>
-        {{ end }}
-      </div>
-    </div>
-    <aside class="self-start border-l-2 border-cyan-400/70 py-2 pl-7 text-slate-100 lg:mt-24">
-      <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Founder note</p>
-      <blockquote class="mt-5 text-xl leading-9 text-slate-100">
-        {{ $testimonial_card_description | markdownify }}
-      </blockquote>
-      <footer class="mt-6">
-        <p class="text-base font-semibold text-white">{{ $mission_author }}</p>
-        <p class="mt-1 text-sm leading-6 text-slate-400">Leads each engagement from Live Audit to handoff.</p>
-      </footer>
-    </aside>
+<section id="why" class="arc-section py-24 sm:py-32" data-tone="#050c1c" style="--from:#020617; --tone:#050c1c; background-color:#050c1c">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <p class="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300 sm:text-base">Why work gets stuck</p>
+    <h2 class="mt-5 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-tight text-white [text-wrap:balance] sm:text-6xl lg:text-7xl">
+      The same work keeps landing on the founder.
+    </h2>
+    <p class="mt-7 max-w-3xl text-xl leading-8 text-slate-300 [text-wrap:balance] sm:text-2xl sm:leading-10">
+      {{ $mission_description | markdownify }}
+    </p>
+    <ul class="mt-16 grid max-w-5xl gap-x-12 gap-y-10 sm:grid-cols-2">
+      {{ range $cards }}
+      <li class="flex items-start gap-5 border-t border-slate-700/70 pt-7">
+        <span class="grid h-12 w-12 flex-none place-items-center rounded-xl bg-slate-800 text-cyan-300">
+          <svg class="h-6 w-6" aria-hidden="true"><use href="#i-{{ .icon }}"></use></svg>
+        </span>
+        <p class="text-2xl font-semibold leading-snug tracking-tight text-white [text-wrap:balance] sm:text-3xl">{{ .title }}</p>
+      </li>
+      {{ end }}
+    </ul>
   </div>
 </section>

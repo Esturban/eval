@@ -1,38 +1,48 @@
-<div class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950 text-slate-200">
-    <div x-data="{ open: false }"
-         class="mx-auto flex max-w-7xl flex-col px-4 md:flex-row md:items-center md:justify-between md:px-6 lg:px-8">
-        <div class="flex flex-row items-center justify-between py-4">
-            <a href="/" class="group flex text-slate-100 transition duration-300 ease-in-out">
+{{/* Site header (CRO-6837 round 3). Below lg the links sit behind a
+     labelled Menu button that opens a full-width panel over the page: rows
+     at least 56px tall, 20px type, Escape or any link closes it. From lg up
+     the same links show inline. One list serves both, so they never drift. */}}
+{{ $link := "flex min-h-14 items-center justify-between border-b border-slate-800 px-1 text-xl font-semibold text-slate-100 transition hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:min-h-0 lg:whitespace-nowrap lg:rounded-full lg:border-0 lg:px-2 lg:py-2 lg:text-base xl:px-3 lg:font-medium lg:text-slate-200 lg:hover:bg-slate-900" }}
+<div class="site-header sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950 text-slate-200"
+     x-data="{ open: false }"
+     @keydown.escape.window="if (open) { open = false; $refs.menuButton.focus() }">
+    <div class="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center py-3">
+            <a href="/" class="group flex items-center rounded-lg text-slate-100 transition duration-300 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
                 <img src="/images/site-icon.svg"
                      class="h-8 w-8 transition-opacity group-hover:opacity-70 group-focus:opacity-70"
                      alt="{{ .Site.Title }} Logo" />
                 <div
-                     class="ml-3 mt-1 text-lg font-semibold tracking-[0.08em] text-slate-100 uppercase transition-colors group-hover:text-cyan-200">
+                     class="ml-3 mt-0.5 whitespace-nowrap text-lg font-semibold tracking-[0.08em] text-slate-100 uppercase transition-colors group-hover:text-cyan-200">
                     {{ .Site.Title }}</div>
             </a>
-            <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open" role="navigation" aria-expanded="false" aria-label="Main" aria-controls="menuItems">
-                <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
-                    <path x-show="!open" fill-rule="evenodd"
-                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                          clip-rule="evenodd"></path>
-                    <path x-show="open" fill-rule="evenodd"
-                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          clip-rule="evenodd"></path>
-                </svg>
-            </button>
         </div>
-        <nav :class="{'flex': open, 'hidden': !open}"
-             class="hidden flex-col pb-4 md:flex md:flex-row md:items-center md:justify-end md:pb-0">
-            {{/* Homepage sections only; every item is an anchor that exists on the homepage. */}}
-            {{ $base := "/" }}{{ if .IsHome }}{{ $base = "" }}{{ end }}
-            {{ range slice (slice "flow" "How it works") (slice "tools" "Tools") (slice "proof" "Proof") (slice "reviews" "Reviews") }}
-            <a class="mt-2 rounded-full px-4 py-2 text-base font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-1" href="{{ $base }}#{{ index . 0 }}" @click="open = false">{{ index . 1 }}</a>
-            {{ end }}
-            {{ if not .IsHome }}
-            <a class="mt-2 rounded-full px-4 py-2 text-base font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-1" href="/store/" data-cta="store">Store</a>
+        <button type="button" x-ref="menuButton"
+                class="inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-600 bg-slate-900 px-4 text-base font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:hidden"
+                @click="open = !open" aria-controls="site-menu" aria-expanded="false" :aria-expanded="open.toString()">
+            <svg fill="currentColor" viewBox="0 0 20 20" class="h-5 w-5" aria-hidden="true">
+                <path x-show="!open" fill-rule="evenodd"
+                      d="M3 5a1 1 0 011-1h14a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h14a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h14a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clip-rule="evenodd"></path>
+                <path x-show="open" style="display: none" fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"></path>
+            </svg>
+            <span x-text="open ? 'Close' : 'Menu'">Menu</span>
+        </button>
+        <nav id="site-menu" aria-label="Main"
+             :class="{ 'flex': open, 'hidden': !open }"
+             @click.outside="if (window.innerWidth < 1024 && !$refs.menuButton.contains($event.target)) open = false"
+             class="site-menu absolute inset-x-0 top-full hidden max-h-[calc(100svh-4rem)] flex-col overflow-y-auto border-b border-slate-800 bg-slate-950 px-5 pb-6 pt-2 shadow-[0_24px_48px_-16px_rgba(2,6,23,0.9)] sm:px-7 lg:static lg:flex lg:max-h-none lg:flex-row lg:items-center lg:justify-end lg:gap-1 lg:overflow-visible lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
+            {{/* CRO-7363: one consistent link set on every page, home included
+                 (Site Map Proposal Phase 1, approved by EV). Services, Proof,
+                 Insights (with a flyout for Answers/Methodology/Store), About,
+                 Contact. */}}
+            <a class="{{ $link }}" href="/services/" @click="open = false">Services<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
+            <a class="{{ $link }}" href="/proof/" @click="open = false">Proof<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
-                <button @click="open = !open"
-                        class="mt-2 flex w-full flex-row items-center rounded-full bg-transparent px-4 py-2 text-left text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-cyan-200 focus:bg-slate-900 focus:text-cyan-200 focus:outline-none focus:shadow-outline md:mt-0 md:ml-2 md:inline md:w-auto">
+                <button @click="open = !open" :aria-expanded="open.toString()"
+                        class="{{ $link }} w-full text-left lg:w-auto">
                     <span>Insights</span>
                     <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
                          class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
@@ -47,11 +57,11 @@
                      x-transition:leave="transition ease-in duration-75"
                      x-transition:leave-start="transform opacity-100 scale-100"
                      x-transition:leave-end="transform opacity-0 scale-95"
-                        class="absolute right-0 z-30 mt-2 w-full origin-top-right md:max-w-sm md:w-screen">
+                        class="z-30 mt-2 w-full origin-top-right lg:absolute lg:right-0 lg:max-w-sm lg:w-screen">
                     <div class="rounded-2xl border border-slate-200 bg-white px-2 pb-4 pt-2 text-zinc-900 shadow-lg">
                         <div class="grid grid-cols-1 gap-4">
                             <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
-                               href="/insights">
+                               href="/insights/">
                                 <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -62,8 +72,24 @@
                                     </svg>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="font-semibold">Insights</p>
-                                    <p class="text-sm">Current thinking on measurement, trust, and AI agents in operations</p>
+                                    <p class="font-semibold">All Insights</p>
+                                    <p class="text-base leading-6">Current thinking on measurement, trust, and AI agents in operations</p>
+                                </div>
+                            </a>
+
+                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
+                               href="/answers/">
+                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                         class="w-4 h-4 md:h-6 md:w-6">
+                                        <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-semibold">Answers</p>
+                                    <p class="text-base leading-6">Direct answers to the questions buyers ask before hiring an AI agent partner</p>
                                 </div>
                             </a>
 
@@ -80,52 +106,40 @@
                                 </div>
                                 <div class="ml-3">
                                     <p class="font-semibold">Methodology</p>
-                                    <p class="text-sm">How EV Advisory diagnoses signal, attribution, and reporting gaps</p>
+                                    <p class="text-base leading-6">How we scope, build and prove AI agent work for Canadian and US teams</p>
                                 </div>
                             </a>
 
                             <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
-                               href="/about/">
+                               href="/store/" data-cta="store">
                                 <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                          class="w-4 h-4 md:h-6 md:w-6">
-                                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                        <path d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z">
                                         </path>
                                     </svg>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="font-semibold">About</p>
-                                    <p class="text-sm">Who EV Advisory is and how the team works</p>
-                                </div>
-                            </a>
-
-                            <a class="group row flex items-start rounded-xl bg-transparent p-2 hover:bg-slate-950 hover:text-white focus:bg-slate-950 focus:text-white focus:outline-none focus:shadow-outline"
-                               href="/proof/">
-                                <div class="rounded-xl bg-cyan-500 p-3 text-slate-950 group-hover:bg-cyan-300">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                         class="w-4 h-4 md:h-6 md:w-6">
-                                        <path d="M9 12.75l2.25 2.25L15 9m5 3a9 9 0 11-18 0 9 9 0 0118 0z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="font-semibold">Proof</p>
-                                    <p class="text-sm">Results and case evidence from past engagements</p>
+                                    <p class="font-semibold">Store</p>
+                                    <p class="text-base leading-6">Guides, checklists, and done-for-you resources</p>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            {{ end }}
-            <a class="mt-2 rounded-full bg-cyan-400 px-5 py-2 text-base font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus:outline-none focus:shadow-outline md:mt-0 md:ml-3"
-               href="/scorecard/">
-                Free Scorecard
+            <a class="{{ $link }}" href="/about/" @click="open = false">About<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
+            <a class="{{ $link }}" href="/contact/" @click="open = false">Contact<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
+            {{/* CRO-6839: a page may swap the nav CTA via front matter page_cta.nav_label/url. Every other page keeps Free Scorecard. */}}
+            {{ $navCtaLabel := "Free Scorecard" }}{{ $navCtaHref := "/scorecard/" }}
+            {{ with $.Params.page_cta }}{{ with .nav_label }}{{ $navCtaLabel = . }}{{ $navCtaHref = $.Params.page_cta.url }}{{ end }}{{ end }}
+            <a class="mt-5 inline-flex min-h-14 items-center justify-center rounded-full bg-cyan-400 px-6 text-lg font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:mt-0 lg:ml-2 lg:min-h-11 lg:whitespace-nowrap lg:px-4 lg:text-base xl:ml-3 xl:px-5"
+               href="{{ $navCtaHref }}" @click="open = false">
+                {{ $navCtaLabel }}
             </a>
-            <button id="theme-toggle" type="button"
-                    class="p-2 text-sm text-gray-500 rounded-lg md: dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 md:ml-2 max-w-5 xs:hidden">
+            <button id="theme-toggle" type="button" aria-label="Switch light or dark mode"
+                    class="mt-3 inline-flex h-11 w-11 items-center justify-center self-start rounded-full text-slate-400 transition hover:bg-slate-800 hover:text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:mt-0 lg:ml-1 lg:hidden lg:self-auto xl:inline-flex">
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                      xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">

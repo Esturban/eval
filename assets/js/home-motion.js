@@ -3,19 +3,14 @@
 //    lazy-loads the 3D scene bundle only when the hero is near the viewport,
 //    and feeds it scroll progress through the pinned stage.
 // 2. Step rail: highlights the current story step from scroll position.
-// 3. Colour arc: one continuous background colour across the page, blended
-//    between each section's tone as its boundary crosses the viewport.
-//    Without this script every section keeps its own static background.
+// 3. Full-page highway: the hero's first agent drives the length of the
+//    page past the step signs (page-road.js).
+// The colour arc between sections is pure CSS now (main.css, .arc-section).
+
+import { setupRoad } from './page-road.js';
 
 const ROOT_MARGIN = '600px 0px';
 const STEP_COUNT = 4;
-// Colour arc: each blend between two tones spans this share of the viewport
-// height. It starts where it always did (the next section 105% down the
-// viewport) but runs on past the boundary instead of finishing at it, so the
-// dark-to-light change is spread over twice the scroll.
-const ARC_BLEND = 0.9;
-const ARC_LEAD = 0.45; // how far past the probe line the blend keeps going
-const ARC_PROBE = 0.6; // where in the viewport a boundary counts as crossed
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -23,6 +18,14 @@ function clamp(value, min, max) {
 
 function prefersReducedMotion() {
   return Boolean(window.matchMedia) && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+// Data saver on, or a device with very little memory: the static poster is
+// the better experience, so the 3D scene is never downloaded.
+function prefersPoster() {
+  const conn = navigator.connection;
+  const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 2;
+  return Boolean(conn && conn.saveData) || lowMemory;
 }
 
 function heroProgress(hero) {
@@ -50,7 +53,7 @@ function setupHighway(hero, onProgress) {
   let loading = false;
   let heroVisible = true;
 
-  const canAnimate = !prefersReducedMotion() && canvas && sceneSrc && typeof window.IntersectionObserver === 'function';
+  const canAnimate = !prefersReducedMotion() && !prefersPoster() && canvas && sceneSrc && typeof window.IntersectionObserver === 'function';
   if (!canAnimate) return { progress: onProgress };
 
   // The scene is decoration: fetch it after the page has loaded and the
@@ -104,63 +107,29 @@ function setupHighway(hero, onProgress) {
   };
 }
 
-function parseHex(hex) {
-  const n = parseInt(hex.replace('#', ''), 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-}
-
-function smooth(t) {
-  return t * t * (3 - 2 * t);
-}
-
-// Half linear, half smoothstep: still eases in and out, but its steepest
-// rate of change is well under smoothstep's, so no stretch of scroll flips
-// the page hard.
-function gentle(t) {
-  return 0.5 * t + 0.5 * smooth(t);
-}
-
-function setupArc(main) {
-  const sections = Array.from(main.querySelectorAll('.arc-section[data-tone]'));
-  if (sections.length < 2) return () => {};
-  const tones = sections.map((s) => parseHex(s.dataset.tone));
-  let tops = [];
-
-  function measure() {
-    const base = window.scrollY;
-    tops = sections.map((s) => s.getBoundingClientRect().top + base);
-  }
-
-  function update() {
-    const vh = window.innerHeight;
-    const probe = window.scrollY + vh * ARC_PROBE;
-    let i = 0;
-    while (i < tops.length - 1 && probe >= tops[i + 1]) i += 1;
-    let color = tones[i];
-    // The nearest boundary whose blend window holds the probe, whether it
-    // is still ahead (next) or was just crossed (current).
-    [i + 1, i].forEach((b) => {
-      if (b < 1 || b >= tops.length) return;
-      const blendStart = tops[b] - vh * (ARC_BLEND - ARC_LEAD);
-      const t = (probe - blendStart) / (vh * ARC_BLEND);
-      if (t <= 0 || t >= 1) return;
-      const k = gentle(t);
-      color = tones[b - 1].map((c, j) => Math.round(c + (tones[b][j] - c) * k));
-    });
-    main.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-  }
-
-  measure();
-  document.documentElement.classList.add('arc-live');
-  window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
-  window.addEventListener('load', () => { measure(); update(); });
-  return update;
-}
-
 function init() {
-  const main = document.querySelector('.home-arc');
   const hero = document.querySelector('[data-highway]');
-  const updateArc = main ? setupArc(main) : () => {};
+  const ride = document.querySelector('[data-ride]');
+  const layer = document.querySelector('.hwy');
+  const seam = document.querySelector('.arc-seam');
+  // The road is drawn for everyone with JavaScript; the car is motion, so
+  // it takes the same gate as the 3D scene: reduced motion, data saver and
+  // low memory get the road and its signs standing still.
+  let updateRide = () => {};
+  if (ride && layer && seam) {
+    const ids = (ride.dataset.ride || '').split(/\s+/).filter(Boolean);
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    if (sections.length >= 2) {
+      updateRide = setupRoad({
+        ride,
+        layer,
+        seam,
+        sections,
+        steps: JSON.parse(ride.dataset.steps || '[]'),
+        still: prefersReducedMotion() || prefersPoster(),
+      });
+    }
+  }
   const highway = hero ? setupHighway(hero, setupSteps(hero)) : null;
 
   let ticking = false;
@@ -169,7 +138,7 @@ function init() {
     ticking = true;
     requestAnimationFrame(() => {
       ticking = false;
-      updateArc();
+      updateRide();
       if (highway) highway.progress(heroProgress(hero));
     });
   }
