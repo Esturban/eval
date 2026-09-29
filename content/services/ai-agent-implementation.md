@@ -70,6 +70,7 @@ faq:
 <ul class="mt-2 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
 <li>Founding price, locked 6 months.</li>
 <li>Cancel anytime.</li>
+<li class="font-semibold text-slate-950 dark:text-white">3 of 10 founding seats open.</li>
 </ul>
 </div>
 <div>
