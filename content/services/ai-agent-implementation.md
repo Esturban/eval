@@ -32,7 +32,7 @@ schema:
   offer:
     # Locked 2026-09-25 (CRO-5617). Founding seat price only; no other tiers on the page.
     name: Build Queue founding seat
-    description: "Monthly AI agent implementation subscription. One active request at a time, unlimited queue behind it. USD 1,995 per month for the first 10 seats, locked for 6 months. Cancel in the first 14 days for 75 percent back. First request live within 10 business days of system access, or the next month is free."
+    description: "Monthly AI agent implementation subscription. One active request at a time, unlimited queue behind it. USD 1,995 per month for the first 10 seats, price held for 6 months, month to month with no minimum term. Cancel in the first 14 days for 100 percent back. First request live within 10 business days of system access, or the next month is free."
     price: 1995
     price_currency: USD
     url: /live-audit/
@@ -42,9 +42,9 @@ faq:
   - question: "Who is Build Queue for?"
     answer: "Founder-led agencies and service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have repeated processes they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
   - question: "How much does it cost?"
-    answer: "USD 1,995 per month for the first 10 founding seats, with that price locked for 6 months. Seats after that are USD 2,995 per month. One request is in flight at a time, with as many queued behind it as you like. There are no per-project quotes and no setup fee."
+    answer: "USD 1,995 per month for the first 10 founding seats, with that price held for 6 months. Month to month, no minimum term. Seats after that are USD 2,995 per month. One request is in flight at a time, with as many queued behind it as you like. There are no per-project quotes and no setup fee."
   - question: "What is the guarantee?"
-    answer: "Two parts. First, cancel in the first 14 days and get 75 percent of your payment back, no conditions. Second, if your first request is not live in your own systems within 10 business days of you granting system access, your next month is free."
+    answer: "Two parts. First, cancel in the first 14 days and get 100 percent of your payment back, no conditions. Second, if your first request is not live in your own systems within 10 business days of you granting system access, your next month is free."
   - question: "How fast is the first agent live?"
     answer: "Within 10 business days of you granting access to the tools involved, or your next month is free. The clock starts at access, not at signup, because access is the one step only your team can complete. We send a short access checklist on day one so it takes minutes, not a security review."
   - question: "What does my team need to do?"
@@ -60,7 +60,7 @@ faq:
 <li>One agent in build at a time.</li>
 <li>Unlimited queue behind it.</li>
 <li>Every agent shipped to the 8-Part Ship Standard.</li>
-<li>Ongoing tuning on every live agent.</li>
+<li>Maintenance included: regressions, feedback and improvements.</li>
 <li>First AI agent implementation free. No setup fee.</li>
 </ul>
 </div>
@@ -68,8 +68,8 @@ faq:
 <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">What it costs</p>
 <p class="mt-3 text-base leading-7 text-slate-700 dark:text-slate-200"><s class="text-slate-500 dark:text-slate-400">USD 2,995</s> <strong class="text-2xl font-bold text-slate-950 dark:text-white">USD 1,995/mo</strong></p>
 <ul class="mt-2 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
-<li>Founding price, locked 6 months.</li>
-<li>Cancel anytime.</li>
+<li>Founding price held 6 months.</li>
+<li>Month to month. No minimum term.</li>
 <li class="font-semibold text-slate-950 dark:text-white">3 of 10 founding seats open.</li>
 </ul>
 </div>
@@ -77,7 +77,7 @@ faq:
 <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">Two guarantees</p>
 <ul class="mt-3 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
 <li><strong class="text-slate-950 dark:text-white">10-Day Ship:</strong> first agent live within 10 business days of access, or next month is free.</li>
-<li><strong class="text-slate-950 dark:text-white">14-Day Exit:</strong> cancel in the first 14 days, get 75 percent back.</li>
+<li><strong class="text-slate-950 dark:text-white">14-Day Exit:</strong> cancel in the first 14 days, get 100 percent back.</li>
 </ul>
 </div>
 </div>
@@ -116,7 +116,7 @@ One request is one process you can describe in one sentence, like "every Friday,
 | Map and baseline | You get the process as it runs today and its baseline time and error rate, so you can see exactly what the agent will change. | Before the build starts |
 | First agent live | Built inside your accounts, tested on your past examples, then run alongside your team with a person approving outputs. | Within 10 business days of access, or next month is free |
 | Next request | As soon as one agent ships, the next request in your queue starts, typically shipping in 3 to 5 business days depending on scale. | Continuous while your seat is active |
-| Ongoing tuning | We watch exceptions and error rates on agents already live and tune them while your seat is active. | Every month |
+| Ongoing maintenance | We watch exceptions and error rates on agents already live, fix regressions, apply your feedback and improve them while your seat is active. Included in the seat. | Every month |
 
 ## What ships with every request: the 8-Part Ship Standard
 
@@ -149,13 +149,13 @@ An agent only works if someone on your side owns it. While your seat is active, 
 
 ### Price
 
-**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, for the first 10 seats only. Price locked for 6 months. Cancel anytime.
+**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, for the first 10 seats only. Founding price held for 6 months. Month to month, no minimum term.
 
-Every seat includes one active request at a time, an unlimited queue behind it, the full 8-Part Ship Standard on every agent, and ongoing tuning. No setup fee, no per-project quotes. The seat makes sense once your queue holds more than one process worth shipping. If you only ever want one agent, a fixed-price project may suit you better, and the Live Audit will tell you which you are.
+Every seat includes one active request at a time, an unlimited queue behind it, the full 8-Part Ship Standard on every agent, and maintenance (regressions, feedback and improvements). No setup fee, no per-project quotes. The seat makes sense once your queue holds more than one process worth shipping. If you only ever want one agent, a fixed-price project may suit you better, and the Live Audit will tell you which you are.
 
 ### What it is worth
 
-For context: published Canadian rates for a single fixed-price agent project run about CAD 5,000 to 15,000, plus about CAD 300 to 800 a month to maintain it ([sources](/answers/ai-agent-implementation-cost/)). That buys one agent. A Build Queue seat keeps shipping from your queue for as long as it is active, with tuning on every agent already live.
+For context: published Canadian rates for a single fixed-price agent project run about CAD 5,000 to 15,000, plus about CAD 300 to 800 a month to maintain it ([sources](/answers/ai-agent-implementation-cost/)). That buys one agent. A Build Queue seat keeps shipping from your queue for as long as it is active, with maintenance on every agent already live.
 
 Or do the math on your own work: take the hours a week your team spends on the processes you would queue, multiply by their loaded hourly cost, then by 4.3. That is what those processes cost you each month today.
 
@@ -168,7 +168,7 @@ Or do the math on your own work: take the hours a week your team spends on the p
 **Two guarantees, in writing:**
 
 1. **The 10-Day Ship Guarantee.** If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free. Live means running in your accounts on your real work, with your owner approving its outputs. The clock starts at access because that is the one step only your team controls, and the day-one checklist makes it a matter of minutes.
-2. **The 14-Day Exit.** Changed your mind? Cancel in the first 14 days and get 75 percent back. No conditions.
+2. **The 14-Day Exit.** Changed your mind? Cancel in the first 14 days and get 100 percent back. No conditions.
 
 <div class="not-prose my-8">
 <a href="/live-audit/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Book your free 20-minute Live Audit</a>
@@ -179,6 +179,8 @@ Or do the math on your own work: take the hours a week your team spends on the p
 
 | Agent | What it does | How it was verified |
 |---|---|---|
+| Project intake agent (client) | Reads project requests that arrive by email and creates the matching task in Planner, built on Copilot Studio and Power Automate | Built in about 6 hours. Under 30 seconds per request, 8 of 8 (measured). Manual triage about 10 minutes per request (estimate) |
+| Desk agents (client, three) | Answer routine requests for a client's procurement, materials and shipping desks by email | Verified September 2026: a real request sent to each, a real answer received |
 | Prospect research agent (our own firm) | Finds, scores and enriches prospect accounts; a person approves before any outreach | Runs our own pipeline daily |
 | Quantitative trading agent (our own book) | Assesses trading strategies and runs paper trades and backtests before any capital moves | Backtest and paper-trade results reviewed by a person before any live trade |
 | Site and content agent (this site) | Drafts and ships pages on evadvisory.ca, reviewed by a person before anything goes live | You are reading its output right now |
