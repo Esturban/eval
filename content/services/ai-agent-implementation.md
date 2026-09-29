@@ -32,7 +32,7 @@ schema:
   offer:
     # Locked 2026-09-25 (CRO-5617). Founding seat price only; no other tiers on the page.
     name: Build Queue founding seat
-    description: "Monthly AI agent implementation subscription. One active request at a time, unlimited queue behind it. USD 1,995 per month for the first 3 seats, locked for 6 months. Cancel in the first 14 days for 75 percent back. First request live within 10 business days of system access, or the next month is free."
+    description: "Monthly AI agent implementation subscription. One active request at a time, unlimited queue behind it. USD 1,995 per month for the first 10 seats, locked for 6 months. Cancel in the first 14 days for 75 percent back. First request live within 10 business days of system access, or the next month is free."
     price: 1995
     price_currency: USD
     url: /live-audit/
@@ -42,7 +42,7 @@ faq:
   - question: "Who is Build Queue for?"
     answer: "Founder-led agencies and service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have repeated processes they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
   - question: "How much does it cost?"
-    answer: "USD 1,995 per month for the first 3 founding seats, with that price locked for 6 months. Seats after that are USD 2,995 per month. One request is in flight at a time, with as many queued behind it as you like. There are no per-project quotes and no setup fee."
+    answer: "USD 1,995 per month for the first 10 founding seats, with that price locked for 6 months. Seats after that are USD 2,995 per month. One request is in flight at a time, with as many queued behind it as you like. There are no per-project quotes and no setup fee."
   - question: "What is the guarantee?"
     answer: "Two parts. First, cancel in the first 14 days and get 75 percent of your payment back, no conditions. Second, if your first request is not live in your own systems within 10 business days of you granting system access, your next month is free."
   - question: "How fast is the first agent live?"
@@ -61,7 +61,7 @@ faq:
 <li>Unlimited queue behind it.</li>
 <li>Every agent shipped to the 8-Part Ship Standard.</li>
 <li>Ongoing tuning on every live agent.</li>
-<li>No setup fee.</li>
+<li>First AI agent implementation free. No setup fee.</li>
 </ul>
 </div>
 <div>
@@ -149,7 +149,7 @@ An agent only works if someone on your side owns it. While your seat is active, 
 
 ### Price
 
-**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, for the first 3 seats only. Price locked for 6 months. Cancel anytime.
+**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, for the first 10 seats only. Price locked for 6 months. Cancel anytime.
 
 Every seat includes one active request at a time, an unlimited queue behind it, the full 8-Part Ship Standard on every agent, and ongoing tuning. No setup fee, no per-project quotes. The seat makes sense once your queue holds more than one process worth shipping. If you only ever want one agent, a fixed-price project may suit you better, and the Live Audit will tell you which you are.
 
