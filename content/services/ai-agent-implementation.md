@@ -61,7 +61,7 @@ faq:
 <li>Unlimited queue behind it.</li>
 <li>Every agent shipped to the 8-Part Ship Standard.</li>
 <li>Maintenance included: regressions, feedback and improvements.</li>
-<li>First AI agent implementation free. No setup fee.</li>
+<li>No setup fee.</li>
 </ul>
 </div>
 <div>
