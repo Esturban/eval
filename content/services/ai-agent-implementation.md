@@ -179,7 +179,7 @@ Or do the math on your own work: take the hours a week your team spends on the p
 
 | Agent | What it does | How it was verified |
 |---|---|---|
-| Project intake agent (client) | Reads project requests that arrive by email and creates the matching task in Planner, built on Copilot Studio and Power Automate | Built in about 6 hours. Under 30 seconds per request, 8 of 8 (measured). Manual triage about 10 minutes per request (estimate) |
+| Project intake agent (client) | Reads project requests that arrive by email and creates the matching task in Planner, built on Copilot Studio and Power Automate | We can turn that around in a day. Under 30 seconds per request, 8 of 8 (measured). Manual triage about 10 minutes per request (estimate) |
 | Desk agents (client, three) | Answer routine requests for a client's procurement, materials and shipping desks by email | Verified September 2026: a real request sent to each, a real answer received |
 | Prospect research agent (our own firm) | Finds, scores and enriches prospect accounts; a person approves before any outreach | Runs our own pipeline daily |
 | Quantitative trading agent (our own book) | Assesses trading strategies and runs paper trades and backtests before any capital moves | Backtest and paper-trade results reviewed by a person before any live trade |
