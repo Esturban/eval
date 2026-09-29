@@ -180,9 +180,8 @@ Or do the math on your own work: take the hours a week your team spends on the p
 | Agent | What it does | How it was verified |
 |---|---|---|
 | Prospect research agent (our own firm) | Finds, scores and enriches prospect accounts; a person approves before any outreach | Runs our own pipeline daily |
-| Client agent (1 of 3) | Live agent, function not itemized publicly | Verified this month: sent a real request, got a real answer back |
-| Client agent (2 of 3) | Live agent, function not itemized publicly | Verified this month: sent a real request, got a real answer back |
-| Client agent (3 of 3) | Live agent, function not itemized publicly | Verified this month: sent a real request, got a real answer back |
+| Quantitative trading agent (our own book) | Assesses trading strategies and runs paper trades and backtests before any capital moves | Backtest and paper-trade results reviewed by a person before any live trade |
+| Site and content agent (this site) | Drafts and ships pages on evadvisory.ca, reviewed by a person before anything goes live | You are reading its output right now |
 
 **The guarantee puts the risk on us.** If your first request is not live in your systems within 10 business days of access, you do not pay for next month. We would not write that if we could not ship.
 
