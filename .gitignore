@@ -33,3 +33,4 @@ venv.bak/
 *.code-workspace
 *.DS_Store
 **/*.DS_tore
+.codegraph/
