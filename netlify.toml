@@ -38,7 +38,7 @@ from = "/npmjs/*"
 to = "/npmjs/"
 status = 200
 
-# CRO-7363: site map cleanup (Phase 1, approved by EV). These 5 pre-pivot
+# site map cleanup (Phase 1, approved by EV). These 5 pre-pivot
 # service pages were removed (all draft: true, never published, no live
 # traffic today). Redirects added anyway per EV's literal instruction that
 # every removed or renamed page gets a 301, as a safety net, each pointing to

@@ -1,4 +1,4 @@
-// REUSE_CHECKED: none -- this is the offer-specific scene for CRO-6814 (AI
+// REUSE_CHECKED: none -- this is the offer-specific scene (AI
 // Agent Implementation explainer). No prior scene file exists anywhere in
 // repos/ or web/eval; searched alongside engine/beatgrid.js (see that file's
 // header for the exact search commands run).
@@ -19,7 +19,7 @@
   const { createCursor } = window.EngineCursor;
   const { fitCameraToBox, applyCamera } = window.EngineCamera;
 
-  // ---- palette (site palette, from the CRO-6814 design pass) ----------
+  // ---- palette (site palette, from the  design pass) ----------
   const CANVAS_BG = "#f7f4ee";
   const SHAPE_FILL = "#0f172a"; // graphite
   const HAIRLINE = "#dbe3ee";

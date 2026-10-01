@@ -378,11 +378,17 @@
       max-width: 96rem;
     }
   }
+  .-mx-3 {
+    margin-inline: calc(var(--spacing) * -3);
+  }
   .-mx-5 {
     margin-inline: calc(var(--spacing) * -5);
   }
   .mx-auto {
     margin-inline: auto;
+  }
+  .-my-1 {
+    margin-block: calc(var(--spacing) * -1);
   }
   .-my-2 {
     margin-block: calc(var(--spacing) * -2);
@@ -2121,6 +2127,12 @@
   .underline {
     text-decoration-line: underline;
   }
+  .decoration-cyan-300\/40 {
+    text-decoration-color: color-mix(in srgb, oklch(86.5% 0.127 207.078) 40%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      text-decoration-color: color-mix(in oklab, var(--color-cyan-300) 40%, transparent);
+    }
+  }
   .decoration-cyan-500 {
     text-decoration-color: var(--color-cyan-500);
   }
@@ -2132,6 +2144,9 @@
   }
   .decoration-2 {
     text-decoration-thickness: 2px;
+  }
+  .underline-offset-4 {
+    text-underline-offset: 4px;
   }
   .underline-offset-8 {
     text-underline-offset: 8px;
@@ -2156,6 +2171,10 @@
   }
   .shadow-\[0_24px_48px_-16px_rgba\(2\,6\,23\,0\.9\)\] {
     --tw-shadow: 0 24px 48px -16px var(--tw-shadow-color, rgba(2,6,23,0.9));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-\[0_30px_70px_-35px_rgba\(15\,23\,42\,0\.6\)\] {
+    --tw-shadow: 0 30px 70px -35px var(--tw-shadow-color, rgba(15,23,42,0.6));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-\[0_40px_80px_-40px_rgba\(15\,23\,42\,0\.55\)\] {
@@ -2816,6 +2835,11 @@
       max-width: var(--container-3xl);
     }
   }
+  .sm\:max-w-\[16rem\] {
+    @media (width >= 40rem) {
+      max-width: 16rem;
+    }
+  }
   .sm\:max-w-xl {
     @media (width >= 40rem) {
       max-width: var(--container-xl);
@@ -2934,6 +2958,11 @@
   .sm\:pl-6 {
     @media (width >= 40rem) {
       padding-left: calc(var(--spacing) * 6);
+    }
+  }
+  .sm\:text-center {
+    @media (width >= 40rem) {
+      text-align: center;
     }
   }
   .sm\:text-2xl {

@@ -8,7 +8,7 @@
       {{ with .Description }}
       <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{{ . }}</p>
       {{ end }}
-      {{/* CRO-6839: per-page hero CTA, opt-in via front matter page_cta. Pages without it render exactly as before. */}}
+      {{/* per-page hero CTA, opt-in via front matter page_cta. Pages without it render exactly as before. */}}
       {{ with .Params.page_cta }}
       <div class="mt-8">
         <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .label }}</a>

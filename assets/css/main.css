@@ -33,7 +33,7 @@
     letter-spacing: -0.03em;
   }
 
-  /* Real-fix (2026-09-25, CRO-6731): Tailwind preflight resets h1-h6 to
+  /* Real-fix (2026-09-25): Tailwind preflight resets h1-h6 to
      font-size: inherit, so a heading rendered without an explicit text-*
      utility silently collapses to body size (PR 141's finding). This is a
      fallback floor, not a rewrite of every template: @layer utilities
@@ -90,7 +90,7 @@
     opacity: 1;
   }
 
-  /* Homepage colour arc (CRO-6837 round 2). Each section paints a vertical
+  /* Homepage colour arc (round 2). Each section paints a vertical
      gradient from the tone above it (--from) into its own tone (--tone), so
      no two sections ever meet at a hard edge. This replaced a script that
      tinted the whole page one blended colour: that turned the dark to light
@@ -101,7 +101,7 @@
   }
 
   /* The one dark to light change gets its own band of space, so text never
-     sits on the in-between colour. CRO-6837 round 4: EV found the 34svh band
+     sits on the in-between colour. Round 4: EV found the 34svh band
      still too abrupt, so it now blends over a full viewport height through
      eleven stops on a smoothstep curve in oklab: the rate of change is zero
      at both ends (no visible band edge) and never more than 1.5 times the
@@ -268,7 +268,7 @@
     display: none;
   }
 
-  /* Label sizes (CRO-6837): the agent name leads at 15px, the live tag is
+  /* Label sizes: the agent name leads at 15px, the live tag is
      the loudest line at 20px, and nothing scales with distance any more,
      so these are the sizes a reader actually sees. */
   .hw-bot__name {
@@ -281,7 +281,7 @@
     text-shadow: 0 1px 3px rgba(2, 6, 23, 0.9), 0 0 10px rgba(2, 6, 23, 0.55);
   }
 
-  /* Raised from 11.5px/500/#7c8aa0 (CRO-6731 Pass 4): computed styles at
+  /* Raised from 11.5px/500/#7c8aa0 (Pass 4): computed styles at
      1440px showed this subtitle as the lowest-contrast text in the scene
      against the shade's variable-opacity dark overlay. A brighter colour
      plus the icon-style drop-shadow halo above keep it >=AA regardless of
@@ -360,7 +360,7 @@
     display: block;
   }
 
-  /* Outlook, Slack, Salesforce (CRO-6731): a deliberate, documented
+  /* Outlook, Slack, Salesforce: a deliberate, documented
      exception to the monochrome rule above. These three real, unmodified
      marks render in their own colour since Simple Icons does not carry
      them (see data/brands.json's officialLogo field and DESIGN.md). */
@@ -425,7 +425,7 @@
     border-top: 1px solid rgba(219, 227, 238, 0.14);
   }
 
-  /* Raised from 12px/#64748b (CRO-6731 Pass 4): computed styles at 1440px
+  /* Raised from 12px/#64748b (Pass 4): computed styles at 1440px
      flagged this inactive-step colour as failing "pronounced" against the
      hero shade. Lightened one step (slate-500 -> slate-400) plus the same
      drop-shadow halo used on the agent labels above. */
@@ -566,7 +566,7 @@
     }
   }
 
-  /* Full-page highway (CRO-6837 round 4). EV: the road should run the full
+  /* Full-page highway (round 4). EV: the road should run the full
      page as one continuous highway, with an icon for each step the agent
      does, and the car passing each icon as the page scrolls.
      - From 1024px: the road is part of the page (.hwy, drawn by
@@ -1395,7 +1395,7 @@
   }
 }
 
-/* CRO-6839: Markdown tables on the Build Queue offer page only (the page sets
+/* Markdown tables on the Build Queue offer page only (the page sets
    prose_class: offer-prose in front matter). Lives in the utilities layer
    because the typography plugin's .prose rules land there; the extra class
    gives these rules higher specificity than .prose :where(table).
@@ -1413,7 +1413,7 @@
     line-height: 1.6;
   }
 
-  /* CRO-6837 round 4: while the full-page highway is on (desktop only),
+  /* Round 4: while the full-page highway is on (desktop only),
      the sections it drives past keep its margin clear: the right margin for
      the dark sections, the left for the light ones after the sweep. 160px
      from the viewport edge, or the normal gutter where that is wider. In

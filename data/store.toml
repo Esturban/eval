@@ -16,7 +16,6 @@ price = "Free"
 price_note = ""
 button = "Get it free"
 url = "https://evadvisory.ca/get/narrow-agent-fit-checklist/"
-ticket = "CRO-5549"
 status = "live"
 
 [[product]]
@@ -31,7 +30,6 @@ price = "Free"
 price_note = ""
 button = "Get it free"
 url = "#"
-ticket = "CRO-5551"
 status = "not built"
 
 [[product]]
@@ -46,7 +44,6 @@ price = "Free"
 price_note = ""
 button = "Get it free"
 url = "#"
-ticket = "CRO-5550"
 status = "not built"
 
 [[product]]
@@ -61,7 +58,6 @@ price = "Free"
 price_note = ""
 button = "Get it free"
 url = "#"
-ticket = "CRO-5554"
 status = "not built"
 
 [[product]]
@@ -76,7 +72,6 @@ price = "USD 29"
 price_note = "credited toward the AI Workflow Audit (USD 497) if you upgrade later"
 button = "Buy"
 url = "#"
-ticket = "CRO-5552"
 status = "not built"
 
 [[product]]
@@ -169,7 +164,6 @@ price = "USD 9"
 price_note = ""
 button = "Buy"
 url = "#"
-ticket = "CRO-5553"
 status = "in progress"
 
 [[question]]

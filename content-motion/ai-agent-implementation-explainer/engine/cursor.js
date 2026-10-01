@@ -4,7 +4,7 @@
 // Nothing to do with a drawn UI pointer. Also searched repos/ and web/eval for
 // beat-grid/spring/motion-timeline plumbing generally (see beatgrid.js header);
 // none of it exists yet. This file is new, single-purpose engine plumbing for
-// CRO-6814's code-only motion pipeline.
+// the code-only motion pipeline.
 //
 // Engine: cursor. A drawn pointer whose position is itself a pure function
 // of time (built from Timelines), so "the cursor drives every change with

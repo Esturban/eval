@@ -1,4 +1,4 @@
-{{/* Site header (CRO-6837 round 3). Below lg the links sit behind a
+{{/* Site header (round 3). Below lg the links sit behind a
      labelled Menu button that opens a full-width panel over the page: rows
      at least 56px tall, 20px type, Escape or any link closes it. From lg up
      the same links show inline. One list serves both, so they never drift. */}}
@@ -34,7 +34,7 @@
              :class="{ 'flex': open, 'hidden': !open }"
              @click.outside="if (window.innerWidth < 1024 && !$refs.menuButton.contains($event.target)) open = false"
              class="site-menu absolute inset-x-0 top-full hidden max-h-[calc(100svh-4rem)] flex-col overflow-y-auto border-b border-slate-800 bg-slate-950 px-5 pb-6 pt-2 shadow-[0_24px_48px_-16px_rgba(2,6,23,0.9)] sm:px-7 lg:static lg:flex lg:max-h-none lg:flex-row lg:items-center lg:justify-end lg:gap-1 lg:overflow-visible lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
-            {{/* CRO-7363: one consistent link set on every page, home included
+            {{/* one consistent link set on every page, home included
                  (Site Map Proposal Phase 1, approved by EV). Services, Proof,
                  Insights (with a flyout for Answers/Methodology/Store), About,
                  Contact. */}}
@@ -131,7 +131,7 @@
             </div>
             <a class="{{ $link }}" href="/about/" @click="open = false">About<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
             <a class="{{ $link }}" href="/contact/" @click="open = false">Contact<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
-            {{/* CRO-6839: a page may swap the nav CTA via front matter page_cta.nav_label/url. Every other page keeps Free Scorecard. */}}
+            {{/* a page may swap the nav CTA via front matter page_cta.nav_label/url. Every other page keeps Free Scorecard. */}}
             {{ $navCtaLabel := "Free Scorecard" }}{{ $navCtaHref := "/scorecard/" }}
             {{ with $.Params.page_cta }}{{ with .nav_label }}{{ $navCtaLabel = . }}{{ $navCtaHref = $.Params.page_cta.url }}{{ end }}{{ end }}
             <a class="mt-5 inline-flex min-h-14 items-center justify-center rounded-full bg-cyan-400 px-6 text-lg font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:mt-0 lg:ml-2 lg:min-h-11 lg:whitespace-nowrap lg:px-4 lg:text-base xl:ml-3 xl:px-5"

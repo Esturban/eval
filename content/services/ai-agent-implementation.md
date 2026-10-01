@@ -3,12 +3,12 @@ title: "Build Queue: AI Agents Shipped Into Your Tools, One Monthly Subscription
 description: "A monthly subscription for founder-led agencies and service teams in Canada and the United States. We build one agent at a time inside the tools you already run, and you own every one. USD 1,995/mo for founding seats."
 summary: "A monthly subscription that works like a retainer: one request in flight, unlimited queue behind it, first agent live within 10 business days of access or next month is free. USD 1,995/mo."
 date: 2026-09-24
-dateModified: 2026-09-25
+dateModified: 2026-10-01
 draft: false
 weight: 1
 language: en
 author: EV Advisory
-# CRO-6839 (UI finish-gate fixes): page-scoped presentation params read by
+# UI finish-gate fixes: page-scoped presentation params read by
 # layouts/services/single.html and layouts/partials/nav.html. No other page sets them.
 h1: "Your team's repeated work, handed to AI agents. First one live in 10 business days."
 eyebrow: Build Queue
@@ -30,7 +30,7 @@ schema:
     audience: Founder-led agencies and service teams
     area_served: [Canada, United States]
   offer:
-    # Locked 2026-09-25 (CRO-5617). Founding seat price only; no other tiers on the page.
+    # Locked 2026-09-25. Founding seat price only; no other tiers on the page.
     name: Build Queue founding seat
     description: "Monthly AI agent implementation subscription. One active request at a time, unlimited queue behind it. USD 1,995 per month for the first 10 seats, price held for 6 months, month to month with no minimum term. Cancel in the first 14 days for 100 percent back. First request live within 10 business days of system access, or the next month is free."
     price: 1995
@@ -38,7 +38,7 @@ schema:
     url: /live-audit/
 faq:
   - question: "What is Build Queue?"
-    answer: "Build Queue is a monthly AI subscription that works like a retainer. You add the processes you want off your plate to a queue. We build one at a time, as a working AI agent inside the tools you already run, and start the next one as soon as the current one ships. Cancel anytime."
+    answer: "Build Queue is a monthly AI subscription that works like a retainer. You add the processes you want off your plate to a queue. We build one at a time, as a working AI agent inside the tools you already run, and start the next one as soon as the current one ships. Month to month, no minimum term."
   - question: "Who is Build Queue for?"
     answer: "Founder-led agencies and service teams in Canada and the United States that already run their work in real tools (a CRM, a project tool, shared inboxes, a document system) and have repeated processes they want off their plate without hiring. If your work lives in memory and spreadsheets nobody updates, start with the tools first."
   - question: "How much does it cost?"
@@ -179,7 +179,7 @@ Or do the math on your own work: take the hours a week your team spends on the p
 
 | Agent | What it does | How it was verified |
 |---|---|---|
-| Project intake agent (client) | Reads project requests that arrive by email and creates the matching task in Planner, built on Copilot Studio and Power Automate | We can turn that around in a day. Under 30 seconds per request, 8 of 8 (measured). Manual triage about 10 minutes per request (estimate) |
+| Project intake agent (client) | Reads project requests that arrive by email and creates the matching task in Planner, built on Copilot Studio and Power Automate. We can turn that around in a day | Tested on real project requests before handover. Manual triage about 10 minutes per request (estimate) |
 | Desk agents (client, three) | Answer routine requests for a client's procurement, materials and shipping desks by email | Verified September 2026: a real request sent to each, a real answer received |
 | Prospect research agent (our own firm) | Finds, scores and enriches prospect accounts; a person approves before any outreach | Runs our own pipeline daily |
 | Quantitative trading agent (our own book) | Assesses trading strategies and runs paper trades and backtests before any capital moves | Backtest and paper-trade results reviewed by a person before any live trade |

@@ -39,7 +39,7 @@
   <div class="max-w-3xl px-6 pt-6 pb-8 mx-auto prose dark:prose-invert dark:text-white">
     {{.Content}}
   </div>
-  {{/* CRO-7363: the forward-path CTA is scoped to Answers only. _default/single.html
+  {{/* the forward-path CTA is scoped to Answers only. _default/single.html
        is also shared by About, Methodology, Proof, and the legal pages, none of
        which are part of the approved Insights/Answers mechanism. */}}
   {{ if eq .Section "answers" }}
