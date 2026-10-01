@@ -20,7 +20,7 @@
     "watch:hugo": "hugo server --disableFastRender",
     "prebuild": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css",
     "build": "hugo --gc --minify",
-    "test": "node --test test/scorecard.test.cjs && hugo"
+    "test": "node --test test/scorecard.test.cjs test/offer-copy.test.cjs && hugo"
   },
   "engines": {
     "node": "24.x"
