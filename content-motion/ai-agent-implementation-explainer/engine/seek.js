@@ -4,7 +4,7 @@
 // Pods tree. Nothing to do with a time-based render seam. Also searched
 // repos/ and web/eval generally for beat-grid/spring/seek motion plumbing
 // (see beatgrid.js header); none exists. New, single-purpose engine
-// plumbing for CRO-6814.
+// plumbing.
 //
 // Engine: seek harness. The single seam the Playwright render script talks
 // to. A scene calls EngineSeek.register(fn) once at load; the render script
@@ -12,7 +12,7 @@
 // function of t: no timers, no CSS transitions, no state read from a
 // previous call. This file carries no per-scene knowledge (box shapes,
 // palette, beats) -- that all lives in scene.js -- so lifting this folder
-// into a shared kit later (DEV-6816) is a move, not an untangle.
+// into a shared kit later is a move, not an untangle.
 
 (function (global) {
   function register(seekFn) {

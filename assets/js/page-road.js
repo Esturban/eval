@@ -1,6 +1,6 @@
 // REUSE_CHECKED: /Users/EVA/Desktop/eva/03_development/_dev/web/eval-cro6837-round4/assets/js/home-motion.js   its round 3 ride-along lane is moved here and extended
 //
-// Full-page highway (CRO-6837 round 4). The hero's Inbox agent drives the
+// Full-page highway (round 4). The hero's Inbox agent drives the
 // length of the page past a repeating beat of step signs: email arrives,
 // the agent picks it up, reads it, drafts the reply, the reply lands.
 // - From 1024px: the road is drawn into the page itself (.hwy). It runs

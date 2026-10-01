@@ -1,7 +1,7 @@
 // REUSE_CHECKED: none -- searched repos/ and web/eval for *beatgrid*, *beat-grid*,
 // "closed-form spring", "stepResponse", "beatTime" (js/mjs/py). Nothing existed.
-// This is new, single-purpose plumbing for the code-only motion pipeline
-// (CRO-6814). DEV-6816 is the ticket that later lifts this into a shared kit;
+// This is new, single-purpose plumbing for the code-only motion pipeline.
+// A later lift into a shared kit;
 // this file is written so that lift is a move, not a rewrite.
 //
 // Engine: beat grid. Reusable across any code-only motion scene. Pure math,

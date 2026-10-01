@@ -64,7 +64,7 @@ Then compare it with what the process costs you today: hours per week, times the
 
 ## Does EV Advisory publish a price?
 
-Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the first 10 founding seats, locked for 6 months (USD 2,995/mo for seats after that), with no setup fee. It is priced differently from the project ranges above: instead of paying for one quoted build and then a separate maintenance plan, your seat covers every agent shipped from your queue, one at a time, plus tuning on the agents already live. The comparison that matters is per agent shipped: the seat is built for teams with more than one process worth handing over. Build Queue is priced in US dollars; the ranges above are in Canadian dollars. See the full offer on the [Build Queue](/services/ai-agent-implementation/) page.
+Yes. Build Queue, EV Advisory's monthly AI subscription, is USD 1,995/mo for the first 10 founding seats, held for 6 months, month to month with no minimum term (USD 2,995/mo for seats after that), with no setup fee. It is priced differently from the project ranges above: instead of paying for one quoted build and then a separate maintenance plan, your seat covers every agent shipped from your queue, one at a time, plus maintenance on the agents already live (regressions, feedback and improvements). The comparison that matters is per agent shipped: the seat is built for teams with more than one process worth handing over. Build Queue is priced in US dollars; the ranges above are in Canadian dollars. See the full offer on the [Build Queue](/services/ai-agent-implementation/) page.
 
 ## Sources
 

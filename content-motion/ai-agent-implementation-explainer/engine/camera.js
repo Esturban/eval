@@ -3,7 +3,7 @@
 // vendored FontAwesome icon glyph inside an unrelated repo's docs venv, not
 // a camera-fit/viewport helper. Also searched repos/ and web/eval generally
 // for beat-grid/spring/camera motion plumbing (see beatgrid.js header); none
-// exists. This file is new, single-purpose engine plumbing for CRO-6814.
+// exists. This file is new, single-purpose engine plumbing.
 //
 // Engine: camera. "The camera zooms so each state fills the frame" (template
 // <direction>). Implemented as a pure derivation from the shape's current

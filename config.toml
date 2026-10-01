@@ -51,7 +51,7 @@ hero_img= "images/featured/data-natural-beauty.png"
 hero_description = "20 minutes on your real stack. You leave knowing which process to hand off first."
 
 
-# Mission section elements. The homepage (CRO-6837 round 2) reads only
+# Mission section elements. The homepage (round 2) reads only
 # mission_description, as one line; the quote and author are kept for reuse.
 mission_quote = "Founder-led teams do not need more AI ideas. They need the Friday status updates, the intake emails, and the report assembly off their plate, handled by a working agent inside the tools they already run. That is what we build."
 mission_author = "EV Advisory"
