@@ -11,16 +11,6 @@
          data-linkedin-url="{{ site.Params.linkedin }}">
     <div class="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(320px,1fr)]">
         <div class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-zinc-200 dark:bg-gray-900 dark:ring-gray-700">
-            <div class="mb-8">
-                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-300">Free diagnostic</p>
-                <h2 class="mt-3 text-3xl font-black text-gray-900 dark:text-white">{{ $scorecard.title }}</h2>
-                <p class="mt-3 text-lg text-gray-600 dark:text-gray-300">{{ $scorecard.subtitle }}</p>
-                <div class="mt-5 grid gap-3 sm:grid-cols-3">
-                    <p class="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200">Get a score in about two minutes.</p>
-                    <p class="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200">See the dominant bottleneck behind the drift.</p>
-                    <p class="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-200">Route high-risk results into the audit or a faster follow-up path.</p>
-                </div>
-            </div>
             <form id="revenue-signal-scorecard" class="space-y-8">
                 {{ range $question := $scorecard.questions }}
                 <fieldset class="rounded-2xl border border-zinc-200 p-5 dark:border-gray-700">
@@ -36,7 +26,7 @@
                 </fieldset>
                 {{ end }}
                 <div class="flex flex-col gap-4 border-t border-zinc-200 pt-6 sm:flex-row sm:items-center sm:justify-between dark:border-gray-700">
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Six questions. About two minutes. Immediate result.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Six questions. About two minutes.</p>
                     <button type="submit" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-5 py-3 text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900">
                         See my result
                     </button>
@@ -46,16 +36,8 @@
         <aside class="rounded-2xl bg-gray-900 p-6 text-white shadow-lg ring-1 ring-gray-800">
             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-300">Result</p>
             <div id="scorecard-results" class="mt-4 space-y-4">
-                <h3 class="text-2xl font-black">Get the operator brief</h3>
-                <p class="text-base text-gray-300">Complete the scorecard to get the score, diagnosis, next step, and follow-up path that best matches the level of risk.</p>
-                <div class="rounded-xl border border-white/10 bg-white/5 p-4">
-                    <p class="text-sm text-gray-300">What this checks</p>
-                    <ul class="mt-3 space-y-2 text-sm text-gray-200">
-                        <li>Source-of-truth alignment across Shopify, analytics, ads, and finance</li>
-                        <li>Attribution confidence and funnel visibility</li>
-                        <li>Reporting drag, QA gaps, and operational fragility</li>
-                    </ul>
-                </div>
+                <h3 class="text-2xl font-black">Your result</h3>
+                <p class="text-base text-gray-300">Answer all six to get your score, band, and next step.</p>
                 <div id="scorecard-output" class="space-y-4"></div>
             </div>
             <script id="revenue-signal-scorecard-data" type="application/json">{{ $scorecard | jsonify | safeJS }}</script>

@@ -9,7 +9,7 @@
         <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Store</p>
             <h1 class="mt-4 max-w-4xl text-4xl font-black tracking-tight text-white md:text-5xl">Fixed-scope AI diagnostics. No sales call.</h1>
-            <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Start free, run a kit yourself, or buy a fixed-price audit. Anything above USD 897 starts with a 20-minute call.</p>
+            <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Start free, run a kit yourself, or buy a fixed-price audit.</p>
             <div class="mt-8 flex flex-wrap gap-3">
                 <a href="#free" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">See what's free</a>
                 <a href="{{ $fitCall }}" data-cta="fit-call" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200">Grab a time here</a>
@@ -20,9 +20,7 @@
     <section id="which-one" class="bg-stone-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Start here</p>
                 <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Which one is for me?</h2>
-                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Find your question.</p>
             </div>
             <div class="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white">
                 <div class="overflow-x-auto">
@@ -52,9 +50,7 @@
     <section id="free" class="bg-white py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Free</p>
                 <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">What can I get for free?</h2>
-                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Try one of these first.</p>
             </div>
             <div class="mt-10 grid gap-4 lg:grid-cols-2">
                 {{ range $products }}
@@ -83,9 +79,8 @@
     <section id="guides" class="bg-stone-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Guides</p>
                 <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">About USD 30: do it yourself.</h2>
-                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">A guide and working sheets. Credited if you buy the audit.</p>
+                <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">A guide and working sheets.</p>
             </div>
             <div class="mt-10 grid gap-4 lg:grid-cols-2">
                 {{ range $products }}
@@ -113,7 +108,6 @@
     <section id="done-for-you" class="bg-slate-950 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">Done for you</p>
                 <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Find out what's off. No sales call.</h2>
                 <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">Up to USD 897, buy now. Bigger starts with a scoping call.</p>
             </div>
@@ -156,9 +150,14 @@
             <div class="max-w-3xl">
                 <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">How buying works</h2>
             </div>
-            <div class="mt-8 rounded-3xl border border-slate-200 bg-stone-50 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" style="padding:.25rem 1rem 1rem">
+            <div class="mt-8 rounded-3xl border border-slate-200 bg-stone-50 text-slate-900" style="padding:.25rem 1rem 1rem">
                 {{ partial "diagrams/store.html" . }}
-                <p class="mt-2 text-base leading-7 text-slate-600 dark:text-slate-300">Pay by card. Every item shows its refund terms.</p>
+                <div class="mt-2 overflow-x-auto"><table class="w-full border-collapse text-left"><thead><tr><th class="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700">Phase</th><th class="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700">What happens</th><th class="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700">You get</th></tr></thead><tbody>
+                    <tr><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Pick</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Find your question above.</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">The product that fits</td></tr>
+                    <tr><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Pay</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">By card, or email if free.</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Refund terms on each item</td></tr>
+                    <tr><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Receipt</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Open your receipt page.</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Link or call booking</td></tr>
+                    <tr><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Delivered</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">As stated on each item.</td><td class="border-b border-slate-100 px-4 py-3 align-top text-base leading-6 text-slate-800">Per its card</td></tr>
+                </tbody></table></div>
             </div>
         </div>
     </section>
@@ -168,7 +167,6 @@
             <div class="rounded-[2rem] border border-slate-200 bg-slate-950 px-6 py-9 shadow-2xl shadow-slate-300/30 sm:px-10 sm:py-10">
                 <div>
                     <div>
-                        <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">Fit call</p>
                         <h2 class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">Not sure? Grab a time.</h2>
                         <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">20 minutes, no pitch.</p>
                         <div class="mt-8">
@@ -183,7 +181,6 @@
     <section id="books" class="bg-white py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
-                <p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Books by Esteban V.</p>
                 <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Written for people.</h2>
             </div>
             <div class="mt-10 grid gap-4 lg:grid-cols-2">

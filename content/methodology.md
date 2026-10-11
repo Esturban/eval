@@ -17,23 +17,10 @@ Start with the decision, not the dashboard.
 
 {{< diagram "methodology" >}}
 
-Noisy numbers hide one question: can we trust this enough to act?
-
-## 1. Define the commercial decision
-
-Name the exact decision the team is making. No broad analytics inventory.
-
-## 2. Trace the signal path
-
-Map the decision across Shopify, analytics, ad platforms, finance and reporting.
-
-## 3. Rank the trust breaks
-
-Rank breaks by commercial risk: spend and margin first, then conversion friction, then reporting cadence.
-## 4. Recommend the shortest path to cleaner signal
-
-- repair tracking and QA
-- redesign reporting and ownership
-- pressure-test the site and lifecycle journey
-- escalate into a broader conversion systems audit
+| Step | What happens | What you get |
+|---|---|---|
+| 1. Define the decision | Name the commercial decision the team makes. | One decision |
+| 2. Trace the signal path | Map it across Shopify, analytics, ads, finance and reporting. | The number's path |
+| 3. Rank the trust breaks | Rank by risk: spend and margin, conversion, then reporting. | A ranked list |
+| 4. Recommend the shortest path | Pick the fix: tracking, reporting, site journey, or a wider audit. | The first repair |
 

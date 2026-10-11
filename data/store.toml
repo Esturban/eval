@@ -183,5 +183,5 @@ then = "Fit call if the memo opens a bigger fix"
 
 [[question]]
 question = "Bigger job, or unsure what fits?"
-start_here = "Fit call, 20 minutes"
+start_here = "Fit call, 20 minutes. If nothing fits, you hear it on the call"
 then = "Scoped audit or sprint, invoiced by milestone"

@@ -50,63 +50,16 @@ faq:
   - question: "What does my team need to do?"
     answer: "Name one owner per process. Grant least-privilege access. Share 20 to 30 real past examples. Review test outputs before go-live."
   - question: "Do I need to hire anyone to run the agents?"
-    answer: "No. The process owner you already have can run each agent, review its exceptions and pause it."
+    answer: "No. The process owner you already have can run each agent, review its exceptions and pause it. If you cancel, the agents keep running in your accounts."
 ---
 
-<div class="not-prose my-8 grid gap-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:grid-cols-3 dark:border-slate-700 dark:bg-slate-950">
-<div>
-<p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">What you get</p>
-<ul class="mt-3 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
-<li>One agent in build at a time.</li>
-<li>Unlimited queue behind it.</li>
-<li>Every agent shipped to the 8-Part Ship Standard.</li>
-<li>Maintenance included: regressions, feedback, improvements.</li>
-<li>No setup fee.</li>
-</ul>
-</div>
-<div>
-<p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">What it costs</p>
-<p class="mt-3 text-base leading-7 text-slate-700 dark:text-slate-200"><s class="text-slate-500 dark:text-slate-400">USD 2,995</s> <strong class="text-2xl font-bold text-slate-950 dark:text-white">USD 1,995/mo</strong></p>
-<ul class="mt-2 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
-<li>Founding price held 6 months.</li>
-<li>Month to month. No minimum term.</li>
-<li class="font-semibold text-slate-950 dark:text-white">3 of 10 founding seats open.</li>
-</ul>
-</div>
-<div>
-<p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700 dark:text-cyan-300">Two guarantees</p>
-<ul class="mt-3 space-y-2 text-base leading-7 text-slate-700 dark:text-slate-200">
-<li><strong class="text-slate-950 dark:text-white">10-Day Ship:</strong> first agent live within 10 business days of access, or next month is free.</li>
-<li><strong class="text-slate-950 dark:text-white">14-Day Exit:</strong> cancel in the first 14 days, get 100 percent back.</li>
-</ul>
-</div>
-</div>
-
 Every seat starts with a free 20-minute [Live Audit](/live-audit/).
-
-## Who is this for?
-
-It fits if all three are true:
-
-- **A founder-led agency or service team.** Marketing, creative, consulting, professional services.
-- **Real tools.** A CRM, a project tool, shared inboxes, a document system. An agent needs somewhere to plug in.
-- **An owner per process.** They review the agent's work and change a habit or two.
-
-Not a fit yet if:
-
-- The process is not written down and changes every run.
-- You want a rollout across many departments at once.
-- You want an agent making final calls on money, hiring, legal or medical matters without a person checking.
-
-Unsure? The [Live Audit](/live-audit/) answers it in 20 minutes.
 
 ## How does the queue work?
 
 {{< diagram "build-queue" >}}
 
-One request in flight at a time. The rest wait in your queue, in the order you choose.
-
-One request is one process you can say in one sentence: "every Friday, draft each client's update from the project board."
+One request in flight. The rest wait in your queue, in the order you choose.
 
 | Phase | What happens | When |
 |---|---|---|
@@ -118,9 +71,23 @@ One request is one process you can say in one sentence: "every Friday, draft eac
 | Next request | The next request in your queue starts. | When one ships |
 | Maintenance | We fix regressions, apply feedback and improve live agents. Included. | Every month |
 
-## What ships with every request: the 8-Part Ship Standard
+## Price and terms
 
-| Deliverable | What it is |
+| | |
+|---|---|
+| Founding seat (first 10) | **USD 1,995 per month**, held 6 months |
+| Standard seat | USD 2,995 per month |
+| Seats open | **3 of 10 founding seats** |
+| Term | Month to month. No minimum term. |
+| Fees | No setup fee. No per-project quotes. |
+| 10-Day Ship | First request live in your accounts on real work within 10 business days of access, or next month is free. |
+| 14-Day Exit | Cancel in the first 14 days, get 100 percent back. No conditions. |
+| One-off comparison | An agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-agent-implementation-cost/)). A seat keeps shipping. |
+| Example | 6 hours a week of client updates at a USD 60 loaded hourly cost is about USD 1,550 a month. Two processes like that pay for the seat. |
+
+## What ships with every request
+
+| 8-Part Ship Standard | What it is |
 |---|---|
 | Workflow map | The process today and with the agent, plus every human review point. |
 | Baseline measure | Time, frequency and error rate today. |
@@ -131,39 +98,15 @@ One request is one process you can say in one sentence: "every Friday, draft eac
 | Handoff walkthrough | A recorded session with your process owner. |
 | After measure | The baseline measure again, once the agent is in daily use. |
 
-## What does your team need to do?
+## Who it fits and what we need
 
-While your seat is active, your team:
-
-- **Names one owner per process.**
-- **Grants access.** Your accounts, your keys. Revoke access without calling us. 
-- **Shares 20 to 30 real examples.** Emails, briefs, tickets, reports.
-- **Reviews before launch.** A person on your side approves test outputs.
-- **Plans one to two hours a week** from the owner.
-
-## How much does it cost?
-
-### Price
-
-**Standard seat: USD 2,995 per month. Founding seats: USD 1,995 per month**, first 10 seats only. Founding price held for 6 months. Month to month, no minimum term.
-
-No setup fee. No per-project quotes.
-
-A one-off agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-agent-implementation-cost/)). A seat keeps shipping.
-
-<div class="not-prose my-8 rounded-2xl border border-cyan-500/40 bg-cyan-50 px-5 py-4 dark:border-cyan-400/40 dark:bg-cyan-400/10">
-<p class="text-base leading-7 text-slate-800 dark:text-slate-100"><strong class="text-slate-950 dark:text-white">Example:</strong> 6 hours a week of client updates at a USD 60 loaded hourly cost is about USD 1,550 a month. Two processes like that pay for the seat.</p>
-</div>
-
-### Two guarantees
-
-1. **The 10-Day Ship Guarantee.** First request not live in your own systems within 10 business days of access? Your next month is free. Live means running in your accounts on real work. The clock starts at access.
-2. **The 14-Day Exit.** Cancel in the first 14 days. Get 100 percent back. No conditions.
-
-<div class="not-prose my-8">
-<a href="/live-audit/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Book your free 20-minute Live Audit</a>
-<p class="mt-3 text-sm text-slate-600 dark:text-slate-300">No obligation. You leave knowing which process goes first, whether or not you take a seat.</p>
-</div>
+| | Detail |
+|---|---|
+| Fits | A founder-led agency or service team with real tools (CRM, project tool, shared inboxes) and an owner per process. |
+| Not yet | A process that is not written down, many departments at once, or an agent making final calls on money, hiring, legal or medical matters without a person checking. |
+| Your team | Names one owner per process. Reviews test outputs before launch. Plans one to two hours a week. |
+| Access | Least-privilege: only what the agent needs. Your accounts, your keys. Revoke access without calling us. |
+| Examples | 20 to 30 real examples: emails, briefs, tickets, reports. |
 
 ## Agents running today
 
@@ -175,12 +118,9 @@ A one-off agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-ag
 | Quantitative trading agent (our own book) | Assesses strategies, runs paper trades and backtests before any capital moves | A person reviews results before any live trade |
 | Site and content agent (this site) | Drafts and ships pages on evadvisory.ca. A person reviews before anything goes live | You are reading its output right now |
 
-Every agent gets a baseline before launch and the same measure after. If the after number is not better, you see that too. [Questions to ask any AI agent developer](/answers/questions-before-hiring-ai-agent-developer/).
-
-## Start with a free Live Audit
-
-A free 20-minute call. Share your screen, we name the first process. Not a fit? You leave with a clear first step.
+Every agent gets a baseline before launch and the same measure after. If the after number is not better, you see that too.
 
 <div class="not-prose my-8">
 <a href="/live-audit/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Book your free 20-minute Live Audit</a>
+<p class="mt-3 text-sm text-slate-600 dark:text-slate-300">No obligation. You leave knowing which process goes first, whether or not you take a seat.</p>
 </div>

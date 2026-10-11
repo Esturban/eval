@@ -12,7 +12,7 @@ cta_note = "20 minutes. Free. Leave with the first automation named."
 [[sections]]
 eyebrow = "What it is"
 heading = "A free call on your real stack."
-body = "Share your screen. We name the first automation, and why."
+body = "Share your screen. We name the first automation, and why. The audit stands whether or not you work with us."
 
 [[sections]]
 eyebrow = "Who it is for"
