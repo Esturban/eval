@@ -16,6 +16,9 @@
     <section class="bg-stone-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid gap-4">
+                <div class="rounded-3xl border border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" style="padding:.25rem 1rem">
+                    {{ partial "diagrams/live-audit.html" . }}
+                </div>
                 {{ range .Params.sections }}
                 <div class="grid gap-3 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
                     <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600">{{ .eyebrow }}</p>

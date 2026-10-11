@@ -8,45 +8,32 @@ author: Esteban Valencia
 authorimage: ../assets/images/global/author.webp
 faq:
   - question: "What makes this different from a generic analytics audit?"
-    answer: "The methodology starts with the operator's decision and works backward to the signal required to support it, instead of inventorying tools without tying them to action."
+    answer: "It starts with the operator's decision and works back to the signal that decision needs. It does not inventory tools."
   - question: "Does the methodology stop at diagnosis?"
-    answer: "No. The diagnostic layer identifies the trust breaks, and the next step is a practical recommendation for which commercial system needs to be repaired first."
+    answer: "No. Diagnosis finds the trust breaks. The next step is a practical recommendation for which commercial system to repair first."
 ---
 
-EV Advisory uses a simple rule: start with the decision, not the dashboard.
+Start with the decision, not the dashboard.
 
-When teams say the numbers feel noisy, the real question is usually more specific:
+{{< diagram "methodology" >}}
 
-- can we trust paid efficiency enough to scale spend?
-- can we trust onsite conversion trends enough to prioritize fixes?
-- can we trust reporting enough to move quickly in weekly reviews?
-
-The methodology is built to answer those questions in sequence.
+Noisy numbers hide one question: can we trust this enough to act?
 
 ## 1. Define the commercial decision
 
-Before changing anything, clarify the exact decision the team is trying to make. This prevents the work from turning into a broad analytics inventory that never gets close enough to the operating problem.
+Name the exact decision the team is making. No broad analytics inventory.
 
 ## 2. Trace the signal path
 
-Map how the decision is currently supported across Shopify, analytics, ad platforms, finance, and reporting. The goal is to see where the story diverges, where definitions change, and where manual work is hiding structural weakness.
+Map the decision across Shopify, analytics, ad platforms, finance and reporting.
 
 ## 3. Rank the trust breaks
 
-Not every inconsistency matters equally. EV Advisory ranks the breaks by commercial risk:
-
-- issues that distort spend or margin decisions
-- issues that hide conversion friction
-- issues that slow reporting and review cadence
-- issues that can safely wait until later
-
+Rank breaks by commercial risk: spend and margin first, then conversion friction, then reporting cadence.
 ## 4. Recommend the shortest path to cleaner signal
-
-The output is a practical next move:
 
 - repair tracking and QA
 - redesign reporting and ownership
 - pressure-test the site and lifecycle journey
 - escalate into a broader conversion systems audit
 
-That is the point of the methodology. Not more complexity. Cleaner decisions, faster.

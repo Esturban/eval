@@ -1,0 +1,3 @@
+{{- /* Inline SVG diagram from layouts/partials/diagrams/<name>.html. Usage: {{< diagram "build-queue" >}} */ -}}
+{{- $name := .Get 0 -}}
+{{- partial (printf "diagrams/%s.html" $name) .Page -}}
