@@ -21,4 +21,4 @@ Which number is the real one?
 | 1. Answer | Score your reporting. | Your answers |
 | 2. Total | Add it up. | One number |
 | 3. Band | Match the number. | A diagnosis |
-| 4. Fix | Fix the weakest step. | Your next step |
+| 4. Next | See your top issue. | Your next step |
