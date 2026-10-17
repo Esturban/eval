@@ -55,6 +55,18 @@ faq:
 
 Every seat starts with a free 20-minute [Live Audit](/live-audit/).
 
+## What we do, how, what you get, the goal
+
+**What we do:** Hand repeated work to AI agents, one at a time.
+
+**How:** Built inside your tools, in accounts you own.
+
+**What you get:** First agent live within 10 business days of access, or next month is free. Maintenance included. Cancel within 14 days for 100 percent back.
+
+**The goal:** Your team's hours back, measured before and after.
+
+{{< diagram "build-queue-how" >}}
+
 ## How does the queue work?
 
 {{< diagram "build-queue" >}}
