@@ -36,6 +36,7 @@ schema:
     price: 1995
     price_currency: USD
     url: /live-audit/
+faq_style: details
 faq:
   - question: "What is Build Queue?"
     answer: "A monthly subscription that works like a retainer. We build your queued processes one at a time as working agents inside your tools."
@@ -73,35 +74,27 @@ Every seat starts with a free 20-minute [Live Audit](/live-audit/).
 
 One request in flight. The rest wait in your queue, in the order you choose.
 
-| Phase | What happens | When |
-|---|---|---|
-| Live Audit | Free call. We name the first process. | 20 minutes |
-| Seat starts | You take a seat. We send the access checklist. | Day one |
-| Access and examples | You grant least-privilege access and share real past examples. | A few days. Guarantee clock starts here |
-| Map and baseline | You get the process as it runs today, with baseline time and error rate. | Before build |
-| First agent live | Built in your accounts, tested on your examples, run with a person approving outputs. | Within 10 business days of access, or next month is free |
-| Next request | The next request in your queue starts. | When one ships |
-| Maintenance | We fix regressions, apply feedback and improve live agents. Included. | Every month |
+{{< diagram "build-queue-gantt" >}}
+
+Day 0 is the day you grant access. Days are business days. The next request in your queue starts when one ships.
 
 ## Price and terms
 
-| | |
-|---|---|
-| Founding seat (first 10) | **USD 1,995 per month**, held 6 months |
-| Standard seat | USD 2,995 per month |
-| Seats open | **3 of 10 founding seats** |
-| Term | Month to month. No minimum term. |
-| Fees | No setup fee. No per-project quotes. |
-| 10-Day Ship | First request live in your accounts on real work within 10 business days of access, or next month is free. |
-| 14-Day Exit | Cancel in the first 14 days, get 100 percent back. No conditions. |
-| One-off comparison | An agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-agent-implementation-cost/)). A seat keeps shipping. |
-| Example | 6 hours a week of client updates at a USD 60 loaded hourly cost is about USD 1,550 a month. Two processes like that pay for the seat. |
+<ul class="price-block not-prose">
+<li><strong>Founding seat: USD 1,995 per month</strong>, price held 6 months. <strong>3 of 10 founding seats open.</strong></li>
+<li><strong>Standard seat: USD 2,995 per month.</strong></li>
+<li>Month to month. No minimum term. No setup fee, no per-project quotes.</li>
+<li><strong>Ships in 10 days:</strong> first request live within 10 business days of access, or next month is free.</li>
+<li><strong>Cancel in the first 14 days:</strong> 100 percent back, no conditions.</li>
+</ul>
+
+A one-off agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-agent-implementation-cost/)). A seat keeps shipping. Example: 6 hours a week of client updates at a USD 60 loaded hourly cost is about USD 1,550 a month, so two processes like that pay for the seat.
 
 ## What ships with every request
 
 | 8-Part Ship Standard | What it is |
 |---|---|
-| Workflow map | The process today and with the agent, plus every human review point. |
+| Workflow map | The process today and with the agent, with every human review point. |
 | Baseline measure | Time, frequency and error rate today. |
 | The working agent | Built and running in accounts you own. |
 | Test log | Real examples, outputs and corrections. |
@@ -112,13 +105,10 @@ One request in flight. The rest wait in your queue, in the order you choose.
 
 ## Who it fits and what we need
 
-| | Detail |
-|---|---|
-| Fits | A founder-led agency or service team with real tools (CRM, project tool, shared inboxes) and an owner per process. |
-| Not yet | A process that is not written down, many departments at once, or an agent making final calls on money, hiring, legal or medical matters without a person checking. |
-| Your team | Names one owner per process. Reviews test outputs before launch. Plans one to two hours a week. |
-| Access | Least-privilege: only what the agent needs. Your accounts, your keys. Revoke access without calling us. |
-| Examples | 20 to 30 real examples: emails, briefs, tickets, reports. |
+- **Fits:** a founder-led agency or service team with real tools (CRM, project tool, shared inboxes) and an owner per process.
+- **Not yet:** a process that is not written down, many departments at once, or an agent making final calls on money, hiring, legal or medical matters without a person checking.
+- **Your team:** one owner per process, reviews test outputs before launch, one to two hours a week.
+- **Access and examples:** least-privilege access, your accounts, your keys, revocable without calling us. 20 to 30 real examples: emails, briefs, tickets, reports.
 
 ## Agents running today
 
