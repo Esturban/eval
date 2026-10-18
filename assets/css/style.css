@@ -5403,3 +5403,39 @@
     }
   }
 }
+
+/* Build Queue price block (CRO-8249): one compact bordered list, light and dark. */
+@layer utilities {
+  .offer-prose ul.price-block {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    list-style: none;
+    border: 1px solid var(--ev-line);
+    border-left: 4px solid var(--ev-accent-deep);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--ev-accent) 8%, var(--ev-panel));
+    color: var(--ev-ink);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .offer-prose ul.price-block li {
+    margin: 0;
+    padding: 0.375rem 0;
+  }
+
+  .offer-prose ul.price-block li + li {
+    border-top: 1px solid var(--ev-line);
+  }
+
+  :is(.dark) .offer-prose ul.price-block {
+    border-color: #334155;
+    border-left-color: var(--ev-accent);
+    background: color-mix(in srgb, var(--ev-accent) 8%, #0f172a);
+    color: #f1f5f9;
+  }
+
+  :is(.dark) .offer-prose ul.price-block li + li {
+    border-top-color: #334155;
+  }
+}
