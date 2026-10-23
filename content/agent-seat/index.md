@@ -15,7 +15,7 @@ Three questions. We read your answer and reply by email with whether it fits. Fo
 
 <p class="seat-note">All fields are required (marked with *).</p>
 
-<form class="seat-form not-prose" name="agent-seat" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you-agent-seat/">
+<form class="seat-form not-prose" name="agent-seat" method="POST" netlify data-netlify="true" netlify-honeypot="bot-field" action="../thank-you-agent-seat/">
   <input type="hidden" name="form-name" value="agent-seat" />
   <input type="hidden" name="source" value="ai-agent-implementation" />
   <p class="seat-form-trap" hidden>
