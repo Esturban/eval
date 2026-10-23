@@ -1,18 +1,22 @@
-{{- /* Confirmation page (CRO-8355). Opt-in via front matter layout: thanks.
-       Promise and the delivery timeline in the dark header, next steps below. */ -}}
+{{- /* Confirmation page. Opt-in via front matter layout: thanks.
+       Dark header: promise and one CTA on the left, one numbered step track on the right. */ -}}
 {{ define "main" }}
 <article>
   <header class="bg-slate-950">
-    <div class="mx-auto max-w-5xl px-4 py-8 sm:py-14 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center lg:gap-10">
-      <h1 class="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">{{ default .Title .Params.h1 }}</h1>
-      {{ with .Params.hero_diagram }}
-      <div class="thanks-visual mt-2 text-slate-100 lg:mt-0" aria-hidden="false">
-        {{ partial (printf "diagrams/%s.html" .) $ }}
+    <div class="mx-auto max-w-5xl px-4 py-8 sm:py-14 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-14">
+      <div>
+        <h1 class="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">{{ default .Title .Params.h1 }}</h1>
+        {{ with .Params.lede }}<p class="mt-4 max-w-xl text-lg leading-7 text-slate-300">{{ . }}</p>{{ end }}
+        {{ with .Params.cta_url }}<a class="thanks-cta" href="{{ . }}">{{ $.Params.cta_label }}</a>{{ end }}
+      </div>
+      {{ with .Params.steps }}
+      <div class="thanks-visual mt-8 rounded-3xl border border-slate-700 bg-slate-900 p-5 sm:p-7 lg:mt-0">
+        {{ partial "diagrams/thanks-track.html" $ }}
       </div>
       {{ end }}
     </div>
   </header>
-  <div class="mx-auto max-w-3xl px-4 py-6 sm:py-10">
+  <div class="mx-auto max-w-5xl px-4 py-6 sm:py-8">
     <div class="prose dark:prose-invert dark:text-white max-w-none">
       {{ .Content }}
     </div>

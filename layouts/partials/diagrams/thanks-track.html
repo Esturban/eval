@@ -1,0 +1,21 @@
+{{- /* Numbered step track for the confirmation page. Steps come from front matter; no text is ever drawn over the rail. */ -}}
+<style>
+.tt{list-style:none;margin:0;padding:0;counter-reset:tt}
+.tt li{position:relative;display:grid;grid-template-columns:2.5rem 1fr;column-gap:1rem;padding-bottom:1.5rem;counter-increment:tt;margin:0}
+.tt li:last-child{padding-bottom:0}
+.tt li::before{content:counter(tt);grid-row:1/3;display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:9999px;background:#475569;color:#fff;font-weight:800;font-size:1.0625rem;position:relative;z-index:1}
+.tt li.is-next::before{background:var(--ev-accent);color:var(--ev-ink)}
+.tt li:not(:last-child)::after{content:"";position:absolute;left:1.1875rem;top:2.5rem;bottom:0;width:2px;background:#64748b}
+.tt .tt-tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#67e8f9;line-height:1.5;align-self:center}
+.tt .tt-title{margin:0;font-size:1.25rem;line-height:1.3;font-weight:700;color:#fff}
+.tt .tt-text{margin:.25rem 0 0;font-size:1rem;line-height:1.55;color:#cbd5e1}
+.tt .tt-body{grid-column:2}
+</style>
+<ol class="tt" aria-label="What happens next">
+{{ range $i, $s := .Params.steps }}
+<li{{ if eq $i 1 }} class="is-next"{{ end }}>
+<span class="tt-tag">{{ $s.tag }}</span>
+<div class="tt-body"><p class="tt-title">{{ $s.title }}</p><p class="tt-text">{{ $s.text }}</p></div>
+</li>
+{{ end }}
+</ol>
