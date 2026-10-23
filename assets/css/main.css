@@ -1774,15 +1774,17 @@
     display: none !important;
   }
 
-  .thanks-visual .gt-v {
-    display: block !important;
-    max-width: 17rem !important;
+  /* The 360-wide drawing renders at 358 px on a 390 phone, so lift the small labels a touch to keep them at 14 px or more. */
+  .thanks-visual .gt .s {
+    font-size: 14.6px !important;
   }
 
-  @media (min-width: 1024px) {
-    .thanks-visual .gt-v {
-      max-width: 22rem !important;
-    }
+  /* Full column width, left-aligned on the headline margin: 14px labels render at 14px. */
+  .thanks-visual .gt-v {
+    display: block !important;
+    width: 100%;
+    max-width: 24rem !important;
+    margin: 0 !important;
   }
 
   .thanks-steps {
@@ -1880,5 +1882,12 @@
   .thanks-steps .thanks-cta {
     display: flex;
     width: fit-content;
+  }
+}
+
+@layer utilities {
+  /* Offer hero: tighter chart margins so more of the Gantt shows in the first phone screen. */
+  .hero-gantt .gt {
+    margin: 0.75rem auto 1rem !important;
   }
 }

@@ -4160,6 +4160,11 @@
       margin-top: calc(var(--spacing) * 5);
     }
   }
+  .sm\:mt-6 {
+    @media (width >= 40rem) {
+      margin-top: calc(var(--spacing) * 6);
+    }
+  }
   .sm\:mt-10 {
     @media (width >= 40rem) {
       margin-top: calc(var(--spacing) * 10);
@@ -7488,14 +7493,14 @@
   .thanks-visual .gt-h {
     display: none !important;
   }
+  .thanks-visual .gt .s {
+    font-size: 14.6px !important;
+  }
   .thanks-visual .gt-v {
     display: block !important;
-    max-width: 17rem !important;
-  }
-  @media (min-width: 1024px) {
-    .thanks-visual .gt-v {
-      max-width: 22rem !important;
-    }
+    width: 100%;
+    max-width: 24rem !important;
+    margin: 0 !important;
   }
   .thanks-steps {
     margin: 0;
@@ -7582,6 +7587,11 @@
   .thanks-steps .thanks-cta {
     display: flex;
     width: fit-content;
+  }
+}
+@layer utilities {
+  .hero-gantt .gt {
+    margin: 0.75rem auto 1rem !important;
   }
 }
 @property --tw-translate-x {
