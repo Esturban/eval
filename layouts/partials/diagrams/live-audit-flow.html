@@ -1,0 +1,40 @@
+{{- /* Live Audit flow: what goes in, the 20 minutes, what you leave with. Uses only statements already on the page. */ -}}
+<style>
+.lf{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:stretch;color:#e2e8f0}
+.lf>li{margin:0;padding:0}
+.lf-card{display:grid;grid-template-columns:3.5rem 1fr;column-gap:1rem;align-items:start;border:1px solid #334155;background:#0f172a;border-radius:1.25rem;padding:1.125rem 1.25rem}
+.lf-card.is-core{border-color:var(--ev-accent);background:#0b1f2e}
+.lf-card.is-out{border-color:#34d399}
+.lf-ico{width:3.5rem;height:3.5rem}
+.lf-ico circle.ring{fill:none;stroke:#334155;stroke-width:4}
+.lf-ico path.arc{fill:none;stroke:var(--ev-accent);stroke-width:4;stroke-linecap:round}
+.lf-ico text{fill:#fff;font-size:15px;font-weight:800;font-family:inherit}
+.lf-ico .st{fill:none;stroke:#67e8f9;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.lf-ico.out .st{stroke:#6ee7b7}
+.lf-k{margin:0;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#67e8f9;line-height:1.4}
+.lf-card.is-out .lf-k{color:#6ee7b7}
+.lf-h{margin:.125rem 0 .375rem;font-size:1.25rem;line-height:1.25;font-weight:800;color:#fff}
+.lf-card ul{list-style:none;margin:0;padding:0}
+.lf-card li{margin:0;padding:0 0 0 1rem;position:relative;font-size:1rem;line-height:1.5;color:#cbd5e1}
+.lf-card li+li{margin-top:.125rem}
+.lf-card li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;border-radius:9999px;background:#64748b}
+.lf-join{display:flex;justify-content:center;height:2rem;color:#67e8f9}
+.lf-join svg{width:1.5rem;height:2rem}
+@media(prefers-reduced-motion:no-preference){.lf-join svg{animation:lfn 2.4s ease-in-out infinite}@keyframes lfn{0%,100%{transform:translateY(-2px)}50%{transform:translateY(2px)}}}
+</style>
+<ol class="lf" aria-label="How the Live Audit works: what goes in, the 20 minutes, what you leave with">
+<li><div class="lf-card">
+<svg class="lf-ico" viewBox="0 0 56 56" aria-hidden="true"><rect class="st" x="8" y="10" width="40" height="28" rx="4"/><path class="st" d="M20 46h16M28 38v8"/><path class="st" d="M16 20h12M16 26h20M16 32h8"/></svg>
+<div><p class="lf-k">Goes in</p><p class="lf-h">Your real stack</p>
+<ul><li>Two or three repeated tasks</li><li>Their tools, open</li><li>Your screen, shared</li></ul></div></div></li>
+<li class="lf-join" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M12 2v24m-6-7l6 7l6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+<li><div class="lf-card is-core">
+<svg class="lf-ico" viewBox="0 0 56 56" aria-hidden="true"><circle class="ring" cx="28" cy="28" r="24"/><path class="arc" d="M28 4a24 24 0 1 1 -24 24"/><text x="28" y="34" text-anchor="middle">20</text></svg>
+<div><p class="lf-k">The call</p><p class="lf-h">20 minutes, live</p>
+<ul><li>We review your actual tools together</li><li>We name the first automation, and why</li></ul></div></div></li>
+<li class="lf-join" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M12 2v24m-6-7l6 7l6-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
+<li><div class="lf-card is-out">
+<svg class="lf-ico out" viewBox="0 0 56 56" aria-hidden="true"><circle class="st" cx="28" cy="28" r="20"/><path class="st" d="M18 29l7 7 13-15"/></svg>
+<div><p class="lf-k">You leave with</p><p class="lf-h">The first automation, named</p>
+<ul><li>Why it comes first</li><li>Stands whether or not you work with us</li></ul></div></div></li>
+</ol>
