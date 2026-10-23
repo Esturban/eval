@@ -1628,3 +1628,257 @@
     white-space: nowrap;
   }
 }
+
+/* Funnel pages (CRO-8355): proof strip and drop-downs on the Build Queue offer page. Light and dark. */
+@layer utilities {
+  .offer-prose .proof-strip {
+    margin: 2rem 0;
+  }
+
+  .offer-prose .proof-strip h2 {
+    margin: 0 0 0.75rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ev-accent-deep);
+  }
+
+  .offer-prose .proof-strip ul {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .offer-prose .proof-strip ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .offer-prose .proof-strip li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--ev-line);
+    border-radius: 1rem;
+    background: var(--ev-panel);
+    color: var(--ev-ink);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .offer-prose .proof-check {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.25rem;
+    border-radius: 9999px;
+    background: var(--ev-accent);
+    color: var(--ev-ink);
+  }
+
+  :is(.dark) .offer-prose .proof-strip h2 {
+    color: var(--ev-accent);
+  }
+
+  :is(.dark) .offer-prose .proof-strip li {
+    border-color: #334155;
+    background: #0f172a;
+    color: #f1f5f9;
+  }
+
+  .offer-prose details.offer-more {
+    margin: 0.75rem 0;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid var(--ev-line);
+    border-radius: 1rem;
+  }
+
+  .offer-prose details.offer-more summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+  }
+
+  .offer-prose details.offer-more summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .offer-prose details.offer-more summary::after {
+    content: "";
+    float: right;
+    width: 0.55rem;
+    height: 0.55rem;
+    margin: 0.5rem 0.25rem 0 1rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  .offer-prose details.offer-more[open] summary::after {
+    transform: rotate(-135deg);
+  }
+
+  .offer-prose details.offer-more summary:focus-visible {
+    outline: 3px solid var(--ev-accent-deep);
+    outline-offset: 4px;
+    border-radius: 0.5rem;
+  }
+
+  :is(.dark) .offer-prose details.offer-more {
+    border-color: #334155;
+  }
+}
+
+/* Funnel pages (CRO-8355): founding-seat intake. */
+@layer utilities {
+  /* Unlayered diagram styles outrank the utilities layer, so these use !important.
+   Beside the form the narrow column always uses the vertical diagram. */
+  .seat-aside .dh-h {
+    display: none !important;
+  }
+
+  .seat-aside .dh-v {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+
+  .seat-proof {
+    margin-top: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--ev-accent-deep);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  :is(.dark) .seat-proof {
+    border-left-color: var(--ev-accent);
+  }
+}
+
+/* Funnel pages (CRO-8355): confirmation page. */
+@layer utilities {
+  /* On phones the timeline is capped so the next step and its button
+     stay inside the first screen. */
+  .thanks-visual .gt {
+    margin: 0.5rem auto !important;
+  }
+
+  .thanks-visual .gt-h {
+    display: none !important;
+  }
+
+  .thanks-visual .gt-v {
+    display: block !important;
+    max-width: 17rem !important;
+  }
+
+  @media (min-width: 1024px) {
+    .thanks-visual .gt-v {
+      max-width: 22rem !important;
+    }
+  }
+
+  .thanks-steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .thanks-steps li {
+    position: relative;
+    margin: 0 0 1.25rem;
+    padding-left: 2.75rem;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    counter-increment: step;
+  }
+
+  .thanks-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.0625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 9999px;
+    background: var(--ev-accent);
+    color: var(--ev-ink);
+    font-weight: 700;
+    font-size: 0.9375rem;
+  }
+
+  .thanks-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background: var(--ev-accent);
+    color: var(--ev-ink);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .thanks-cta:hover {
+    background: color-mix(in srgb, var(--ev-accent) 80%, white);
+  }
+
+  .thanks-cta:focus-visible,
+  .thanks-link:focus-visible {
+    outline: 3px solid var(--ev-accent-deep);
+    outline-offset: 3px;
+  }
+
+  .thanks-end {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .thanks-end .thanks-cta {
+    margin-top: 0;
+  }
+
+  .thanks-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    text-decoration: underline;
+    font-size: 0.9375rem;
+  }
+}
+
+/* Funnel pages (CRO-8355): Live Audit header diagram, vertical variant in the header column. */
+@layer utilities {
+  .la-hero .dg-h {
+    display: none !important;
+  }
+
+  .la-hero .dg-v {
+    display: block !important;
+    margin: 0 auto !important;
+  }
+}
+
+@layer utilities {
+  .thanks-steps .thanks-cta {
+    display: flex;
+    width: fit-content;
+  }
+}
