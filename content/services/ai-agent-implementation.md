@@ -61,6 +61,10 @@ Every seat starts with a free 20-minute [Live Audit](/live-audit/).
 
 **What you get.** A working agent in accounts you own, tested on your real examples, with a runbook and a recorded handoff. We measure before and after. If the after number is not better, you see that too.
 
+{{< diagram "agent-on-tools" >}}
+
+{{< diagram "agent-task-loop" >}}
+
 ## Price and terms
 
 <ul class="price-block not-prose">

@@ -18,7 +18,7 @@
       {{ end }}
       {{/* optional hero visual under the CTA, opt-in via front matter hero_diagram. The header is dark in both themes. */}}
       {{ with .Params.hero_diagram }}
-      <div class="hero-gantt mt-2 max-w-3xl text-slate-100">
+      <div class="hero-gantt mt-2 max-w-5xl text-slate-100">
         {{ partial (printf "diagrams/%s.html" .) $ }}
         {{ with $.Params.hero_caption }}<p class="-mt-4 text-sm leading-6 text-slate-300">{{ . }}</p>{{ end }}
       </div>
