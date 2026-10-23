@@ -4,7 +4,8 @@ title: "Request a founding seat"
 description: "Tell us what the agent should do and which tools it touches. We read it and reply by email with whether it fits."
 nav_cta: quiet
 layout: seat
-lede: "Three questions. We reply by email with whether it fits."
+hide_meta: true
+lede: "Three questions, about two minutes. We read every answer and reply by email with whether it fits. You hear back within 2 business days."
 terms:
   - "USD 1,995 a month, founding seat"
   - "Month to month"
@@ -28,7 +29,7 @@ build:
     <label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
   </p>
   <p>
-    <label for="agent_job">What should the agent do?<span class="seat-req" aria-hidden="true">*</span></label>
+    <label for="agent_job">What should the agent do? One task is enough.<span class="seat-req" aria-hidden="true">*</span></label>
     <textarea id="agent_job" name="agent_job" rows="5" placeholder="Example: Read new project request emails and turn each one into a task with the client name, scope and due date." required></textarea>
     <span class="seat-chips" role="group" aria-label="Suggestions, tap to add" hidden>
       <button type="button" data-suggest="job" data-suggest-job="Triage inbound email" aria-pressed="false">Triage inbound email</button>
@@ -41,7 +42,7 @@ build:
   </p>
   <p>
     <label for="systems">Which tools does it touch?<span class="seat-req" aria-hidden="true">*</span></label>
-    <span class="seat-hint" id="systems-hint">For example: CRM, project tool, shared inbox</span>
+    <span class="seat-hint" id="systems-hint">For example: CRM, project tool, shared inbox. Names are fine, no technical detail needed.</span>
     <input type="text" id="systems" name="systems" aria-describedby="systems-hint" required />
     <span class="seat-chips" role="group" aria-label="Common tools, tap to toggle" hidden>
       <button type="button" data-suggest="tool" data-suggest-tool="Gmail" aria-pressed="false">Gmail</button>
@@ -62,10 +63,11 @@ build:
   <p>
     <button type="submit">Request my founding seat</button>
   </p>
+  <p class="seat-note">No payment now. You hear back within 2 business days. Next: we reply, you book a 20-minute Live Audit, and your first agent goes live within 10 business days of access.</p>
 </form>
 
 <script src="/js/agent-seat.js" defer></script>
 
-<p class="seat-proof">Three desk agents for a client: a real request sent to each in September 2026, a real answer received.</p>
+<p class="seat-proof">Reporting work for a past client: 30 hours a month down to 5 minutes.</p>
 
 Not sure yet? <a class="seat-tap" href="/live-audit/">Book a free Live Audit</a>.
