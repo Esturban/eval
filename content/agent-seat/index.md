@@ -2,6 +2,13 @@
 author: EV Advisory
 title: "Request a founding seat"
 description: "Tell us what the agent should do and which tools it touches. We read it and reply by email with whether it fits."
+layout: seat
+lede: "Three questions. We reply by email with whether it fits."
+terms:
+  - "USD 1,995 a month, founding seat"
+  - "Month to month"
+  - "100 percent back if you cancel in the first 14 days"
+  - "First agent live within 10 business days of access, or next month is free"
 date: 2026-10-23T00:00:00.000Z
 noindex: true
 sitemap:
@@ -10,8 +17,6 @@ build:
   list: never
   render: always
 ---
-
-Three questions. We read your answer and reply by email with whether it fits. Founding seats are USD 1,995 a month, month to month, with 100 percent back if you cancel in the first 14 days. See the <a class="seat-tap" href="/services/ai-agent-implementation/">full terms</a>.
 
 <p class="seat-note">All fields are required (marked with *).</p>
 
@@ -59,5 +64,7 @@ Three questions. We read your answer and reply by email with whether it fits. Fo
 </form>
 
 <script src="/js/agent-seat.js" defer></script>
+
+<p class="seat-proof">Three desk agents for a client: a real request sent to each in September 2026, a real answer received.</p>
 
 Not sure yet? <a class="seat-tap" href="/live-audit/">Book a free Live Audit</a>.
