@@ -134,10 +134,15 @@
             {{/* a page may swap the nav CTA via front matter page_cta.nav_label/url. Every other page keeps Free Scorecard. */}}
             {{ $navCtaLabel := "Free Scorecard" }}{{ $navCtaHref := "/scorecard/" }}
             {{ with $.Params.page_cta }}{{ with .nav_label }}{{ $navCtaLabel = . }}{{ $navCtaHref = $.Params.page_cta.url }}{{ end }}{{ end }}
+            {{/* page param nav_cta: quiet demotes the pill to a plain nav link on single-CTA funnel pages. */}}
+            {{ if eq $.Params.nav_cta "quiet" }}
+            <a class="{{ $link }}" href="{{ $navCtaHref }}" @click="open = false">{{ $navCtaLabel }}</a>
+            {{ else }}
             <a class="mt-5 inline-flex min-h-14 items-center justify-center rounded-full bg-cyan-400 px-6 text-lg font-semibold text-slate-950 transition hover:bg-cyan-300 focus:bg-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:mt-0 lg:ml-2 lg:min-h-11 lg:whitespace-nowrap lg:px-4 lg:text-base xl:ml-3 xl:px-5"
                href="{{ $navCtaHref }}" @click="open = false">
                 {{ $navCtaLabel }}
             </a>
+            {{ end }}
             <button id="theme-toggle" type="button" aria-label="Switch light or dark mode"
                     class="mt-3 inline-flex h-11 w-11 items-center justify-center self-start rounded-full text-slate-400 transition hover:bg-slate-800 hover:text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:mt-0 lg:ml-1 lg:hidden lg:self-auto xl:inline-flex">
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"

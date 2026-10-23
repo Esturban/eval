@@ -1,0 +1,42 @@
+{{- /* Looped CSS animation: one agent task, start to finish. Static (fully lit) under prefers-reduced-motion. */ -}}
+<figure class="not-prose atl" aria-label="Example: one request handled by an agent, start to finish">
+<style>
+.atl{margin:2rem 0;padding:1.5rem 1.25rem;border-radius:1.5rem;background:#020617;border:1px solid #1e293b;color:#e2e8f0}
+.atl-k{margin:0 0 1rem;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#67e8f9}
+.atl-steps{list-style:none;margin:0;padding:0;position:relative;display:grid;grid-template-columns:1fr;row-gap:1.25rem}
+.atl-steps::before{content:"";position:absolute;left:1.6875rem;top:1.75rem;bottom:1.75rem;width:2px;background:#475569}
+.atl-steps li{position:relative;margin:0;padding:0;min-height:3.5rem;display:grid;grid-template-columns:3.5rem 1fr;column-gap:1rem;align-items:center}
+.atl-dot{position:relative;z-index:1;width:3.5rem;height:3.5rem;border-radius:9999px;background:var(--ev-accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #020617}
+.atl-dot svg{width:1.75rem;height:1.75rem;fill:none;stroke:#020617;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.atl-t{margin:0;font-size:1.125rem;line-height:1.3;font-weight:700;color:#fff}
+.atl-s{margin:.125rem 0 0;font-size:1rem;line-height:1.45;color:#cbd5e1}
+.atl-pkt{position:absolute;z-index:2;left:1.375rem;top:1.375rem;width:.75rem;height:.75rem;border-radius:9999px;background:#fff;box-shadow:0 0 0 4px rgba(34,211,238,.5)}
+.atl-note{margin:1.25rem 0 0;font-size:1rem;line-height:1.5;color:#cbd5e1}
+@media(min-width:760px){
+.atl{padding:1.75rem}
+.atl-steps{grid-template-columns:repeat(4,1fr);column-gap:1rem;row-gap:0}
+.atl-steps::before{left:12.5%;right:12.5%;top:1.6875rem;bottom:auto;width:auto;height:2px}
+.atl-steps li{grid-template-columns:1fr;row-gap:.75rem;justify-items:center;text-align:center;align-items:start}
+.atl-pkt{left:calc(12.5% - .375rem);top:1.3125rem}
+}
+@media(prefers-reduced-motion:no-preference){
+.atl-dot{animation:atlDot 8s linear infinite;animation-delay:calc(var(--i)*2s - 0.01s)}
+.atl-t,.atl-s{animation:atlTxt 8s linear infinite;animation-delay:calc(var(--i)*2s - 0.01s)}
+.atl-pkt{animation:atlPktY 8s ease-in-out infinite}
+@keyframes atlDot{0%{background:#334155}2%,92%{background:var(--ev-accent)}100%{background:#334155}}
+@keyframes atlPktY{0%,4%{top:1.375rem;opacity:1}25%,29%{top:6.125rem}50%,54%{top:10.875rem}75%,92%{top:15.625rem;opacity:1}97%,100%{top:15.625rem;opacity:0}}
+@media(min-width:760px){
+.atl-pkt{animation-name:atlPktX}
+@keyframes atlPktX{0%,4%{left:calc(12.5% - .375rem);opacity:1}25%,29%{left:calc(12.5% + (75% )/3 - .375rem)}50%,54%{left:calc(12.5% + (75%)*2/3 - .375rem)}75%,92%{left:calc(87.5% - .375rem);opacity:1}97%,100%{left:calc(87.5% - .375rem);opacity:0}}
+}
+}
+@keyframes atlTxt{0%{opacity:.55}2%,92%{opacity:1}100%{opacity:.55}}
+</style>
+<p class="atl-k">Example: one request, start to finish</p>
+<ol class="atl-steps">
+<li style="--i:0"><span class="atl-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><p class="atl-t">A request arrives</p><p class="atl-s">In your inbox</p></div></li>
+<li style="--i:1"><span class="atl-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9.500 13h.01M14.500 13h.01"/></svg></span><div><p class="atl-t">The agent drafts</p><p class="atl-s">Reads it, writes the reply</p></div></li>
+<li style="--i:2"><span class="atl-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.500l4.500 4.500L19 7"/></svg></span><div><p class="atl-t">A person approves</p><p class="atl-s">Before anything goes out</p></div></li>
+<li style="--i:3"><span class="atl-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 16-2.500-6.500z"/></svg></span><div><p class="atl-t">Reply sent</p><p class="atl-s">From your own account</p></div></li>
+</ol>
+</figure>

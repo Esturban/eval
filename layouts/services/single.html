@@ -2,17 +2,25 @@
 {{ $pageStatus := partial "page-status.html" . }}
 <article>
   <header class="bg-slate-950">
-    <div class="mx-auto max-w-5xl px-4 py-16">
+    <div class="mx-auto max-w-5xl px-4 {{ if .Params.hero_diagram }}py-6 sm:py-16{{ else }}py-16{{ end }}">
       <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300">{{ default "Service" .Params.eyebrow }}</p>
       <h1 class="mt-4 text-4xl font-black tracking-tight text-white md:text-5xl">{{ default .Title .Params.h1 }}</h1>
-      {{ with .Description }}
-      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{{ . }}</p>
+      {{/* lede: optional visible intro; the description stays the meta description. */}}
+      {{ with or .Params.lede .Description }}
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-300 sm:mt-6 sm:text-lg sm:leading-8">{{ . }}</p>
       {{ end }}
       {{/* per-page hero CTA, opt-in via front matter page_cta. Pages without it render exactly as before. */}}
       {{ with .Params.page_cta }}
       <div class="mt-8">
         <a href="{{ .url }}" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">{{ .label }}</a>
         {{ with .note }}<p class="mt-3 text-sm text-slate-400">{{ . }}</p>{{ end }}
+      </div>
+      {{ end }}
+      {{/* optional hero visual under the CTA, opt-in via front matter hero_diagram. The header is dark in both themes. */}}
+      {{ with .Params.hero_diagram }}
+      <div class="hero-gantt mt-2 max-w-5xl text-slate-100">
+        {{ partial (printf "diagrams/%s.html" .) $ }}
+        {{ with $.Params.hero_caption }}<p class="-mt-4 text-sm leading-6 text-slate-300">{{ . }}</p>{{ end }}
       </div>
       {{ end }}
       {{ if not .Params.hide_meta }}

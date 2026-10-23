@@ -1,0 +1,22 @@
+{{- /* Past-client logo strip (CRO-8355). Same six logos, order and alt text as
+       layouts/partials/home-reviews.html; keep the two lists in step. Tiles stay
+       white in both themes because the logos are dark on light. Logo URLs go
+       through resources.PostProcess so they stay root-relative. */ -}}
+{{ $logos := slice
+  (dict "src" "images/global/logos/gd-logo-alt.svg" "alt" "Client 1" "h" "h-10")
+  (dict "src" "images/global/logos/hr-logo.svg" "alt" "Client 2" "h" "h-10")
+  (dict "src" "images/global/logos/bsg-logo-1.png" "alt" "Client 3" "h" "h-20")
+  (dict "src" "images/global/logos/r4u-logo.svg" "alt" "Client 4" "h" "h-12")
+  (dict "src" "images/global/logos/subaru-logo.svg" "alt" "Client 5" "h" "h-14")
+  (dict "src" "images/global/logos/cco-logo.png" "alt" "Client 6" "h" "h-12")
+}}
+<ul class="grid list-none grid-cols-3 gap-2 p-0 sm:gap-3 lg:grid-cols-6">
+  {{ range $l := $logos }}
+  {{ with resources.Get $l.src }}
+  {{ $img := . | resources.PostProcess }}
+  <li class="m-0 flex h-20 items-center justify-center rounded-2xl bg-white px-3 ring-1 ring-slate-900/10 sm:h-24">
+    <img src="{{ $img.RelPermalink }}" alt="{{ $l.alt }} logo" loading="lazy" decoding="async" class="home-logo {{ $l.h }} max-h-full w-full object-contain" />
+  </li>
+  {{ end }}
+  {{ end }}
+</ul>

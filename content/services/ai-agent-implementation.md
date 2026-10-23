@@ -1,6 +1,6 @@
 ---
 title: "Build Queue: AI Agents Shipped Into Your Tools, One Monthly Subscription"
-description: "A monthly subscription for founder-led agencies and service teams in Canada and the United States. We build one agent at a time inside the tools you already run, and you own every one. USD 1,995/mo for founding seats."
+description: "A monthly subscription for teams of 10 to 200 people, such as agencies and service teams, in Canada and the United States. We build one agent at a time inside the tools you already run, and you own every one. USD 1,995/mo for founding seats."
 summary: "A monthly subscription that works like a retainer: one request in flight, unlimited queue behind it, first agent live within 10 business days of access or next month is free. USD 1,995/mo."
 date: 2026-09-24
 dateModified: 2026-10-01
@@ -10,14 +10,17 @@ language: en
 author: EV Advisory
 # UI finish-gate fixes: page-scoped presentation params read by
 # layouts/services/single.html and layouts/partials/nav.html. No other page sets them.
-h1: "Your team's repeated work, handed to AI agents. First one live in 10 business days."
+h1: "The work your team repeats every week, done by an AI agent in your own tools. First one live in 10 business days."
 eyebrow: Build Queue
 hide_meta: true
+lede: "Not a demo. Each agent is tested on 20 to 30 of your own past examples, a person on your team approves before anything goes out, and it runs in accounts you own. For teams of 10 to 200 people, such as agencies and service teams, in Canada and the United States."
+hero_diagram: build-queue-gantt
+hero_caption: "Day 0 is the day you grant access. One request in flight, the rest queue in your order."
 prose_class: offer-prose
 page_cta:
   label: "Request a founding seat"
   url: /agent-seat/
-  note: "Three questions. We reply by email with whether it fits."
+  note: "Three questions, about two minutes. No payment. We reply by email with whether it fits. You hear back within 2 business days."
   nav_label: "Request a founding seat"
 authorimage: ../assets/images/global/author.webp
 categories: services
@@ -27,7 +30,7 @@ schema:
   service:
     name: Build Queue
     service_type: AI agent implementation subscription
-    audience: Founder-led agencies and service teams
+    audience: Teams of 10 to 200 people, such as agencies and service teams
     area_served: [Canada, United States]
   offer:
     # Locked 2026-09-25. Founding seat price only; no other tiers on the page.
@@ -41,56 +44,66 @@ faq:
   - question: "What is Build Queue?"
     answer: "A monthly subscription that works like a retainer. We build your queued processes one at a time as working agents inside your tools."
   - question: "Who is Build Queue for?"
-    answer: "Founder-led agencies and service teams in Canada and the United States that already run on real tools."
+    answer: "Teams of 10 to 200 people, such as agencies and service teams, in Canada and the United States that already run on real tools."
   - question: "How much does it cost?"
     answer: "USD 1,995 per month for the first 10 founding seats, held for 6 months. Month to month, no minimum term. Later seats are USD 2,995 per month. No per-project quotes. No setup fee."
   - question: "What is the guarantee?"
     answer: "Two parts. Cancel in the first 14 days for 100 percent back, no conditions. If your first request is not live in your own systems within 10 business days of you granting system access, your next month is free."
-  - question: "How fast is the first agent live?"
-    answer: "Within 10 business days of you granting access, or your next month is free."
   - question: "What does my team need to do?"
     answer: "Name one owner per process. Grant least-privilege access. Share 20 to 30 real past examples. Review test outputs before go-live."
+  - question: "What if the agent gets something wrong?"
+    answer: "A person on your team approves its work before anything goes out. The runbook shows how to pause it."
+  - question: "Is my data safe?"
+    answer: "The agent runs in your accounts with least-privilege access. You get a list of every account, key and permission, and you can revoke any of it without calling us."
+  - question: "How is this different from Zapier?"
+    answer: "Zapier moves data between tools. An agent reads the request, drafts the work, and waits for your approval, built and tested on your own examples."
+  - question: "What if my process is not a fit?"
+    answer: "If one person can walk us through it with 20 real examples, it can be a request. If not, the free Live Audit tells you that first."
   - question: "Do I need to hire anyone to run the agents?"
     answer: "No. The process owner you already have can run each agent, review its exceptions and pause it. If you cancel, the agents keep running in your accounts."
 ---
 
-Every seat starts with a free 20-minute [Live Audit](/live-audit/).
+Every seat starts with a free 20-minute [Live Audit](/live-audit/), where we pick the process that pays back first.
 
-## What we do, how, what you get, the goal
+**What you get.** A working agent in accounts you own, tested on your real examples, with a runbook and a recorded handoff. Example: 6 hours a week of client updates costs about USD 1,550 a month at a USD 60 loaded hourly cost. We measure your number before and after. If the after number is not better, you see that too.
 
-**What we do:** Hand repeated work to AI agents, one at a time.
+{{< diagram "agent-on-tools" >}}
 
-**How:** Built inside your tools, in accounts you own.
-
-**What you get:** First agent live within 10 business days of access, or next month is free. Maintenance included. Cancel within 14 days for 100 percent back.
-
-**The goal:** Your team's hours back, measured before and after.
-
-{{< diagram "build-queue-how" >}}
-
-## How does the queue work?
-
-{{< diagram "build-queue" >}}
-
-One request in flight. The rest wait in your queue, in the order you choose.
-
-{{< diagram "build-queue-gantt" >}}
-
-Day 0 is the day you grant access. Days are business days. The next request in your queue starts when one ships.
+{{< diagram "agent-task-loop" >}}
 
 ## Price and terms
 
 <ul class="price-block not-prose">
-<li><strong>Founding seat: USD 1,995 per month</strong>, price held 6 months. <strong>3 of 10 founding seats open.</strong></li>
+<li><strong>Founding seat: USD 1,995 per month.</strong> <strong>10 founding seats at this price, held 6 months.</strong> Ten seats, because we build one request at a time for each.</li>
 <li><strong>Standard seat: USD 2,995 per month.</strong></li>
 <li>Month to month. No minimum term. No setup fee, no per-project quotes.</li>
 <li><strong>Ships in 10 days:</strong> first request live within 10 business days of access, or next month is free.</li>
 <li><strong>Cancel in the first 14 days:</strong> 100 percent back, no conditions.</li>
+<li>Two processes like 6 hours a week of client updates pay for the seat.</li>
 </ul>
 
-A one-off agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-agent-implementation-cost/)). A seat keeps shipping. Example: 6 hours a week of client updates at a USD 60 loaded hourly cost is about USD 1,550 a month, so two processes like that pay for the seat.
+<p class="not-prose font-mono text-sm font-semibold uppercase tracking-[0.2em]">Past clients</p>
 
-## What ships with every request
+{{< client-logos >}}
+
+<section class="proof-strip not-prose" aria-labelledby="running-today">
+<h2 id="running-today">Running today</h2>
+<ul>
+<li><svg class="proof-check" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Reporting work for a past client: 30 hours a month down to 5 minutes.</span></li>
+<li><svg class="proof-check" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A project intake agent for a client: tested on real requests before handover.</span></li>
+<li><svg class="proof-check" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Three desk agents live for a client since September 2026, each tested with a real request.</span></li>
+<li><svg class="proof-check" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Our own prospect research agent: runs our pipeline daily, and a person approves before any outreach.</span></li>
+</ul>
+</section>
+
+**Who it fits.** Teams of 10 to 200 people, such as agencies and service teams, that run on email, a CRM, a project tool or spreadsheets. You give one owner per process 1 to 2 hours a week. We do the build.
+
+<div class="not-prose my-8">
+<a href="/agent-seat/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Request a founding seat</a>
+<p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Not sure yet? <a href="/live-audit/" class="underline">Book a free 20-minute Live Audit</a>. You leave knowing which process goes first, whether or not you work with us.</p>
+</div>
+
+<h2 id="ship-standard">The 8-Part Ship Standard: what you get with every request</h2>
 
 | 8-Part Ship Standard | What it is |
 |---|---|
@@ -103,26 +116,18 @@ A one-off agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-ag
 | Handoff walkthrough | A recorded session with your process owner. |
 | After measure | The baseline measure again, once the agent is in daily use. |
 
-## Who it fits and what we need
+<details class="offer-more">
+<summary>What we need from you</summary>
 
-- **Fits:** a founder-led agency or service team with real tools (CRM, project tool, shared inboxes) and an owner per process.
 - **Not yet:** a process that is not written down, many departments at once, or an agent making final calls on money, hiring, legal or medical matters without a person checking.
 - **Your team:** one owner per process, reviews test outputs before launch, one to two hours a week.
 - **Access and examples:** least-privilege access, your accounts, your keys, revocable without calling us. 20 to 30 real examples: emails, briefs, tickets, reports.
 
-## Agents running today
+</details>
 
-| Agent | What it does | How it was verified |
-|---|---|---|
-| Project intake agent (client) | Turns project request emails into Planner tasks, on Copilot Studio and Power Automate. We can turn that around in a day | Tested on real requests before handover. Manual triage about 10 minutes per request (estimate) |
-| Desk agents (client, three) | Answer routine procurement, materials and shipping desk requests by email | Verified September 2026: a real request sent to each, a real answer received |
-| Prospect research agent (our own firm) | Finds, scores and enriches prospect accounts. A person approves before any outreach | Runs our own pipeline daily |
-| Quantitative trading agent (our own book) | Assesses strategies, runs paper trades and backtests before any capital moves | A person reviews results before any live trade |
-| Site and content agent (this site) | Drafts and ships pages on evadvisory.ca. A person reviews before anything goes live | You are reading its output right now |
+<details class="offer-more">
+<summary>How does this compare to a one-off project?</summary>
 
-Every agent gets a baseline before launch and the same measure after. If the after number is not better, you see that too.
+A one-off agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-agent-implementation-cost/)). A seat keeps shipping.
 
-<div class="not-prose my-8">
-<a href="/agent-seat/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Request a founding seat</a>
-<p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Not sure yet? <a href="/live-audit/" class="underline">Book a free Live Audit</a>. No obligation. You leave knowing which process goes first.</p>
-</div>
+</details>
