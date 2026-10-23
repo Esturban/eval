@@ -4,8 +4,8 @@ title = "Services"
 description = "EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools."
 +++
 
-EV Advisory ships AI agents into founder-led agencies and service teams that already run on real tools, so repeated work leaves the founder's plate without adding headcount.
+**[Build Queue](/services/ai-agent-implementation/)**: queue the work you want gone, we ship one agent at a time.
 
-We offer one thing: **[Build Queue](/services/ai-agent-implementation/)**, a monthly subscription. You keep a queue of the processes you want gone, and we ship them one at a time as working agents inside your tools. Your first request is live within 10 business days of access, or next month is free. Founding seats are USD 1,995/mo for the first 10, held for 6 months, month to month with no minimum term, and you can cancel in the first 14 days for 100 percent back.
+USD 1,995/mo for the first 10 seats, held 6 months. Month to month. Live in 10 business days or next month is free. 14-day exit, 100 percent back.
 
-Not sure what goes first? Book a free 20-minute [Live Audit](/live-audit/) and we will name it with you.
+Unsure? Book a free [Live Audit](/live-audit/).

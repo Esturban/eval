@@ -1433,3 +1433,198 @@
     font-weight: 600;
   }
 }
+
+/* Build Queue price block (CRO-8249): one compact bordered list, light and dark. */
+@layer utilities {
+  .offer-prose ul.price-block {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    list-style: none;
+    border: 1px solid var(--ev-line);
+    border-left: 4px solid var(--ev-accent-deep);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--ev-accent) 8%, var(--ev-panel));
+    color: var(--ev-ink);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .offer-prose ul.price-block li {
+    margin: 0;
+    padding: 0.375rem 0;
+  }
+
+  .offer-prose ul.price-block li + li {
+    border-top: 1px solid var(--ev-line);
+  }
+
+  :is(.dark) .offer-prose ul.price-block {
+    border-color: #334155;
+    border-left-color: var(--ev-accent);
+    background: color-mix(in srgb, var(--ev-accent) 8%, #0f172a);
+    color: #f1f5f9;
+  }
+
+  :is(.dark) .offer-prose ul.price-block li + li {
+    border-top-color: #334155;
+  }
+}
+
+/* Founding-seat intake form (CRO-8252): scoped to .seat-form, light and dark. */
+@layer utilities {
+  .seat-form {
+    margin: 1.5rem 0;
+  }
+
+  .seat-form p {
+    margin: 0 0 1.25rem;
+  }
+
+  .seat-form p:last-of-type {
+    margin: 1.5rem 0 0;
+  }
+
+  .seat-form .seat-req {
+    margin-left: 0.25rem;
+    color: #b91c1c;
+  }
+
+  .seat-form .seat-hint {
+    display: block;
+    margin-bottom: 0.375rem;
+    color: #475569;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .seat-note {
+    font-size: 0.95rem;
+  }
+
+  .seat-tap {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .seat-form label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-weight: 600;
+  }
+
+  .seat-form input[type="text"],
+  .seat-form input[type="email"],
+  .seat-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid #64748b;
+    border-radius: 0.75rem;
+    background: var(--ev-panel);
+    color: var(--ev-ink);
+    font: inherit;
+    font-size: 1rem;
+  }
+
+  .seat-form :is(input, textarea):focus-visible,
+  .seat-form button:focus-visible {
+    outline: 3px solid var(--ev-accent-deep);
+    outline-offset: 2px;
+  }
+
+  .seat-form button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    border: 0;
+    border-radius: 9999px;
+    background: #22d3ee;
+    color: #020617;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .seat-form button:hover {
+    background: #67e8f9;
+  }
+
+  :is(.dark) .seat-form .seat-req {
+    color: #fca5a5;
+  }
+
+  :is(.dark) .seat-form .seat-hint {
+    color: #cbd5e1;
+  }
+
+  :is(.dark) .seat-form input[type="text"],
+  :is(.dark) .seat-form input[type="email"],
+  :is(.dark) .seat-form textarea {
+    border-color: #94a3b8;
+    background: #0f172a;
+    color: #f1f5f9;
+  }
+}
+
+/* Founding-seat suggestion chips (CRO-8353): hidden until agent-seat.js runs. */
+@layer utilities {
+  .seat-form .seat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .seat-form .seat-chips[hidden] {
+    display: none;
+  }
+
+  .seat-form .seat-chips button {
+    width: auto;
+    min-height: 44px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #64748b;
+    border-radius: 9999px;
+    background: transparent;
+    color: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .seat-form .seat-chips button:hover {
+    background: color-mix(in srgb, var(--ev-accent) 18%, transparent);
+  }
+
+  .seat-form .seat-chips button[aria-pressed="true"] {
+    border-color: #0891b2;
+    background: #22d3ee;
+    color: #020617;
+    font-weight: 700;
+  }
+
+  :is(.dark) .seat-form .seat-chips button {
+    border-color: #94a3b8;
+  }
+
+  :is(.dark) .seat-form .seat-chips button[aria-pressed="true"] {
+    border-color: #22d3ee;
+  }
+}
+
+/* CRO-8354: button gap matches group gap; visually hidden live status. */
+@layer utilities {
+  .seat-form p:last-of-type {
+    margin-top: 2rem;
+  }
+
+  .seat-form .seat-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

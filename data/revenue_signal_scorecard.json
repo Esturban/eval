@@ -211,7 +211,7 @@
     {
       "id": "source_of_truth",
       "issue": "revenue_signal_trust",
-      "label": "When leadership asks for yesterday's revenue story, how aligned are the answers across Shopify, GA4, ads, and finance?",
+      "label": "Do your tools agree on yesterday's revenue?",
       "options": [
         { "label": "They line up closely enough to make decisions with confidence.", "score": 0, "finding": "Your revenue sources are mostly aligned, which usually means trust is not the first bottleneck." },
         { "label": "There are minor gaps, but the team can usually reconcile them quickly.", "score": 1, "finding": "Small reconciliation work is still costing attention that should be spent on growth." },
@@ -222,7 +222,7 @@
     {
       "id": "attribution",
       "issue": "attribution_confidence",
-      "label": "How defensible is your current attribution model when you decide where to increase or cut spend?",
+      "label": "How defensible is your attribution?",
       "options": [
         { "label": "Very defensible. We know where attribution limits start and stop.", "score": 0, "finding": "Attribution appears defined enough to support budget decisions." },
         { "label": "Mostly defensible, but some channels still need manual context.", "score": 1, "finding": "A few channels still rely on interpretation rather than shared reporting rules." },
@@ -233,7 +233,7 @@
     {
       "id": "funnel_visibility",
       "issue": "conversion_friction",
-      "label": "How quickly can you isolate where customers are dropping out of the funnel?",
+      "label": "How fast can you find funnel drop-off?",
       "options": [
         { "label": "We can usually locate the issue the same day.", "score": 0, "finding": "Your funnel visibility is strong enough to support rapid action." },
         { "label": "We can find the issue, but it takes some digging.", "score": 1, "finding": "Funnel visibility exists, but diagnosis still burns too much time." },
@@ -244,7 +244,7 @@
     {
       "id": "reporting_rhythm",
       "issue": "reporting_drag",
-      "label": "How fresh and decision-ready is the reporting your team uses week to week?",
+      "label": "How decision-ready is your weekly reporting?",
       "options": [
         { "label": "Fresh enough that meetings start with answers, not cleanup.", "score": 0, "finding": "The reporting rhythm supports action instead of rework." },
         { "label": "Usually fresh, though a few reports need manual correction.", "score": 1, "finding": "Manual patches still suggest some reporting debt underneath the surface." },
@@ -255,7 +255,7 @@
     {
       "id": "site_changes",
       "issue": "conversion_friction",
-      "label": "How confident are you that site changes, merchandising updates, or app installs are not damaging measurement or conversion?",
+      "label": "Are site changes breaking measurement?",
       "options": [
         { "label": "Very confident. Changes are checked and monitored.", "score": 0, "finding": "The team has some control over measurement and conversion QA." },
         { "label": "Moderately confident. We catch most issues quickly.", "score": 1, "finding": "Some QA exists, but it may still leave room for silent breakage." },
@@ -266,7 +266,7 @@
     {
       "id": "operating_load",
       "issue": "reporting_drag",
-      "label": "How much of your team's ecommerce reporting still depends on spreadsheets, exports, and one-off explanations?",
+      "label": "How much reporting still depends on spreadsheets and exports?",
       "options": [
         { "label": "Very little. The essentials are already standardized.", "score": 0, "finding": "Ops load is not the main blocker if this answer is accurate." },
         { "label": "Some. A few critical workflows still depend on manual effort.", "score": 1, "finding": "There is still enough manual work here to slow compounding improvements." },
