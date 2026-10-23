@@ -1566,3 +1566,49 @@
     color: #f1f5f9;
   }
 }
+
+/* Founding-seat suggestion chips (CRO-8353): hidden until agent-seat.js runs. */
+@layer utilities {
+  .seat-form .seat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .seat-form .seat-chips[hidden] {
+    display: none;
+  }
+
+  .seat-form .seat-chips button {
+    width: auto;
+    min-height: 44px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #64748b;
+    border-radius: 9999px;
+    background: transparent;
+    color: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .seat-form .seat-chips button:hover {
+    background: color-mix(in srgb, var(--ev-accent) 18%, transparent);
+  }
+
+  .seat-form .seat-chips button[aria-pressed="true"] {
+    border-color: #0891b2;
+    background: #22d3ee;
+    color: #020617;
+    font-weight: 700;
+  }
+
+  :is(.dark) .seat-form .seat-chips button {
+    border-color: #94a3b8;
+  }
+
+  :is(.dark) .seat-form .seat-chips button[aria-pressed="true"] {
+    border-color: #22d3ee;
+  }
+}
