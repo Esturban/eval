@@ -8,6 +8,8 @@ lede = "For founder-led agencies and service teams. We name the first automation
 cta_text = "Book your Live Audit"
 cta_link = "https://cal.com/este-val/audit-fit-call"
 cta_note = "20 minutes. Free. Leave with the first automation named."
+proof_label = "Past clients"
+proof_case = "30 hours a month of reporting, down to 5 minutes."
 
 [[sections]]
 eyebrow = "What it is"
@@ -17,12 +19,12 @@ body = "Share your screen. We name the first automation, and why. The audit stan
 [[sections]]
 eyebrow = "Who it is for"
 heading = "Teams with a stack an agent can plug into."
-body = "Real tools. Openness to adopting an agent. Missing either? Not yet."
+body = "Real tools and openness to adopting an agent. Missing either? Not yet."
 
 [[sections]]
 eyebrow = "Before the call"
 heading = "Two minutes of prep."
-body = "Pick two or three repeated tasks. Have their tools open. Want a head start? Use the Narrow Agent Fit Checklist."
+body = "Pick two or three repeated tasks. Have their tools open."
 
 [[sections]]
 eyebrow = "What happens next"
@@ -32,5 +34,5 @@ body = "A Build Queue seat starts with the automation named on the call. First r
 [[sections]]
 eyebrow = "Build in public"
 heading = "Your call can become your case study."
-body = "Only with your permission and sign-off."
+body = "Your call can become your case study, only with your permission and sign-off."
 +++
