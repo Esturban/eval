@@ -15,10 +15,10 @@ eyebrow: Build Queue
 hide_meta: true
 prose_class: offer-prose
 page_cta:
-  label: "Book your free 20-minute Live Audit"
-  url: /live-audit/
-  note: "No obligation. You leave knowing which process goes first."
-  nav_label: "Book a Live Audit"
+  label: "Request a founding seat"
+  url: /agent-seat/
+  note: "Three questions. We reply by email with whether it fits."
+  nav_label: "Request a founding seat"
 authorimage: ../assets/images/global/author.webp
 categories: services
 tags: services
@@ -35,7 +35,7 @@ schema:
     description: "Monthly AI agent implementation subscription. One active request at a time, unlimited queue behind it. USD 1,995 per month for the first 10 seats, price held for 6 months, month to month with no minimum term. Cancel in the first 14 days for 100 percent back. First request live within 10 business days of system access, or the next month is free."
     price: 1995
     price_currency: USD
-    url: /live-audit/
+    url: /agent-seat/
 faq_style: details
 faq:
   - question: "What is Build Queue?"
@@ -123,6 +123,6 @@ A one-off agent project runs about CAD 5,000 to 15,000 ([sources](/answers/ai-ag
 Every agent gets a baseline before launch and the same measure after. If the after number is not better, you see that too.
 
 <div class="not-prose my-8">
-<a href="/live-audit/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Book your free 20-minute Live Audit</a>
-<p class="mt-3 text-sm text-slate-600 dark:text-slate-300">No obligation. You leave knowing which process goes first, whether or not you take a seat.</p>
+<a href="/agent-seat/" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Request a founding seat</a>
+<p class="mt-3 text-sm text-slate-600 dark:text-slate-300">Not sure yet? <a href="/live-audit/" class="underline">Book a free Live Audit</a>. No obligation. You leave knowing which process goes first.</p>
 </div>
