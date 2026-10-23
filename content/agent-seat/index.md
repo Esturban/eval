@@ -11,7 +11,9 @@ build:
   render: always
 ---
 
-Three questions. We read your answer and reply by email with whether it fits. Founding seats are USD 1,995 a month, month to month, with 100 percent back if you cancel in the first 14 days. See the [full terms](/services/ai-agent-implementation/).
+Three questions. We read your answer and reply by email with whether it fits. Founding seats are USD 1,995 a month, month to month, with 100 percent back if you cancel in the first 14 days. See the <a class="seat-tap" href="/services/ai-agent-implementation/">full terms</a>.
+
+<p class="seat-note">All fields are required (marked with *).</p>
 
 <form class="seat-form not-prose" name="agent-seat" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you-agent-seat/">
   <input type="hidden" name="form-name" value="agent-seat" />
@@ -20,15 +22,16 @@ Three questions. We read your answer and reply by email with whether it fits. Fo
     <label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
   </p>
   <p>
-    <label for="agent_job">What should the agent do?</label>
+    <label for="agent_job">What should the agent do?<span class="seat-req" aria-hidden="true">*</span></label>
     <textarea id="agent_job" name="agent_job" rows="5" required></textarea>
   </p>
   <p>
-    <label for="systems">Which tools does it touch?</label>
-    <input type="text" id="systems" name="systems" placeholder="For example: CRM, project tool, shared inbox" required />
+    <label for="systems">Which tools does it touch?<span class="seat-req" aria-hidden="true">*</span></label>
+    <span class="seat-hint" id="systems-hint">For example: CRM, project tool, shared inbox</span>
+    <input type="text" id="systems" name="systems" aria-describedby="systems-hint" required />
   </p>
   <p>
-    <label for="email">Email</label>
+    <label for="email">Email<span class="seat-req" aria-hidden="true">*</span></label>
     <input type="email" id="email" name="email" autocomplete="email" required />
   </p>
   <p>
@@ -36,4 +39,4 @@ Three questions. We read your answer and reply by email with whether it fits. Fo
   </p>
 </form>
 
-Not sure yet? [Book a free Live Audit](/live-audit/).
+Not sure yet? <a class="seat-tap" href="/live-audit/">Book a free Live Audit</a>.

@@ -11,7 +11,7 @@ build:
   render: always
 ---
 
-Request received. We read it and reply by email with whether it fits.
+Thanks. We read every request and reply by email with whether it fits.
 
 ## If it fits
 
