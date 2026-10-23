@@ -1612,3 +1612,19 @@
     border-color: #22d3ee;
   }
 }
+
+/* CRO-8354: button gap matches group gap; visually hidden live status. */
+@layer utilities {
+  .seat-form p:last-of-type {
+    margin-top: 2rem;
+  }
+
+  .seat-form .seat-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

@@ -30,20 +30,44 @@
     systems.value = list.join(", ");
     syncTools();
   }
-  function addJob(text) {
-    var current = job.value.trim();
-    if (current.toLowerCase().indexOf(text.toLowerCase()) !== -1) return;
-    job.value = current ? current + "\n" + text : text;
+  function lines() {
+    return job.value.split(/\r?\n/).map(function (l) { return l.trim(); }).filter(Boolean);
+  }
+  function syncJobs() {
+    var list = lines();
+    form.querySelectorAll("[data-suggest-job]").forEach(function (chip) {
+      var on = indexOfTool(list, chip.getAttribute("data-suggest-job")) !== -1;
+      chip.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  function announce(message) {
+    var box = form.querySelector(".seat-status");
+    if (box) box.textContent = message;
+  }
+  function toggleJob(text) {
+    var list = lines();
+    var at = indexOfTool(list, text);
+    if (at === -1) {
+      list.push(text);
+      announce("Added: " + text);
+    } else {
+      list.splice(at, 1);
+      announce("Removed: " + text);
+    }
+    job.value = list.join("\n");
+    syncJobs();
   }
 
   form.querySelectorAll("[data-suggest-job]").forEach(function (chip) {
-    chip.addEventListener("click", function () { addJob(chip.getAttribute("data-suggest-job")); });
+    chip.addEventListener("click", function () { toggleJob(chip.getAttribute("data-suggest-job")); });
   });
   form.querySelectorAll("[data-suggest-tool]").forEach(function (chip) {
     chip.addEventListener("click", function () { toggleTool(chip.getAttribute("data-suggest-tool")); });
   });
   systems.addEventListener("input", syncTools);
+  job.addEventListener("input", syncJobs);
 
   form.querySelectorAll(".seat-chips").forEach(function (box) { box.hidden = false; });
   syncTools();
+  syncJobs();
 })();

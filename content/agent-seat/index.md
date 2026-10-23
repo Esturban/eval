@@ -25,12 +25,12 @@ Three questions. We read your answer and reply by email with whether it fits. Fo
     <label for="agent_job">What should the agent do?<span class="seat-req" aria-hidden="true">*</span></label>
     <textarea id="agent_job" name="agent_job" rows="5" placeholder="Example: Read new project request emails and turn each one into a task with the client name, scope and due date." required></textarea>
     <span class="seat-chips" role="group" aria-label="Suggestions, tap to add" hidden>
-      <button type="button" data-suggest="job" data-suggest-job="Triage inbound email">Triage inbound email</button>
-      <button type="button" data-suggest="job" data-suggest-job="Draft quotes from requests">Draft quotes from requests</button>
-      <button type="button" data-suggest="job" data-suggest-job="Update the CRM after calls">Update the CRM after calls</button>
-      <button type="button" data-suggest="job" data-suggest-job="Weekly report from spreadsheets">Weekly report from spreadsheets</button>
-      <button type="button" data-suggest="job" data-suggest-job="Answer staff policy questions">Answer staff policy questions</button>
-      <button type="button" data-suggest="job" data-suggest-job="Chase unpaid invoices">Chase unpaid invoices</button>
+      <button type="button" data-suggest="job" data-suggest-job="Triage inbound email" aria-pressed="false">Triage inbound email</button>
+      <button type="button" data-suggest="job" data-suggest-job="Draft quotes from requests" aria-pressed="false">Draft quotes from requests</button>
+      <button type="button" data-suggest="job" data-suggest-job="Update the CRM after calls" aria-pressed="false">Update the CRM after calls</button>
+      <button type="button" data-suggest="job" data-suggest-job="Weekly report from spreadsheets" aria-pressed="false">Weekly report from spreadsheets</button>
+      <button type="button" data-suggest="job" data-suggest-job="Answer staff policy questions" aria-pressed="false">Answer staff policy questions</button>
+      <button type="button" data-suggest="job" data-suggest-job="Chase unpaid invoices" aria-pressed="false">Chase unpaid invoices</button>
     </span>
   </p>
   <p>
@@ -52,6 +52,7 @@ Three questions. We read your answer and reply by email with whether it fits. Fo
     <label for="email">Email<span class="seat-req" aria-hidden="true">*</span></label>
     <input type="email" id="email" name="email" autocomplete="email" required />
   </p>
+  <span class="seat-status" role="status" aria-live="polite"></span>
   <p>
     <button type="submit">Request my founding seat</button>
   </p>
