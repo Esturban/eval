@@ -3,6 +3,7 @@ author: EV Advisory
 title: "Request received"
 h1: "Your request is in. Here is what happens next."
 description: "Your founding seat request is in. Here is what happens next."
+nav_cta: quiet
 layout: thanks
 hero_diagram: build-queue-gantt
 date: 2026-10-23T00:00:00.000Z

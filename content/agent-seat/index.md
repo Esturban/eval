@@ -2,6 +2,7 @@
 author: EV Advisory
 title: "Request a founding seat"
 description: "Tell us what the agent should do and which tools it touches. We read it and reply by email with whether it fits."
+nav_cta: quiet
 layout: seat
 lede: "Three questions. We reply by email with whether it fits."
 terms:

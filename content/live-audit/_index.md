@@ -1,5 +1,6 @@
 +++
 type = "live-audit"
+nav_cta = "quiet"
 title = "Live Audit"
 description = "A free 20-minute call. We review your actual tool stack live and name the first automation worth shipping."
 eyebrow = "Live Audit"
