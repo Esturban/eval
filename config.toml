@@ -57,8 +57,8 @@ mission_quote = "Founder-led teams do not need more AI ideas. They need the Frid
 mission_author = "EV Advisory"
 mission_description = "You do not need more AI ideas. You need Friday's status update off your plate."
 
-top_n_services_title = "Build Queue: your repeat work, shipped as agents, one at a time."
-top_n_services_subtitle = "One monthly subscription. You keep the queue; we ship the next agent."
+top_n_services_title = "Build Queue: your repeat work, shipped as agents."
+top_n_services_subtitle = "One monthly subscription. You set the queue."
 
 
 
