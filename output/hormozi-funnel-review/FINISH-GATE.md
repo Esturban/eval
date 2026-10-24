@@ -34,7 +34,7 @@ Until B1 is cleared, items 2, 4, 5 and 6 below are confirmed at desktop and only
 
 ### Build Queue: desktop PASS
 - Heading: one h1 ("The work your team repeats every week, done by an AI agent in your own tools. First one live in 10 business days."), then lede starting "Not a demo." No duplicate headings, no body shown as a heading.
-- Past clients: label "PAST CLIENTS" over a clean single row of six logos (General Dynamics, Harry Rosen, Bio Seaweed Gel, Rentals 4U, Subaru, CCO), directly above the "RUNNING TODAY" proof strip. Criterion 2 met at desktop. Note: APPLIED.md says C9 (logos) was skipped, yet the strip renders. APPLIED.md is out of date on this row, or the layout already outputs it. Not a defect.
+- Past clients: label "PAST CLIENTS" over a clean single row of six logos at the time of that render (one has since been removed from the site), directly above the "RUNNING TODAY" proof strip. Criterion 2 met at desktop. Note: APPLIED.md says C9 (logos) was skipped, yet the strip renders. APPLIED.md is out of date on this row, or the layout already outputs it. Not a defect.
 - Seats line: the price block reads "Founding seat: USD 1,995 per month, price held 6 months. 10 founding seats at this price, held 6 months. Ten seats, because we build one request at a time for each." No "3 of 10" anywhere in the visible page. Criterion 5 met.
 - Ship Standard: "The 8-Part Ship Standard: what you get with every request" is an open h2 with the table fully visible (Workflow map, Baseline measure, The working agent, Test log, Runbook, Access and credentials list, then more rows at 390). Criterion 6 met.
 - Placeholder text: none.

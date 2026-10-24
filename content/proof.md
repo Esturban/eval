@@ -11,6 +11,6 @@ authorimage: ../assets/images/global/author.webp
 The clearest examples:
 
 - [Reporting Time Compression]({{< relref "insights/resources/case-study-bsg-lighting-fast-reporting" >}}): cut recurring reporting time from 30 hours per month to 5 minutes, saving more than $4,000 monthly.
-- [Lifecycle Revenue Recovery]({{< relref "insights/resources/case-study-harry-rosen-nurturing-clients" >}}): more than $100,000 in three months from clients already in the ecosystem.
+- [Lifecycle Revenue Recovery]({{< relref "insights/resources/case-study-lifecycle-revenue-recovery" >}}): more than $100,000 in three months from clients already in the ecosystem.
 
 See the [methodology]({{< relref "methodology" >}}) for how the work is structured, or the [scorecard]({{< relref "scorecard" >}}) to qualify your situation.
