@@ -46,7 +46,7 @@ Last reviewed: 2026-09-24. Contact: info@evadvisory.ca
 - [Revenue Signal Methodology](https://evadvisory.ca/methodology/): How EV Advisory diagnoses trust breaks across measurement, conversion, and reporting.
 - [Proof and Case Studies](https://evadvisory.ca/proof/): Curated outcomes and links to the strongest case studies.
 - [Case Study: Reporting Time Compression](https://evadvisory.ca/insights/resources/case-study-bsg-lighting-fast-reporting/): Example of reporting time reduced from manual effort to a lightweight operating rhythm.
-- [Case Study: Lifecycle Revenue Recovery](https://evadvisory.ca/insights/resources/case-study-harry-rosen-nurturing-clients/): Example of retention and nurture work tied to revenue outcomes.
+- [Case Study: Lifecycle Revenue Recovery](https://evadvisory.ca/insights/resources/case-study-lifecycle-revenue-recovery/): Example of retention and nurture work tied to revenue outcomes.
 
 ### Ecommerce Insights
 

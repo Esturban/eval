@@ -8,7 +8,6 @@
      root-relative after the canonifyURLs pass. */}}
 {{ $logos := slice
   (dict "src" "images/global/logos/gd-logo-alt.svg" "alt" "Client 1" "h" "h-10")
-  (dict "src" "images/global/logos/hr-logo.svg" "alt" "Client 2" "h" "h-10")
   (dict "src" "images/global/logos/bsg-logo-1.png" "alt" "Client 3" "h" "h-20")
   (dict "src" "images/global/logos/r4u-logo.svg" "alt" "Client 4" "h" "h-12")
   (dict "src" "images/global/logos/subaru-logo.svg" "alt" "Client 5" "h" "h-14")
@@ -16,7 +15,7 @@
 }}
 {{ $cases := slice
   (dict "path" "insights/resources/case-study-bsg-lighting-fast-reporting" "title" "30 hours a month of reporting, down to 5 minutes" "body" "More than $4,000 in monthly operating savings.")
-  (dict "path" "insights/resources/case-study-harry-rosen-nurturing-clients" "title" "$100k+ recovered from existing clients in 3 months" "body" "A nurture and lifecycle redesign, not new ad spend.")
+  (dict "path" "insights/resources/case-study-lifecycle-revenue-recovery" "title" "$100k+ recovered from existing clients in 3 months" "body" "A nurture and lifecycle redesign, not new ad spend.")
 }}
 
 <section id="reviews" class="arc-section py-24 sm:py-32" data-tone="#f7f4ee" style="--from:#ffffff; --tone:#f7f4ee; background-color:#f7f4ee">
@@ -51,7 +50,7 @@
 
     <div class="mt-20">
       <p class="font-mono text-sm font-semibold uppercase tracking-[0.16em] text-slate-600 sm:text-base">Past clients</p>
-      <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {{ range $l := $logos }}
         {{ with resources.Get $l.src }}
         {{ $img := . | resources.PostProcess }}

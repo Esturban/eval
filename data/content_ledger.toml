@@ -112,7 +112,7 @@ status = "limit_until_refreshed"
 [pages."insights/resources/case-study-bsg-lighting-fast-reporting.md"]
 status = "keep"
 
-[pages."insights/resources/case-study-harry-rosen-nurturing-clients.md"]
+[pages."insights/resources/case-study-lifecycle-revenue-recovery.md"]
 status = "keep"
 
 [pages."insights/resources/case-study-sprngpod-property-tech-automation copy.md"]

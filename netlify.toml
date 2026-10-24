@@ -67,3 +67,8 @@ status = 301
 from = "/services/web/"
 to = "/services/ai-agent-implementation/"
 status = 301
+
+[[redirects]]
+from = "/insights/resources/case-study-harry-rosen-nurturing-clients/"
+to = "/insights/resources/case-study-lifecycle-revenue-recovery/"
+status = 301
