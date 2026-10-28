@@ -43,8 +43,8 @@ refund = ""
 price = "Free"
 price_note = ""
 button = "Get it free"
-url = "#"
-status = "not built"
+url = "https://evadvisory.ca/get/five-checks-that-lie/"
+status = "live"
 
 [[product]]
 slug = "ai-agent-guardrails-checklist"
