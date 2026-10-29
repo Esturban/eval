@@ -323,3 +323,11 @@ These labels are additions to the storyboard's labels, made to answer three revi
 - Beat 6 names the first three stage tiles "Audit", "Build" and "Test" (the existing "Go live" pill names the fourth). The three tiles are spaced 160 px apart so the labels do not run together at phone size. This supersedes the earlier note that the stages are shown without labels.
 - Beat 8 names the four timeline tiles "Audit", "Build", "Test" and "Go live" under the rail.
 - Beat 5 layout: the work chips are 216 px wide and the review card is 396 px wide, so the "AI agent" label has clear space on both sides.
+
+### 2026-10-29 finish-gate notes (beats 1, 4, 6, 7)
+
+- Beat 1: a short solid agent connector (accent core, ink casing, arrowhead) now joins the "AI agent" card to the CRM card at y 1039, so "inside your tools" reads. The dashed manual spine now ends at y 979 (its CRM hand-off arrow moved up from y 1007) so the two line styles never touch.
+- Beat 4: the three tool tiles are named "Inbox", "Tickets" and "CRM" (48 px labels under 56 px glyphs). These labels are an addition to the storyboard's labels; each tool was already named in beats 1 and 2. This supersedes the earlier note that 48 px labels would not fit. Tiles grow to 160 px; stubs shorten to 24 px; the workflow card is 257 px tall and still ends at y 1084.
+- Beat 6: the stage tiles are now 188 px apart (label gaps about 64 px, was about 37 px). To make room, the Week 2 tick and the go-live window start at x 600 (was 540), and the flag tile and "Go live" pill move right with the window. This supersedes the earlier 160 px spacing note.
+- Beat 7: the "By hand" and "AI agent" headers sit 16 px lower (y 603) and the card stack starts at y 683, 24 px under the headers; the four cards keep 16 px gaps and end at y 1083.
+- Beat 8: no still change; the booking link belongs in the post caption.

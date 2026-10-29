@@ -1,4 +1,4 @@
-beat 1 frame 120 | 1080x1350 | font loaded true | 6 text blocks | 253 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 1 frame 120 | 1080x1350 | font loaded true | 6 text blocks | 276 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 795/864 slack  69 | #020617 on #f7f4ee 18.38:1 | "Still moving / tickets by hand?"
   s     widest 582/864 slack 282 | #334155 on #f7f4ee 9.43:1 | "We build the AI agent / inside your tools."
   c1l   widest 298/304 slack   6 | #020617 on #ffffff 20.17:1 | "Shared inbox"
@@ -24,10 +24,13 @@ beat 3 frame 570 | 1080x1350 | font loaded true | 7 text blocks | 136 box pairs 
   tbl   widest 304/500 slack 196 | #334155 on #eef2f6 9.20:1 | "CRM updates"
   tcl   widest 302/500 slack 198 | #334155 on #eef2f6 9.20:1 | "Inbox routing"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 4 frame 780 | 1080x1350 | font loaded true | 7 text blocks | 253 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 4 frame 780 | 1080x1350 | font loaded true | 10 text blocks | 325 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 710/864 slack 155 | #020617 on #f7f4ee 18.38:1 | "Build it in / your workflow."
   s     widest 501/864 slack 363 | #334155 on #f7f4ee 9.43:1 | "Your tools stay the / system of record."
   el    widest 305/864 slack 559 | #020617 on #f7f4ee 18.38:1 | "Existing tools"
+  t1l   widest 126/224 slack  98 | #020617 on #ffffff 20.17:1 | "Inbox"
+  t2l   widest 165/220 slack  55 | #020617 on #ffffff 20.17:1 | "Tickets"
+  t3l   widest 111/224 slack 113 | #020617 on #ffffff 20.17:1 | "CRM"
   wfl   widest 406/700 slack 294 | #020617 on #ffffff 20.17:1 | "AI agent workflow"
   s1l   widest 114/252 slack 138 | #020617 on #ffffff 20.17:1 | "Read"
   s2l   widest 134/252 slack 118 | #020617 on #ffffff 20.17:1 | "Route"
