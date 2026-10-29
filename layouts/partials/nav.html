@@ -131,8 +131,8 @@
             </div>
             <a class="{{ $link }}" href="/about/" @click="open = false">About<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
             <a class="{{ $link }}" href="/contact/" @click="open = false">Contact<svg class="h-5 w-5 text-slate-500 lg:hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" /></svg></a>
-            {{/* a page may swap the nav CTA via front matter page_cta.nav_label/url. Every other page keeps Free Scorecard. */}}
-            {{ $navCtaLabel := "Free Scorecard" }}{{ $navCtaHref := "/scorecard/" }}
+            {{/* a page may swap the nav CTA via front matter page_cta.nav_label/url. Every other page uses Live Audit. */}}
+            {{ $navCtaLabel := "Live Audit" }}{{ $navCtaHref := "/live-audit/" }}
             {{ with $.Params.page_cta }}{{ with .nav_label }}{{ $navCtaLabel = . }}{{ $navCtaHref = $.Params.page_cta.url }}{{ end }}{{ end }}
             {{/* page param nav_cta: quiet demotes the pill to a plain nav link on single-CTA funnel pages. */}}
             {{ if eq $.Params.nav_cta "quiet" }}
