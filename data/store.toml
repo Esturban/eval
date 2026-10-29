@@ -71,8 +71,9 @@ refund = ""
 price = "USD 29"
 price_note = "credited toward the AI Workflow Audit (USD 497) if you upgrade"
 button = "Buy"
-url = "#"
-status = "not built"
+# TEST-MODE payment link. Swap to the live link only after EV writes "live" on the ticket.
+url = "https://buy.stripe.com/test_3cI14geZgan71QzfZ85EY05"
+status = "test link, live swap pending"
 
 [[product]]
 slug = "ai-workflow-audit"
