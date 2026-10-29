@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Agent Implementation stills</title>
+<style>
+@font-face { font-family: "Instrument Sans"; font-weight: 600; src: local("Instrument Sans SemiBold"), local("InstrumentSans-SemiBold"), url("file:///Users/EVA/Library/Fonts/InstrumentSans-1.ttf"); }
+@font-face { font-family: "Instrument Sans"; font-weight: 700; src: local("Instrument Sans Bold"), local("InstrumentSans-Bold"), url("file:///Users/EVA/Library/Fonts/InstrumentSans-2.ttf"); }
+html, body { margin: 0; padding: 0; background: #f7f4ee; }
+#stage { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: #f7f4ee; }
+#art { position: absolute; left: 0; top: 0; }
+.t { position: absolute; font-family: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.t .ln { white-space: nowrap; }
+.t .ln { height: auto; }
+</style>
+</head>
+<body>
+<div id="stage"><svg id="art" width="1080" height="1350" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<script>
+/* Colour and type tokens (DESIGN.md sections 3.1 and 3.3). */
+const C = { bg: "#f7f4ee", ink: "#020617", graphite: "#0f172a", slate: "#334155", muted: "#64748b",
+  rule: "#dbe3ee", dimFill: "#eef2f6", dimStroke: "#94a3b8", card: "#ffffff", accent: "#22d3ee" };
+const TYPE = {
+  h1: { wt: 700, size: 104, lh: 108, track: -0.01 },
+  h1xl: { wt: 700, size: 184, lh: 184, track: -0.02 },
+  support: { wt: 600, size: 58, lh: 68, track: 0 },
+  label: { wt: 600, size: 48, lh: 56, track: 0 },
+  button: { wt: 700, size: 58, lh: 68, track: 0 },
+  buttonSm: { wt: 700, size: 48, lh: 56, track: 0 }
+};
+const SAFE = { x0: 108, x1: 972, y0: 135, y1: 1084 };
+
+/* BEATS: the single data array. Every visible word lives in a k:"text" block here.
+   at = entrance offset in frames from the beat start, dur = spring settle frames. */
+const BEATS = [
+ { n: 1, start: 0, end: 240, mid: 120, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["Still moving", "tickets by hand?"], x: 108, y: 135, w: 864, h: 224, at: 0, dur: 0 },
+  { id: "s", k: "text", st: "support", col: "slate", lines: ["We build the AI agent", "inside your tools."], x: 108, y: 379, w: 864, h: 136, at: 48 },
+  { id: "c1", k: "card", state: "default", x: 108, y: 571, w: 504, h: 136 },
+  { id: "c1g", k: "glyph", g: "inbox", x: 136, y: 607, s: 64 },
+  { id: "c1l", k: "text", st: "label", col: "ink", lines: ["Shared inbox"], x: 216, y: 611, w: 304, h: 56 },
+  { id: "c1w", k: "chip", state: "default", x: 528, y: 611, w: 56, h: 56 },
+  { id: "c2", k: "card", state: "default", x: 108, y: 755, w: 504, h: 136 },
+  { id: "c2g", k: "glyph", g: "ticket", x: 136, y: 791, s: 64 },
+  { id: "c2l", k: "text", st: "label", col: "ink", lines: ["Ticket queue"], x: 216, y: 795, w: 304, h: 56 },
+  { id: "c2w", k: "chip", state: "default", x: 528, y: 795, w: 56, h: 56 },
+  { id: "c3", k: "card", state: "default", x: 108, y: 939, w: 504, h: 136 },
+  { id: "c3g", k: "glyph", g: "crm", x: 136, y: 975, s: 64 },
+  { id: "c3l", k: "text", st: "label", col: "ink", lines: ["CRM"], x: 216, y: 979, w: 304, h: 56 },
+  { id: "c3w", k: "chip", state: "default", x: 528, y: 979, w: 56, h: 56 },
+  { id: "spine", k: "line", style: "manual", pts: [[630, 639], [630, 1007]], joins: ["a1", "a2", "a3", "link"] },
+  { id: "a1", k: "line", style: "manual", pts: [[630, 639], [612, 639]], arrow: true, joins: ["spine", "link"] },
+  { id: "a2", k: "line", style: "manual", pts: [[630, 823], [612, 823]], arrow: true, joins: ["spine"] },
+  { id: "a3", k: "line", style: "manual", pts: [[630, 1007], [612, 1007]], arrow: true, joins: ["spine"] },
+  { id: "link", k: "line", style: "manual", pts: [[630, 731], [738, 731]], joins: ["spine", "a1"] },
+  { id: "p", k: "person", x: 738, y: 671, d: 120 },
+  { id: "ag", k: "card", state: "active", x: 648, y: 899, w: 324, h: 180, at: 72, dur: 24 },
+  { id: "agg", k: "glyph", g: "chain", x: 692, y: 923, s: 56, at: 72, dur: 24 },
+  { id: "agl", k: "text", st: "label", col: "ink", lines: ["AI agent"], x: 692, y: 993, w: 260, h: 56, at: 72, dur: 24 }
+ ]},
+ { n: 2, start: 240, end: 480, mid: 360, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["One narrow", "agent."], x: 108, y: 135, w: 864, h: 224 },
+  { id: "s", k: "text", st: "support", col: "slate", lines: ["Built into the tools", "you already use."], x: 108, y: 379, w: 864, h: 136, at: 18 },
+  { id: "x", k: "decor", pts: [[[420, 741], [640, 909]], [[640, 741], [420, 909]]], x: 420, y: 741, w: 220, h: 168 },
+  { id: "c1", k: "card", state: "default", x: 108, y: 571, w: 420, h: 170 },
+  { id: "c1g", k: "glyph", g: "crm", x: 132, y: 595, s: 56 },
+  { id: "c1l", k: "text", st: "label", col: "ink", lines: ["CRM"], x: 132, y: 665, w: 372, h: 56 },
+  { id: "c2", k: "card", state: "active", x: 552, y: 571, w: 420, h: 170 },
+  { id: "c2g", k: "glyph", g: "ticket", x: 596, y: 595, s: 56 },
+  { id: "c2l", k: "text", st: "label", col: "ink", lines: ["Ticketing"], x: 596, y: 665, w: 352, h: 56 },
+  { id: "lane", k: "pill", fill: "card", stroke: "ink", sw: 6, x: 108, y: 777, w: 864, h: 96 },
+  { id: "laneg", k: "glyph", g: "chain", x: 132, y: 797, s: 56 },
+  { id: "lanep", k: "line", style: "agent", pts: [[212, 825], [944, 825]], arrow: true, under: true },
+  { id: "item", k: "chip", state: "active", x: 470, y: 793, w: 200, h: 64 },
+  { id: "st1", k: "line", style: "plain", pts: [[318, 741], [318, 777]] },
+  { id: "st2", k: "line", style: "agent", pts: [[762, 741], [762, 777]] },
+  { id: "st3", k: "line", style: "plain", pts: [[318, 873], [318, 909]] },
+  { id: "st4", k: "line", style: "plain", pts: [[762, 873], [762, 909]] },
+  { id: "c3", k: "card", state: "default", x: 108, y: 909, w: 420, h: 170 },
+  { id: "c3g", k: "glyph", g: "inbox", x: 132, y: 933, s: 56 },
+  { id: "c3l", k: "text", st: "label", col: "ink", lines: ["Shared inbox"], x: 132, y: 1003, w: 372, h: 56 },
+  { id: "c4", k: "card", state: "default", x: 552, y: 909, w: 420, h: 170 },
+  { id: "c4g", k: "glyph", g: "docs", x: 576, y: 933, s: 56 },
+  { id: "c4l", k: "text", st: "label", col: "ink", lines: ["Documents"], x: 576, y: 1003, w: 372, h: 56 }
+ ]},
+ { n: 3, start: 480, end: 660, mid: 570, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["Start with a", "free Live Audit."], x: 108, y: 135, w: 864, h: 224 },
+  { id: "s", k: "text", st: "support", col: "slate", lines: ["Leave knowing which", "process comes first."], x: 108, y: 379, w: 864, h: 136, at: 18 },
+  { id: "ta", k: "card", state: "dim", x: 108, y: 571, w: 504, h: 132 },
+  { id: "tag1", k: "glyph", g: "inbox", x: 148, y: 609, s: 56, col: "slate" },
+  { id: "taa", k: "line", style: "plain", pts: [[220, 637], [280, 637]], arrow: true, col: "slate" },
+  { id: "tag2", k: "glyph", g: "ticket", x: 296, y: 609, s: 56, col: "slate" },
+  { id: "tab", k: "bars", x: 384, y: 621, w: 180, n: 2, col: "rule" },
+  { id: "tb", k: "card", state: "active", x: 108, y: 727, w: 504, h: 132 },
+  { id: "tbg1", k: "glyph", g: "ticket", x: 148, y: 765, s: 56 },
+  { id: "tba", k: "line", style: "plain", pts: [[220, 793], [280, 793]], arrow: true },
+  { id: "tbg2", k: "glyph", g: "crm", x: 296, y: 765, s: 56 },
+  { id: "tbb", k: "bars", x: 384, y: 777, w: 120, n: 2, col: "rule" },
+  { id: "tbk", k: "badge", x: 528, y: 747 },
+  { id: "tc", k: "card", state: "dim", x: 108, y: 883, w: 504, h: 132 },
+  { id: "tcg1", k: "glyph", g: "docs", x: 148, y: 921, s: 56, col: "slate" },
+  { id: "tca", k: "line", style: "plain", pts: [[220, 949], [280, 949]], arrow: true, col: "slate" },
+  { id: "tcg2", k: "glyph", g: "crm", x: 296, y: 921, s: 56, col: "slate" },
+  { id: "tcb", k: "bars", x: 384, y: 933, w: 180, n: 2, col: "rule" },
+  { id: "pill", k: "pill", fill: "card", stroke: "graphite", sw: 4, x: 648, y: 571, w: 324, h: 80 },
+  { id: "pillt", k: "text", st: "label", col: "ink", al: "center", lines: ["20 minutes"], x: 664, y: 583, w: 292, h: 56 },
+  { id: "con", k: "line", style: "plain", pts: [[612, 793], [738, 793]] },
+  { id: "p", k: "person", x: 738, y: 733, d: 120 },
+  { id: "pl", k: "text", st: "label", col: "ink", al: "center", lines: ["Process", "owner"], x: 648, y: 869, w: 324, h: 112 }
+ ]},
+ { n: 4, start: 660, end: 900, mid: 780, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["Build it in", "your workflow."], x: 108, y: 135, w: 864, h: 224 },
+  { id: "s", k: "text", st: "support", col: "slate", lines: ["Your tools stay the", "system of record."], x: 108, y: 379, w: 864, h: 136, at: 18 },
+  { id: "el", k: "text", st: "label", col: "ink", lines: ["Existing tools"], x: 108, y: 571, w: 864, h: 56 },
+  { id: "t1", k: "card", state: "default", r: 16, x: 108, y: 643, w: 264, h: 150 },
+  { id: "t1g", k: "glyph", g: "inbox", x: 208, y: 686, s: 64 },
+  { id: "t2", k: "card", state: "active", r: 16, x: 408, y: 643, w: 264, h: 150 },
+  { id: "t2g", k: "glyph", g: "ticket", x: 518, y: 686, s: 64 },
+  { id: "t3", k: "card", state: "default", r: 16, x: 708, y: 643, w: 264, h: 150 },
+  { id: "t3g", k: "glyph", g: "crm", x: 808, y: 686, s: 64 },
+  { id: "sb1", k: "line", style: "plain", pts: [[240, 793], [240, 853]] },
+  { id: "sb2", k: "line", style: "agent", pts: [[540, 793], [540, 853]] },
+  { id: "sb3", k: "line", style: "plain", pts: [[840, 793], [840, 853]] },
+  { id: "wf", k: "card", state: "strong", x: 108, y: 853, w: 864, h: 226 },
+  { id: "wfg", k: "glyph", g: "chain", x: 136, y: 877, s: 64 },
+  { id: "wfl", k: "text", st: "label", col: "ink", lines: ["Agent workflow"], x: 220, y: 881, w: 400, h: 56 },
+  { id: "p12", k: "line", style: "agent", pts: [[232, 1011], [504, 1011]], arrow: true },
+  { id: "p23", k: "line", style: "plain", pts: [[576, 1011], [848, 1011]] },
+  { id: "s1", k: "step", v: "done", x: 160, y: 975, s: 72 },
+  { id: "s2", k: "step", v: "active", x: 504, y: 975, s: 72 },
+  { id: "s3", k: "step", v: "future", x: 848, y: 975, s: 72 }
+ ]},
+ { n: 5, start: 900, end: 1140, mid: 1020, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["Test it on", "real work."], x: 108, y: 135, w: 864, h: 224 },
+  { id: "s", k: "text", st: "support", col: "slate", lines: ["Your process owner", "checks the output."], x: 108, y: 379, w: 864, h: 136, at: 18 },
+  { id: "rw", k: "text", st: "label", col: "ink", lines: ["Real work"], x: 108, y: 571, w: 300, h: 56 },
+  { id: "w1", k: "chip", state: "approved", x: 108, y: 643, w: 300, h: 96 },
+  { id: "w1b", k: "badge", x: 328, y: 659 },
+  { id: "w2", k: "chip", state: "active", x: 108, y: 755, w: 300, h: 96 },
+  { id: "w3", k: "chip", state: "default", x: 108, y: 867, w: 300, h: 96 },
+  { id: "pin", k: "line", style: "agent", pts: [[408, 803], [432, 803]] },
+  { id: "at", k: "card", state: "default", r: 16, x: 432, y: 755, w: 96, h: 96 },
+  { id: "atg", k: "glyph", g: "chain", x: 452, y: 775, s: 56 },
+  { id: "pout", k: "line", style: "agent", pts: [[528, 803], [564, 803]], arrow: true },
+  { id: "rv", k: "card", state: "strong", x: 564, y: 571, w: 408, h: 508 },
+  { id: "rvp", k: "person", x: 588, y: 595, d: 64 },
+  { id: "rvl", k: "text", st: "label", col: "ink", lines: ["Process owner"], x: 588, y: 675, w: 360, h: 56 },
+  { id: "rvo", k: "panel", x: 588, y: 755, w: 360, h: 180 },
+  { id: "ap", k: "pill", fill: "accent", stroke: "ink", sw: 4, x: 588, y: 959, w: 360, h: 96 },
+  { id: "apc", k: "check", x: 643, y: 987, s: 40 },
+  { id: "apt", k: "text", st: "buttonSm", col: "ink", lines: ["Approve"], x: 699, y: 979, w: 210, h: 56 }
+ ]},
+ { n: 6, start: 1140, end: 1380, mid: 1260, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["Live in"], x: 108, y: 135, w: 864, h: 108 },
+  { id: "hx", k: "text", st: "h1xl", col: "ink", lines: ["2 to 6", "weeks."], x: 108, y: 251, w: 864, h: 368 },
+  { id: "s", k: "text", st: "support", col: "slate", lines: ["One process, tested", "before launch."], x: 108, y: 651, w: 864, h: 136, at: 18 },
+  { id: "gl", k: "pill", fill: "accent", stroke: "ink", sw: 4, x: 646, y: 856, w: 220, h: 80 },
+  { id: "glt", k: "text", st: "label", col: "ink", al: "center", lines: ["Go live"], x: 662, y: 868, w: 188, h: 56 },
+  { id: "rail", k: "rail", x: 108, y: 974, w: 864, h: 12, under: true },
+  { id: "win", k: "window", x: 540, y: 970, w: 432, h: 20, under: true },
+  { id: "k1", k: "tick", x: 537, y: 950, w: 6, h: 60 },
+  { id: "k2", k: "tick", x: 966, y: 950, w: 6, h: 60 },
+  { id: "g1", k: "stage", g: "check", x: 108, y: 944, done: true },
+  { id: "g2", k: "stage", g: "chain", x: 236, y: 944, done: true },
+  { id: "g3", k: "stage", g: "person", x: 364, y: 944, done: true },
+  { id: "g4", k: "stage", g: "flag", x: 720, y: 944, live: true },
+  { id: "w2", k: "text", st: "label", col: "ink", al: "center", lines: ["Week 2"], x: 450, y: 1028, w: 180, h: 56 },
+  { id: "w6", k: "text", st: "label", col: "ink", al: "right", lines: ["Week 6"], x: 792, y: 1028, w: 180, h: 56 }
+ ]},
+ { n: 7, start: 1380, end: 1560, mid: 1470, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["The agent", "handles the", "repeatable work."], x: 108, y: 135, w: 864, h: 332 },
+  { id: "s", k: "text", st: "support", col: "slate", lines: ["Your team stays in control."], x: 108, y: 487, w: 864, h: 68, at: 18 },
+  { id: "l1", k: "card", state: "dim", r: 16, x: 108, y: 611, w: 420, h: 88 },
+  { id: "l1p", k: "person", x: 132, y: 631, d: 48, dim: true },
+  { id: "l1t", k: "text", st: "label", col: "slate", lines: ["Draft"], x: 196, y: 627, w: 300, h: 56 },
+  { id: "lm1", k: "line", style: "manual", pts: [[156, 699], [156, 715]], short: true },
+  { id: "l2", k: "card", state: "dim", r: 16, x: 108, y: 715, w: 420, h: 88 },
+  { id: "l2p", k: "person", x: 132, y: 735, d: 48, dim: true },
+  { id: "l2t", k: "text", st: "label", col: "slate", lines: ["Route"], x: 196, y: 731, w: 300, h: 56 },
+  { id: "lm2", k: "line", style: "manual", pts: [[156, 803], [156, 819]], short: true },
+  { id: "l3", k: "card", state: "dim", r: 16, x: 108, y: 819, w: 420, h: 88 },
+  { id: "l3p", k: "person", x: 132, y: 839, d: 48, dim: true },
+  { id: "l3t", k: "text", st: "label", col: "slate", lines: ["Update"], x: 196, y: 835, w: 300, h: 56 },
+  { id: "lm3", k: "line", style: "manual", pts: [[156, 907], [156, 923]], short: true },
+  { id: "l4", k: "card", state: "dim", r: 16, x: 108, y: 923, w: 420, h: 88 },
+  { id: "l4p", k: "person", x: 132, y: 943, d: 48, dim: true },
+  { id: "l4t", k: "text", st: "label", col: "slate", lines: ["Approve"], x: 196, y: 939, w: 300, h: 56 },
+  { id: "r1", k: "card", state: "active", r: 16, x: 552, y: 611, w: 420, h: 88 },
+  { id: "r1g", k: "glyph", g: "chain", x: 596, y: 631, s: 48 },
+  { id: "r1t", k: "text", st: "label", col: "ink", lines: ["Draft"], x: 660, y: 627, w: 290, h: 56 },
+  { id: "rm1", k: "line", style: "agent", pts: [[620, 699], [620, 715]] },
+  { id: "r2", k: "card", state: "active", r: 16, x: 552, y: 715, w: 420, h: 88 },
+  { id: "r2g", k: "glyph", g: "chain", x: 596, y: 735, s: 48 },
+  { id: "r2t", k: "text", st: "label", col: "ink", lines: ["Route"], x: 660, y: 731, w: 290, h: 56 },
+  { id: "rm2", k: "line", style: "agent", pts: [[620, 803], [620, 819]] },
+  { id: "r3", k: "card", state: "active", r: 16, x: 552, y: 819, w: 420, h: 88 },
+  { id: "r3g", k: "glyph", g: "chain", x: 596, y: 839, s: 48 },
+  { id: "r3t", k: "text", st: "label", col: "ink", lines: ["Update"], x: 660, y: 835, w: 290, h: 56 },
+  { id: "rm3", k: "line", style: "agent", pts: [[620, 907], [620, 923]] },
+  { id: "r4", k: "card", state: "approved", r: 16, x: 552, y: 923, w: 420, h: 88 },
+  { id: "r4p", k: "person", x: 596, y: 943, d: 48 },
+  { id: "r4t", k: "text", st: "label", col: "ink", lines: ["Approve"], x: 660, y: 939, w: 210, h: 56 },
+  { id: "r4b", k: "badge", x: 888, y: 935 }
+ ]},
+ { n: 8, start: 1560, end: 1800, mid: 1680, blocks: [
+  { id: "h", k: "text", st: "h1", col: "ink", lines: ["AI Agent", "Implementation"], x: 108, y: 135, w: 864, h: 224 },
+  { id: "cta", k: "pill", fill: "accent", stroke: "ink", sw: 4, r: 32, x: 108, y: 415, w: 864, h: 216, at: 18 },
+  { id: "ctat", k: "text", st: "button", col: "ink", al: "center", lines: ["Book a free 20-minute", "Live Audit."], x: 140, y: 455, w: 800, h: 136, at: 18 },
+  { id: "ben", k: "text", st: "support", col: "ink", lines: ["Leave knowing which", "process comes first."], x: 108, y: 671, w: 864, h: 136, at: 36 },
+  { id: "rail", k: "rail", x: 108, y: 933, w: 864, h: 12, under: true },
+  { id: "d1", k: "stage", g: "check", x: 108, y: 903 },
+  { id: "d2", k: "stage", g: "chain", x: 372, y: 903 },
+  { id: "d3", k: "stage", g: "person", x: 636, y: 903 },
+  { id: "d4", k: "stage", g: "flag", x: 900, y: 903, live: true }
+ ]}
+];
+
+/* Glyphs on a 64 grid, 6 px stroke at 64 (scaled with the glyph). */
+const GLYPH = {
+  inbox: '<path d="M14 6 H50 V30 H14 Z"/><path d="M14 8 L32 21 L50 8"/><path d="M6 38 H22 L26 45 H38 L42 38 H58 V58 H6 Z"/>',
+  ticket: '<path d="M6 8 H58 V18 A6 6 0 0 0 58 30 V40 H6 V30 A6 6 0 0 0 6 18 Z"/><path d="M14 50 H50"/><path d="M14 59 H38"/>',
+  crm: '<rect x="4" y="10" width="56" height="44" rx="6"/><circle cx="20" cy="28" r="8"/><path d="M11 45 Q20 37 29 45"/><path d="M36 26 H52"/><path d="M36 38 H48"/>',
+  docs: '<path d="M12 6 H40 L52 18 V58 H12 Z"/><path d="M40 6 V18 H52"/><path d="M20 34 H44"/><path d="M20 45 H38"/>',
+  chain: '<rect x="0" y="25" width="13" height="13" rx="2" fill="currentColor" stroke="none"/><rect x="18" y="25" width="13" height="13" rx="2" fill="currentColor" stroke="none"/><rect x="36" y="25" width="13" height="13" rx="2" fill="currentColor" stroke="none"/><path d="M13 31.5 H18 M31 31.5 H36 M49 31.5 H55" stroke-width="4" stroke-linecap="butt"/><path d="M54 23 L64 31.5 L54 40 Z" fill="currentColor" stroke="none"/>',
+  check: '<path d="M12 34 L26 48 L52 18" stroke-width="8"/>',
+  flag: '<path d="M18 58 V6"/><path d="M18 8 H50 L42 20 L50 32 H18" fill="currentColor"/>',
+  person: '<circle cx="32" cy="22" r="10"/><path d="M14 54 A18 16 0 0 1 50 54"/>'
+};
+
+function el(tag, attrs, inner) {
+  const a = Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(" ");
+  return `<${tag} ${a}>${inner || ""}</${tag}>`;
+}
+function glyph(g, x, y, s, col) {
+  const c = col || C.ink;
+  return `<g transform="translate(${x} ${y}) scale(${s / 64})" fill="none" stroke="${c}" color="${c}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">${GLYPH[g]}</g>`;
+}
+function rrect(x, y, w, h, r, fill, stroke, sw) {
+  const i = sw ? sw / 2 : 0;
+  return el("rect", { x: x + i, y: y + i, width: w - 2 * i, height: h - 2 * i, rx: Math.max(0, r - i), fill, stroke: stroke || "none", "stroke-width": sw || 0 });
+}
+function bars(x, y, w, n, col, bh, gap) {
+  const widths = [0.6, 0.8, 0.45]; const h = bh || 18; const g = gap || 14;
+  let out = "";
+  for (let i = 0; i < n; i += 1) out += el("rect", { x, y: y + i * (h + g), width: w * widths[i], height: h, rx: h / 2, fill: col });
+  return out;
+}
+function badge(x, y) {
+  return el("circle", { cx: x + 32, cy: y + 32, r: 29.5, fill: C.accent, stroke: C.ink, "stroke-width": 5 }) + glyph("check", x + 12, y + 12, 40, C.ink);
+}
+function person(x, y, d, dim) {
+  const sw = Math.max(3, 5 * d / 120); const cx = x + d / 2;
+  const inner = Math.max(3.5, 6 * d / 120); const col = dim ? C.slate : C.ink;
+  const hr = d * 16 / 120; const hy = y + d * 0.38; const sx = d * 0.25; const sy = y + d * 0.80;
+  return el("circle", { cx, cy: y + d / 2, r: d / 2 - sw / 2, fill: C.card, stroke: col, "stroke-width": sw }) +
+    el("circle", { cx, cy: hy, r: hr, fill: "none", stroke: col, "stroke-width": inner }) +
+    el("path", { d: `M${cx - sx} ${sy} A${sx} ${d * 0.2} 0 0 1 ${cx + sx} ${sy}`, fill: "none", stroke: col, "stroke-width": inner, "stroke-linecap": "round" });
+}
+
+const LINE = {
+  manual: { core: C.muted, w: 6, dash: "18 14", head: 18 },
+  agent: { casing: C.ink, cw: 14, core: C.accent, w: 8, head: 22 },
+  plain: { core: C.graphite, w: 6, head: 18 }
+};
+function lineBox(b) {
+  const s = LINE[b.style]; const half = (s.cw || s.w) / 2; const head = b.arrow ? s.head * 0.55 : 0;
+  const xs = b.pts.map(p => p[0]); const ys = b.pts.map(p => p[1]);
+  const vertical = xs[0] === xs[xs.length - 1];
+  const pad = Math.max(half, head);
+  return vertical
+    ? { x: Math.min(...xs) - pad, y: Math.min(...ys), w: 2 * pad, h: Math.max(...ys) - Math.min(...ys) }
+    : { x: Math.min(...xs), y: Math.min(...ys) - pad, w: Math.max(...xs) - Math.min(...xs), h: 2 * pad };
+}
+function drawLine(b) {
+  const s = LINE[b.style]; const pts = b.pts.map(p => p.slice());
+  let head = "";
+  if (b.arrow) {
+    const [x1, y1] = pts[pts.length - 2]; const [x2, y2] = pts[pts.length - 1];
+    const L = Math.hypot(x2 - x1, y2 - y1); const ux = (x2 - x1) / L; const uy = (y2 - y1) / L;
+    const hl = s.head; const hw = s.head * 0.55;
+    const bx = x2 - ux * hl; const by = y2 - uy * hl;
+    const fill = b.style === "agent" ? C.ink : (b.col ? C[b.col] : s.core);
+    head = el("path", { d: `M${x2} ${y2} L${bx - uy * hw} ${by + ux * hw} L${bx + uy * hw} ${by - ux * hw} Z`, fill });
+    pts[pts.length - 1] = [bx + ux * 2, by + uy * 2];
+  }
+  const d = "M" + pts.map(p => p.join(" ")).join(" L");
+  const col = b.col ? C[b.col] : s.core;
+  let out = "";
+  if (s.casing) out += el("path", { d, fill: "none", stroke: s.casing, "stroke-width": s.cw, "stroke-linecap": "butt" });
+  const attrs = { d, fill: "none", stroke: col, "stroke-width": s.w, "stroke-linecap": b.style === "agent" || b.arrow ? "butt" : "round" };
+  if (s.dash) { attrs["stroke-dasharray"] = b.short ? "6 5" : s.dash; if (b.short) attrs["stroke-linecap"] = "butt"; }
+  out += el("path", attrs);
+  return out + head;
+}
+
+const CARD_STYLE = {
+  dim: { fill: C.dimFill, stroke: C.dimStroke, sw: 3 },
+  default: { fill: C.card, stroke: C.graphite, sw: 4 },
+  strong: { fill: C.card, stroke: C.ink, sw: 6 },
+  active: { fill: C.card, stroke: C.ink, sw: 6, band: true },
+  approved: { fill: C.card, stroke: C.ink, sw: 6 }
+};
+let clipN = 0;
+function drawCard(b) {
+  const s = CARD_STYLE[b.state]; const r = b.r || 24;
+  let out = rrect(b.x, b.y, b.w, b.h, r, s.fill);
+  if (s.band) {
+    clipN += 1; const id = "clip" + clipN;
+    out += `<clipPath id="${id}">${rrect(b.x, b.y, b.w, b.h, r, "#000")}</clipPath>`;
+    out += el("rect", { x: b.x, y: b.y, width: 20, height: b.h, fill: C.accent, "clip-path": `url(#${id})` });
+  }
+  return out + rrect(b.x, b.y, b.w, b.h, r, "none", s.stroke, s.sw);
+}
+function drawChip(b) {
+  const active = b.state === "active"; const approved = b.state === "approved";
+  const fill = active ? C.accent : C.card; const stroke = active || approved ? C.ink : C.graphite;
+  const sw = approved ? 6 : 4; const barCol = active ? C.ink : C.rule;
+  const big = b.h >= 90; const pad = big ? 24 : 12; const bh = big ? 18 : 10; const gap = big ? 14 : 8;
+  const inner = (approved ? b.w - 96 : b.w) - 2 * pad;
+  const by = b.y + (b.h - (2 * bh + gap)) / 2;
+  const widths = [0.8, 0.55];
+  let out = rrect(b.x, b.y, b.w, b.h, 16, fill, stroke, sw);
+  for (let i = 0; i < 2; i += 1) out += el("rect", { x: b.x + pad, y: by + i * (bh + gap), width: inner * widths[i], height: bh, rx: bh / 2, fill: barCol });
+  return out;
+}
+function drawStep(b) {
+  const s = b.s;
+  if (b.v === "done") return rrect(b.x, b.y, s, s, 16, C.ink) + glyph("check", b.x + 16, b.y + 16, 40, C.card);
+  if (b.v === "active") return rrect(b.x, b.y, s, s, 16, C.accent, C.ink, 4) + glyph("chain", b.x + 16, b.y + 16, 40, C.ink);
+  return rrect(b.x, b.y, s, s, 16, C.card, C.graphite, 4) + glyph("person", b.x + 12, b.y + 12, 48, C.ink);
+}
+function drawStage(b) {
+  /* Completed stages: solid ink tile, white glyph. Live stage: accent with ink stroke. Otherwise default. */
+  const s = 72;
+  if (b.done) return rrect(b.x, b.y, s, s, 16, C.ink) + glyph(b.g, b.x + 16, b.y + 16, 40, C.card);
+  if (b.live) return rrect(b.x, b.y, s, s, 16, C.accent, C.ink, 4) + glyph(b.g, b.x + 16, b.y + 16, 40, C.ink);
+  return rrect(b.x, b.y, s, s, 16, C.card, C.graphite, 4) + glyph(b.g, b.x + 16, b.y + 16, 40, C.ink);
+}
+
+const DRAW = {
+  card: drawCard, chip: drawChip, step: drawStep, stage: drawStage,
+  glyph: b => glyph(b.g, b.x, b.y, b.s, b.col ? C[b.col] : C.ink),
+  person: b => person(b.x, b.y, b.d, b.dim),
+  badge: b => badge(b.x, b.y),
+  check: b => glyph("check", b.x, b.y, b.s, C.ink),
+  line: drawLine,
+  bars: b => bars(b.x, b.y, b.w, b.n, C[b.col]),
+  panel: b => rrect(b.x, b.y, b.w, b.h, 16, C.bg) + bars(b.x + 28, b.y + 46, b.w - 56, 3, C.rule),
+  pill: b => rrect(b.x, b.y, b.w, b.h, b.r || b.h / 2, C[b.fill], C[b.stroke], b.sw),
+  rail: b => rrect(b.x, b.y, b.w, b.h, 6, C.graphite),
+  window: b => rrect(b.x, b.y, b.w, b.h, 10, C.ink) + rrect(b.x + 4, b.y + 4, b.w - 8, b.h - 8, 6, C.accent),
+  tick: b => rrect(b.x, b.y, b.w, b.h, 3, C.graphite),
+  decor: b => b.pts.map(p => el("path", { d: `M${p[0].join(" ")} L${p[1].join(" ")}`, stroke: C.muted, "stroke-width": 6, "stroke-dasharray": "18 14", "stroke-linecap": "round", fill: "none", opacity: 0.35 })).join("")
+};
+
+/* Box for any block (outer bounds). */
+function boxOf(b) {
+  if (b.k === "line") return lineBox(b);
+  if (b.k === "person") return { x: b.x, y: b.y, w: b.d, h: b.d };
+  if (b.k === "glyph" || b.k === "check") return { x: b.x, y: b.y, w: b.s, h: b.s };
+  if (b.k === "badge") return { x: b.x, y: b.y, w: 64, h: 64 };
+  if (b.k === "step") return { x: b.x, y: b.y, w: b.s, h: b.s };
+  if (b.k === "stage") return { x: b.x, y: b.y, w: 72, h: 72 };
+  if (b.k === "bars") return { x: b.x, y: b.y, w: b.w * 0.8, h: (b.n - 1) * 32 + 18 };
+  return { x: b.x, y: b.y, w: b.w, h: b.h };
+}
+
+/* Entrance as a pure function of the frame: critically damped spring, 24 px rise, no overshoot. */
+function progress(b, beat, frame) {
+  const at = b.at || 0; const dur = b.dur === 0 ? 0 : (b.dur || 60);
+  const t = frame - beat.start - at;
+  if (dur === 0) return t >= 0 ? 1 : 0;
+  if (t <= 0) return 0;
+  if (t >= dur) return 1;
+  const x = 9.23 * t / dur;
+  return 1 - (1 + x) * Math.exp(-x);
+}
+
+function render(beat, frame) {
+  const svg = document.getElementById("art"); const stage = document.getElementById("stage");
+  let markup = rrect(0, 0, 1080, 1350, 0, C.bg);
+  const texts = [];
+  for (const b of beat.blocks) {
+    const p = progress(b, beat, frame); const ty = 24 * (1 - p);
+    if (b.k === "text") { texts.push({ b, p, ty }); continue; }
+    markup += `<g data-id="${b.id}" opacity="${p}" transform="translate(0 ${ty})">${DRAW[b.k](b)}</g>`;
+  }
+  svg.innerHTML = markup;
+  for (const { b, p, ty } of texts) {
+    const ts = TYPE[b.st]; const d = document.createElement("div");
+    d.className = "t"; d.dataset.id = b.id;
+    Object.assign(d.style, { left: b.x + "px", top: b.y + "px", width: b.w + "px", height: b.h + "px",
+      font: `${ts.wt} ${ts.size}px/${ts.lh}px "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif`,
+      letterSpacing: ts.track + "em", color: C[b.col], textAlign: b.al || "left", opacity: p, transform: `translateY(${ty}px)` });
+    for (const line of b.lines) {
+      const ln = document.createElement("div"); ln.className = "ln";
+      const sp = document.createElement("span"); sp.textContent = line;
+      const base = document.createElement("i"); base.style.cssText = "display:inline-block;width:0;height:0";
+      /* Left-aligned lines whose first glyph overhangs its origin get that overhang as padding, so ink never crosses x 108. */
+      const m = inkMetrics(ts, line);
+      if ((b.al || "left") === "left" && m.left > 0) ln.style.paddingLeft = Math.ceil(m.left) + "px";
+      ln.appendChild(sp); ln.appendChild(base); d.appendChild(ln);
+    }
+    stage.appendChild(d);
+  }
+}
+
+const MCTX = document.createElement("canvas").getContext("2d");
+function inkMetrics(ts, text) {
+  MCTX.font = `${ts.wt} ${ts.size}px "Instrument Sans"`;
+  MCTX.letterSpacing = (ts.track * ts.size) + "px";
+  const m = MCTX.measureText(text);
+  return { left: m.actualBoundingBoxLeft, right: m.actualBoundingBoxRight, ascent: m.actualBoundingBoxAscent, descent: m.actualBoundingBoxDescent };
+}
+
+/* Automated checks. */
+function lum(hex) {
+  const v = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255).map(c => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
+  return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+}
+function contrast(a, b) { const [l1, l2] = [lum(a), lum(b)].sort((x, y) => y - x); return (l1 + 0.05) / (l2 + 0.05); }
+function inter(a, b) { return Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)) * Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y)); }
+function contains(o, i) { return i.x >= o.x - 0.5 && i.y >= o.y - 0.5 && i.x + i.w <= o.x + o.w + 0.5 && i.y + i.h <= o.y + o.h + 0.5; }
+function fillOf(b) {
+  if (b.k === "card") return CARD_STYLE[b.state].fill;
+  if (b.k === "pill") return C[b.fill];
+  if (b.k === "chip") return b.state === "active" ? C.accent : C.card;
+  if (b.k === "panel") return C.bg;
+  return null;
+}
+const FORBIDDEN = [new RegExp(String.fromCharCode(8212)), new RegExp("-{2}"), /\b(CRO|DEV|PAD|TASK|OPS|CMO|CFO)-\d+/];
+
+function check(beat, frame) {
+  const fails = []; const rows = [];
+  const fontsOk = document.fonts.check('700 104px "Instrument Sans"') && document.fonts.check('600 48px "Instrument Sans"') &&
+    [...document.fonts].filter(f => f.family.includes("Instrument Sans") && f.status === "loaded").length >= 2;
+  if (!fontsOk) fails.push("font: Instrument Sans not loaded");
+  const blocks = beat.blocks.map(b => ({ b, box: boxOf(b) }));
+  for (const { b } of blocks) {
+    const pr = progress(b, beat, frame);
+    if (pr !== 1) fails.push(`motion: ${b.id} progress ${pr.toFixed(4)} at frame ${frame}`);
+  }
+  for (const { b, box } of blocks.filter(o => o.b.k === "text")) {
+    const node = document.querySelector(`.t[data-id="${b.id}"]`);
+    const ts = TYPE[b.st];
+    const spans = [...node.querySelectorAll("span")];
+    const lns = [...node.querySelectorAll(".ln")];
+    const maxW = Math.max(...spans.map(s => s.getBoundingClientRect().width));
+    /* Real ink bounds per line: glyph extents from canvas metrics, placed at the measured baseline. */
+    const inks = spans.map((s, i) => {
+      const r = s.getBoundingClientRect(); const m = inkMetrics(ts, b.lines[i]);
+      const baseY = lns[i].querySelector("i").getBoundingClientRect().bottom;
+      return { x0: r.left - m.left, x1: r.left + m.right, y0: baseY - m.ascent, y1: baseY + m.descent };
+    });
+    const inkBox = { x: Math.min(...inks.map(k => k.x0)), y: Math.min(...inks.map(k => k.y0)), w: 0, h: 0 };
+    inkBox.w = Math.max(...inks.map(k => k.x1)) - inkBox.x; inkBox.h = Math.max(...inks.map(k => k.y1)) - inkBox.y;
+    const lineSum = lns.reduce((a, l) => a + l.getBoundingClientRect().height, 0);
+    if (maxW > box.w + 0.01) fails.push(`overflow: ${b.id} widest line ${maxW.toFixed(1)} > box ${box.w}`);
+    if (lineSum > box.h + 0.01) fails.push(`overflow: ${b.id} line boxes ${lineSum} > box h ${box.h}`);
+    if (!contains(box, inkBox)) fails.push(`overflow: ${b.id} glyph ink ${JSON.stringify(inkBox)} leaves its box`);
+    if (spans.map(s => s.textContent).join("|") !== b.lines.join("|")) fails.push(`words: ${b.id} rendered text differs from BEATS`);
+    for (const re of FORBIDDEN) if (re.test(b.lines.join(" "))) fails.push(`forbidden: ${b.id} ${re}`);
+    const holders = blocks.filter(o => o.b.k !== "text" && fillOf(o.b) && contains(o.box, box)).sort((a, c) => a.box.w * a.box.h - c.box.w * c.box.h);
+    const bg = holders.length ? fillOf(holders[0].b) : C.bg;
+    const fg = C[b.col]; const ratio = contrast(fg, bg);
+    if (ratio < 7) fails.push(`contrast: ${b.id} ${ratio.toFixed(2)}:1 below 7:1`);
+    rows.push({ id: b.id, text: b.lines.join(" / "), widest: Math.round(maxW), boxW: box.w, slack: Math.round(box.w - maxW), fg, bg, ratio: ratio.toFixed(2), ink: inkBox });
+  }
+  for (const { b, box } of blocks) {
+    if (box.x < SAFE.x0 || box.y < SAFE.y0 || box.x + box.w > SAFE.x1 || box.y + box.h > SAFE.y1) fails.push(`safe-zone: ${b.id} ${JSON.stringify(box)}`);
+  }
+  for (const r of rows) { const i = r.ink; if (i.x < SAFE.x0 - 0.5 || i.x + i.w > SAFE.x1 + 0.5) fails.push(`safe-zone ink: ${r.id}`); }
+  for (const { b, box } of blocks.filter(o => o.b.k !== "text" && o.b.k !== "decor")) {
+    const g = document.querySelector(`g[data-id="${b.id}"]`); const bb = g.getBBox();
+    if (bb.x < box.x - 1 || bb.y < box.y - 1 || bb.x + bb.width > box.x + box.w + 1 || bb.y + bb.height > box.y + box.h + 1) fails.push(`geometry: ${b.id} drawn outside its box`);
+  }
+  let pairs = 0;
+  for (let i = 0; i < blocks.length; i += 1) for (let j = i + 1; j < blocks.length; j += 1) {
+    const A = blocks[i]; const B = blocks[j]; const area = inter(A.box, B.box);
+    pairs += 1; if (area <= 0.5) continue;
+    const ta = A.b.k === "text"; const tb = B.b.k === "text";
+    if (ta && tb) { fails.push(`collision: text ${A.b.id} x text ${B.b.id}`); continue; }
+    if (ta || tb) {
+      const T = ta ? A : B; const S = ta ? B : A;
+      if (S.b.k === "decor" || !(fillOf(S.b) && contains(S.box, T.box))) fails.push(`collision: text ${T.b.id} x ${S.b.id}`);
+      continue;
+    }
+    if (A.b.k === "decor" || B.b.k === "decor") continue;
+    if (contains(A.box, B.box) || contains(B.box, A.box)) continue;
+    if (A.b.under || B.b.under) continue;
+    if ((A.b.joins || []).includes(B.b.id) || (B.b.joins || []).includes(A.b.id)) continue;
+    fails.push(`collision: ${A.b.id} x ${B.b.id}`);
+  }
+  return { beat: beat.n, frame, fontsOk, textBlocks: rows.length, pairsChecked: pairs, rows, fails };
+}
+
+const params = new URLSearchParams(location.search);
+const beat = BEATS[(Number(params.get("beat")) || 1) - 1];
+const frame = params.has("frame") ? Number(params.get("frame")) : beat.mid;
+Promise.all([document.fonts.load('700 104px "Instrument Sans"'), document.fonts.load('600 48px "Instrument Sans"')]).then(() => document.fonts.ready).then(() => {
+  render(beat, frame);
+  requestAnimationFrame(() => { window.__report = check(beat, frame); });
+});
+</script>
+</body>
+</html>
