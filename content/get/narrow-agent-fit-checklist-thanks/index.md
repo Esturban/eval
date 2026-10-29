@@ -10,7 +10,7 @@ build:
   render: always
 ---
 
-<meta http-equiv="refresh" content="0; url=/dl/3d3e2954b2ac/narrow-agent-fit-checklist.pdf" />
+<meta http-equiv="refresh" content="8; url=/dl/3d3e2954b2ac/narrow-agent-fit-checklist.pdf" />
 
 Thanks. Grab your checklist below.
 

@@ -10,7 +10,7 @@ build:
   render: always
 ---
 
-<meta http-equiv="refresh" content="0; url=/dl/0bbd7a1e7dba/five-checks-that-lie.pdf" />
+<meta http-equiv="refresh" content="8; url=/dl/0bbd7a1e7dba/five-checks-that-lie.pdf" />
 
 Thanks. Grab your checklist below.
 
