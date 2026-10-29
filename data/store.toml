@@ -29,8 +29,8 @@ refund = ""
 price = "Free"
 price_note = ""
 button = "Get it free"
-url = "#"
-status = "not built"
+url = "https://evadvisory.ca/get/ai-workflow-readiness-scorecard/"
+status = "live"
 
 [[product]]
 slug = "five-checks-that-lie"
