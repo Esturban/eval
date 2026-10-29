@@ -312,3 +312,14 @@ The final frame is static from 27.0 s. Accent: CTA button and live tile. Nothing
 - Beat 4 shows the three existing tools as icon tiles under the group label "Existing tools" (each tool was named in beats 1 and 2). At 264 px wide, individual 48 px labels would not fit.
 - Beat 6 uses the three storyboard labels as: "Week 2" and "Week 6" as rail ticks bounding the go-live window, "Go live" as a pill over that window. The four stages are shown as tiles without labels.
 - Offer facts conflict to resolve before the video: the live service page (`content/services/ai-agent-implementation.md`) is now titled "Build Queue" and promises the first agent live in 10 business days, while this storyboard says "AI Agent Implementation" and "2 to 6 weeks". This spec follows the storyboard as instructed. The Live Audit CTA and "you leave knowing which process goes first" do match the page.
+
+### 2026-10-29 additions for reviewer notes
+
+These labels are additions to the storyboard's labels, made to answer three reviewer notes (name the agent, name the stages, scale up and name the beat 3 and 4 graphics). No storyboard word was removed or changed.
+
+- Beats 2 to 7 label the agent glyph. Beat 2 adds "AI agent" inside the agent lane. Beat 4's workflow card reads "AI agent workflow" and beat 5 labels the agent tile "AI agent"; both are a superset of the storyboard's agent wording. Beat 7 adds column headers "By hand" (slate, over the manual column) and "AI agent" (ink, over the agent column).
+- Beat 3 replaces the abstract bar cards with three named task cards: "Ticket triage" (selected, with the approved badge), "CRM updates" and "Inbox routing" (dimmed). "Process owner" now sits beside the person glyph at the top of the column, with a short line down to the selected card.
+- Beat 4 names the three workflow steps "Read", "Route" and "Approve", and the graphic grows: tool cards 130 px tall, workflow card 271 px tall ending at y 1084.
+- Beat 6 names the first three stage tiles "Audit", "Build" and "Test" (the existing "Go live" pill names the fourth). The three tiles are spaced 160 px apart so the labels do not run together at phone size. This supersedes the earlier note that the stages are shown without labels.
+- Beat 8 names the four timeline tiles "Audit", "Build", "Test" and "Go live" under the rail.
+- Beat 5 layout: the work chips are 216 px wide and the review card is 396 px wide, so the "AI agent" label has clear space on both sides.

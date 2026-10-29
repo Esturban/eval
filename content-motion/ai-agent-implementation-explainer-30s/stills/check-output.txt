@@ -6,44 +6,57 @@ beat 1 frame 120 | 1080x1350 | font loaded true | 6 text blocks | 253 box pairs 
   c3l   widest 111/304 slack 193 | #020617 on #ffffff 20.17:1 | "CRM"
   agl   widest 188/260 slack  72 | #020617 on #ffffff 20.17:1 | "AI agent"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 2 frame 360 | 1080x1350 | font loaded true | 6 text blocks | 253 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 2 frame 360 | 1080x1350 | font loaded true | 7 text blocks | 276 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 567/864 slack 297 | #020617 on #f7f4ee 18.38:1 | "One narrow / agent."
   s     widest 493/864 slack 371 | #334155 on #f7f4ee 9.43:1 | "Built into the tools / you already use."
   c1l   widest 111/372 slack 261 | #020617 on #ffffff 20.17:1 | "CRM"
   c2l   widest 213/352 slack 139 | #020617 on #ffffff 20.17:1 | "Ticketing"
+  lanel widest 188/210 slack  22 | #020617 on #ffffff 20.17:1 | "AI agent"
   c3l   widest 298/372 slack  74 | #020617 on #ffffff 20.17:1 | "Shared inbox"
   c4l   widest 264/372 slack 108 | #020617 on #ffffff 20.17:1 | "Documents"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 3 frame 570 | 1080x1350 | font loaded true | 4 text blocks | 253 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 3 frame 570 | 1080x1350 | font loaded true | 7 text blocks | 136 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 723/864 slack 141 | #020617 on #f7f4ee 18.38:1 | "Start with a / free Live Audit."
   s     widest 579/864 slack 285 | #334155 on #f7f4ee 9.43:1 | "Leave knowing which / process comes first."
+  pl    widest 332/380 slack  48 | #020617 on #f7f4ee 18.38:1 | "Process owner"
   pillt widest 254/292 slack  38 | #020617 on #ffffff 20.17:1 | "20 minutes"
-  pl    widest 181/324 slack 143 | #020617 on #f7f4ee 18.38:1 | "Process / owner"
+  tal   widest 284/500 slack 216 | #020617 on #ffffff 20.17:1 | "Ticket triage"
+  tbl   widest 304/500 slack 196 | #334155 on #eef2f6 9.20:1 | "CRM updates"
+  tcl   widest 302/500 slack 198 | #334155 on #eef2f6 9.20:1 | "Inbox routing"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 4 frame 780 | 1080x1350 | font loaded true | 4 text blocks | 190 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 4 frame 780 | 1080x1350 | font loaded true | 7 text blocks | 253 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 710/864 slack 155 | #020617 on #f7f4ee 18.38:1 | "Build it in / your workflow."
   s     widest 501/864 slack 363 | #334155 on #f7f4ee 9.43:1 | "Your tools stay the / system of record."
   el    widest 305/864 slack 559 | #020617 on #f7f4ee 18.38:1 | "Existing tools"
-  wfl   widest 357/400 slack  43 | #020617 on #ffffff 20.17:1 | "Agent workflow"
+  wfl   widest 406/700 slack 294 | #020617 on #ffffff 20.17:1 | "AI agent workflow"
+  s1l   widest 114/252 slack 138 | #020617 on #ffffff 20.17:1 | "Read"
+  s2l   widest 134/252 slack 118 | #020617 on #ffffff 20.17:1 | "Route"
+  s3l   widest 194/252 slack  58 | #020617 on #ffffff 20.17:1 | "Approve"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 5 frame 1020 | 1080x1350 | font loaded true | 5 text blocks | 153 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 5 frame 1020 | 1080x1350 | font loaded true | 6 text blocks | 171 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 470/864 slack 394 | #020617 on #f7f4ee 18.38:1 | "Test it on / real work."
   s     widest 536/864 slack 328 | #334155 on #f7f4ee 9.43:1 | "Your process owner / checks the output."
   rw    widest 218/300 slack  82 | #020617 on #f7f4ee 18.38:1 | "Real work"
-  rvl   widest 332/360 slack  28 | #020617 on #ffffff 20.17:1 | "Process owner"
+  atl   widest 188/200 slack  12 | #020617 on #f7f4ee 18.38:1 | "AI agent"
+  rvl   widest 332/352 slack  20 | #020617 on #ffffff 20.17:1 | "Process owner"
   apt   widest 195/210 slack  15 | #020617 on #22d3ee 11.16:1 | "Approve"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 6 frame 1260 | 1080x1350 | font loaded true | 6 text blocks | 105 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 6 frame 1260 | 1080x1350 | font loaded true | 9 text blocks | 153 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 305/864 slack 559 | #020617 on #f7f4ee 18.38:1 | "Live in"
   hx    widest 581/864 slack 283 | #020617 on #f7f4ee 18.38:1 | "2 to 6 / weeks."
   s     widest 544/864 slack 320 | #334155 on #f7f4ee 9.43:1 | "One process, tested / before launch."
   glt   widest 152/188 slack  36 | #020617 on #22d3ee 11.16:1 | "Go live"
+  g1l   widest 124/150 slack  26 | #020617 on #f7f4ee 18.38:1 | "Audit"
+  g2l   widest 114/150 slack  36 | #020617 on #f7f4ee 18.38:1 | "Build"
+  g3l   widest  97/104 slack   7 | #020617 on #f7f4ee 18.38:1 | "Test"
   w2    widest 167/180 slack  13 | #020617 on #f7f4ee 18.38:1 | "Week 2"
   w6    widest 170/180 slack  10 | #020617 on #f7f4ee 18.38:1 | "Week 6"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 7 frame 1470 | 1080x1350 | font loaded true | 10 text blocks | 528 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 7 frame 1470 | 1080x1350 | font loaded true | 12 text blocks | 595 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 814/864 slack  50 | #020617 on #f7f4ee 18.38:1 | "The agent / handles the / repeatable work."
   s     widest 718/864 slack 146 | #334155 on #f7f4ee 9.43:1 | "Your team stays in control."
+  hl    widest 181/420 slack 239 | #334155 on #f7f4ee 9.43:1 | "By hand"
+  hr    widest 188/420 slack 232 | #020617 on #f7f4ee 18.38:1 | "AI agent"
   l1t   widest 117/300 slack 183 | #334155 on #eef2f6 9.20:1 | "Draft"
   l2t   widest 134/300 slack 166 | #334155 on #eef2f6 9.20:1 | "Route"
   l3t   widest 165/300 slack 135 | #334155 on #eef2f6 9.20:1 | "Update"
@@ -53,10 +66,14 @@ beat 7 frame 1470 | 1080x1350 | font loaded true | 10 text blocks | 528 box pair
   r3t   widest 165/290 slack 125 | #020617 on #ffffff 20.17:1 | "Update"
   r4t   widest 194/210 slack  16 | #020617 on #ffffff 20.17:1 | "Approve"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
-beat 8 frame 1680 | 1080x1350 | font loaded true | 3 text blocks | 36 box pairs | outside-safe-zone non-bg px: 0/0/0/0
+beat 8 frame 1680 | 1080x1350 | font loaded true | 7 text blocks | 78 box pairs | outside-safe-zone non-bg px: 0/0/0/0
   h     widest 781/864 slack  83 | #020617 on #f7f4ee 18.38:1 | "AI Agent / Implementation"
   ctat  widest 614/800 slack 186 | #020617 on #22d3ee 11.16:1 | "Book a free 20-minute / Live Audit."
   ben   widest 579/864 slack 285 | #020617 on #f7f4ee 18.38:1 | "Leave knowing which / process comes first."
+  d1l   widest 124/200 slack  76 | #020617 on #f7f4ee 18.38:1 | "Audit"
+  d2l   widest 114/200 slack  86 | #020617 on #f7f4ee 18.38:1 | "Build"
+  d3l   widest  97/200 slack 103 | #020617 on #f7f4ee 18.38:1 | "Test"
+  d4l   widest 152/200 slack  48 | #020617 on #f7f4ee 18.38:1 | "Go live"
   PASS overflow, collision, safe zone, contrast >= 7:1, words, motion settled
 contact-sheet.png 3240x4050, contact-sheet-360x450.png 360x450
 ALL CHECKS PASS
