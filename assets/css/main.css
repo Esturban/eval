@@ -1434,7 +1434,7 @@
   }
 }
 
-/* Build Queue price block (CRO-8249): one compact bordered list, light and dark. */
+/* Build Queue price block: one compact bordered list, light and dark. */
 @layer utilities {
   .offer-prose ul.price-block {
     margin: 1.5rem 0;
@@ -1470,7 +1470,7 @@
   }
 }
 
-/* Founding-seat intake form (CRO-8252): scoped to .seat-form, light and dark. */
+/* Founding-seat intake form: scoped to .seat-form, light and dark. */
 @layer utilities {
   .seat-form {
     margin: 1.5rem 0;
@@ -1567,7 +1567,7 @@
   }
 }
 
-/* Founding-seat suggestion chips (CRO-8353): hidden until agent-seat.js runs. */
+/* Founding-seat suggestion chips: hidden until agent-seat.js runs. */
 @layer utilities {
   .seat-form .seat-chips {
     display: flex;
@@ -1613,7 +1613,7 @@
   }
 }
 
-/* CRO-8354: button gap matches group gap; visually hidden live status. */
+/* Button gap matches group gap; visually hidden live status. */
 @layer utilities {
   .seat-form p:last-of-type {
     margin-top: 2rem;
@@ -1629,7 +1629,7 @@
   }
 }
 
-/* Funnel pages (CRO-8355): proof strip and drop-downs on the Build Queue offer page. Light and dark. */
+/* Funnel pages: proof strip and drop-downs on the Build Queue offer page. Light and dark. */
 @layer utilities {
   .offer-prose .proof-strip {
     margin: 2rem 0;
@@ -1736,7 +1736,7 @@
   }
 }
 
-/* Funnel pages (CRO-8355): founding-seat intake. */
+/* Funnel pages: founding-seat intake. */
 @layer utilities {
   /* Unlayered diagram styles outrank the utilities layer, so these use !important.
    Beside the form the narrow column always uses the vertical diagram. */
@@ -1762,7 +1762,7 @@
   }
 }
 
-/* Funnel pages (CRO-8355): confirmation page. */
+/* Funnel pages: confirmation page. */
 @layer utilities {
   /* On phones the timeline is capped so the next step and its button
      stay inside the first screen. */
@@ -1866,7 +1866,7 @@
   }
 }
 
-/* Funnel pages (CRO-8355): Live Audit header diagram, vertical variant in the header column. */
+/* Funnel pages: Live Audit header diagram, vertical variant in the header column. */
 @layer utilities {
   .la-hero .dg-h {
     display: none !important;

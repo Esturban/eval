@@ -3,7 +3,7 @@ title: "Revenue Signal Methodology"
 date: 2026-03-25T10:30:00-05:00
 draft: false
 description: See how EV Advisory diagnoses reporting trust, attribution noise, conversion friction, and reporting drag before recommending what to fix first.
-summary: The working method EV Advisory uses to turn noisy Shopify and ecommerce reporting into clearer decisions.
+summary: The working method EV Advisory uses to turn noisy reporting into clearer decisions, and the same method a free Live Audit follows.
 author: Esteban Valencia
 authorimage: ../assets/images/global/author.webp
 faq:
@@ -20,7 +20,9 @@ Start with the decision, not the dashboard.
 | Step | What happens | What you get |
 |---|---|---|
 | 1. Define the decision | Name the commercial decision the team makes. | One decision |
-| 2. Trace the signal path | Map it across Shopify, analytics, ads, finance and reporting. | The number's path |
+| 2. Trace the signal path | Map it across your store or CRM, analytics, ads, finance and reporting. | The number's path |
 | 3. Rank the trust breaks | Rank by risk: spend and margin, conversion, then reporting. | A ranked list |
 | 4. Recommend the shortest path | Pick the fix: tracking, reporting, site journey, or a wider audit. | The first repair |
+
+Want this run on your numbers? [Book a free Live Audit](/live-audit/).
 

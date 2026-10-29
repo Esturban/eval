@@ -13,16 +13,9 @@
         <div class="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
             <div class="space-y-6">
                 <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300">Conversion Systems Audit</p>
-                    <div class="mt-6">
-                        <a href="https://cal.com/este-val/audit-fit-call"
-                           data-cta="fit-call"
-                           class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
-                            Grab a time here
-                        </a>
-                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Prefer to talk? Book a 20-minute fit call.</p>
-                    </div>
-                    
+                    <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300">Free Live Audit</p>
+                    <p class="mt-5 text-sm leading-6 text-slate-600 dark:text-slate-300">Tell us what is blocking decisions. We reply with a time for a 20-minute Live Audit call.</p>
+
                 </div>
 
                 <div id="contact-scorecard-context"
@@ -34,7 +27,7 @@
 
                 <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300">What happens next</p>
-                    <p class="mt-5 text-sm leading-6 text-slate-600 dark:text-slate-300">We review your intake and reply with the best next step, or tell you early if the problem sits elsewhere.</p>
+                    <p class="mt-5 text-sm leading-6 text-slate-600 dark:text-slate-300">We review your note and reply with a time for your Live Audit, or tell you early if the problem sits elsewhere.</p>
                 </div>
             </div>
 
@@ -72,12 +65,12 @@
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                         </label>
                         <label class="space-y-2 text-sm font-medium text-slate-900 dark:text-slate-100">
-                            <span>Company or store</span>
+                            <span>Company</span>
                             <input type="text"
                                    name="company"
                                    id="company"
                                    class="block w-full rounded-xl border border-slate-300 bg-slate-50 p-3 text-slate-950 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-slate-600 dark:bg-slate-950 dark:text-white"
-                                   placeholder="Brand or store name"
+                                   placeholder="Company name"
                                    required>
                         </label>
                     </div>
@@ -96,7 +89,7 @@
                     <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
                         <button type="submit"
                                 class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
-                            Request the audit
+                            Request my Live Audit
                         </button>
                         {{ if $whatsappNumber }}
                         <a id="contact-whatsapp"
@@ -166,7 +159,7 @@
 
     if (whatsappLink) {
       var whatsappNumber = whatsappLink.getAttribute('href').replace('https://wa.me/', '');
-      var lines = ['Hi EV Advisory, I want to ask about the Conversion Systems Audit.'];
+      var lines = ['Hi EV Advisory, I want to ask about the Live Audit.'];
 
       if (source === 'scorecard') {
         lines = ['Hi EV Advisory, I completed the Revenue Signal Scorecard.'];
