@@ -17,6 +17,8 @@ We do gather certain non-personally identifiable information such as standard we
 
 We may share your information with other EV Advisory offices world-wide or with our partners. We may occasionally transfer or share your information with third parties who perform certain services on our behalf. However, such third parties have agreed to only use such information on behalf of EV Advisory. We reserve the right to disclose your Information with legal and regulatory bodies or pursuant to a judicial order for compliance.  
 
+Form submissions may be processed by AI tools that we use under contract. Your information is never used to train AI models, and you can ask us to delete it at any time by writing to info@evadvisory.ca.  
+
 Further, in the event we decide to reorganise, sell or transfer all or part of our business, we may share your Information with third parties involved in such transactions, even in such circumstances we will obtain written assurances that the information provided by you will be appropriately protected.  
 
 ## :two: Use of Cookies:
