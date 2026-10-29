@@ -14,6 +14,8 @@ faq:
 
 Which number is the real one?
 
+This is a quick self-check for ecommerce reporting. To look at your own setup with me, you can [book a free Live Audit]({{< relref "live-audit" >}}).
+
 {{< diagram "scorecard" >}}
 
 | Step | What you do | What you get |
