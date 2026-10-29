@@ -58,4 +58,4 @@ Stronger conversion tracking usually means:
 
 That is why conversion tracking is often part of a broader revenue signal problem, not a standalone implementation problem.
 
-If the team does not trust the current setup enough to scale traffic or prioritize fixes, review the [Revenue Signal Methodology]({{< relref "methodology" >}}) or [request the Conversion Systems Audit]({{< relref "contact" >}}).
+If the team does not trust the current setup enough to scale traffic or prioritize fixes, review the [Revenue Signal Methodology]({{< relref "methodology" >}}) or [book a free Live Audit](/live-audit/).

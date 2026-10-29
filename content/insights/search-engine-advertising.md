@@ -52,7 +52,7 @@ prospects who visit my website are likely to convert?
 
 ## :information: **Important**: How do audiences search for anything online?    
 
-If someone is searching for something online -- a product, service or answer --
+If someone is searching for something online (a product, service or answer),
 they tend to go about it with a few general formulas that allow them to find
 what they are looking for.  Search engines are commonly fed terms and phrases like:  
 - the name of the product or service  
