@@ -17,3 +17,5 @@ Thanks. Grab your checklist below.
 [Download the PDF](/dl/0bbd7a1e7dba/five-checks-that-lie.pdf)
 
 Keep this link. It is not indexed or listed anywhere.
+
+Next step: [Bring what you found to a free Live Audit](/live-audit/).

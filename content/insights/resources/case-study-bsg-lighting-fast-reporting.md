@@ -43,3 +43,5 @@ That translated into:
 - more room for the team to spend time on action instead of assembly
 
 This is the kind of outcome EV Advisory targets when reporting drag is the main commercial bottleneck.
+
+If your team rebuilds the same report every month, [book a free Live Audit](/live-audit/) and we will look at it together.
