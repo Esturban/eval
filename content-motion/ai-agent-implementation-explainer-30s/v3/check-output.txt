@@ -1,0 +1,55 @@
+4x5 B1 frame 161: settled true, 5 text blocks, 11 shapes, layout faults 0 PASS
+4x5 B2 frame 341: settled true, 9 text blocks, 12 shapes, layout faults 0 PASS
+4x5 B3 frame 521: settled true, 11 text blocks, 14 shapes, layout faults 0 PASS
+4x5 B4 frame 701: settled true, 8 text blocks, 16 shapes, layout faults 0 PASS
+4x5 B5 frame 866: settled true, 6 text blocks, 16 shapes, layout faults 0 PASS
+4x5 B6 frame 1196: settled true, 7 text blocks, 7 shapes, layout faults 0 PASS
+4x5 seam B1 to B2 frame 165: incoming headline opacity 0.30, outgoing 0.00 PASS
+4x5 seam B2 to B3 frame 345: incoming headline opacity 0.30, outgoing 0.00 PASS
+4x5 seam B3 to B4 frame 525: incoming headline opacity 0.30, outgoing 0.00 PASS
+4x5 seam B4 to B5 frame 705: incoming headline opacity 0.30, outgoing 0.00 PASS
+4x5 seam B5 to B6 frame 870: incoming headline opacity 0.30, outgoing 0.00 PASS
+4x5 B6 swap frame 1050: timeline headline gone, offer name 0.30 PASS
+4x5 B1: 5.5 s, static hold 57 frames (1.90 s) PASS
+4x5 B2: 6.0 s, static hold 60 frames (2.00 s) PASS
+4x5 B3: 6.0 s, static hold 51 frames (1.70 s) PASS
+4x5 B4: 6.0 s, static hold 48 frames (1.60 s) PASS
+4x5 B5: 5.5 s, static hold 51 frames (1.70 s) PASS
+4x5 B6: 11.0 s, static hold 96 frames (3.20 s) PASS
+explainer-4x5.mp4: duration 40.000 s, 1080x1350, h264 yuv420p 30/1, audio streams 0 PASS
+explainer-4x5.mp4: faststart (moov before mdat) PASS
+9x16 B1: smallest text 48 px x 0.97 = 46.6 px (min 46) PASS
+9x16 B1 stack: message ends y 779, stage starts y 937, gap 157 (max 160) PASS
+9x16 B2: smallest text 48 px x 0.97 = 46.6 px (min 46) PASS
+9x16 B2 stack: message ends y 779, stage starts y 923, gap 144 (max 160) PASS
+9x16 B3: smallest text 48 px x 0.97 = 46.6 px (min 46) PASS
+9x16 B3 stack: message ends y 884, stage starts y 923, gap 39 (max 160) PASS
+9x16 B4: smallest text 48 px x 0.97 = 46.6 px (min 46) PASS
+9x16 B4 stack: message ends y 818, stage starts y 861, gap 43 (max 160) PASS
+9x16 B5: smallest text 48 px x 0.97 = 46.6 px (min 46) PASS
+9x16 B5 stack: message ends y 779, stage starts y 861, gap 82 (max 160) PASS
+9x16 B6: smallest text 48 px x 0.97 = 46.6 px (min 46) PASS
+9x16 B6 stack: message ends y 1063, stage starts y 1164, gap 101 (max 160) PASS
+9x16 seam B1 to B2 frame 165: incoming headline opacity 0.30, outgoing 0.00 PASS
+9x16 seam B2 to B3 frame 345: incoming headline opacity 0.30, outgoing 0.00 PASS
+9x16 seam B3 to B4 frame 525: incoming headline opacity 0.30, outgoing 0.00 PASS
+9x16 seam B4 to B5 frame 705: incoming headline opacity 0.30, outgoing 0.00 PASS
+9x16 seam B5 to B6 frame 870: incoming headline opacity 0.30, outgoing 0.00 PASS
+9x16 B6 swap frame 1050: timeline headline gone, offer name 0.30 PASS
+9x16 B1: 5.5 s, static hold 57 frames (1.90 s) PASS
+9x16 B2: 6.0 s, static hold 60 frames (2.00 s) PASS
+9x16 B3: 6.0 s, static hold 51 frames (1.70 s) PASS
+9x16 B4: 6.0 s, static hold 48 frames (1.60 s) PASS
+9x16 B5: 5.5 s, static hold 51 frames (1.70 s) PASS
+9x16 B6: 11.0 s, static hold 96 frames (3.20 s) PASS
+explainer-9x16.mp4: duration 40.000 s, 1080x1920, h264 yuv420p 30/1, audio streams 0 PASS
+explainer-9x16.mp4: faststart (moov before mdat) PASS
+9x16 beat 1 ink bounds x 120 to 960 (margins 120/120), y 423 to 1340 PASS
+9x16 beat 2 ink bounds x 120 to 960 (margins 120/120), y 425 to 1340 PASS
+9x16 beat 3 ink bounds x 120 to 960 (margins 120/120), y 425 to 1340 PASS
+9x16 beat 4 ink bounds x 120 to 960 (margins 120/120), y 425 to 1340 PASS
+9x16 beat 5 ink bounds x 120 to 959 (margins 120/121), y 425 to 1340 PASS
+9x16 beat 6 ink bounds x 120 to 960 (margins 120/120), y 425 to 1340 PASS
+prose README.md: no em dash and no double hyphen PASS
+prose check-output.txt: no em dash and no double hyphen PASS
+ALL CHECKS PASS

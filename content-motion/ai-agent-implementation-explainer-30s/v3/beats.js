@@ -1,0 +1,195 @@
+/* REUSE_CHECKED: /Users/EVA/Desktop/eva/03_development/_dev/web/eval/content-motion/ai-agent-implementation-explainer-30s/v3/beats.md
+   That file is the beat sheet this data implements (prose, not loadable). No other beat-data or slot-based
+   interaction module exists under ~/Desktop/eva/03_development/_dev. Drawing primitives are reused from ../index.html.
+
+   CMO-8464 v3 data: every element on stage and every beat as rows. No animation code lives here.
+   Coordinates are 4:5 art pixels (1080x1350). Element order is paint order.
+   Row fields follow beats.md: el, from, to, at (s from beat start), dur (s), cue ("after:<row id>").
+   Rows not in beats.md, or retimed from it, are listed with their reason in README.md. */
+(() => {
+  const T = (lines, x, y, w, h, o) => Object.assign({ lines, x, y, w, h, st: "label", col: "ink" }, o || {});
+  const slot = (x, y, w, h) => ({ x, y, w, h });
+  const TILE_Y = 832; const TILE_H = 208; const TILE_W = 272;
+  const item = x => slot(x + 28, 964, 224, 64);
+  const tile = (id, x, g, lines) => ({ id, kind: "card", parent: "stage-a", rect: slot(x, TILE_Y, TILE_W, TILE_H),
+    glyph: { g, x: x + 28, y: 876, s: 56 },
+    texts: { label: lines.length > 1 ? T(lines, x + 96, 848, 164, 112) : T(lines, x + 96, 876, 112, 56) } });
+  const msg = (id, lines, st, y, h, o) => Object.assign({ id, kind: "text", group: "msg", init: "absent",
+    texts: { main: T(lines, 108, y, 864, h, { st, col: (o && o.col) || (st === "support" ? "slate" : "ink") }) } }, o || {});
+  const team = (n, x) => ({ id: `team-${n}`, kind: "person", parent: "stage-a", init: "absent", rect: slot(x, 850, 96, 96), check: { x: x + 60, y: 910, s: 40 } });
+  const stageTile = (id, x, g, label) => ({ id, kind: "stage", parent: "rail", rect: slot(x, 944, 72, 72), g, texts: { label } });
+
+  const ELEMENTS = [
+    { id: "stage-a", kind: "group" },
+    tile("card-inbox", 108, "inbox", ["Shared", "inbox"]),
+    tile("card-ticket", 404, "ticket", ["Ticket", "queue"]),
+    Object.assign(tile("card-crm", 700, "crm", ["CRM"]), { check: { x: 914, y: 846, s: 48 } }),
+    { id: "work-chip", kind: "chip", parent: "card-inbox", init: "absent", rise: 56, slot: "inbox", slots: { inbox: item(108) } },
+    { id: "field-who", kind: "bar", parent: "work-chip", rel: slot(16, 23, 56, 18) },
+    { id: "field-what", kind: "bar", parent: "work-chip", rel: slot(80, 23, 72, 18) },
+    { id: "field-urgency", kind: "bar", parent: "work-chip", rel: slot(160, 23, 48, 18) },
+    { id: "chip-unread-dot", kind: "dot", parent: "work-chip", init: "absent", rise: 0, rel: slot(212, -12, 24, 24) },
+    { id: "crm-row", kind: "chip", parent: "card-crm", init: "absent", slot: "crm", slots: { crm: item(700) } },
+    { id: "crm-row-text", kind: "swap", parent: "crm-row", init: "stale", rel: slot(0, 4, 224, 56),
+      bars: ["stale"], texts: { Updated: T(["Updated"], 0, 0, 224, 56, { al: "center", rel: true }) } },
+    { id: "agent-path-ticket", kind: "line", parent: "stage-a", init: "absent", drawIn: true, style: "agent", arrow: true, pts: [[540, 795], [540, 830]] },
+    { id: "agent-path-crm", kind: "line", parent: "stage-a", init: "absent", drawIn: true, style: "agent", arrow: true, pts: [[836, 795], [836, 830]] },
+    { id: "handoff-line", kind: "line", parent: "stage-a", init: "absent", drawIn: true, style: "manual", arrow: true, pts: [[188, 832], [188, 783]] },
+    { id: "card-agent", kind: "card", parent: "stage-a", init: "absent", rect: slot(252, 655, 720, 140),
+      glyph: { g: "chain", x: 276, y: 697, s: 56 }, texts: { label: T(["AI agent"], 348, 697, 200, 56) } },
+    { id: "field-chips", kind: "fieldchips", parent: "card-agent", slot: "inbox", items: [
+      { key: "who", label: "Who", inbox: slot(152, 991, 56, 18), agent: slot(584, 663, 157, 58) },
+      { key: "what", label: "What", inbox: slot(216, 991, 72, 18), agent: slot(753, 663, 173, 58) },
+      { key: "urgency", label: "How urgent", inbox: slot(296, 991, 48, 18), agent: slot(584, 729, 310, 58) }] },
+    { id: "card-review", kind: "card", parent: "stage-a", init: "absent", rect: slot(108, 591, 864, 221),
+      texts: { label: T(["Process owner"], 132, 607, 340, 56) } },
+    { id: "person-link", kind: "line", parent: "card-review", init: "dashed", style: "manual", solidStyle: "plain", arrow: true, pts: [[246, 725], [296, 725]] },
+    { id: "btn-approve", kind: "button", parent: "card-review", rect: slot(300, 677, 320, 96), check: { x: 324, y: 705 } },
+    { id: "btn-approve-text", kind: "swap", parent: "btn-approve", init: "Approve", rel: slot(80, 20, 228, 56),
+      texts: { Approve: T(["Approve"], 0, 0, 228, 56, { st: "buttonSm", rel: true }), Approved: T(["Approved"], 0, 0, 228, 56, { st: "buttonSm", rel: true }) } },
+    { id: "badge-approved", kind: "badge", parent: "card-review", init: "absent", rect: slot(888, 607, 64, 64) },
+    { id: "ticket-chip", kind: "chip", parent: "stage-a", dimWith: ["card-review"], init: "absent", slot: "ticket",
+      slots: { ticket: item(404), review: slot(644, 683, 304, 116) } },
+    { id: "ticket-status", kind: "swap", parent: "ticket-chip", init: "New", rel: slot(0, 4, 224, 56), fadeOnParentSlot: "review",
+      texts: { New: T(["New"], 0, 0, 224, 56, { al: "center", rel: true }), Routed: T(["Routed"], 0, 0, 224, 56, { al: "center", rel: true }) } },
+    { id: "draft-bars", kind: "panel", parent: "card-review", init: "absent", drawIn: true, bars: { x: 664, y: 757, w: 264 },
+      texts: { label: T(["Draft reply"], 664, 691, 264, 56) } },
+    { id: "person", kind: "person", parent: "stage-a", dimWith: ["card-review"], rect: slot(132, 669, 112, 112) },
+    { id: "card-docs", kind: "card", parent: "stage-a", init: "absent", rect: slot(108, 832, 392, 208), check: { x: 440, y: 980, s: 48 },
+      glyph: { g: "docs", x: 136, y: 860, s: 56 }, texts: { label: T(["Documents"], 208, 860, 272, 56), report: T(["Report"], 224, 950, 160, 56) } },
+    { id: "report-path", kind: "line", parent: "stage-a", init: "absent", drawIn: true, style: "agent", arrow: true, pts: [[500, 898], [612, 898]] },
+    { id: "report-page", kind: "page", parent: "stage-a", init: "absent", drawIn: true, keepHome: true, slot: "docs",
+      slots: { docs: slot(136, 936, 64, 84), team: slot(528, 856, 64, 84) } },
+    team(1, 620), team(2, 736), team(3, 852),
+    { id: "team-sent-text", kind: "text", parent: "stage-a", init: "absent", texts: { main: T(["Sent"], 620, 966, 328, 56, { al: "center" }) } },
+
+    { id: "stage-exit", kind: "group" },
+    { id: "rail", kind: "rail", parent: "stage-exit", init: "absent", drawIn: true, rect: slot(108, 974, 864, 12) },
+    { id: "window-segment", kind: "window", parent: "stage-exit", init: "absent", drawIn: true, rect: slot(600, 970, 372, 20),
+      ticks: [slot(597, 950, 6, 60), slot(966, 950, 6, 60)],
+      texts: { w2: T(["Week 2"], 510, 1028, 180, 56, { al: "center" }), w6: T(["Week 6"], 792, 1028, 180, 56, { al: "right" }) } },
+    stageTile("tile-audit", 108, "check", T(["Audit"], 108, 880, 150, 56)),
+    stageTile("tile-build", 296, "chain", T(["Build"], 296, 880, 150, 56)),
+    stageTile("tile-test", 474, "person", T(["Test"], 474, 880, 104, 56)),
+    Object.assign(stageTile("tile-golive", 750, "flag", T(["Go live"], 692, 868, 188, 56, { al: "center" })), { pill: slot(676, 856, 220, 80) }),
+    { id: "playhead", kind: "ring", parent: "rail", slot: "audit",
+      slots: { audit: slot(102, 938, 84, 84), build: slot(290, 938, 84, 84), test: slot(468, 938, 84, 84) } },
+    { id: "cta-path", kind: "ctapath", init: "absent", rail: slot(108, 933, 864, 12),
+      tiles: [{ g: "check", x: 108 }, { g: "chain", x: 372 }, { g: "person", x: 636 }, { g: "flag", x: 900, live: true }],
+      texts: { d1: T(["Audit"], 108, 995, 200, 56), d2: T(["Build"], 308, 995, 200, 56, { al: "center" }),
+        d3: T(["Test"], 572, 995, 200, 56, { al: "center" }), d4: T(["Go live"], 772, 995, 200, 56, { al: "right" }) } },
+
+    msg("m1-head", ["Still moving", "tickets by hand?"], "h1", 135, 224, { quick: true }),
+    msg("m1-sup", ["A new request lands", "in the shared inbox."], "support", 379, 136),
+    msg("m2-head", ["The agent", "reads it."], "h1", 135, 224, { quick: true }),
+    msg("m2-sup", ["It pulls out the details", "that matter."], "support", 379, 136),
+    msg("m3-head", ["It opens the", "ticket and", "updates the CRM."], "h1", 135, 332, { quick: true }),
+    msg("m3-sup", ["Your tools stay", "the system of record."], "support", 487, 136),
+    msg("m4-head", ["Your process", "owner", "approves it."], "h1", 135, 332, { quick: true }),
+    msg("m4-sup", ["Nothing goes out unchecked."], "support", 487, 68),
+    msg("m5-head", ["The report", "goes out."], "h1", 135, 224, { quick: true }),
+    msg("m5-sup", ["Your team sees", "the result."], "support", 379, 136),
+    msg("m6-head", ["Live in"], "h1", 135, 108, { quick: true, parent: "stage-exit" }),
+    msg("m6-hx", ["2 to 6", "weeks."], "h1xl", 251, 368, { quick: true, parent: "stage-exit" }),
+    msg("m6-sup", ["One process, tested", "before launch."], "support", 651, 136, { parent: "stage-exit" }),
+    msg("cta-offer-name", ["AI Agent", "Implementation"], "h1", 135, 224, { quick: true }),
+    { id: "cta-button", kind: "pill", group: "msg", init: "absent", rect: slot(108, 415, 864, 216), r: 32,
+      texts: { main: T(["Book a free 20-minute", "Live Audit."], 140, 455, 800, 136, { st: "button", al: "center" }) } },
+    msg("cta-benefit", ["Leave knowing which", "process comes first."], "support", 671, 136, { col: "ink" }),
+    ...[1, 2, 3, 4, 5, 6].map(n => ({ id: `pip-${n}`, kind: "pip", rect: slot(108 + 40 * (n - 1), 1060, 24, 24) }))
+  ];
+
+  /* Message rows: headline on the beat's first frame, support after it; both cut at the beat's end. */
+  const say = (n, dur, supAt) => [
+    { id: `m${n}h`, el: `m${n}-head`, from: "absent", to: "default", at: 0, dur: 0.5 },
+    { id: `m${n}s`, el: `m${n}-sup`, from: "absent", to: "default", at: supAt, dur: 0.5 },
+    { id: `m${n}hx`, el: `m${n}-head`, from: "default", to: "absent", at: dur, dur: 0 },
+    { id: `m${n}sx`, el: `m${n}-sup`, from: "default", to: "absent", at: dur, dur: 0 }];
+  const R = (id, el, from, to, at, dur, cue) => ({ id, el, from, to, at, dur, cue });
+
+  const BEATS = [
+    { id: "B1", dur: 5.5, rows: [...say(1, 5.5, 0.5),
+      R("1a", "work-chip", "absent", "slot:inbox", 1.2, 0.8),
+      R("1b", "card-inbox", "default", "active", 2.0, 0.4, "after:1a"),
+      R("1c", "chip-unread-dot", "absent", "active", 2.2, 0.3, "after:1a"),
+      R("1d", "handoff-line", "absent", "default", 2.8, 0.8, "after:1b"),
+      R("1e", "pip-1", "default", "done", 3.3, 0.3)] },
+    { id: "B2", dur: 6.0, rows: [...say(2, 6.0, 0.5),
+      R("2a", "card-agent", "absent", "active", 0.4, 0.6),
+      R("2b", "handoff-line", "default", "dim", 0.6, 0.4),
+      R("2c", "chip-unread-dot", "active", "absent", 1.2, 0.3, "after:2a"),
+      R("2d", "field-who", "default", "active", 1.8, 0.4, "after:2a"),
+      R("2e", "field-what", "default", "active", 2.3, 0.4, "after:2d"),
+      R("2f", "field-urgency", "default", "active", 2.8, 0.4, "after:2e"),
+      R("2g", "field-chips", "slot:inbox", "slot:agent", 3.3, 0.7, "after:2f"),
+      R("2h", "pip-2", "default", "done", 3.7, 0.3)] },
+    { id: "B3", dur: 6.0, rows: [...say(3, 6.0, 0.5),
+      R("3a", "agent-path-ticket", "absent", "default", 0.3, 0.6),
+      R("3b", "ticket-chip", "absent", "slot:ticket", 0.9, 0.5, "after:3a"),
+      R("3c", "ticket-status", "New", "New", 1.4, 0.5, "after:3b"),
+      R("3d", "ticket-status", "New", "Routed", 2.3, 0.4, "after:3c"),
+      R("3e", "card-ticket", "default", "active", 2.3, 0.4, "after:3c"),
+      R("3f", "agent-path-crm", "absent", "default", 2.7, 0.6, "after:3d"),
+      R("3g", "crm-row", "absent", "slot:crm", 3.3, 0.4, "after:3f"),
+      R("3h", "crm-row-text", "stale", "Updated", 3.7, 0.3, "after:3g"),
+      R("3i", "card-crm", "default", "done", 4.0, 0.3, "after:3h"),
+      R("3j", "pip-3", "default", "done", 4.0, 0.3)] },
+    { id: "B4", dur: 6.0, rows: [...say(4, 6.0, 0.5),
+      R("4a", "card-ticket", "active", "dim", 0.3, 0.4),
+      R("4b", "card-crm", "done", "dim", 0.3, 0.4),
+      R("4a1", "card-inbox", "active", "dim", 0.3, 0.4),
+      R("4a2", "card-agent", "active", "absent", 0.3, 0.4),
+      R("4a3", "handoff-line", "dim", "absent", 0.3, 0.4),
+      R("4a4", "agent-path-ticket", "default", "absent", 0.3, 0.4),
+      R("4a5", "agent-path-crm", "default", "absent", 0.3, 0.4),
+      R("4c", "card-review", "absent", "default", 0.5, 0.6),
+      R("4d", "ticket-chip", "slot:ticket", "slot:review", 1.1, 0.8, "after:4c"),
+      R("4e", "draft-bars", "absent", "active", 2.0, 0.8, "after:4d"),
+      R("4f", "person-link", "dashed", "solid", 3.0, 0.6, "after:4e"),
+      R("4g", "btn-approve", "default", "approved", 3.6, 0.4, "after:4f"),
+      R("4h", "badge-approved", "absent", "active", 4.0, 0.4, "after:4g"),
+      R("4h1", "card-review", "default", "approved", 4.0, 0.4, "after:4g"),
+      R("4i", "btn-approve-text", "Approve", "Approved", 4.0, 0.3, "after:4g"),
+      R("4j", "pip-4", "default", "done", 4.1, 0.3)] },
+    { id: "B5", dur: 5.5, rows: [...say(5, 5.5, 0.5),
+      R("5a1", "card-inbox", "dim", "absent", 0.1, 0.35),
+      R("5a2", "card-ticket", "dim", "absent", 0.1, 0.35),
+      R("5a3", "card-crm", "dim", "absent", 0.1, 0.35),
+      R("5a", "card-review", "approved", "dim", 0.3, 0.4),
+      R("5b", "card-docs", "absent", "default", 0.5, 0.6),
+      R("5b1", "team-1", "absent", "dim", 0.5, 0.5),
+      R("5b2", "team-2", "absent", "dim", 0.5, 0.5),
+      R("5b3", "team-3", "absent", "dim", 0.5, 0.5),
+      R("5c", "report-page", "absent", "active", 1.1, 0.8, "after:5b"),
+      R("5d", "report-page", "slot:docs", "slot:team", 1.9, 0.7, "after:5c"),
+      R("5d1", "report-path", "absent", "default", 1.9, 0.7, "after:5c"),
+      R("5e", "team-1", "dim", "active", 2.6, 0.3, "after:5d"),
+      R("5f", "team-2", "dim", "active", 2.9, 0.3, "after:5e"),
+      R("5g", "team-3", "dim", "active", 3.2, 0.3, "after:5f"),
+      R("5h", "team-sent-text", "absent", "default", 3.5, 0.3, "after:5g"),
+      R("5i", "card-docs", "default", "done", 3.5, 0.3, "after:5g"),
+      R("5j", "pip-5", "default", "done", 3.5, 0.3)] },
+    { id: "B6", dur: 11.0, rows: [
+      R("6x", "stage-a", "default", "absent", 0, 0.3),
+      R("m6h", "m6-head", "absent", "default", 0, 0.5),
+      R("m6x", "m6-hx", "absent", "default", 0.3, 0.5),
+      R("m6s", "m6-sup", "absent", "default", 0.5, 0.5),
+      R("6a", "rail", "absent", "default", 0.4, 0.7),
+      R("6b", "tile-audit", "default", "done", 1.1, 0.4, "after:6a"),
+      R("6c", "playhead", "slot:audit", "slot:build", 1.5, 0.4, "after:6b"),
+      R("6d", "tile-build", "default", "done", 1.9, 0.3, "after:6c"),
+      R("6e", "playhead", "slot:build", "slot:test", 2.2, 0.4, "after:6d"),
+      R("6f", "tile-test", "default", "done", 2.6, 0.3, "after:6e"),
+      R("6g", "window-segment", "absent", "active", 2.9, 0.6, "after:6f"),
+      R("6h", "tile-golive", "default", "active", 3.5, 0.4, "after:6g"),
+      R("6i", "pip-6", "default", "done", 3.6, 0.3),
+      R("6j", "stage-exit", "default", "absent", 5.7, 0.3),
+      R("6k", "cta-offer-name", "absent", "default", 6.0, 0.5, "after:6j"),
+      R("6l", "cta-button", "absent", "active", 6.5, 0.5, "after:6k"),
+      R("6m", "cta-benefit", "absent", "default", 7.0, 0.4, "after:6l"),
+      R("6n", "cta-path", "absent", "default", 7.4, 0.4, "after:6m")] }
+  ];
+  /* Headline element per beat, for the seam check. */
+  const HEADS = { B1: "m1-head", B2: "m2-head", B3: "m3-head", B4: "m4-head", B5: "m5-head", B6: "m6-head" };
+  window.__V3DATA = { ELEMENTS, BEATS, HEADS };
+})();
