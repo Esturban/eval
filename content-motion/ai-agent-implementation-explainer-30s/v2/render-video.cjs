@@ -22,15 +22,16 @@ const SHELL = "/Users/EVA/Library/Caches/ms-playwright/chromium_headless_shell-1
 const FONT = "/Users/EVA/Library/Fonts/InstrumentSans-1.ttf";
 const SHEET_BG = "#d6d1c7";
 const MIN_HOLD_FRAMES = 45; /* 1.5 s at 30 fps */
-/* 9:16 recomposition (see placement() in motion.js): art scaled 0.95 and centred, so side margins are equal
-   (about 130 px) and the right edge stays left of the action rail (x 950); headline pinned at y 300 on every
-   beat, diagram's lowest edge pinned at y 1490, above the bottom caption and controls band. */
+/* 9:16 recomposition (see placement() in motion.js): art scaled 0.97, the largest that keeps the full-width
+   diagrams inside x 120 to 960 (equal side margins, clear of the action rail); message block and diagram
+   stacked 150 px apart and centred between the top UI (y 250) and the bottom caption zone (y 1500). */
 const FORMATS = {
   "4x5": { name: "4x5", w: 1080, h: 1350, dx: 0, headDy: 0, gfxDy: 0 },
-  "9x16": { name: "9x16", w: 1080, h: 1920, scale: 0.95, headTop: 300, gfxBottom: 1490 }
+  "9x16": { name: "9x16", w: 1080, h: 1920, scale: 0.97, gap: 150, bandTop: 250, bandBottom: 1500 }
 };
 /* Where ink may sit in a settled 9:16 frame: below the top UI, above the bottom caption band, inside the rail. */
-const SAFE_9X16 = { x0: 100, x1: 960, y0: 250, y1: 1510 };
+const SAFE_9X16 = { x0: 120, x1: 960, y0: 250, y1: 1500 };
+const MAX_GAP_9X16 = 160;
 
 const lines = [];
 const log = s => { lines.push(s); console.log(s); };
@@ -58,6 +59,11 @@ function contactFrames(v) {
 async function renderFormat(browser, fmt, tmp) {
   const page = await openScene(browser, fmt);
   const v = await page.evaluate(() => ({ TOTAL: window.__v2.TOTAL, START: window.__v2.START, DUR: window.__v2.DUR, EXIT: window.__v2.EXIT, FPS: window.__v2.FPS }));
+  for (const L of await page.evaluate(() => window.__v2.LAYOUT)) {
+    const gap = L.diaTop - L.msgBottom; const ok = gap <= MAX_GAP_9X16;
+    log(`${fmt.name} beat ${L.beat} stack: message y ${L.msgTop.toFixed(0)} to ${L.msgBottom.toFixed(0)}, gap ${gap.toFixed(0)}, diagram y ${L.diaTop.toFixed(0)} to ${L.diaBottom.toFixed(0)} ${ok ? "PASS" : "FAIL"}`);
+    if (!ok) process.exitCode = 1;
+  }
   const out = path.join(DIR, `explainer-${fmt.name}.mp4`);
   const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(v.FPS), "-c:v", "png", "-i", "-",
     "-an", "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-tune", "animation", "-pix_fmt", "yuv420p", "-profile:v", "high",

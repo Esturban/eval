@@ -10,7 +10,7 @@
 (() => {
   const FPS = 30;
   /* Beat lengths in frames, sized to each beat's read time (1.0 s + 0.4 s per headline word). */
-  const DUR = [126, 114, 108, 117, 117, 117, 117, 135];
+  const DUR = [123, 114, 117, 117, 117, 114, 114, 135];
   const EXIT = 9;            /* 0.3 s depth exit at the end of beats 1 to 7 */
   const CAM = 45;            /* 1.5 s camera settle, critically damped */
   const PERSPECTIVE = 2000;
@@ -57,8 +57,9 @@
   /* Per-beat overrides, seconds from the beat start. wipe: the block draws left to right. */
   const OVR = {
     /* Connectors wait for the cards: the lane path draws once the lane pill is in, the dimmed old handoff last. */
-    2: { lanep: { at: 0.75, dur: 0.55, wipe: true, rise: 0 }, item: { at: 0.85, dur: 0.6, fromX: -250, rise: 0 },
-      x: { at: 0.9, dur: 0.5, rise: 0 } },
+    2: { lanep: { at: 0.75, dur: 0.55, wipe: true, rise: 0 }, item: { at: 0.85, dur: 0.6, fromX: -45, rise: 0 }, /* starts right of the "AI agent" label, never crosses it */
+      x: { at: 0.9, dur: 0.5, rise: 0 },
+      st1: { at: 0.8, dur: 0.45 }, st2: { at: 0.8, dur: 0.45 }, st3: { at: 0.8, dur: 0.45 }, st4: { at: 0.8, dur: 0.45 } },
     3: { tak: { at: 1.05, dur: 0.4, scale: 0.5, rise: 0 } },
     4: { p12: { at: 0.85, dur: 0.5, wipe: true, rise: 0 }, s2: { at: 1.1, dur: 0.4, scale: 0.7, rise: 0 } },
     5: { w1: { at: 0.5 }, w2: { at: 0.65 }, w3: { at: 0.8 }, w1b: { at: 0.95, dur: 0.4, scale: 0.5, rise: 0 },
@@ -124,20 +125,28 @@
 
   /* Placement of the 1080x1350 art inside the frame, per beat and per layer group.
      4:5: identity. 9:16 (FMT.scale set): the art is scaled and centred horizontally (equal side margins,
-     clear of the right-hand action rail); the message block is pinned to FMT.headTop and the diagram's
-     lowest edge to FMT.gfxBottom, so every beat fills the band between the top and bottom platform UI
-     and the headline sits at the same height on every beat. */
+     clear of the right-hand action rail). Vertically, the message block (headline, supporting line, CTA)
+     and the diagram are stacked with a fixed FMT.gap between them, and the whole stack is centred in the
+     band between the top UI and the bottom caption zone (FMT.bandTop to FMT.bandBottom). */
+  const SAFE_X0 = 108; const SAFE_W = 864;
+  function extent(beat, groups) {
+    const boxes = beat.blocks.filter(b => groups.includes(layerOf(b))).map(boxOf);
+    return { top: Math.min(...boxes.map(b => b.y)), bottom: Math.max(...boxes.map(b => b.y + b.h)) };
+  }
   function placement(beat) {
     if (!FMT.scale) {
       return { head: `translate(${FMT.dx}px, ${FMT.headDy}px)`, gfx: `translate(${FMT.dx}px, ${FMT.gfxDy}px)` };
     }
     const s = FMT.scale; const tx = (FMT.w - SAFE_W * s) / 2 - SAFE_X0 * s;
-    const low = Math.max(...beat.blocks.filter(b => { const L = layerOf(b); return L === "gfx" || L === "bg"; })
-      .map(b => { const bx = boxOf(b); return bx.y + bx.h; }));
-    const headTy = FMT.headTop - SAFE_Y0 * s; const gfxTy = FMT.gfxBottom - low * s;
+    const msg = extent(beat, ["head", "cap"]); const dia = extent(beat, ["gfx", "bg"]);
+    const stack = (msg.bottom - msg.top) * s + FMT.gap + (dia.bottom - dia.top) * s;
+    const msgTop = (FMT.bandTop + FMT.bandBottom - stack) / 2;
+    const diaTop = msgTop + (msg.bottom - msg.top) * s + FMT.gap;
+    const headTy = msgTop - msg.top * s; const gfxTy = diaTop - dia.top * s;
+    LAYOUT.push({ beat: beat.n, msgTop, msgBottom: msgTop + (msg.bottom - msg.top) * s, diaTop, diaBottom: diaTop + (dia.bottom - dia.top) * s });
     return { head: `translate(${tx}px, ${headTy}px) scale(${s})`, gfx: `translate(${tx}px, ${gfxTy}px) scale(${s})` };
   }
-  const SAFE_X0 = 108; const SAFE_W = 864; const SAFE_Y0 = 135;
+  const LAYOUT = [];
 
   const built = BEATS.map(beat => {
     const place = placement(beat);
@@ -226,6 +235,6 @@
     return { beat: n, t, settled: flat && blocksSettled };
   }
 
-  window.__v2 = { seek, FPS, TOTAL, START, DUR, EXIT, FMT,
+  window.__v2 = { seek, FPS, TOTAL, START, DUR, EXIT, FMT, LAYOUT,
     specs: built.map(B => ({ beat: B.beat.n, blocks: B.items.map(it => ({ id: it.b.id, at: it.sp.at, dur: it.sp.dur })) })) };
 })();
