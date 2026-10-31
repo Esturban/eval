@@ -22,13 +22,15 @@ const SHELL = "/Users/EVA/Library/Caches/ms-playwright/chromium_headless_shell-1
 const FONT = "/Users/EVA/Library/Fonts/InstrumentSans-1.ttf";
 const SHEET_BG = "#d6d1c7";
 const MIN_HOLD_FRAMES = 45; /* 1.5 s at 30 fps */
-/* 9:16 recomposition: message block under the top safe line (y >= 250), diagram dropped 110 px lower to use the
-   taller frame, everything shifted 36 px left to clear the right-hand action rail, nothing below y 1320
-   (bottom caption and controls band starts about y 1500). */
+/* 9:16 recomposition (see placement() in motion.js): art scaled 0.95 and centred, so side margins are equal
+   (about 130 px) and the right edge stays left of the action rail (x 950); headline pinned at y 300 on every
+   beat, diagram's lowest edge pinned at y 1490, above the bottom caption and controls band. */
 const FORMATS = {
   "4x5": { name: "4x5", w: 1080, h: 1350, dx: 0, headDy: 0, gfxDy: 0 },
-  "9x16": { name: "9x16", w: 1080, h: 1920, dx: -36, headDy: 125, gfxDy: 235 }
+  "9x16": { name: "9x16", w: 1080, h: 1920, scale: 0.95, headTop: 300, gfxBottom: 1490 }
 };
+/* Where ink may sit in a settled 9:16 frame: below the top UI, above the bottom caption band, inside the rail. */
+const SAFE_9X16 = { x0: 100, x1: 960, y0: 250, y1: 1510 };
 
 const lines = [];
 const log = s => { lines.push(s); console.log(s); };
@@ -129,6 +131,13 @@ function probe(mp4) {
       run("magick", ["montage", ...files, "+set", "label", "-font", FONT, "-tile", "4x2", "-geometry", "1080x1350+0+0", "-background", SHEET_BG, path.join(FRAMES, "contact-sheet-v2.png")]);
       run("magick", ["montage", ...files, "+set", "label", "-font", FONT, "-resize", "360x450", "-tile", "4x2", "-geometry", "360x450+8+8", "-background", SHEET_BG, path.join(FRAMES, "contact-sheet-v2-phone-360.png")]);
     } else {
+      files.forEach((file, i) => {
+        const [w, h, x, y] = run("magick", [file, "-fuzz", "3%", "-trim", "-format", "%w %h %X %Y", "info:"]).split(" ").map(Number);
+        const b = { x0: x, x1: x + w, y0: y, y1: y + h };
+        const ok = b.x0 >= SAFE_9X16.x0 && b.x1 <= SAFE_9X16.x1 && b.y0 >= SAFE_9X16.y0 && b.y1 <= SAFE_9X16.y1;
+        log(`9x16 beat ${i + 1} ink bounds x ${b.x0} to ${b.x1} (margins ${b.x0}/${fmt.w - b.x1}), y ${b.y0} to ${b.y1} ${ok ? "PASS" : "FAIL"}`);
+        if (!ok) process.exitCode = 1;
+      });
       run("magick", ["montage", ...files, "+set", "label", "-font", FONT, "-resize", "360x640", "-tile", "4x2", "-geometry", "360x640+8+8", "-background", SHEET_BG, path.join(FRAMES, "contact-sheet-v2-9x16-phone-360.png")]);
     }
   }

@@ -1,29 +1,37 @@
 4x5 beat 1: 4.20 s, settled hold 69 frames (2.30 s) PASS
-4x5 beat 2: 3.50 s, settled hold 51 frames (1.70 s) PASS
+4x5 beat 2: 3.80 s, settled hold 60 frames (2.00 s) PASS
 4x5 beat 3: 3.60 s, settled hold 54 frames (1.80 s) PASS
-4x5 beat 4: 3.60 s, settled hold 54 frames (1.80 s) PASS
-4x5 beat 5: 3.60 s, settled hold 54 frames (1.80 s) PASS
+4x5 beat 4: 3.90 s, settled hold 63 frames (2.10 s) PASS
+4x5 beat 5: 3.90 s, settled hold 63 frames (2.10 s) PASS
 4x5 beat 6: 3.90 s, settled hold 62 frames (2.07 s) PASS
 4x5 beat 7: 3.90 s, settled hold 63 frames (2.10 s) PASS
 4x5 beat 8: 4.50 s, settled hold 90 frames (3.00 s) PASS
-explainer-4x5.mp4: duration 30.800 s, 1080x1350, h264 yuv420p 30/1, audio streams 0 PASS
+explainer-4x5.mp4: duration 31.700 s, 1080x1350, h264 yuv420p 30/1, audio streams 0 PASS
 explainer-4x5.mp4: faststart (moov before mdat) PASS
-4x5 beat 1 settled frame 113: HTML vs approved still px off by >2% 0.30719; MP4 frame vs still PSNR 43.3889 dB PASS
-4x5 beat 2 settled frame 218: HTML vs approved still px off by >2% 0.0941176; MP4 frame vs still PSNR 40.8058 dB PASS
-4x5 beat 3 settled frame 326: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 42.8534 dB PASS
-4x5 beat 4 settled frame 434: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 42.3465 dB PASS
-4x5 beat 5 settled frame 542: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 40.8536 dB PASS
-4x5 beat 6 settled frame 659: HTML vs approved still px off by >2% 3.64444; MP4 frame vs still PSNR 43.9031 dB PASS
-4x5 beat 7 settled frame 776: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 42.4455 dB PASS
-4x5 beat 8 settled frame 920: HTML vs approved still px off by >2% 3.05229; MP4 frame vs still PSNR 39.047 dB PASS
+4x5 beat 1 settled frame 113: HTML vs approved still px off by >2% 0.30719; MP4 frame vs still PSNR 43.3854 dB PASS
+4x5 beat 2 settled frame 227: HTML vs approved still px off by >2% 0.0941176; MP4 frame vs still PSNR 39.9486 dB PASS
+4x5 beat 3 settled frame 335: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 42.8241 dB PASS
+4x5 beat 4 settled frame 452: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 40.8916 dB PASS
+4x5 beat 5 settled frame 569: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 40.8464 dB PASS
+4x5 beat 6 settled frame 686: HTML vs approved still px off by >2% 3.64444; MP4 frame vs still PSNR 43.8967 dB PASS
+4x5 beat 7 settled frame 803: HTML vs approved still px off by >2% 0; MP4 frame vs still PSNR 40.6579 dB PASS
+4x5 beat 8 settled frame 947: HTML vs approved still px off by >2% 3.05229; MP4 frame vs still PSNR 39.0197 dB PASS
 9x16 beat 1: 4.20 s, settled hold 69 frames (2.30 s) PASS
-9x16 beat 2: 3.50 s, settled hold 51 frames (1.70 s) PASS
+9x16 beat 2: 3.80 s, settled hold 60 frames (2.00 s) PASS
 9x16 beat 3: 3.60 s, settled hold 54 frames (1.80 s) PASS
-9x16 beat 4: 3.60 s, settled hold 54 frames (1.80 s) PASS
-9x16 beat 5: 3.60 s, settled hold 54 frames (1.80 s) PASS
+9x16 beat 4: 3.90 s, settled hold 63 frames (2.10 s) PASS
+9x16 beat 5: 3.90 s, settled hold 63 frames (2.10 s) PASS
 9x16 beat 6: 3.90 s, settled hold 62 frames (2.07 s) PASS
 9x16 beat 7: 3.90 s, settled hold 63 frames (2.10 s) PASS
 9x16 beat 8: 4.50 s, settled hold 90 frames (3.00 s) PASS
-explainer-9x16.mp4: duration 30.800 s, 1080x1920, h264 yuv420p 30/1, audio streams 0 PASS
+explainer-9x16.mp4: duration 31.700 s, 1080x1920, h264 yuv420p 30/1, audio streams 0 PASS
 explainer-9x16.mp4: faststart (moov before mdat) PASS
+9x16 beat 1 ink bounds x 129 to 951 (margins 129/129), y 312 to 1490 PASS
+9x16 beat 2 ink bounds x 129 to 951 (margins 129/129), y 313 to 1490 PASS
+9x16 beat 3 ink bounds x 129 to 951 (margins 129/129), y 312 to 1490 PASS
+9x16 beat 4 ink bounds x 129 to 951 (margins 129/129), y 312 to 1490 PASS
+9x16 beat 5 ink bounds x 129 to 951 (margins 129/129), y 312 to 1490 PASS
+9x16 beat 6 ink bounds x 129 to 951 (margins 129/129), y 312 to 1481 PASS
+9x16 beat 7 ink bounds x 129 to 951 (margins 129/129), y 314 to 1490 PASS
+9x16 beat 8 ink bounds x 129 to 951 (margins 129/129), y 314 to 1481 PASS
 ALL CHECKS PASS

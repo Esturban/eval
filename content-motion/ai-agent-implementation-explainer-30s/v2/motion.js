@@ -10,7 +10,7 @@
 (() => {
   const FPS = 30;
   /* Beat lengths in frames, sized to each beat's read time (1.0 s + 0.4 s per headline word). */
-  const DUR = [126, 105, 108, 108, 108, 117, 117, 135];
+  const DUR = [126, 114, 108, 117, 117, 117, 117, 135];
   const EXIT = 9;            /* 0.3 s depth exit at the end of beats 1 to 7 */
   const CAM = 45;            /* 1.5 s camera settle, critically damped */
   const PERSPECTIVE = 2000;
@@ -56,7 +56,9 @@
 
   /* Per-beat overrides, seconds from the beat start. wipe: the block draws left to right. */
   const OVR = {
-    2: { lanep: { at: 0.35, dur: 0.6, wipe: true, rise: 0 }, item: { at: 0.55, dur: 0.85, fromX: -250, rise: 0 } },
+    /* Connectors wait for the cards: the lane path draws once the lane pill is in, the dimmed old handoff last. */
+    2: { lanep: { at: 0.75, dur: 0.55, wipe: true, rise: 0 }, item: { at: 0.85, dur: 0.6, fromX: -250, rise: 0 },
+      x: { at: 0.9, dur: 0.5, rise: 0 } },
     3: { tak: { at: 1.05, dur: 0.4, scale: 0.5, rise: 0 } },
     4: { p12: { at: 0.85, dur: 0.5, wipe: true, rise: 0 }, s2: { at: 1.1, dur: 0.4, scale: 0.7, rise: 0 } },
     5: { w1: { at: 0.5 }, w2: { at: 0.65 }, w3: { at: 0.8 }, w1b: { at: 0.95, dur: 0.4, scale: 0.5, rise: 0 },
@@ -86,7 +88,7 @@
     return { at: 0.35 + 0.55 * f, dur: 0.55, rise: 16 };
   }
   function spec(n, b) {
-    const s = Object.assign({ fromX: 0, scale: 1, wipe: false }, baseSpec(n, b), (OVR[n] || {})[b.id] || {});
+    const s = Object.assign({ fromX: 0, scale: 1, wipe: false, quickFade: layerOf(b) === "head" }, baseSpec(n, b), (OVR[n] || {})[b.id] || {});
     return { ...s, atF: Math.round(s.at * FPS), durF: Math.round(s.dur * FPS) };
   }
 
@@ -120,15 +122,33 @@
     perspective: PERSPECTIVE + "px", perspectiveOrigin: `${FMT.w / 2}px ${FMT.h / 2}px` });
   const SVGNS = "http://www.w3.org/2000/svg";
 
+  /* Placement of the 1080x1350 art inside the frame, per beat and per layer group.
+     4:5: identity. 9:16 (FMT.scale set): the art is scaled and centred horizontally (equal side margins,
+     clear of the right-hand action rail); the message block is pinned to FMT.headTop and the diagram's
+     lowest edge to FMT.gfxBottom, so every beat fills the band between the top and bottom platform UI
+     and the headline sits at the same height on every beat. */
+  function placement(beat) {
+    if (!FMT.scale) {
+      return { head: `translate(${FMT.dx}px, ${FMT.headDy}px)`, gfx: `translate(${FMT.dx}px, ${FMT.gfxDy}px)` };
+    }
+    const s = FMT.scale; const tx = (FMT.w - SAFE_W * s) / 2 - SAFE_X0 * s;
+    const low = Math.max(...beat.blocks.filter(b => { const L = layerOf(b); return L === "gfx" || L === "bg"; })
+      .map(b => { const bx = boxOf(b); return bx.y + bx.h; }));
+    const headTy = FMT.headTop - SAFE_Y0 * s; const gfxTy = FMT.gfxBottom - low * s;
+    return { head: `translate(${tx}px, ${headTy}px) scale(${s})`, gfx: `translate(${tx}px, ${gfxTy}px) scale(${s})` };
+  }
+  const SAFE_X0 = 108; const SAFE_W = 864; const SAFE_Y0 = 135;
+
   const built = BEATS.map(beat => {
+    const place = placement(beat);
     const world = div({ position: "absolute", left: 0, top: 0, width: FMT.w + "px", height: FMT.h + "px",
       transformOrigin: "50% 50%", display: "none" });
     stage.appendChild(world);
     const layers = {};
     for (const L of LAYERS) {
       const el = div({ position: "absolute", left: 0, top: 0, width: FMT.w + "px", height: FMT.h + "px", transformOrigin: "50% 50%" });
-      const dy = L === "head" || L === "cap" ? FMT.headDy : FMT.gfxDy;
-      const inner = div({ position: "absolute", left: 0, top: 0, width: "1080px", height: "1350px", transform: `translate(${FMT.dx}px, ${dy}px)` });
+      const inner = div({ position: "absolute", left: 0, top: 0, width: "1080px", height: "1350px", transformOrigin: "0 0",
+        transform: L === "head" || L === "cap" ? place.head : place.gfx });
       const svg = document.createElementNS(SVGNS, "svg");
       svg.setAttribute("width", "1080"); svg.setAttribute("height", "1350");
       svg.setAttribute("viewBox", "0 0 1080 1350"); svg.style.position = "absolute"; svg.style.overflow = "visible";
@@ -162,7 +182,10 @@
   function applyBlock(it, t) {
     const sp = it.sp; const p = spring(t - sp.atF, sp.durF);
     const settled = p === 1;
-    const op = sp.wipe ? clamp01(p * 4) : p;
+    /* Headlines fade on an ease-out that is already visible on the beat's first frame, so a seam never shows
+       a blank frame (the rise still follows the spring). */
+    const u = clamp01((t - sp.atF + 1) / Math.max(1, sp.durF * 0.6));
+    const op = sp.wipe ? clamp01(p * 4) : (sp.quickFade && t >= sp.atF ? 1 - Math.pow(1 - u, 3) : p);
     const dx = sp.fromX * (1 - p); const dy = sp.rise * (1 - p);
     const sc = sp.scale + (1 - sp.scale) * p;
     if (it.rect) it.rect.setAttribute("width", settled ? it.box.w + 60 : (it.box.w + 60) * p);
@@ -186,7 +209,8 @@
     const B = built[i]; const n = B.beat.n;
     const k = 1 - spring(t, CAM);
     const exiting = i < built.length - 1 && t >= D - EXIT;
-    const e = exiting ? Math.pow((t - (D - EXIT) + 1) / EXIT, 2) : 0;
+    /* Exit peaks at 0.81 on the beat's last frame: the outgoing beat is down to 19 percent, never fully blank. */
+    const e = exiting ? Math.pow((t - (D - EXIT) + 1) / (EXIT + 1), 2) : 0;
     const cam = CAMERA[n];
     const flat = k === 0 && e === 0;
     B.world.style.opacity = 1 - e;
