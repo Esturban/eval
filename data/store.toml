@@ -153,20 +153,6 @@ url = "https://cal.com/este-val/audit-fit-call"
 ticket = "not yet ticketed"
 status = "asset exists"
 
-[[product]]
-slug = "job-hunting-is-marketing"
-section = "books"
-name = "Job Hunting Is Marketing"
-eyebrow = "Ebook"
-outcome = "Run your job search like a campaign. Narrative, page, funnel, and what to do with every no."
-delivery = "PDF plus EPUB. Download link on receipt."
-refund = ""
-price = "USD 9"
-price_note = ""
-button = "Buy"
-url = "#"
-status = "in progress"
-
 [[question]]
 question = "Not sure AI fits your process?"
 start_here = "Narrow Agent Fit Checklist, free"
