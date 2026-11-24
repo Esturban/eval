@@ -164,8 +164,8 @@ refund = ""
 price = "USD 9"
 price_note = ""
 button = "Buy"
-url = "#"
-status = "in progress"
+url = "https://buy.stripe.com/3cIbIU8AS0MxdzheV45EY00"
+status = "live"
 
 [[question]]
 question = "Not sure AI fits your process?"
